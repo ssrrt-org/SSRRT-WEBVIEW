@@ -29,7 +29,7 @@ export default function AdminShopPage() {
   const [query, setQuery] = useState("");
   const [editing, setEditing] = useState(null);
 
-  const products = data.products || [];
+  const products = useMemo(() => data.products || [], [data.products]);
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return products;

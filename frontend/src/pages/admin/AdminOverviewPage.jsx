@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAdminCms } from "@/admin/AdminCmsContext";
 import { fetchDonationSummary, formatRupees } from "@/lib/donations";
 
 export default function AdminOverviewPage() {
   const { data } = useAdminCms();
-  const localDonations = data.donations || [];
+  const localDonations = useMemo(() => data.donations || [], [data.donations]);
   const [donationStats, setDonationStats] = useState({
     total: localDonations.reduce((sum, item) => sum + (Number(item.amount) || 0), 0),
     count: localDonations.length,
