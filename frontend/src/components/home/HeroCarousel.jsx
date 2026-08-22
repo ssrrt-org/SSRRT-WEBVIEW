@@ -1,0 +1,38 @@
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const slides = [
+  { img: "/ssrrt/AmmaGanesha.jpg", label: "First Blessings", caption: "Ganesha Sannidhi" },
+  { img: "/ssrrt/Volunter.jpg", label: "Amma", caption: "The Divine Mother" },
+  { img: "/ssrrt/ManiDweepa.jpg", label: "Mani Dweepa", caption: "The Sacred Ashram" },
+];
+
+export default function HeroCarousel() {
+  const [idx, setIdx] = useState(1);
+  const n = slides.length;
+  const prev = () => setIdx((idx - 1 + n) % n);
+  const next = () => setIdx((idx + 1) % n);
+  const left = slides[(idx - 1 + n) % n];
+  const mid = slides[idx];
+  const right = slides[(idx + 1) % n];
+  return (
+    <div className="hero-carousel" data-testid="hero-carousel">
+      <button className="carousel-arrow left" data-testid="hero-carousel-prev" onClick={prev} aria-label="Previous"><ChevronLeft/></button>
+      {[left, mid, right].map((s, i) => (
+        <figure key={`${i}-${s.img}`} className={`carousel-panel${i === 1 ? " main" : ""}`} data-testid={`hero-carousel-panel-${i}`}>
+          <img
+            src={s.img}
+            alt={s.label}
+            loading={i === 1 ? "eager" : "lazy"}
+            fetchPriority={i === 1 ? "high" : "low"}
+            decoding="async"
+            width={i === 1 ? 1200 : 640}
+            height={i === 1 ? 800 : 480}
+          />
+          <figcaption><small>{s.caption}</small><span>{s.label}</span></figcaption>
+        </figure>
+      ))}
+      <button className="carousel-arrow right" data-testid="hero-carousel-next" onClick={next} aria-label="Next"><ChevronRight/></button>
+    </div>
+  );
+}

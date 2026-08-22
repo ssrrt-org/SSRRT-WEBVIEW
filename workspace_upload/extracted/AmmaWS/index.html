@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Srimad Sai Rajarajeshwari Trust</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FBF6EC;
+    --ivory-deep:#F3EADA;
+    --maroon:#9B3A1E;
+    --maroon-deep:#7A2C15;
+    --indigo:#222A45;
+    --gold:#C9973D;
+    --sage:#7C8A6B;
+    --ink:#2B2620;
+    --line: rgba(43,38,32,0.12);
+    --max: 1180px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Work Sans', sans-serif;
+    background:var(--ivory);
+    color:var(--ink);
+    line-height:1.6;
+    font-weight:400;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:0.01em;
+    color:var(--indigo);
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  img{max-width:100%; display:block;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+
+  /* ===== Top bar ===== */
+  .topbar{
+    background:var(--indigo);
+    color:var(--ivory);
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  .topbar .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:8px 28px;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .topbar a{opacity:0.85; transition:opacity .2s;}
+  .topbar a:hover{opacity:1; color:var(--gold);}
+
+  /* ===== Header / Nav ===== */
+  header{
+    background:var(--ivory);
+    position:sticky; top:0; z-index:100;
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:8px 0;
+  }
+  .brand{
+    display:flex; align-items:center; gap:14px;
+  }
+  .brand-mark{
+    width:46px; height:46px; flex-shrink:0;
+  }
+  .brand-text{
+    font-family:'Fraunces', serif;
+    font-size:1.45rem;
+    font-weight:600;
+    color:var(--maroon);
+    line-height:1.1;
+  }
+  .brand-text span{
+    display:block;
+    font-family:'Work Sans', sans-serif;
+    font-size:0.66rem;
+    font-weight:500;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--sage);
+    margin-top:3px;
+  }
+
+  nav{display:flex; align-items:center;}
+  .menu{
+    display:flex; gap:6px; align-items:center;
+    list-style:none;
+  }
+  .menu > li{position:relative;}
+  .menu > li > a, .menu > li > button{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:10px 16px;
+    font-size:0.92rem;
+    font-weight:500;
+    color:var(--indigo);
+    background:none; border:none; cursor:pointer;
+    font-family:'Work Sans', sans-serif;
+    border-radius:3px;
+    transition:color .2s, background .2s;
+  }
+  .menu > li > a:hover, .menu > li > button:hover,
+  .menu > li.open > button{
+    color:var(--maroon);
+    background:var(--ivory-deep);
+  }
+  .caret{
+    width:9px; height:9px;
+    transition:transform .25s;
+  }
+  .menu > li.open .caret{transform:rotate(180deg);}
+
+  /* Dropdown panels */
+  .dropdown{
+    position:absolute;
+    top:100%; left:0;
+    min-width:240px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-top:3px solid var(--maroon);
+    box-shadow:0 18px 40px -16px rgba(43,38,32,0.25);
+    padding:10px;
+    display:none;
+    z-index:50;
+  }
+  .menu > li.open .dropdown{display:block;}
+  .dropdown a{
+    display:block;
+    padding:10px 14px;
+    font-size:0.9rem;
+    color:var(--ink);
+    border-radius:4px;
+    transition:background .15s, color .15s, padding-left .15s;
+  }
+  .dropdown a:hover{
+    background:var(--ivory-deep);
+    color:var(--maroon-deep);
+    padding-left:18px;
+  }
+
+  /* Mobile nav toggle */
+  .nav-toggle{
+    display:none;
+    background:none; border:none;
+    width:40px; height:40px;
+    cursor:pointer;
+    flex-direction:column; justify-content:center; gap:5px;
+  }
+  .nav-toggle span{
+    display:block; height:2px; width:24px; background:var(--indigo); margin:0 auto;
+    transition:.25s;
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    background:var(--indigo);
+    color:var(--ivory);
+    overflow:hidden;
+    padding:20px 0 10px;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 82% 18%, rgba(201,151,61,0.18), transparent 45%),
+      radial-gradient(circle at 12% 85%, rgba(155,58,30,0.25), transparent 50%);
+    pointer-events:none;
+  }
+  .hero .wrap{
+    position:relative; z-index:2;
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:60px;
+    align-items:center;
+  }
+  .hero-eyebrow{
+    font-size:0.78rem; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:18px; font-weight:600;
+  }
+  .hero h1{
+    color:var(--ivory);
+    font-size:clamp(2.4rem, 5vw, 3.8rem);
+    font-weight:600;
+    line-height:1.12;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--gold); font-weight:400;
+  }
+  .hero p{
+    font-size:1.05rem;
+    color:rgba(251,246,236,0.78);
+    max-width:520px;
+    margin-bottom:34px;
+  }
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 28px;
+    border-radius:2px;
+    font-size:0.9rem; font-weight:600;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    transition:transform .2s, box-shadow .2s, background .2s, color .2s;
+    border:1px solid transparent;
+  }
+  .btn-primary{
+    background:var(--maroon);
+    color:var(--ivory);
+  }
+  .btn-primary:hover{
+    background:var(--gold); color:var(--indigo);
+    transform:translateY(-2px);
+    box-shadow:0 12px 24px -10px rgba(201,151,61,0.6);
+  }
+  .btn-ghost{
+    border-color:rgba(251,246,236,0.35);
+    color:var(--ivory);
+  }
+  .btn-ghost:hover{
+    border-color:var(--gold); color:var(--gold);
+    transform:translateY(-2px);
+  }
+
+  /* Mandala signature graphic */
+  .mandala-wrap{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .mandala{
+    width:100%; max-width:380px;
+    animation: spin 120s linear infinite;
+  }
+  .mandala .pulse{
+    transform-origin:200px 200px;
+    animation: pulse 6s ease-in-out infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  @keyframes pulse{ 0%,100%{opacity:0.55;} 50%{opacity:1;} }
+  @media (prefers-reduced-motion: reduce){
+    .mandala{animation:none;}
+    .mandala .pulse{animation:none;}
+  }
+
+  /* ===== Section shells ===== */
+  section{padding:88px 0;}
+  .section-head{
+    max-width:680px;
+    margin-bottom:48px;
+  }
+  .section-eyebrow{
+    font-size:0.76rem; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--maroon); font-weight:600; margin-bottom:14px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .section-eyebrow::before{
+    content:""; display:inline-block; width:30px; height:1px; background:var(--maroon);
+  }
+  .section-head h2{
+    font-size:clamp(1.8rem, 3.4vw, 2.6rem);
+    margin-bottom:14px;
+  }
+  .section-head p{
+    color:#5b5347; font-size:1.02rem;
+  }
+
+  .alt{background:var(--ivory-deep);}
+
+  /* Tile grid */
+  .tile-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:24px;
+  }
+  .tile{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    display:flex; flex-direction:column;
+    transition:transform .25s, box-shadow .25s, border-color .25s;
+  }
+  .tile:hover{
+    transform:translateY(-5px);
+    box-shadow:0 24px 48px -28px rgba(43,38,32,0.3);
+    border-color:transparent;
+  }
+  .tile-icon{
+    width:100%; height:130px;
+    background:linear-gradient(135deg, var(--indigo), #313c5e);
+    display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+  }
+  .tile-icon::after{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 30% 30%, rgba(201,151,61,0.35), transparent 60%);
+  }
+  .tile-icon svg{width:46px; height:46px; stroke:var(--gold); position:relative; z-index:1;}
+  .tile-body{padding:22px 24px 26px; flex:1; display:flex; flex-direction:column;}
+  .tile-body h3{font-size:1.2rem; margin-bottom:8px;}
+  .tile-body p{font-size:0.92rem; color:#6a6256; flex:1; margin-bottom:16px;}
+  .tile-links{
+    display:flex; flex-direction:column; gap:6px;
+    border-top:1px solid var(--line); padding-top:14px;
+  }
+  .tile-links a{
+    font-size:0.86rem; font-weight:500; color:var(--maroon-deep);
+    display:flex; align-items:center; gap:8px;
+    transition:gap .2s, color .2s;
+  }
+  .tile-links a::before{
+    content:"→"; font-size:0.9rem; color:var(--gold);
+    transition:transform .2s;
+  }
+  .tile-links a:hover{gap:12px; color:var(--maroon);}
+
+  /* Sevas list style */
+  .seva-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:20px;
+  }
+  .seva-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-left:4px solid var(--gold);
+    padding:26px 24px;
+    border-radius:2px;
+    transition:border-color .25s, background .25s;
+  }
+  .seva-card:hover{
+    border-left-color:var(--maroon);
+    background:var(--ivory-deep);
+  }
+  .seva-card h3{font-size:1.08rem; margin-bottom:8px; font-weight:500;}
+  .seva-card p{font-size:0.88rem; color:#79705f;}
+
+  /* Sacred spaces list */
+  .sacred-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:18px;
+  }
+  .sacred-item{
+    text-align:center;
+    padding:30px 16px;
+    background:#fff;
+    border:1px solid var(--line);
+    transition:transform .25s, box-shadow .25s;
+  }
+  .sacred-item:hover{
+    transform:translateY(-4px);
+    box-shadow:0 20px 40px -26px rgba(43,38,32,0.3);
+  }
+  .sacred-item .glyph{
+    width:54px; height:54px; margin:0 auto 16px;
+    border-radius:50%;
+    background:var(--ivory-deep);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .sacred-item .glyph svg{width:26px; height:26px; stroke:var(--maroon);}
+  .sacred-item h3{font-size:1rem; font-weight:500;}
+
+  /* Quote / signature divider */
+  .divider{
+    display:flex; align-items:center; justify-content:center;
+    gap:18px;
+    padding:60px 0;
+    color:var(--maroon);
+  }
+  .divider .line{height:1px; width:90px; background:var(--line);}
+  .divider svg{width:34px; height:34px; stroke:var(--maroon);}
+
+  /* Two-col content (Mother section) */
+  .twocol{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:start;
+  }
+  .content-card{
+    background:#fff; border:1px solid var(--line); padding:30px;
+    border-radius:3px;
+  }
+  .content-card h3{font-size:1.15rem; margin-bottom:10px;}
+  .content-card p{font-size:0.92rem; color:#6a6256;}
+  .stack{display:flex; flex-direction:column; gap:20px;}
+
+  /* Shoppe grid */
+  .shop-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+    gap:20px;
+  }
+  .shop-item{
+    background:#fff; border:1px solid var(--line);
+    text-align:center; padding:34px 16px;
+    transition:transform .25s, border-color .25s;
+  }
+  .shop-item:hover{transform:translateY(-4px); border-color:var(--gold);}
+  .shop-item .glyph{
+    width:50px; height:50px; margin:0 auto 14px;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--ivory-deep); border-radius:50%;
+  }
+  .shop-item .glyph svg{width:24px; height:24px; stroke:var(--sage);}
+  .shop-item h4{font-size:0.96rem; font-weight:500; color:var(--indigo);}
+
+  /* Donate */
+  .donate-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+    gap:24px;
+  }
+  .donate-card{
+    padding:34px 28px;
+    background:var(--indigo);
+    color:var(--ivory);
+    border-radius:3px;
+    position:relative; overflow:hidden;
+  }
+  .donate-card::before{
+    content:"";
+    position:absolute; top:-40px; right:-40px;
+    width:120px; height:120px; border-radius:50%;
+    background:rgba(201,151,61,0.18);
+  }
+  .donate-card h3{color:var(--ivory); font-size:1.2rem; margin-bottom:10px; position:relative; z-index:1;}
+  .donate-card p{color:rgba(251,246,236,0.7); font-size:0.9rem; margin-bottom:22px; position:relative; z-index:1;}
+  .donate-card a{
+    position:relative; z-index:1;
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--gold); font-weight:600; font-size:0.86rem;
+    text-transform:uppercase; letter-spacing:0.05em;
+  }
+  .donate-card a::after{content:"→"; transition:transform .2s;}
+  .donate-card a:hover::after{transform:translateX(4px);}
+
+  /* SSRRT section */
+  .ssrrt-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+
+  /* Footer */
+  footer{
+    background:var(--indigo);
+    color:rgba(251,246,236,0.7);
+    padding:60px 0 30px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:40px;
+    border-bottom:1px solid rgba(251,246,236,0.12);
+  }
+  footer h4{
+    color:var(--gold);
+    font-size:0.78rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+    font-family:'Work Sans', sans-serif;
+    font-weight:600;
+  }
+  footer ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
+  footer a{font-size:0.88rem; transition:color .2s;}
+  footer a:hover{color:var(--gold);}
+  footer p{font-size:0.88rem;}
+  .footer-brand{font-family:'Fraunces', serif; font-size:1.3rem; color:var(--ivory); margin-bottom:14px;}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:24px; font-size:0.8rem; flex-wrap:wrap; gap:10px;
+  }
+
+  /* Section id anchor offset */
+  .section-anchor{ scroll-margin-top: 10px; }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 980px){
+    .hero .wrap{grid-template-columns:1fr; text-align:left;}
+    .mandala-wrap{order:-1; max-width:240px; margin:0 auto 20px;}
+    .twocol{grid-template-columns:1fr;}
+    .ssrrt-grid{grid-template-columns:1fr 1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+
+  @media (max-width: 860px){
+    .nav-toggle{display:flex;}
+    nav{
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--ivory);
+      border-bottom:1px solid var(--line);
+      flex-direction:column;
+      max-height:0; overflow:hidden;
+      transition:max-height .3s ease;
+      box-shadow:0 18px 40px -20px rgba(43,38,32,0.3);
+    }
+    nav.open{max-height:80vh; overflow-y:auto;}
+    .menu{flex-direction:column; width:100%; align-items:stretch; padding:8px 0;}
+    .menu > li > a, .menu > li > button{
+      width:100%; justify-content:space-between; padding:14px 28px;
+      border-radius:0;
+    }
+    .dropdown{
+      position:static; border:none; border-top:1px solid var(--line);
+      box-shadow:none; background:var(--ivory-deep);
+      width:100%; border-radius:0;
+    }
+    .menu > li.open .dropdown{display:block;}
+    .ssrrt-grid{grid-template-columns:1fr;}
+  }
+
+  @media (max-width: 600px){
+    .footer-grid{grid-template-columns:1fr;}
+    section{padding:60px 0;}
+    .hero{padding:70px 0 60px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Srimad Sai Rajarajeshwari Trust &mdash; Seva  is the path</span>
+    <a href="#donate">Make an offering</a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav-row">
+    <a href="#" class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="22" stroke="#9B3A1E" stroke-width="1.5"/>
+        <circle cx="24" cy="24" r="3.5" fill="#C9973D"/>
+        <g stroke="#9B3A1E" stroke-width="1.3">
+          <path d="M24 6 L24 14"/>
+          <path d="M24 34 L24 42"/>
+          <path d="M6 24 L14 24"/>
+          <path d="M34 24 L42 24"/>
+          <path d="M11 11 L16.5 16.5"/>
+          <path d="M31.5 31.5 L37 37"/>
+          <path d="M37 11 L31.5 16.5"/>
+          <path d="M16.5 31.5 L11 37"/>
+        </g>
+      </svg>
+      <span class="brand-text">Srimad Sai Rajarajeshwari Trust</span>
+    </a>
+  </div>
+  <div class="wrap nav-row">	
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav>
+      <ul class="menu">
+        <li><a href="#home">Home</a></li>
+
+        <li>
+          <button onclick="toggleMenu(this)">Mother <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="dropdown">
+            <a href="#avataarhood">The Avataarhood</a>
+            <a href="#naadi-readings">The Naadi Readings</a>
+            <a href="#swami-amma">Swami &amp; Amma</a>
+            <a href="#realized-beings">Realized Beings</a>
+          </div>
+        </li>
+
+        <li>
+          <button onclick="toggleMenu(this)">Goshala <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="dropdown">
+            <a href="#goshala-history">History of Goshala</a>
+            <a href="#goshala-adopt">Adopt a Cow</a>
+            <a href="#goshala-volunteer">Volunteer</a>
+          </div>
+        </li>
+<!--
+        <li>
+          <button onclick="toggleMenu(this)">Mother for Needy <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="dropdown">
+            
+            <a href="#medical-village">Medical Support in the Village</a>
+            <a href="#food-needy">Food for the Needy</a>
+          </div>
+        </li>
+-->
+        <li>
+          <button onclick="toggleMenu(this)">Rural-Upliftment <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="dropdown">
+		    <a href="#medical-multi">Medical Centers, Multi-Village</a>
+            <a href="#ru-education">Education</a>
+            <a href="#ru-food">Food for the Needy</a>
+            <a href="#ru-water">Water Supply</a>
+            <a href="#ru-bedding">Bedding Supplies</a>
+            <a href="#ru-narayana">Narayana Seva</a>
+          </div>
+        </li>
+
+        <li>
+          <button onclick="toggleMenu(this)">Consecrated Space <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="dropdown">
+            <a href="#shiradi-baba">Shiradi Baba Temple</a>
+            <a href="#krishna-maya">Krishna Maya Temple</a>
+            <a href="#mani-dweepa">Mani-Dweepa</a>
+            <a href="#kaala-bhairava">Kaala Bhairava Trishula</a>
+            <a href="#harake-nandi">Harake Nandi</a>
+            <a href="#ganesha-sannidhi">Ganesha Sannidhi</a>
+            <a href="#subramanya-sannidhi">Subramanya Sannidhi</a>
+            <a href="#dattatreya-sannidhi">Dattatreya Sannidhi</a>
+            <a href="#nataraja-hall">Nataraja Hall</a>
+          </div>
+        </li>
+
+        <li>
+          <button onclick="toggleMenu(this)">Sevas <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="dropdown">
+            <a href="#nandi-abhisheka">Nandi Abhisheka</a>
+            <a href="#butter-ganesha">Butter Alankara for Ganesha</a>
+            <a href="#butter-subramanya">Butter Alankara for Subramanya</a>
+          </div>
+        </li>
+
+		<li>
+          <button onclick="toggleMenu(this)">Donate <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="dropdown">
+            <a href="#donate-sevas">For Sevas</a>
+            <a href="#donate-cows">For Cows</a>
+            <a href="#donate-events">For Events</a>
+            <a href="#donate-ashram">Ashram</a>
+          </div>
+        </li>
+
+        <li><a href="#volunteering">Volunteering</a></li>
+
+         <li>
+          <button onclick="toggleMenu(this)">Shoppe <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="dropdown">
+            <a href="#shop-mother">Mother for Abode</a>
+            <a href="#shop-books">Books</a>
+            <a href="#shop-audio">Audio</a>
+            <a href="#shop-videos">Videos</a>
+            <a href="#shop-padukas">Padukas</a>
+            <a href="#shop-stamps">Stamps</a>
+          </div>
+        </li>
+		
+
+<!--
+       <li>
+          <button onclick="toggleMenu(this)">SSRRT <svg class="caret" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="dropdown">
+            <a href="#formation">Formation</a>
+            <a href="#events">Events</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </li>        
+-->
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HOME ===================== -->
+<section id="home" class="hero section-anchor">
+  <div class="wrap">
+    <div>
+      <div class="hero-eyebrow">Srimad Sai Rajarajeshwari Trust</div>
+      <h2><font color="White">Where <em>seva</em> becomes the quiet language of devotion</font></h2>
+      <p>A living ashram community caring for cows, the rural poor, and consecrated spaces &mdash; offering medical aid, education, food, water, and daily worship to all who arrive at its gates.</p>
+      <div class="hero-actions">
+        <a href="#donate" class="btn btn-primary">Support the Trust</a>
+        <a href="#volunteering" class="btn btn-ghost">Volunteer With Us</a>
+      </div>
+	</div>
+    <div class="mandala-wrap">	
+      <svg class="mandala" viewBox="0 0 400 400" fill="none" xmlns="http://www.ssrrt.org/2000/svg">
+        <g stroke="#C9973D" stroke-width="1">
+          <circle cx="200" cy="200" r="180" opacity="0.25"/>
+          <circle cx="200" cy="200" r="150" opacity="0.35"/>
+          <circle cx="200" cy="200" r="120" class="pulse"/>
+          <circle cx="200" cy="200" r="90" opacity="0.5"/>
+          <circle cx="200" cy="200" r="60" opacity="0.6"/>
+        </g>
+        <g stroke="#C9973D" stroke-width="1" opacity="0.45">
+          <path d="M200 20 L200 380"/>
+          <path d="M20 200 L380 200"/>
+          <path d="M58 58 L342 342"/>
+          <path d="M342 58 L58 342"/>
+        </g>
+        <g fill="#C9973D">
+          <circle cx="200" cy="20" r="4"/>
+          <circle cx="200" cy="380" r="4"/>
+          <circle cx="20" cy="200" r="4"/>
+          <circle cx="380" cy="200" r="4"/>
+          <circle cx="58" cy="58" r="4"/>
+          <circle cx="342" cy="342" r="4"/>
+          <circle cx="342" cy="58" r="4"/>
+          <circle cx="58" cy="342" r="4"/>
+        </g>
+        <circle cx="200" cy="200" r="6" fill="#FBF6EC"/>
+      </svg>
+    </div>
+  <!--/div-->
+</section>
+
+<!-- ===================== MOTHER ===================== -->
+<section id="avataarhood" class="section-anchor">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Mother</div>
+      <h2>The life and presence of the Mother</h2>
+      <p>This section gathers the accounts, readings, and teachings that surround the Mother's life and the realized beings connected to this lineage.</p>
+    </div>
+    <div class="twocol">
+      <div class="stack">
+        <div class="content-card">
+          <h3>The Avataarhood</h3>
+          <p>The announcement and recognition of the Avataarhood &mdash; the events and circumstances surrounding this declaration, as recorded by those present.</p>
+        </div>
+        <div class="content-card" id="naadi-readings">
+          <h3>The Naadi Readings</h3>
+          <p>Ancient palm-leaf Naadi readings said to have foretold the Mother's arrival, along with translations and commentary.</p>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="content-card" id="swami-amma">
+          <h3>Swami &amp; Amma</h3>
+          <p>The shared life and teachings of Swami and Amma, and their role in the founding and guidance of the ashram community.</p>
+        </div>
+        <div class="content-card" id="realized-beings">
+          <h3>Realized Beings</h3>
+          <p>Profiles of realized beings associated with this tradition, including their teachings, samadhi, and continuing influence.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GOSHALA ===================== -->
+<section id="goshala-history" class="section-anchor">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Goshala</div>
+      <h2>Sanctuary for the sacred cow</h2>
+      <p>The Goshala stands at the heart of the ashram &mdash; a place of shelter, healing, and reverence for cows of every age and condition, sustained entirely through the generosity of devotees.</p>
+    </div>
+    <div class="tile-grid">
+      <div class="tile">
+        <div class="tile-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14c0-3 2-5 4-5h8c2 0 4 2 4 5v3H4v-3z"/><circle cx="8" cy="9" r="2"/><circle cx="16" cy="9" r="2"/><path d="M8 17v2M16 17v2"/></svg>
+        </div>
+        <div class="tile-body">
+          <h3>History of Goshala</h3>
+          <p>The story of how a small shelter for a handful of abandoned cows grew into a refuge that now cares for hundreds, guided by the founders' vision of ahimsa.</p>
+          <div class="tile-links">
+            <a href="#goshala-history">Read the full history</a>
+          </div>
+        </div>
+      </div>
+      <div class="tile" id="goshala-adopt">
+        <div class="tile-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-7-9.5A4.5 4.5 0 0112 7a4.5 4.5 0 017 4.5C19 16.65 12 21 12 21z"/></svg>
+        </div>
+        <div class="tile-body">
+          <h3>Adopt a Cow</h3>
+          <p>Sponsor the lifelong care of a cow &mdash; feed, shelter, and veterinary attention &mdash; and receive updates on the life you've helped sustain.</p>
+          <div class="tile-links">
+            <a href="#goshala-adopt">Begin an adoption</a>
+          </div>
+        </div>
+      </div>
+      <div class="tile" id="goshala-volunteer">
+        <div class="tile-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="tile-body">
+          <h3>Volunteer</h3>
+          <p>Spend a morning or a season tending to the herd &mdash; feeding, grooming, and assisting the resident gosevaks in their daily routine.</p>
+          <div class="tile-links">
+            <a href="#goshala-volunteer">See Goshala roles</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MOTHER FOR NEEDY ===================== -->
+<section id="medical-multi" class="alt section-anchor">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Mother for Needy</div>
+      <h2>Medical care, food, and presence for those who have little</h2>
+      <p>Through camps, clinics, and daily distribution, the Trust carries medicine and meals to villages where both are scarce &mdash; treating every visitor as a guest of the Mother.</p>
+    </div>
+    <div class="tile-grid">
+      <div class="tile">
+        <div class="tile-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v8M8 12h8"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        </div>
+        <div class="tile-body">
+          <h3>Medical Centers, Multi-Village</h3>
+          <p>Permanent medical centers serving clusters of surrounding villages, offering general consultation, basic diagnostics, and medicines free of cost.</p>
+          <div class="tile-links">
+            <a href="#medical-multi">Find a medical center</a>
+          </div>
+        </div>
+      </div>
+      <div class="tile" id="medical-village">
+        <div class="tile-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="tile-body">
+          <h3>Medical Support in the Village</h3>
+          <p>Mobile health camps that travel directly into remote villages, bringing screening, treatment, and follow-up care to those who cannot travel.</p>
+          <div class="tile-links">
+            <a href="#medical-village">View camp schedule</a>
+          </div>
+        </div>
+      </div>
+      <div class="tile" id="food-needy">
+        <div class="tile-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18M5 11V6a2 2 0 012-2h10a2 2 0 012 2v5M5 11v8a1 1 0 001 1h12a1 1 0 001-1v-8"/></svg>
+        </div>
+        <div class="tile-body">
+          <h3>Food for the Needy</h3>
+          <p>Daily and weekly meal distribution ensuring that no person near the ashram, hospital, or village center goes without a wholesome meal.</p>
+          <div class="tile-links">
+            <a href="#food-needy">Support a meal program</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RURAL UPLIFTMENT ===================== -->
+<section id="ru-education" class="section-anchor">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Rural Upliftment</div>
+      <h2>Building the foundations of a self-reliant village</h2>
+      <p>From classrooms to clean water, the Trust's rural programs address the everyday needs that allow a community to grow with dignity.</p>
+    </div>
+    <div class="seva-grid">
+      <div class="seva-card" id="ru-education">
+        <h3>Education</h3>
+        <p>Tuition support, school supplies, and learning centers for children in villages with limited access to schooling.</p>
+      </div>
+      <div class="seva-card" id="ru-food">
+        <h3>Food Supplies</h3>
+        <p>Monthly ration kits distributed to families identified through village outreach and local recommendation.</p>
+      </div>
+      <div class="seva-card" id="ru-water">
+        <h3>Water Supply</h3>
+        <p>Borewells, hand pumps, and storage tanks installed in villages facing chronic water shortage.</p>
+      </div>
+      <div class="seva-card" id="ru-bedding">
+        <h3>Bedding Supplies</h3>
+        <p>Blankets, mats, and bedding distributed ahead of winter to elderly residents and families in need.</p>
+      </div>
+      <div class="seva-card" id="ru-narayana">
+        <h3>Narayana Seva</h3>
+        <p>Large-scale community meal offerings held on festival days and significant occasions, open to all.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONSECRATED SPACE ===================== -->
+<section id="shiradi-baba" class="alt section-anchor">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Consecrated Space</div>
+      <h2>Shrines and sanctums of the ashram grounds</h2>
+      <p>Each shrine within the ashram carries its own rhythm of daily worship &mdash; open to all who wish to sit quietly or take part in the rituals offered here.</p>
+    </div>
+    <div class="sacred-grid">
+      <div class="sacred-item">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2l2 5 5 1-4 4 1 5-4-2-4 2 1-5-4-4 5-1z"/></svg></div>
+        <h3 id="shiradi-baba">Shiradi Baba Temple</h3>
+      </div>
+      <div class="sacred-item">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 3v18M5 8l7-5 7 5M5 8v9a2 2 0 002 2h10a2 2 0 002-2V8"/></svg></div>
+        <h3 id="krishna-maya">Krishna Maya Temple</h3>
+      </div>
+      <div class="sacred-item">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3 id="mani-dweepa">Mani-Dweepa</h3>
+      </div>
+      <div class="sacred-item">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2v8M12 10l-5 12M12 10l5 12M7 22h10"/></svg></div>
+        <h3 id="kaala-bhairava">Kaala Bhairava Trishula</h3>
+      </div>
+      <div class="sacred-item">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 14c0-3 2-5 4-5h8c2 0 4 2 4 5v3H4v-3z"/><circle cx="8" cy="9" r="2"/><circle cx="16" cy="9" r="2"/></svg></div>
+        <h3 id="harake-nandi">Harake Nandi</h3>
+      </div>
+      <div class="sacred-item">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8M15 13l2 8M8 21h8"/></svg></div>
+        <h3 id="ganesha-sannidhi">Ganesha Sannidhi</h3>
+      </div>
+      <div class="sacred-item">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2v6M12 8l-3 3M12 8l3 3M12 8v14"/></svg></div>
+        <h3 id="subramanya-sannidhi">Subramanya Sannidhi</h3>
+      </div>
+      <div class="sacred-item">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="6" r="3"/><path d="M12 9v9M8 22h8M6 14h12"/></svg></div>
+        <h3 id="dattatreya-sannidhi">Dattatreya Sannidhi</h3>
+      </div>
+      <div class="sacred-item">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18"/></svg></div>
+        <h3 id="nataraja-hall">Nataraja Hall</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SEVAS ===================== -->
+<section id="nandi-abhisheka" class="section-anchor">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Sevas</div>
+      <h2>Offer a seva in your name or your family's</h2>
+      <p>Sevas may be sponsored for a single day or on a recurring basis, and are performed with the devotion of the resident priests on the date you choose.</p>
+    </div>
+    <div class="seva-grid">
+      <div class="seva-card">
+        <h3>Nandi Abhisheka</h3>
+        <p>A ceremonial bathing and adornment of the sacred bull Nandi, performed with milk, water, and fragrant offerings.</p>
+      </div>
+      <div class="seva-card" id="butter-ganesha">
+        <h3>Butter Alankara for Ganesha</h3>
+        <p>An elaborate decoration of Lord Ganesha's idol using fresh butter, shaped into traditional motifs by the temple sevaks.</p>
+      </div>
+      <div class="seva-card" id="butter-subramanya">
+        <h3>Butter Alankara for Subramanya</h3>
+        <p>A butter adornment offered to Lord Subramanya, a seva especially favored by devotees seeking protection and grace.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <span class="line"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>
+  <span class="line"></span>
+</div>
+
+<!-- ===================== VOLUNTEERING ===================== -->
+<section id="volunteering" class="alt section-anchor">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Volunteering</div>
+      <h2>Give your time as an offering</h2>
+      <p>Whether for a day, a week, or a longer stay, volunteers are welcomed across the Goshala, kitchens, medical camps, and rural programs. Accommodation is available on the ashram grounds for those staying longer than a day.</p>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary" style="background:var(--maroon); color:var(--ivory);">Apply to Volunteer</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SSRRT ===================== -->
+<section id="formation" class="alt section-anchor">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">SSRRT</div>
+      <h2>Srimad Sai RajaRajeshwari Trust</h2>
+      <p>The administrative home of the Trust &mdash; its origins, ongoing events calendar, and ways to get in touch with the office.</p>
+    </div>
+    <div class="ssrrt-grid">
+      <div class="content-card">
+        <h3>Formation</h3>
+        <p>The registration, founding members, and guiding charter under which the Trust was established and continues to operate.</p>
+      </div>
+      <div class="content-card" id="events">
+        <h3>Events</h3>
+        <p>A running calendar of festivals, sevas, medical camps, and community gatherings hosted throughout the year.</p>
+      </div>
+      <div class="content-card" id="contact">
+        <h3>Contact</h3>
+        <p>Office address, phone lines, and email for general enquiries, volunteering, donations, and seva bookings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SHOPPE ===================== -->
+<section id="shop-mother" class="section-anchor">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Shoppe</div>
+      <h2>Sacred items for home and practice</h2>
+      <p>Proceeds from the Shoppe support the daily operations of the ashram, Goshala, and rural outreach programs.</p>
+    </div>
+    <div class="shop-grid">
+      <div class="shop-item">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a1 1 0 01-1 1h-5v-7H9v7H4a1 1 0 01-1-1V9z"/></svg></div>
+        <h4 id="shop-mother">Mother for Abode</h4>
+      </div>
+      <div class="shop-item" id="shop-books">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 4h6a2 2 0 012 2v14a2 2 0 00-2-2H4z"/><path d="M20 4h-6a2 2 0 00-2 2v14a2 2 0 012-2h6z"/></svg></div>
+        <h4>Books</h4>
+      </div>
+      <div class="shop-item" id="shop-audio">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <h4>Audio</h4>
+      </div>
+      <div class="shop-item" id="shop-videos">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 10l5-3v10l-5-3z"/></svg></div>
+        <h4>Videos</h4>
+      </div>
+      <div class="shop-item" id="shop-padukas">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M5 21c-1-4 0-8 3-10s7-2 9 0M5 21h6M5 21c0-2 1-3 2-3"/></svg></div>
+        <h4>Padukas</h4>
+      </div>
+      <div class="shop-item" id="shop-stamps">
+        <div class="glyph"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="1"/><circle cx="12" cy="11" r="3"/><path d="M3 4l4 4M21 4l-4 4M3 18l4-4M21 18l-4-4"/></svg></div>
+        <h4>Stamps</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DONATE ===================== -->
+<section id="donate" class="alt section-anchor">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow">Donate</div>
+      <h2>Every offering finds its place</h2>
+      <p>Choose where your contribution will be directed, or leave it general for the Trust to apply where the need is greatest.</p>
+    </div>
+    <div class="donate-grid">
+      <div class="donate-card" id="donate-sevas">
+        <h3>For Sevas</h3>
+        <p>Sponsor a Nandi Abhisheka, butter alankara, or other temple ritual on a date of your choosing.</p>
+        <a href="#nandi-abhisheka">Sponsor a seva</a>
+      </div>
+      <div class="donate-card" id="donate-cows">
+        <h3>For Cows</h3>
+        <p>Contribute toward feed, shelter, and veterinary care for the residents of the Goshala.</p>
+        <a href="#goshala-adopt">Support the Goshala</a>
+      </div>
+      <div class="donate-card" id="donate-events">
+        <h3>For Events</h3>
+        <p>Help fund festival celebrations, Narayana Seva, and community gatherings throughout the year.</p>
+        <a href="#events">View upcoming events</a>
+      </div>
+      <div class="donate-card" id="donate-ashram">
+        <h3>Ashram</h3>
+        <p>General donations toward the upkeep, infrastructure, and daily running of the ashram grounds.</p>
+        <a href="#contact">Contact the office</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Srimad Sai RajaRajeshwari Trust</div>
+        <p>A rural trust devoted to the care of cows, the needy, and the consecrated spaces entrusted to it &mdash; sustained by seva and supported by devotees worldwide.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#goshala-history">Goshala</a></li>
+          <li><a href="#medical-multi">Mother for Needy</a></li>
+          <li><a href="#ru-education">Rural Upliftment</a></li>
+          <li><a href="#shiradi-baba">Consecrated Space</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Participate</h4>
+        <ul>
+          <li><a href="#nandi-abhisheka">Sevas</a></li>
+          <li><a href="#volunteering">Volunteering</a></li>
+          <li><a href="#shop-mother">Shoppe</a></li>
+          <li><a href="#donate">Donate</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Trust</h4>
+        <ul>
+          <li><a href="#formation">Formation</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#avataarhood">Mother</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Srimad Sai RajaRajeshwari Trust. All rights reserved.</p>
+      <p>Built with devotion.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(btn){
+    const li = btn.parentElement;
+    const wasOpen = li.classList.contains('open');
+    document.querySelectorAll('.menu > li.open').forEach(el => el.classList.remove('open'));
+    if(!wasOpen){ li.classList.add('open'); }
+  }
+  document.addEventListener('click', function(e){
+    if(!e.target.closest('.menu > li')){
+      document.querySelectorAll('.menu > li.open').forEach(el => el.classList.remove('open'));
+    }
+  });
+</script>
+
+</body>
+</html>
