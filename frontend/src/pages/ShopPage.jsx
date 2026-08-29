@@ -1,19 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Search } from "lucide-react";
-import { SlimHead } from "@/components/shared/PageSections";
+import { Eyebrow } from "@/components/shared/PageSections";
 import HashRedirect from "@/components/shared/HashRedirect";
 import ProductCard from "@/components/shop/ProductCard";
 import ShopCartButton from "@/components/shop/ShopCartButton";
 import { useShopProducts } from "@/context/CmsContext";
 import { shopCategories } from "@/constants/shopProducts";
-
-const SORT_OPTIONS = [
-  { id: "featured", label: "Featured" },
-  { id: "price-low", label: "Price: Low to High" },
-  { id: "price-high", label: "Price: High to Low" },
-  { id: "name", label: "Name" },
-];
 
 const CATEGORY_IDS = shopCategories.map((c) => c.id);
 
@@ -33,7 +26,6 @@ export default function ShopPage() {
 
   const [category, setCategory] = useState(routeCat);
   const [search, setSearch] = useState("");
-  const [sort, setSort] = useState("featured");
   const [priceMax, setPriceMax] = useState(maxPrice);
 
   useEffect(() => {
@@ -52,32 +44,26 @@ export default function ShopPage() {
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    let list = shopProducts.filter((p) => {
+    return shopProducts.filter((p) => {
       if (category !== "all" && p.category !== category) return false;
       if (p.price > priceMax) return false;
       if (!q) return true;
       return p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q);
     });
-
-    if (sort === "price-low") list = [...list].sort((a, b) => a.price - b.price);
-    if (sort === "price-high") list = [...list].sort((a, b) => b.price - a.price);
-    if (sort === "name") list = [...list].sort((a, b) => a.name.localeCompare(b.name));
-
-    return list;
-  }, [category, search, sort, priceMax, shopProducts]);
+  }, [category, search, priceMax, shopProducts]);
 
   return (
     <>
       <HashRedirect basePath="/shop" ids={hashIds} />
 
-      <SlimHead
-        eyebrow="Shoppe"
-        title="Books, audio, padukas, and sacred items."
-      />
-
       <section className="shop-store shop-store-full">
         <div className="shop-store-layout">
           <aside className="shop-sidebar" aria-label="Shop filters">
+            <div className="shop-page-head">
+              <Eyebrow>Shoppe</Eyebrow>
+              <h1>Books, audio, padukas, and sacred items.</h1>
+            </div>
+
             <div className="shop-sidebar-block">
               <h2>Categories</h2>
               <ul className="shop-cat-list">
@@ -111,20 +97,6 @@ export default function ShopPage() {
                 />
               </label>
             </div>
-
-            <div className="shop-sidebar-block">
-              <h2>Sort by</h2>
-              <select
-                value={sort}
-                onChange={(e) => setSort(e.target.value)}
-                className="shop-sort-select"
-                data-testid="shop-sort-sidebar"
-              >
-                {SORT_OPTIONS.map((opt) => (
-                  <option key={opt.id} value={opt.id}>{opt.label}</option>
-                ))}
-              </select>
-            </div>
           </aside>
 
           <div className="shop-main">
@@ -146,17 +118,6 @@ export default function ShopPage() {
                 <span data-testid="shop-results-count">
                   Showing {filtered.length} of {shopProducts.length} products
                 </span>
-                <select
-                  value={sort}
-                  onChange={(e) => setSort(e.target.value)}
-                  className="shop-sort-select compact"
-                  data-testid="shop-sort-toolbar"
-                  aria-label="Sort products"
-                >
-                  {SORT_OPTIONS.map((opt) => (
-                    <option key={opt.id} value={opt.id}>{opt.label}</option>
-                  ))}
-                </select>
               </div>
             </div>
 

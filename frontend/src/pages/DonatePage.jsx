@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ArrowUpRight, Check } from "lucide-react";
-import ProseSection from "@/components/shared/ProseSection";
-import { SlimHead } from "@/components/shared/PageSections";
-import { docPageImages } from "@/constants/docPageImages";
-import { goshalaSupportParagraphs, goshalaSupportTitle } from "@/constants/goshalaContent";
+import { Eyebrow } from "@/components/shared/PageSections";
+import { goshalaSupportTitle } from "@/constants/goshalaContent";
 import { donationPurposes, donatePurposeFromQuery } from "@/constants/nav";
 import { useDonateConfig } from "@/context/CmsContext";
+import { docExcerpt } from "@/lib/docContent";
 import {
   createOrder,
   isRazorpayConfigured,
@@ -17,15 +16,16 @@ import {
   verifyPayment,
 } from "@/utils/razorpay";
 
+const donateIntro = docExcerpt("goshala_support", { skip: 1, maxLen: 220 });
+
 export default function DonatePage() {
   const donateConfig = useDonateConfig();
   const purposeOptions = donateConfig.purposes?.map((item) => item.label) || donationPurposes;
-  const amountPresets = donateConfig.suggestedAmounts?.length ? donateConfig.suggestedAmounts : [501, 1101, 2100, 5000];
   const [searchParams] = useSearchParams();
   const purposeKey = searchParams.get("purpose");
   const [form, setForm] = useState({ donor_name: "", email: "", phone: "", pan: "", address: "", dedication: "" });
   const [purpose, setPurpose] = useState(purposeOptions[0]);
-  const [amount, setAmount] = useState(String(amountPresets[1] || amountPresets[0] || "1101"));
+  const [amount, setAmount] = useState("");
   const [recurring, setRecurring] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -107,84 +107,123 @@ export default function DonatePage() {
   };
 
   return (
-    <>
-      <SlimHead
-        eyebrow="Donate"
-        title={goshalaSupportTitle || "Make an offering."}
-      />
-      <ProseSection paragraphs={goshalaSupportParagraphs} images={docPageImages.goshala_support} />
-      <main className="inner-page donation-page">
-        <div className="wrap donate-grid">
-          <div className="donate-form-wrap">
-            {submitted ? (
-              <div className="success-state" data-testid="donation-success-message">
-                <div className="success-icon"><Check/></div>
-                <Eyebrow>Offering received</Eyebrow>
-                <h3>Thank you, {form.donor_name}.</h3>
-                <p>Your offering of ₹{Number(amount).toLocaleString("en-IN")} toward {purpose} has been received.</p>
-                <button className="btn btn-dark" data-testid="new-donation-button" onClick={() => setSubmitted(false)}>Make another offering</button>
+    <section className="split-page donate-simple">
+      <div className="wrap split-page-grid">
+        <header className="split-page-intro">
+          <Eyebrow gold>Donate</Eyebrow>
+          <h1>{goshalaSupportTitle || "Make an offering"}</h1>
+          {donateIntro ? <p>{donateIntro}</p> : null}
+        </header>
+
+        <div className="split-page-panel donate-form-card">
+          {submitted ? (
+            <div className="donate-success" data-testid="donation-success-message">
+              <div className="success-icon"><Check /></div>
+              <Eyebrow>Offering received</Eyebrow>
+              <h3>Thank you, {form.donor_name}.</h3>
+              <p>
+                Your offering of ₹{Number(amount).toLocaleString("en-IN")} toward {purpose} has been received.
+              </p>
+              <button type="button" className="btn-solid" data-testid="new-donation-button" onClick={() => setSubmitted(false)}>
+                Make another offering
+              </button>
+            </div>
+          ) : (
+            <form className="donate-form donate-form-compact" data-testid="donation-form" onSubmit={submit}>
+              <div className="form-label">Choose a purpose</div>
+              <div className="purpose-grid purpose-grid-compact">
+                {purposeOptions.map((item) => (
+                  <button
+                    type="button"
+                    key={item}
+                    data-testid={`purpose-${item.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}-button`}
+                    className={purpose === item ? "purpose active" : "purpose"}
+                    onClick={() => setPurpose(item)}
+                  >
+                    {item}
+                  </button>
+                ))}
               </div>
-            ) : (
-              <form data-testid="donation-form" onSubmit={submit}>
-                <div className="form-label">Choose a purpose</div>
-                <div className="purpose-grid">
-                  {purposeOptions.map((item) => (
-                    <button type="button" key={item} data-testid={`purpose-${item.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}-button`} className={purpose === item ? "purpose active" : "purpose"} onClick={() => setPurpose(item)}>{item}</button>
-                  ))}
+
+              <label className="donate-amount-field">
+                <span className="form-label">Offering amount</span>
+                <div className="custom-amount custom-amount-full">
+                  <span>₹</span>
+                  <input
+                    data-testid="custom-amount-input"
+                    type="number"
+                    min="1"
+                    required
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder="Enter amount"
+                    aria-label="Offering amount"
+                  />
                 </div>
-                <div className="form-label">Offering amount</div>
-                <div className="amount-row">
-                  {amountPresets.map((value) => (
-                    <button type="button" key={value} data-testid={`amount-${value}-button`} className={String(value) === amount ? "amount-chip active" : "amount-chip"} onClick={() => setAmount(String(value))}>₹{value.toLocaleString("en-IN")}</button>
-                  ))}
-                  <label className="custom-amount">
-                    <span>₹</span>
-                    <input data-testid="custom-amount-input" type="number" min="1" value={amount} onChange={(e) => setAmount(e.target.value)} aria-label="Custom offering amount"/>
+              </label>
+
+              <label className="recurring recurring-compact">
+                <input data-testid="recurring-toggle" type="checkbox" checked={recurring} onChange={(e) => setRecurring(e.target.checked)} />
+                <span>
+                  <strong>Monthly offering</strong>
+                  <small>Ongoing Goshala care</small>
+                </span>
+              </label>
+
+              <div className="form-fields form-fields-compact">
+                {[
+                  ["donor_name", "Name", "Your full name", true],
+                  ["email", "Email", "you@example.com", true],
+                  ["phone", "Phone", "+91", true],
+                  ["pan", "PAN", "ABCDE1234F", false],
+                  ["address", "Address", "Address for your records", true],
+                  ["dedication", "In memory of / on behalf of", "A loved one, family, or occasion", false],
+                ].map(([key, label, placeholder, required], index) => (
+                  <label className={index > 3 ? "full" : ""} key={key}>
+                    <span>{label}</span>
+                    {key === "address" ? (
+                      <textarea
+                        data-testid="donor-address-input"
+                        required={required}
+                        value={form[key]}
+                        onChange={update(key)}
+                        placeholder={placeholder}
+                        rows="2"
+                      />
+                    ) : (
+                      <input
+                        data-testid={key === "donor_name" ? "donor-name-input" : `donor-${key}-input`}
+                        required={required}
+                        type={key === "email" ? "email" : "text"}
+                        value={form[key]}
+                        onChange={update(key)}
+                        placeholder={placeholder}
+                      />
+                    )}
                   </label>
-                </div>
-                <label className="recurring">
-                  <input data-testid="recurring-toggle" type="checkbox" checked={recurring} onChange={(e) => setRecurring(e.target.checked)}/>
-                  <span><strong>Make this a monthly offering</strong><small>Useful for ongoing Goshala care</small></span>
-                </label>
-                <div className="form-fields">
-                  {[
-                    ["donor_name", "Name", "Your full name", true],
-                    ["email", "Email", "you@example.com", true],
-                    ["phone", "Phone", "+91", true],
-                    ["pan", "PAN", "ABCDE1234F", false],
-                    ["address", "Address", "Address for your records", true],
-                    ["dedication", "In memory of / on behalf of", "A loved one, family, or occasion", false],
-                  ].map(([key, label, placeholder, required], index) => (
-                    <label className={index > 3 ? "full" : ""} key={key}>
-                      <span>{label}</span>
-                      {key === "address" ? (
-                        <textarea data-testid="donor-address-input" required={required} value={form[key]} onChange={update(key)} placeholder={placeholder} rows="2"/>
-                      ) : (
-                        <input data-testid={key === "donor_name" ? "donor-name-input" : `donor-${key}-input`} required={required} type={key === "email" ? "email" : "text"} value={form[key]} onChange={update(key)} placeholder={placeholder}/>
-                      )}
-                    </label>
-                  ))}
-                </div>
-                {error ? (
-                  <p className="donation-error" data-testid="donation-error-message" role="alert">{error}</p>
-                ) : null}
-                <button className="btn btn-primary form-submit" data-testid="donation-submit-button" disabled={loading}>
-                  {loading ? "Opening payment..." : <>Continue with ₹{Number(amount || 0).toLocaleString("en-IN")} <ArrowUpRight size={16}/></>}
-                </button>
-                <p className="demo-disclaimer" data-testid="donation-payment-disclaimer">
-                  Secure payment via Razorpay
-                  {isTestMode() ? (
-                    <>
-                      {" "}· Test mode: use card <strong>4111 1111 1111 1111</strong>, any future expiry, any CVV.
-                      {" "}If payment fails immediately, regenerate your test Key ID in the Razorpay Dashboard.
-                    </>
-                  ) : null}
+                ))}
+              </div>
+
+              {error ? (
+                <p className="donation-error" data-testid="donation-error-message" role="alert">
+                  {error}
                 </p>
-              </form>
-            )}
-          </div>
+              ) : null}
+
+              <button className="btn-solid donate-submit" type="submit" data-testid="donation-submit-button" disabled={loading}>
+                {loading ? "Opening payment…" : <>Continue with ₹{Number(amount || 0).toLocaleString("en-IN")} <ArrowUpRight size={16} /></>}
+              </button>
+
+              <p className="demo-disclaimer" data-testid="donation-payment-disclaimer">
+                Secure payment via Razorpay
+                {isTestMode() ? (
+                  <> · Test card <strong>4111 1111 1111 1111</strong></>
+                ) : null}
+              </p>
+            </form>
+          )}
         </div>
-      </main>
-    </>
+      </div>
+    </section>
   );
 }

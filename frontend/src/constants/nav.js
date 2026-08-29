@@ -1,24 +1,16 @@
 export const navItems = [
   { label: "Home", path: "/" },
   {
-    label: "Goshala",
-    path: "/goshala",
-    groups: [
-      {
-        heading: "ABOUT",
-        links: [
-          { label: "Project Kaamadhenau", path: "/goshala" },
-          { label: "History of Goshala", path: "/goshala#history" },
-        ],
-      },
-      {
-        heading: "PARTICIPATE",
-        links: [
-          { label: "Adopt a Cow", path: "/goshala/adopt" },
-          { label: "Volunteer at the Goshala", path: "/volunteering" },
-          { label: "Support & Donate", path: "/donate?purpose=goshala" },
-        ],
-      },
+    label: "Mother",
+    path: "/mother",
+    sub: [
+      { label: "Glimpses of the Mother", path: "/mother" },
+      { label: "The Human Aspect", path: "/mother/story" },
+      { label: "Divine Aspects", path: "/mother/avatar" },
+      { label: "The Avataarhood", path: "/mother/avataarhood" },
+      { label: "The Naadi Readings", path: "/mother/naadi" },
+      { label: "Swami & Amma", path: "/mother/swami" },
+      { label: "Realized Beings", path: "/mother/realized" },
     ],
   },
   {
@@ -37,6 +29,27 @@ export const navItems = [
         links: [
           { label: "Food for the Needy", path: "/seva/food" },
           { label: "Narayana Seva", path: "/seva/narayana" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Goshala",
+    path: "/goshala",
+    groups: [
+      {
+        heading: "ABOUT",
+        links: [
+          { label: "Project Kaamadhenau", path: "/goshala" },
+          { label: "History of Goshala", path: "/goshala#history" },
+        ],
+      },
+      {
+        heading: "PARTICIPATE",
+        links: [
+          { label: "Adopt a Cow", path: "/goshala/adopt" },
+          { label: "Volunteer at the Goshala", path: "/volunteering" },
+          { label: "Support & Donate", path: "/donate?purpose=goshala" },
         ],
       },
     ],
@@ -96,19 +109,6 @@ export const navItems = [
     ],
   },
   { label: "Volunteering", path: "/volunteering" },
-  {
-    label: "Mother",
-    path: "/mother",
-    sub: [
-      { label: "Glimpses of the Mother", path: "/mother" },
-      { label: "The Human Aspect", path: "/mother/story" },
-      { label: "Divine Aspects", path: "/mother/avatar" },
-      { label: "The Avataarhood", path: "/mother/avataarhood" },
-      { label: "The Naadi Readings", path: "/mother/naadi" },
-      { label: "Swami & Amma", path: "/mother/swami" },
-      { label: "Realized Beings", path: "/mother/realized" },
-    ],
-  },
   {
     label: "SSRRT",
     path: "/about",

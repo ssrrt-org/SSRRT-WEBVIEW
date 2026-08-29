@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import ProseSection from "@/components/shared/ProseSection";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
-import { SlimHead } from "@/components/shared/PageSections";
 import { formationParagraphs, formationTitle } from "@/constants/ashramContent";
 import { docExcerpt } from "@/lib/docContent";
 import { docPageImages } from "@/constants/docPageImages";
@@ -29,9 +28,12 @@ export default function AboutPage() {
 
   return (
     <>
-      <SlimHead eyebrow="SSRRT" title={formationTitle || "Srimad Sai Rajarajeshwari Trust."} />
-
-      <ProseSection paragraphs={formationParagraphs} images={docPageImages.formation} />
+      <ProseSection
+        eyebrow="SSRRT"
+        title={formationTitle || "Srimad Sai Rajarajeshwari Trust."}
+        paragraphs={formationParagraphs}
+        images={docPageImages.formation}
+      />
 
       <HubProgrammesSection
         eyebrow="Main areas"
