@@ -57,49 +57,29 @@ export default function ShopPage() {
       <HashRedirect basePath="/shop" ids={hashIds} />
 
       <section className="shop-store shop-store-full">
-        <div className="shop-store-layout">
-          <aside className="shop-sidebar" aria-label="Shop filters">
-            <div className="shop-page-head">
+        <div className="shop-store-layout shop-store-simple">
+          <div className="shop-main">
+            <div className="shop-page-head shop-page-head-inline">
               <Eyebrow>Shoppe</Eyebrow>
               <h1>Books, audio, padukas, and sacred items.</h1>
             </div>
 
-            <div className="shop-sidebar-block">
-              <h2>Categories</h2>
-              <ul className="shop-cat-list">
-                {shopCategories.map((cat) => (
-                  <li key={cat.id}>
-                    <button
-                      type="button"
-                      className={category === cat.id ? "on" : ""}
-                      data-testid={`shop-filter-${cat.id}`}
-                      onClick={() => pickCategory(cat.id)}
-                    >
-                      {cat.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
+            <div className="shop-cat-tabs" role="tablist" aria-label="Shop categories">
+              {shopCategories.map((cat) => (
+                <button
+                  type="button"
+                  key={cat.id}
+                  role="tab"
+                  aria-selected={category === cat.id}
+                  className={category === cat.id ? "on" : ""}
+                  data-testid={`shop-filter-${cat.id}`}
+                  onClick={() => pickCategory(cat.id)}
+                >
+                  {cat.label}
+                </button>
+              ))}
             </div>
 
-            <div className="shop-sidebar-block">
-              <h2>Price range</h2>
-              <label className="shop-price-label">
-                <span>Up to {priceMax.toLocaleString("en-IN")} ₹</span>
-                <input
-                  type="range"
-                  min={0}
-                  max={maxPrice}
-                  step={50}
-                  value={priceMax}
-                  onChange={(e) => setPriceMax(Number(e.target.value))}
-                  data-testid="shop-price-range"
-                />
-              </label>
-            </div>
-          </aside>
-
-          <div className="shop-main">
             <div className="shop-main-toolbar">
               <div className="shop-search-row">
                 <div className="shop-search">
@@ -118,6 +98,18 @@ export default function ShopPage() {
                 <span data-testid="shop-results-count">
                   Showing {filtered.length} of {shopProducts.length} products
                 </span>
+                <label className="shop-price-inline">
+                  <span>Up to ₹{priceMax.toLocaleString("en-IN")}</span>
+                  <input
+                    type="range"
+                    min={0}
+                    max={maxPrice}
+                    step={50}
+                    value={priceMax}
+                    onChange={(e) => setPriceMax(Number(e.target.value))}
+                    data-testid="shop-price-range"
+                  />
+                </label>
               </div>
             </div>
 

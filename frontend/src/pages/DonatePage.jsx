@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowRight, Check, Lock } from "lucide-react";
 import { Eyebrow } from "@/components/shared/PageSections";
-import { goshalaSupportTitle } from "@/constants/goshalaContent";
 import { donationPurposes, donatePurposeFromQuery } from "@/constants/nav";
 import { useDonateConfig } from "@/context/CmsContext";
-import { docExcerpt } from "@/lib/docContent";
 import {
   createOrder,
   isRazorpayConfigured,
@@ -16,7 +14,13 @@ import {
   verifyPayment,
 } from "@/utils/razorpay";
 
-const donateIntro = docExcerpt("goshala_support", { skip: 1, maxLen: 220 });
+const purposeShortLabel = (label) => {
+  const shortcuts = {
+    "Ashram & Temple Maintenance": "Ashram Maintenance",
+    "Goshala · Adopt-a-Cow": "Goshala · Adopt-a-Cow",
+  };
+  return shortcuts[label] || label;
+};
 
 export default function DonatePage() {
   const donateConfig = useDonateConfig();
@@ -26,7 +30,6 @@ export default function DonatePage() {
   const [form, setForm] = useState({ donor_name: "", email: "", phone: "", pan: "", address: "", dedication: "" });
   const [purpose, setPurpose] = useState(purposeOptions[0]);
   const [amount, setAmount] = useState("");
-  const [recurring, setRecurring] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -82,7 +85,7 @@ export default function DonatePage() {
               donor: form,
               purpose,
               amount: amountInRupees,
-              recurring,
+              recurring: false,
             });
             setSubmitted(true);
           } catch (verifyError) {
@@ -107,15 +110,9 @@ export default function DonatePage() {
   };
 
   return (
-    <section className="split-page donate-simple">
-      <div className="wrap split-page-grid">
-        <header className="split-page-intro">
-          <Eyebrow gold>Donate</Eyebrow>
-          <h1>{goshalaSupportTitle || "Make an offering"}</h1>
-          {donateIntro ? <p>{donateIntro}</p> : null}
-        </header>
-
-        <div className="split-page-panel donate-form-card">
+    <section className="donate-page">
+      <div className="wrap donate-page-inner">
+        <div className="donate-card">
           {submitted ? (
             <div className="donate-success" data-testid="donation-success-message">
               <div className="success-icon"><Check /></div>
@@ -124,31 +121,33 @@ export default function DonatePage() {
               <p>
                 Your offering of ₹{Number(amount).toLocaleString("en-IN")} toward {purpose} has been received.
               </p>
-              <button type="button" className="btn-solid" data-testid="new-donation-button" onClick={() => setSubmitted(false)}>
+              <button type="button" className="btn-solid donate-continue-btn" data-testid="new-donation-button" onClick={() => setSubmitted(false)}>
                 Make another offering
               </button>
             </div>
           ) : (
-            <form className="donate-form donate-form-compact" data-testid="donation-form" onSubmit={submit}>
-              <div className="form-label">Choose a purpose</div>
-              <div className="purpose-grid purpose-grid-compact">
-                {purposeOptions.map((item) => (
-                  <button
-                    type="button"
-                    key={item}
-                    data-testid={`purpose-${item.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}-button`}
-                    className={purpose === item ? "purpose active" : "purpose"}
-                    onClick={() => setPurpose(item)}
-                  >
-                    {item}
-                  </button>
-                ))}
+            <form className="donate-card-form" data-testid="donation-form" onSubmit={submit}>
+              <div className="donate-block">
+                <h2 className="donate-block-label">Choose a purpose</h2>
+                <div className="donate-purpose-grid">
+                  {purposeOptions.map((item) => (
+                    <button
+                      type="button"
+                      key={item}
+                      data-testid={`purpose-${item.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}-button`}
+                      className={purpose === item ? "donate-purpose active" : "donate-purpose"}
+                      onClick={() => setPurpose(item)}
+                    >
+                      {purposeShortLabel(item)}
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              <label className="donate-amount-field">
-                <span className="form-label">Offering amount</span>
-                <div className="custom-amount custom-amount-full">
-                  <span>₹</span>
+              <div className="donate-block donate-block-amount">
+                <h2 className="donate-block-label">Offering amount</h2>
+                <div className="donate-amount-input">
+                  <span className="donate-amount-symbol">₹</span>
                   <input
                     data-testid="custom-amount-input"
                     type="number"
@@ -160,48 +159,36 @@ export default function DonatePage() {
                     aria-label="Offering amount"
                   />
                 </div>
-              </label>
+              </div>
 
-              <label className="recurring recurring-compact">
-                <input data-testid="recurring-toggle" type="checkbox" checked={recurring} onChange={(e) => setRecurring(e.target.checked)} />
-                <span>
-                  <strong>Monthly offering</strong>
-                  <small>Ongoing Goshala care</small>
-                </span>
-              </label>
-
-              <div className="form-fields form-fields-compact">
-                {[
-                  ["donor_name", "Name", "Your full name", true],
-                  ["email", "Email", "you@example.com", true],
-                  ["phone", "Phone", "+91", true],
-                  ["pan", "PAN", "ABCDE1234F", false],
-                  ["address", "Address", "Address for your records", true],
-                  ["dedication", "In memory of / on behalf of", "A loved one, family, or occasion", false],
-                ].map(([key, label, placeholder, required], index) => (
-                  <label className={index > 3 ? "full" : ""} key={key}>
-                    <span>{label}</span>
-                    {key === "address" ? (
-                      <textarea
-                        data-testid="donor-address-input"
-                        required={required}
-                        value={form[key]}
-                        onChange={update(key)}
-                        placeholder={placeholder}
-                        rows="2"
-                      />
-                    ) : (
-                      <input
-                        data-testid={key === "donor_name" ? "donor-name-input" : `donor-${key}-input`}
-                        required={required}
-                        type={key === "email" ? "email" : "text"}
-                        value={form[key]}
-                        onChange={update(key)}
-                        placeholder={placeholder}
-                      />
-                    )}
+              <div className="donate-block">
+                <h2 className="donate-block-label">Devotee details</h2>
+                <div className="donate-details-grid donate-details-inline">
+                  <label>
+                    <span>Name</span>
+                    <input data-testid="donor-name-input" required type="text" value={form.donor_name} onChange={update("donor_name")} placeholder="Your full name" />
                   </label>
-                ))}
+                  <label>
+                    <span>Email</span>
+                    <input data-testid="donor-email-input" required type="email" value={form.email} onChange={update("email")} placeholder="you@example.com" />
+                  </label>
+                  <label>
+                    <span>Phone</span>
+                    <input data-testid="donor-phone-input" required type="text" value={form.phone} onChange={update("phone")} placeholder="+91" />
+                  </label>
+                  <label>
+                    <span>PAN</span>
+                    <input data-testid="donor-pan-input" type="text" value={form.pan} onChange={update("pan")} placeholder="ABCDE1234F" />
+                  </label>
+                  <label>
+                    <span>Address</span>
+                    <input data-testid="donor-address-input" required type="text" value={form.address} onChange={update("address")} placeholder="Address for your records" />
+                  </label>
+                  <label>
+                    <span>In memory of / on behalf of <em>(Optional)</em></span>
+                    <input data-testid="donor-dedication-input" type="text" value={form.dedication} onChange={update("dedication")} placeholder="A loved one, family, or occasion" />
+                  </label>
+                </div>
               </div>
 
               {error ? (
@@ -210,15 +197,14 @@ export default function DonatePage() {
                 </p>
               ) : null}
 
-              <button className="btn-solid donate-submit" type="submit" data-testid="donation-submit-button" disabled={loading}>
-                {loading ? "Opening payment…" : <>Continue with ₹{Number(amount || 0).toLocaleString("en-IN")} <ArrowUpRight size={16} /></>}
+              <button className="btn-solid donate-continue-btn" type="submit" data-testid="donation-submit-button" disabled={loading}>
+                {loading ? "Opening payment…" : <>Continue <ArrowRight size={16} /></>}
               </button>
 
-              <p className="demo-disclaimer" data-testid="donation-payment-disclaimer">
-                Secure payment via Razorpay
-                {isTestMode() ? (
-                  <> · Test card <strong>4111 1111 1111 1111</strong></>
-                ) : null}
+              <p className="donate-trust-note" data-testid="donation-payment-disclaimer">
+                <Lock size={13} aria-hidden="true" />
+                Secure payment processing. 80G Tax Exemption available for Indian donors.
+                {isTestMode() ? <> Test card: <strong>4111 1111 1111 1111</strong>.</> : null}
               </p>
             </form>
           )}
