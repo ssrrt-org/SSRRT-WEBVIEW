@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Eyebrow, SlimHead } from "@/components/shared/PageSections";
+import { Eyebrow } from "@/components/shared/PageSections";
 import { ArrowUpRight, Check } from "lucide-react";
 import { submitInboxMessage } from "@/lib/inbox";
 
@@ -39,13 +39,14 @@ export default function ContactPage() {
   };
 
   return (
-    <>
-      <SlimHead
-        eyebrow="Contact"
-        title="Write to the Trust office."
-      />
-      <section className="contact-section-v2">
-        <div className="wrap contact-form-only">
+    <section className="split-page contact-simple">
+      <div className="wrap split-page-grid">
+        <header className="split-page-intro">
+          <Eyebrow>Contact</Eyebrow>
+          <h1>Write to the Trust office</h1>
+        </header>
+
+        <div className="split-page-panel">
           {submitted ? (
             <div className="contact-form contact-form-success" data-testid="contact-success">
               <div className="success-icon"><Check /></div>
@@ -57,12 +58,10 @@ export default function ContactPage() {
               </button>
             </div>
           ) : (
-            <form className="contact-form" onSubmit={handleSubmit} data-testid="contact-form">
-              <Eyebrow>Your details</Eyebrow>
-              <h3>Send a message.</h3>
+            <form className="contact-form contact-form-compact" onSubmit={handleSubmit} data-testid="contact-form">
               {error ? <p className="donation-error" role="alert">{error}</p> : null}
-              <label><span>Name</span><input required type="text" name="contact-name" placeholder="Full name" data-testid="contact-name"/></label>
-              <label><span>Email</span><input required type="email" name="contact-email" placeholder="you@example.com" data-testid="contact-email"/></label>
+              <label><span>Name</span><input required type="text" name="contact-name" placeholder="Full name" data-testid="contact-name" /></label>
+              <label><span>Email</span><input required type="email" name="contact-email" placeholder="you@example.com" data-testid="contact-email" /></label>
               <label><span>Regarding</span>
                 <select data-testid="contact-purpose" name="contact-purpose" defaultValue="visit">
                   <option value="visit">Planning a visit</option>
@@ -72,14 +71,14 @@ export default function ContactPage() {
                   <option value="other">Other</option>
                 </select>
               </label>
-              <label><span>Message</span><textarea required rows="4" name="contact-message" placeholder="A few lines" data-testid="contact-message"/></label>
+              <label><span>Message</span><textarea required rows="3" name="contact-message" placeholder="A few lines" data-testid="contact-message" /></label>
               <button className="btn-solid" type="submit" data-testid="contact-submit" disabled={submitting}>
-                {submitting ? "Sending…" : <>Send <ArrowUpRight size={16}/></>}
+                {submitting ? "Sending…" : <>Send <ArrowUpRight size={16} /></>}
               </button>
             </form>
           )}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
