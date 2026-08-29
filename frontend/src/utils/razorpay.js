@@ -8,6 +8,25 @@ let scriptPromise = null;
 const createOrderFn = httpsCallable(functions, "createRazorpayOrder");
 const verifyPaymentFn = httpsCallable(functions, "verifyRazorpayPayment");
 
+function formatCallableError(error, action) {
+  const code = error?.code || "";
+  const message = error?.message || "";
+
+  if (
+    code === "functions/not-found" ||
+    code === "functions/unavailable" ||
+    message.includes("CORS") ||
+    message.includes("Failed to fetch") ||
+    message.includes("network")
+  ) {
+    return new Error(
+      `Payment service is not reachable. Deploy Cloud Functions (npm run deploy:functions) or run the local emulator (npm run dev:functions) with REACT_APP_USE_FUNCTIONS_EMULATOR=true in frontend/.env.`,
+    );
+  }
+
+  return new Error(error?.message || `Unable to ${action}.`);
+}
+
 export function isRazorpayConfigured() {
   return Boolean(RAZORPAY_KEY_ID);
 }
@@ -36,17 +55,25 @@ export function loadRazorpayScript() {
 }
 
 export async function createOrder(amountInPaise, receipt) {
-  const result = await createOrderFn({
-    amount: amountInPaise,
-    currency: "INR",
-    receipt,
-  });
-  return result.data;
+  try {
+    const result = await createOrderFn({
+      amount: amountInPaise,
+      currency: "INR",
+      receipt,
+    });
+    return result.data;
+  } catch (error) {
+    throw formatCallableError(error, "create payment order");
+  }
 }
 
 export async function verifyPayment(paymentData) {
-  const result = await verifyPaymentFn(paymentData);
-  return result.data;
+  try {
+    const result = await verifyPaymentFn(paymentData);
+    return result.data;
+  } catch (error) {
+    throw formatCallableError(error, "verify payment");
+  }
 }
 
 function cleanPhone(phone) {

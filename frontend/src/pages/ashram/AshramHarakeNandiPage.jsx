@@ -1,26 +1,26 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import ProseSection from "@/components/shared/ProseSection";
 import { SlimHead } from "@/components/shared/PageSections";
 import { usePageImages } from "@/context/CmsContext";
+import { docPageImages } from "@/constants/docPageImages";
+import { proseParas } from "@/lib/docContent";
 import { IMG } from "@/constants/images";
+
+const paragraphs = proseParas("harake_nandi", { skip: 1 });
 
 export default function AshramHarakeNandiPage() {
   const img = usePageImages("/ashram/harake-nandi");
 
   return (
     <>
-      <SlimHead
-        eyebrow="Ashram"
-        title="Harake Nandi."
+      <SlimHead eyebrow="Ashram" title="Harake Nandi." />
+      <ProseSection
+        paragraphs={paragraphs}
+        images={docPageImages.harake_nandi}
+        image={img("inline-figure", IMG.shiva)}
+        imageAlt="Harake Nandi"
       />
-      <section className="ritual-body">
-        <div className="wrap ritual-body-inner">
-          <figure className="pillar-fig" style={{ marginBottom: "24px" }}>
-            <img src={img("inline-figure", IMG.shiva)} alt="Harake Nandi" />
-          </figure>
-          <p>Nandi carries the devotee's prayer to Shiva. The harake here is part of the daily worship around the grand mantapa.</p>
-        </div>
-      </section>
       <section className="child-nav tint">
         <div className="wrap child-nav-inner">
           <Link className="btn-ghost-dark" to="/ashram">The Sacred Ashram <ChevronRight size={15} /></Link>

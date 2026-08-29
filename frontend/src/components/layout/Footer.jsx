@@ -17,9 +17,7 @@ export default function Footer() {
     ["Medical Centers", "/seva/medical"],
     ["Narayana Seva", "/seva/narayana"],
     ["Food for the Needy", "/seva/food"],
-    ["Education", "/seva/education"],
-    ["Water Supply", "/seva/water"],
-    ["Emergency Relief", "/seva/relief"],
+    ["Volunteering", "/volunteering"],
   ];
   const templeLinks = templeCards.slice(0, 6).map((t) => [t.name, t.path]);
   const connectLinks = [

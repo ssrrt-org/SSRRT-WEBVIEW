@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import { SlimHead, Split } from "@/components/shared/PageSections";
+import ProseSection from "@/components/shared/ProseSection";
+import { Quote, SlimHead } from "@/components/shared/PageSections";
+import {
+  motherAvataarhoodParagraphs,
+  motherDeclarationNarrative,
+  motherDeclarationQuote,
+} from "@/constants/motherContent";
+import { docPageImages } from "@/constants/docPageImages";
 import { usePageImages } from "@/context/CmsContext";
 import { IMG } from "@/constants/images";
 
@@ -12,10 +19,27 @@ export default function MotherAvataarhoodPage() {
       <SlimHead
         eyebrow="Amma"
         title="The Avataarhood."
+        intro="The declaration of 29 March 1997 and the spiritual truth of Shiva's Shakti on earth."
       />
-      <Split title="What devotees describe." image={img("split", IMG.manidweepa)} tint>
-        <p>Amma's family had prayed for the Divine Mother to be born among them. In daily life she was a bank officer and householder; in spiritual life devotees describe her assuming many forms — comforter, warrior, mother — to awaken those who come to her sincerely.</p>
-      </Split>
+
+      <ProseSection
+        eyebrow="Declaration · 29 March 1997"
+        title="Goddess Rajarajeshwari proclaimed."
+        paragraphs={motherDeclarationNarrative}
+      />
+
+      <Quote author="Amma · Avataric declaration">{motherDeclarationQuote}</Quote>
+
+      <ProseSection
+        eyebrow="Shiva & Shakti"
+        title="The theology of the Avataarhood."
+        paragraphs={motherAvataarhoodParagraphs}
+        images={docPageImages.mother_avataarhood}
+        image={img("split", IMG.manidweepa)}
+        imageAlt="Srimad Sai Rajarajeshwari"
+        tint
+      />
+
       <section className="child-nav tint">
         <div className="wrap child-nav-inner">
           <Link className="btn-ghost-dark" to="/mother">Glimpses of the Mother <ChevronRight size={15} /></Link>

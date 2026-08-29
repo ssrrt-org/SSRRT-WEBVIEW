@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { ArrowUpRight, Check, Heart } from "lucide-react";
-import { Eyebrow, SlimHead } from "@/components/shared/PageSections";
+import { ArrowUpRight, Check } from "lucide-react";
+import ProseSection from "@/components/shared/ProseSection";
+import { SlimHead } from "@/components/shared/PageSections";
+import { docPageImages } from "@/constants/docPageImages";
+import { goshalaSupportParagraphs, goshalaSupportTitle } from "@/constants/goshalaContent";
 import { donationPurposes, donatePurposeFromQuery } from "@/constants/nav";
 import { useDonateConfig } from "@/context/CmsContext";
 import {
@@ -107,19 +110,11 @@ export default function DonatePage() {
     <>
       <SlimHead
         eyebrow="Donate"
-        title="Make an offering."
+        title={goshalaSupportTitle || "Make an offering."}
       />
+      <ProseSection paragraphs={goshalaSupportParagraphs} images={docPageImages.goshala_support} />
       <main className="inner-page donation-page">
         <div className="wrap donate-grid">
-          <div className="donate-intro">
-            <Eyebrow>Before you continue</Eyebrow>
-            <h2>Offer with care and devotion.</h2>
-            <p>Your offering supports the Goshala, ashram seva, and community upliftment at SSRRT. Payments are processed securely through Razorpay.</p>
-            <div className="donate-note">
-              <Heart size={18}/>
-              <span>All offerings are received with gratitude. A receipt will be shared by the Trust office where applicable.</span>
-            </div>
-          </div>
           <div className="donate-form-wrap">
             {submitted ? (
               <div className="success-state" data-testid="donation-success-message">

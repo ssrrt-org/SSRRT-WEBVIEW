@@ -18,7 +18,7 @@ const programmes = [
     to: r.path,
     title: r.title,
     tag: r.eyebrow,
-    note: r.body,
+    note: r.intro || r.paragraphs?.[0],
     image: ritualImages[r.id] || IMG.manidweepa,
     testid: `sevas-link-${r.id}`,
   })),

@@ -2,28 +2,46 @@ const crypto = require("crypto");
 const { initializeApp } = require("firebase-admin/app");
 const { getFirestore, FieldValue } = require("firebase-admin/firestore");
 const { onCall, HttpsError } = require("firebase-functions/v2/https");
+const { defineSecret } = require("firebase-functions/params");
 const Razorpay = require("razorpay");
 
 initializeApp();
 
 const db = getFirestore();
 
-function getRazorpay() {
-  const keyId = process.env.RAZORPAY_KEY_ID;
-  const keySecret = process.env.RAZORPAY_KEY_SECRET;
+const razorpayKeyId = defineSecret("RAZORPAY_KEY_ID");
+const razorpayKeySecret = defineSecret("RAZORPAY_KEY_SECRET");
+
+const ALLOWED_ORIGINS = [
+  "http://localhost:3000",
+  "https://ssrt-live.firebaseapp.com",
+  "https://ssrt-live.web.app",
+];
+
+const callableOptions = {
+  region: "asia-south1",
+  cors: ALLOWED_ORIGINS,
+  invoker: "public",
+};
+
+function createRazorpayClient() {
+  const keyId = razorpayKeyId.value();
+  const keySecret = razorpayKeySecret.value();
+
   if (!keyId || !keySecret) {
     throw new HttpsError(
       "failed-precondition",
-      "Razorpay keys are not configured on Firebase Functions. Run: firebase functions:secrets:set RAZORPAY_KEY_ID RAZORPAY_KEY_SECRET",
+      "Razorpay keys are not configured. Run: firebase functions:secrets:set RAZORPAY_KEY_ID && firebase functions:secrets:set RAZORPAY_KEY_SECRET",
     );
   }
+
   return new Razorpay({ key_id: keyId, key_secret: keySecret });
 }
 
 exports.createRazorpayOrder = onCall(
   {
-    region: "asia-south1",
-    secrets: ["RAZORPAY_KEY_ID", "RAZORPAY_KEY_SECRET"],
+    ...callableOptions,
+    secrets: [razorpayKeyId, razorpayKeySecret],
   },
   async (request) => {
     const { amount, currency = "INR", receipt } = request.data || {};
@@ -33,7 +51,7 @@ exports.createRazorpayOrder = onCall(
     }
 
     try {
-      const razorpay = getRazorpay();
+      const razorpay = createRazorpayClient();
       const order = await razorpay.orders.create({
         amount: Math.round(Number(amount)),
         currency,
@@ -46,10 +64,15 @@ exports.createRazorpayOrder = onCall(
         currency: order.currency,
       };
     } catch (error) {
+      if (error instanceof HttpsError) {
+        throw error;
+      }
+
       const status = error.statusCode || error.status;
       if (status === 401) {
         throw new HttpsError("unauthenticated", "Razorpay authentication failed. Check your API keys.");
       }
+
       throw new HttpsError("internal", error.error?.description || "Failed to create order.");
     }
   },
@@ -57,8 +80,8 @@ exports.createRazorpayOrder = onCall(
 
 exports.verifyRazorpayPayment = onCall(
   {
-    region: "asia-south1",
-    secrets: ["RAZORPAY_KEY_SECRET"],
+    ...callableOptions,
+    secrets: [razorpayKeySecret],
   },
   async (request) => {
     const {
@@ -75,7 +98,7 @@ exports.verifyRazorpayPayment = onCall(
       throw new HttpsError("invalid-argument", "Missing payment verification fields.");
     }
 
-    const keySecret = process.env.RAZORPAY_KEY_SECRET;
+    const keySecret = razorpayKeySecret.value();
     const expectedSignature = crypto
       .createHmac("sha256", keySecret)
       .update(`${razorpay_order_id}|${razorpay_payment_id}`)

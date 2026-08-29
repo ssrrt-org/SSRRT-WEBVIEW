@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { Eyebrow, SlimHead, Quote, Split } from "@/components/shared/PageSections";
+import { Eyebrow, SlimHead, Quote } from "@/components/shared/PageSections";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
 import HashRedirect from "@/components/shared/HashRedirect";
 import { usePageImages } from "@/context/CmsContext";
@@ -49,7 +49,9 @@ const programmes = [
     to: s.path,
     title: s.navTitle,
     tag: s.eyebrow,
-    note: s.paragraphs ? s.paragraphs[0] : s.stories?.[0]?.text?.slice(0, 140) + "…",
+    note: s.stories
+      ? `${s.stories[0].text.slice(0, 140)}…`
+      : `${(s.paragraphs?.[0] || "").slice(0, 140)}…`,
     image: sectionImages[s.id] || IMG.amma,
     testid: `mother-link-${s.id}`,
   })),
@@ -74,26 +76,8 @@ export default function MotherPage() {
         wide
         eyebrow="Glimpses of Amma"
         title="A human life, lived with divine purpose."
-        intro="Srimad Sai Rajarajeshwari — affectionately called Amma — is a wife, a mother, a guide, and a perfect renunciant. Her simple life and character reveal a unique ideal to mankind."
+        intro="Srimad Sai Rajarajeshwari — affectionately called Amma — is a wife, a mother, a guide, and a perfect renunciant. Explore her story, divine aspect, testimonies, Naadi readings, and the Avataarhood declaration below."
       />
-
-      <Split
-        eyebrow="The human aspect"
-        title="A householder first — dignified, disciplined, devoted."
-        image={img("split-human", IMG.ammaGanesha)}
-        imgAlt="Amma at SSRRT"
-      >
-        <p>
-          Amma completed her education, married, worked in a bank for 26 years, and secured herself financially
-          through voluntary retirement. In daily life she never fails in her duty as a householder — every task
-          at home is completed before she attends to devotees or visits the Ashram.
-        </p>
-        <p>
-          Whoever visits her home is welcomed, fed sumptuously, and sent away lifted. The spirit of motherhood
-          is so powerfully operative in her that she foregoes her own comforts silently, so that others are spared
-          trouble.
-        </p>
-      </Split>
 
       <HubProgrammesSection
         eyebrow="Read further"

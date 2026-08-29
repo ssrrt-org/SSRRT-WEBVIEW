@@ -86,7 +86,20 @@ Donations use two Firebase Callable Functions in `asia-south1`:
 | `createRazorpayOrder` | Creates a Razorpay order (amount in paise) |
 | `verifyRazorpayPayment` | Verifies signature and writes `donations/{paymentId}` |
 
-### One-time setup
+### Local development (before cloud deploy)
+
+If Cloud Functions are not deployed yet, use the **local emulator**:
+
+1. Copy `functions/.env.example` → `functions/.env` and add your Razorpay keys.
+2. In `frontend/.env` add:
+   ```
+   REACT_APP_USE_FUNCTIONS_EMULATOR=true
+   ```
+3. In one terminal: `npm run dev:functions`
+4. In another: `npm run dev`
+5. Restart the frontend after changing `.env`.
+
+### Production deploy
 
 1. Add your Razorpay **Key ID** (public) to `frontend/.env`:
    ```
@@ -99,6 +112,8 @@ Donations use two Firebase Callable Functions in `asia-south1`:
    firebase functions:secrets:set RAZORPAY_KEY_ID
    firebase functions:secrets:set RAZORPAY_KEY_SECRET
    ```
+
+   Functions bind these via `defineSecret()` in `functions/index.js`. Redeploy after changing secrets.
 
 3. Deploy functions and rules:
    ```bash
@@ -124,7 +139,8 @@ Set `REACT_APP_USE_FUNCTIONS_EMULATOR=true` in `frontend/.env` for local functio
 | Permission denied on save | Deploy rules: `firebase deploy --only firestore:rules,storage` |
 | Public site shows defaults only | Sign in to admin once to seed `cms/site`, or check Firestore rules allow public read on `cms/*` |
 | Image upload fails | Enable Storage and deploy storage rules; sign in as admin |
-| Donation fails / "Razorpay keys not configured" | Deploy functions and set `RAZORPAY_KEY_ID` + `RAZORPAY_KEY_SECRET` secrets |
+| Donation fails / CORS error on `createRazorpayOrder` | Functions not deployed — run `firebase functions:list`. Upgrade to Blaze, deploy functions, set secrets |
+| "Payment service is not reachable" | Same as above, or start local emulator with `REACT_APP_USE_FUNCTIONS_EMULATOR=true` |
 | Payment works but donation not in admin | Check `verifyRazorpayPayment` deployed; Firestore rules block client writes to `donations` |
 
 ## Add another admin later

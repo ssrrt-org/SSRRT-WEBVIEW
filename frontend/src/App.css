@@ -1118,6 +1118,152 @@ body.nav-open {
   justify-content: center;
   flex-wrap: wrap;
 }
+.hero-cta-strip {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hero-cta-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  min-width: 0;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  background: var(--indigo);
+  border: 1px solid rgba(201,151,61,.35);
+  transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+.hero-cta-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 24px -18px rgba(0,0,0,.35);
+  filter: brightness(1.05);
+}
+.hero-cta-chip-accent {
+  background: var(--maroon);
+  border-color: rgba(255,255,255,.12);
+}
+.hero-cta-chip-accent:hover {
+  background: #b64a26;
+}
+
+/* Home — Divine Mother section from doc content */
+.home-mother {
+  padding: 72px 0 56px;
+  background: #fff;
+}
+.home-mother-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 420px) 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.home-mother-figure {
+  margin: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 24px 48px -32px rgba(34,42,69,.35);
+}
+.home-mother-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.home-mother-copy h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.2;
+  color: var(--maroon);
+  margin: 12px 0 16px;
+}
+.home-mother-copy p,
+.home-mother-narrative,
+.home-trust-inner p {
+  color: #5f574c;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 1.15em;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+.home-virtues-grid p {
+  text-align: justify;
+  hyphens: auto;
+}
+.home-virtues {
+  padding: 64px 0;
+}
+.home-virtues-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  margin: 28px 0 32px;
+  align-items: stretch;
+}
+.home-virtues-grid article {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid rgba(122,31,46,.08);
+  border-radius: 6px;
+  padding: 20px 16px;
+  min-height: 200px;
+}
+.home-virtues-grid h3 {
+  font-family: var(--serif);
+  font-size: 20px;
+  color: var(--maroon);
+  margin: 0 0 10px;
+  min-height: 2.5em;
+  line-height: 1.25;
+}
+.home-virtues-grid p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #5f574c;
+  margin: 0;
+  flex: 1;
+  min-height: 8.5em;
+}
+.home-mother-narrative {
+  max-width: min(90%, 1080px);
+}
+.home-trust {
+  padding: 64px 0 72px;
+  background: var(--ivory);
+}
+.home-trust-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(260px, 420px);
+  gap: 48px;
+  align-items: center;
+  max-width: min(90%, 1080px);
+  margin: 0 auto;
+}
+.home-trust-copy p {
+  color: #5f574c;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 1.15em;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+.home-trust-copy p:last-of-type {
+  margin-bottom: 0;
+}
+.home-trust-figure {
+  margin: 0;
+}
+
 /* Two large buttons under the Home hero (Offer Seva / Support). .cta-accent is maroon. */
 .cta {
   display: inline-flex;
@@ -1317,17 +1463,45 @@ body.nav-open {
   padding: 80px 0;
   background: #fff;
 }
+.pillar-grid-equal {
+  align-items: stretch;
+}
+.pillar-grid-equal .pillar-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+  height: 100%;
+}
+.pillar-grid-equal .pillar-card p {
+  flex: 1;
+  text-align: justify;
+  hyphens: auto;
+  line-height: 1.65;
+}
+.pillar-grid-equal .pillar-card a {
+  margin-top: auto;
+  padding-top: 12px;
+}
 .pillar-card {
   background: #fff;
+  border: 1px solid rgba(122, 31, 46, 0.14);
   border-top: 3px solid var(--gold);
+  border-radius: 6px;
   padding: 28px;
   min-height: 290px;
   position: relative;
-  transition: transform .25s,box-shadow .25s;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
 }
 .pillar-card:hover {
   transform: translateY(-5px);
+  border-color: rgba(122, 31, 46, 0.22);
   box-shadow: 0 20px 40px -24px #5f503b;
+}
+.pillar-grid-equal .pillar-card h3 {
+  margin-top: 0;
+  min-height: 3.2em;
+  font-size: 22px;
+  line-height: 1.25;
 }
 .pillar-number {
   position: absolute;
@@ -2086,6 +2260,20 @@ body.nav-open {
 @media (max-width:1024px) {
   .ph-slim-photo h1, .ph-slim-wide h1 {
     white-space: normal;
+  }
+  .home-mother-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .home-trust-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .home-trust-figure {
+    order: -1;
+  }
+  .home-virtues-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -2893,6 +3081,18 @@ body.nav-open {
 
 /* Layout of each seva pillar: icon/photo left, text right. .rev swaps sides. */
 
+.pillar-body-wide {
+  max-width: min(90%, 1080px);
+  margin: 0 auto;
+}
+.pillar-prose-embed.prose-section-inner {
+  max-width: none;
+  width: 100%;
+}
+.pillar-prose-embed .prose-block p {
+  text-align: justify;
+  hyphens: auto;
+}
 .pillar-body-grid {
   display: grid;
   grid-template-columns: .9fr 1.1fr;
@@ -3071,6 +3271,88 @@ body.nav-open {
   color: #5f574c;
   font-size: 16px;
   line-height: 1.75;
+}
+
+.prose-section {
+  padding: 56px 0;
+  background: #fff;
+}
+.prose-section.tint {
+  background: var(--ivory);
+}
+.prose-section-inner {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.prose-section.prose-wide .prose-section-inner {
+  max-width: min(90%, 1080px);
+}
+.prose-block p {
+  color: #5f574c;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 1.15em;
+}
+.prose-block.prose-justify p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+.prose-block p:last-child {
+  margin-bottom: 0;
+}
+.prose-section-figure {
+  margin: 2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  clear: both;
+}
+.prose-section-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.prose-figure-full img {
+  max-height: 460px;
+}
+.prose-figure-inline {
+  width: min(44%, 420px);
+  float: right;
+  margin: 0.25rem 0 1.25rem 2rem;
+  box-shadow: 0 20px 40px -28px rgba(34,42,69,.35);
+}
+.prose-figure-inline img {
+  max-height: 320px;
+}
+.prose-section-figure figcaption {
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #7a7268;
+  background: rgba(251,246,236,.9);
+  text-align: center;
+}
+.prose-subheading {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--maroon);
+  margin: 1.8em 0 0.6em;
+  clear: both;
+}
+.prose-subheading:first-child {
+  margin-top: 0;
+}
+@media (max-width: 768px) {
+  .prose-section.prose-wide .prose-section-inner {
+    max-width: 100%;
+  }
+  .prose-figure-inline {
+    float: none;
+    width: 100%;
+    margin: 1.5rem 0;
+  }
 }
 
 /* Goshala timeline (years in a row). Gold line + maroon dots. */
@@ -5241,6 +5523,13 @@ body.nav-open {
   padding: 90px 0;
   background: #fff;
 }
+.contact-form-only {
+  max-width: min(90%, 560px);
+  margin: 0 auto;
+}
+.contact-form-only .contact-form {
+  width: 100%;
+}
 .contact-grid-v2 {
   display: grid;
   grid-template-columns: .9fr 1.1fr;
@@ -5979,6 +6268,13 @@ body.nav-open {
     grid-template-columns: 1fr;
   }
   .home-discover-grid {
+    grid-template-columns: 1fr;
+  }
+  .home-mother-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .home-virtues-grid {
     grid-template-columns: 1fr;
   }
   .home-visit-inner {
