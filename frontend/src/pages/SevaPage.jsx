@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom";
-import { Eyebrow, SlimHead, Quote } from "@/components/shared/PageSections";
+import { SlimHead } from "@/components/shared/PageSections";
 import HashRedirect from "@/components/shared/HashRedirect";
 import { allSevaPrograms, sevaPillars } from "@/constants/sevaContent";
-import { Droplet, GraduationCap, ShieldCheck, Sparkles, Stethoscope, Utensils } from "lucide-react";
+import { Stethoscope, Utensils, Sparkles } from "lucide-react";
+import { docTitle } from "@/lib/docContent";
 
 const iconMap = {
   medical: Stethoscope,
-  education: GraduationCap,
-  water: Droplet,
-  relief: ShieldCheck,
   food: Utensils,
   narayana: Sparkles,
 };
@@ -20,10 +18,7 @@ export default function SevaPage() {
     <>
       <HashRedirect basePath="/seva" ids={sevaIds} />
 
-      <SlimHead
-        eyebrow="Seva"
-        title="Medical care, education, water, relief, and food."
-      />
+      <SlimHead title={docTitle("medical", { minLen: 15 })} intro={docTitle("food", { minLen: 15 })} />
 
       <section className="pillar-nav">
         <div className="wrap">
@@ -43,21 +38,18 @@ export default function SevaPage() {
 
       <section className="subpage-links">
         <div className="wrap">
-          <h2 className="section-h">All programmes</h2>
           <ul className="subpage-links-list">
             {allSevaPrograms.map((p) => (
               <li key={p.id}>
                 <Link to={p.path} data-testid={`seva-link-${p.id}`}>
                   <span className="subpage-links-title">{p.navTitle}</span>
-                  {p.eyebrow && <span className="subpage-links-note">{p.eyebrow}</span>}
+                  <span className="subpage-links-note">{p.paragraphs?.[0]?.slice(0, 120)}…</span>
                 </Link>
               </li>
             ))}
           </ul>
         </div>
       </section>
-
-      <Quote author="Taittiriya Upanishad">Annam Brahma — Food is God.</Quote>
     </>
   );
 }

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { Eyebrow, Quote, SlimHead, Split } from "@/components/shared/PageSections";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
+import { usePageImages } from "@/context/CmsContext";
 import { ashramRituals } from "@/constants/sevasRituals";
 import { IMG } from "@/constants/images";
 
@@ -17,7 +18,7 @@ const programmes = [
     to: r.path,
     title: r.title,
     tag: r.eyebrow,
-    note: r.body,
+    note: r.intro || r.paragraphs?.[0],
     image: ritualImages[r.id] || IMG.manidweepa,
     testid: `sevas-link-${r.id}`,
   })),
@@ -33,6 +34,12 @@ const programmes = [
 ];
 
 export default function SevasHubPage() {
+  const img = usePageImages("/sevas");
+  const cards = programmes.map((program) => ({
+    ...program,
+    image: img(`hub-${program.id}`, program.image),
+  }));
+
   return (
     <>
       <SlimHead
@@ -44,7 +51,7 @@ export default function SevasHubPage() {
       <Split
         eyebrow="Worship at Karekura"
         title="Rituals that carry wishes to the Divine."
-        image={IMG.manidweepa}
+        image={img("split-worship", IMG.manidweepa)}
         imgAlt="Ashram worship at SSRRT"
         reverse
       >
@@ -63,7 +70,7 @@ export default function SevasHubPage() {
         eyebrow="Rituals & spaces"
         title="Participate in Ashram worship."
         lede="From Nandi Abhisheka to seasonal alankaras — and the sacred sannidhis where decades of devotion continue."
-        programmes={programmes}
+        programmes={cards}
         testIdPrefix="sevas"
       />
 

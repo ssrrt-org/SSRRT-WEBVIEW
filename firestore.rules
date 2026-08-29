@@ -1,0 +1,98 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helpers ──────────────────────────────────────────────────────────────
+
+    // True when the signed-in user's UID has a document in admins/{uid}.
+    // Uses exists() server-side — does not require client read on admins.
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Signed-in user reading their own admins/{uid} doc (login gate check).
+    function isSelf(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    function isNonEmptyString(value, maxLen) {
+      return value is string
+        && value.size() > 0
+        && value.size() <= maxLen;
+    }
+
+    function isValidEmail(email) {
+      return email is string && email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$');
+    }
+
+    // ── admins/{uid} ───────────────────────────────────────────────────────
+    // Each admin user has one doc keyed by their Firebase Auth UID.
+    // Created manually in Firebase Console (client cannot write).
+    // Users may read ONLY their own doc so the login gate can verify access.
+
+    match /admins/{uid} {
+      allow read: if isSelf(uid);
+
+      // First admin can self-register once (admin@ssrrt.com only).
+      allow create: if isSelf(uid)
+        && !exists(/databases/$(database)/documents/admins/$(uid))
+        && request.auth.token.email == 'admin@ssrrt.com'
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.role == 'admin';
+
+      allow update, delete: if false;
+    }
+
+    // ── cms/{docId} ────────────────────────────────────────────────────────
+    // Public site content: branding, heroes, shop, events, formation, donate,
+    // orders.  Document ID is "site" for the main CMS blob.
+
+    match /cms/{docId} {
+      allow read: if true;
+      allow create, update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ── donations/{donationId} ─────────────────────────────────────────────
+    // Written after verified Razorpay payment.  Doc ID = payment ID.
+
+    match /donations/{donationId} {
+      allow read: if isAdmin();
+      // Written by Firebase Cloud Function after verified Razorpay payment.
+      allow create, update, delete: if false;
+    }
+
+    // ── inbox/{messageId} ──────────────────────────────────────────────────
+    // Contact and volunteer form submissions from the public site.
+
+    match /inbox/{messageId} {
+      allow read: if isAdmin();
+
+      allow create: if
+        isNonEmptyString(request.resource.data.type, 50)
+        && isNonEmptyString(request.resource.data.name, 200)
+        && isValidEmail(request.resource.data.email)
+        && isNonEmptyString(request.resource.data.message, 5000)
+        && request.resource.data.archived == false
+        && request.resource.data.read == false
+        && (!('phone' in request.resource.data) || request.resource.data.phone is string)
+        && (!('purpose' in request.resource.data) || request.resource.data.purpose is string)
+        && (!('date' in request.resource.data) || request.resource.data.date is string);
+
+      // Admins archive messages (soft-delete) or mark as read.
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['archived', 'archivedAt', 'read']);
+
+      allow delete: if isAdmin();
+    }
+
+    // ── Deny everything else ───────────────────────────────────────────────
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

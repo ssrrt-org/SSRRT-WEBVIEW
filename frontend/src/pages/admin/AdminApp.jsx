@@ -7,16 +7,25 @@ import SeoHead from "@/components/seo/SeoHead";
 export function AdminRoot() {
   return (
     <AdminAuthProvider>
-      <AdminCmsProvider>
-        <SeoHead />
-        <Outlet />
-      </AdminCmsProvider>
+      <SeoHead />
+      <Outlet />
     </AdminAuthProvider>
   );
 }
 
 export function RequireAdmin() {
-  const { user } = useAdminAuth();
+  const { user, loading } = useAdminAuth();
+  if (loading) {
+    return (
+      <div className="admin-login">
+        <p className="admin-login-copy">Checking admin session…</p>
+      </div>
+    );
+  }
   if (!user) return <Navigate to="/admin/login" replace />;
-  return <AdminLayout />;
+  return (
+    <AdminCmsProvider>
+      <AdminLayout />
+    </AdminCmsProvider>
+  );
 }

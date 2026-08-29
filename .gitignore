@@ -30,9 +30,6 @@ next-env.d.ts
 dist/
 dist
 
-# Donation records written by the API after Razorpay verification
-backend/data/
-
 # Environment files (comprehensive coverage)
 
 *token.json*

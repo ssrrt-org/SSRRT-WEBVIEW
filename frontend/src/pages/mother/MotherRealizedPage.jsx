@@ -1,16 +1,19 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { SlimHead, Split } from "@/components/shared/PageSections";
+import { usePageImages } from "@/context/CmsContext";
 import { IMG } from "@/constants/images";
 
 export default function MotherRealizedPage() {
+  const img = usePageImages("/mother/realized");
+
   return (
     <>
       <SlimHead
         eyebrow="Amma"
         title="Realized beings."
       />
-      <Split title="Naadi readings." image={IMG.shirdi} reverse tint>
+      <Split title="Naadi readings." image={img("split", IMG.shirdi)} reverse tint>
         <p>Devotees who know both Shirdi Sai and the Divine Mother often speak of the same quality of compassion in Amma — serving anyone who comes, without asking for spectacle.</p>
         <p>Amma herself asks devotees to seek humility and service rather than visions. The Ashram's work — food, medicine, cows — is offered in that spirit.</p>
       </Split>

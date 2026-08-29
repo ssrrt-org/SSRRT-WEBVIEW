@@ -48,9 +48,9 @@ export const navItems = [
       {
         heading: "RURAL PROGRAMMES",
         links: [
-          { label: "Education", path: "/seva/education" },
-          { label: "Water Supply", path: "/seva/water" },
-          { label: "Bedding & Crisis Relief", path: "/seva/relief" },
+          { label: "Medical Centres", path: "/seva/medical" },
+          { label: "Food for the Needy", path: "/seva/food" },
+          { label: "Volunteering", path: "/volunteering" },
           { label: "Narayana Seva", path: "/seva/narayana" },
         ],
       },

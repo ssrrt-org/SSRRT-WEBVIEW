@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import ShopCartButton from "@/components/shop/ShopCartButton";
+import { useBranding } from "@/context/CmsContext";
 import { navItems } from "@/constants/nav";
 
 const MOBILE_NAV_MQ = "(max-width: 900px)";
@@ -39,12 +40,13 @@ function NavDropMenu({ item, onClick }) {
   ));
 }
 
-function NavItem({ item, onClick, isMobile, expanded, onExpand }) {
+function NavItem({ item, onClick, isMobile, expanded, onExpand, openDrop, onOpenDrop }) {
   const hasGroups = Array.isArray(item.groups) && item.groups.length > 0;
   const hasSub = Array.isArray(item.sub) && item.sub.length > 0;
   const hasMenu = hasGroups || hasSub;
   const testid = `nav-${item.label.toLowerCase().replaceAll(" ", "-")}-link`;
   const isExpanded = expanded === item.label;
+  const isOpen = isMobile ? isExpanded : openDrop === item.label;
 
   const handleTriggerClick = (e) => {
     if (isMobile && hasMenu) {
@@ -55,6 +57,18 @@ function NavItem({ item, onClick, isMobile, expanded, onExpand }) {
       }
     }
     onClick();
+  };
+
+  const openMenu = () => {
+    if (!isMobile && hasMenu) {
+      onOpenDrop(item.label);
+    }
+  };
+
+  const closeMenu = () => {
+    if (!isMobile) {
+      onOpenDrop(null);
+    }
   };
 
   if (item.donate) {
@@ -80,8 +94,16 @@ function NavItem({ item, onClick, isMobile, expanded, onExpand }) {
 
   return (
     <div
-      className={`nav-drop${isMobile && isExpanded ? " open" : ""}`}
+      className={`nav-drop${isOpen ? " open" : ""}`}
       data-testid={`nav-drop-${item.label.toLowerCase().replaceAll(" ", "-")}`}
+      onMouseEnter={openMenu}
+      onMouseLeave={closeMenu}
+      onFocus={openMenu}
+      onBlur={(e) => {
+        if (!isMobile && !e.currentTarget.contains(e.relatedTarget)) {
+          closeMenu();
+        }
+      }}
     >
       <NavLink
         data-testid={testid}
@@ -92,7 +114,7 @@ function NavItem({ item, onClick, isMobile, expanded, onExpand }) {
         {item.label}{" "}
         <ChevronDown
           size={13}
-          className={`nav-chevron${isMobile && isExpanded ? " rotated" : ""}`}
+          className={`nav-chevron${isOpen ? " rotated" : ""}`}
           aria-hidden="true"
         />
       </NavLink>
@@ -103,7 +125,7 @@ function NavItem({ item, onClick, isMobile, expanded, onExpand }) {
   );
 }
 
-function NavLinks({ onClick, isMobile, expandedDrop, onExpand }) {
+function NavLinks({ onClick, isMobile, expandedDrop, onExpand, openDrop, onOpenDrop }) {
   return navItems.map((item) => (
     <NavItem
       key={item.label}
@@ -112,13 +134,17 @@ function NavLinks({ onClick, isMobile, expandedDrop, onExpand }) {
       isMobile={isMobile}
       expanded={expandedDrop}
       onExpand={onExpand}
+      openDrop={openDrop}
+      onOpenDrop={onOpenDrop}
     />
   ));
 }
 
 export default function Header() {
+  const branding = useBranding();
   const [open, setOpen] = useState(false);
   const [expandedDrop, setExpandedDrop] = useState(null);
+  const [openDrop, setOpenDrop] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -129,6 +155,7 @@ export default function Header() {
       if (!mobile) {
         setOpen(false);
         setExpandedDrop(null);
+        setOpenDrop(null);
       }
     };
     sync();
@@ -157,6 +184,7 @@ export default function Header() {
   const closeMenu = () => {
     setOpen(false);
     setExpandedDrop(null);
+    setOpenDrop(null);
   };
 
   const toggleMenu = () => {
@@ -186,14 +214,14 @@ export default function Header() {
       <header className={`site-header${open && isMobile ? " menu-open" : ""}`}>
         <div className="wrap brand-row">
           <Link className="brand-devi-wrap" to="/" data-testid="brand-home-link" aria-label="Home">
-            <img src="/ssrrt/devi-logo.jpg" alt="Sri Rajarajeshwari Devi" className="brand-devi" />
+            <img src={branding.headerDevi || "/ssrrt/devi-logo.jpg"} alt="Sri Rajarajeshwari Devi" className="brand-devi" />
           </Link>
           <div className="brand-title">
-            <p className="brand-name">SRIMAD SAI RAJARAJESHWARI TRUST</p>
-            <small>Goshala · Ashram · Seva · Karekura</small>
+            <p className="brand-name">{branding.siteTitle || "SRIMAD SAI RAJARAJESHWARI TRUST"}</p>
+            <small>{branding.siteTagline || "Goshala · Ashram · Seva · Karekura"}</small>
           </div>
           <div className="brand-yantra-wrap" aria-hidden="true">
-            <img src="/ssrrt/sri-yantra.jpg" alt="" className="brand-yantra" />
+            <img src={branding.headerYantra || "/ssrrt/sri-yantra.jpg"} alt="" className="brand-yantra" />
           </div>
           <button
             type="button"
@@ -212,8 +240,15 @@ export default function Header() {
           <>
             <div className="header-rule" aria-hidden="true" />
             <div className="wrap nav-row">
-              <nav className="nav">
-                <NavLinks onClick={closeMenu} isMobile={false} expandedDrop={null} onExpand={() => {}} />
+              <nav className="nav" onMouseLeave={() => setOpenDrop(null)}>
+                <NavLinks
+                  onClick={closeMenu}
+                  isMobile={false}
+                  expandedDrop={null}
+                  onExpand={() => {}}
+                  openDrop={openDrop}
+                  onOpenDrop={setOpenDrop}
+                />
               </nav>
             </div>
           </>
@@ -243,6 +278,8 @@ export default function Header() {
                 isMobile
                 expandedDrop={expandedDrop}
                 onExpand={setExpandedDrop}
+                openDrop={null}
+                onOpenDrop={() => {}}
               />
             </nav>
           </div>
