@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { Eyebrow, Quote, SlimHead, Split } from "@/components/shared/PageSections";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
+import { usePageImages } from "@/context/CmsContext";
 import { IMG } from "@/constants/images";
 
 const programmes = [
@@ -40,6 +41,12 @@ const programmes = [
 ];
 
 export default function RuralUpliftmentHubPage() {
+  const img = usePageImages("/rural-upliftment");
+  const cards = programmes.map((program) => ({
+    ...program,
+    image: img(`hub-${program.id}`, program.image),
+  }));
+
   return (
     <>
       <SlimHead
@@ -51,7 +58,7 @@ export default function RuralUpliftmentHubPage() {
       <Split
         eyebrow="Village-first seva"
         title="When hardship is seasonal, the response must be steady."
-        image={IMG.village}
+        image={img("split-village", IMG.village)}
         imgAlt="Rural outreach at SSRRT"
       >
         <p>
@@ -68,7 +75,7 @@ export default function RuralUpliftmentHubPage() {
         eyebrow="Programmes"
         title="Four pillars of rural support."
         lede="Each programme addresses a different gap in village life. Choose one to read how the Trust responds."
-        programmes={programmes}
+        programmes={cards}
         testIdPrefix="rural"
       />
 

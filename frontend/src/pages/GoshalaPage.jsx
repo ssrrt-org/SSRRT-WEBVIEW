@@ -2,11 +2,19 @@ import { Link } from 'react-router-dom';
 import { Eyebrow, SlimHead, Split, Quote, Stats } from '@/components/shared/PageSections';
 import ExploreGrid from '@/components/shared/ExploreGrid';
 import HashRedirect from '@/components/shared/HashRedirect';
-import { IMG } from '@/constants/images';
 import { goshalaCows } from '@/constants/cowGallery';
+import { usePageImages } from '@/context/CmsContext';
+import { IMG } from '@/constants/images';
 import { ArrowUpRight } from 'lucide-react';
 
-export default function GoshalaPage() { return (
+export default function GoshalaPage() {
+  const img = usePageImages("/goshala");
+  const cows = goshalaCows.map((cow) => ({
+    ...cow,
+    image: img(`gallery-${cow.id}`, cow.image),
+  }));
+
+  return (
   <>
     <HashRedirect basePath="/goshala" ids={["adopt", "day"]} />
 
@@ -22,12 +30,12 @@ export default function GoshalaPage() { return (
       { value: "0", label: "Bulls ever to slaughter" },
     ]}/>
 
-    <Split eyebrow="Gaumata · The universal mother" title="A second mother to humanity." image={IMG.cow1}>
+    <Split eyebrow="Gaumata · The universal mother" title="A second mother to humanity." image={img("split-gaumata", IMG.cow1)}>
       <p>In Sanskrit the cow is called <em>Gaumata</em> — cow mother. It is not a metaphor. Every human being receives nourishment first from their own mother's milk. For billions of people, the next source of vital nourishment has been the milk of a cow. Calcium for bones. Protein for muscles. Fats for developing brains. The cow, in a very real physical sense, has mothered humanity.</p>
       <p>The Rigveda calls her <em>Aghnya</em> — that which must not be killed. In the Mahabharata it is said that wherever the cow is protected and honoured, dharma flourishes. Lord Krishna himself spent his childhood as a cowherd, and is known as Govinda — the one who brings joy to cows.</p>
     </Split>
 
-    <Split eyebrow="Kamadhenu · The wish-fulfilling cow" title="Abundance made gentle." image={IMG.calf} reverse tint>
+    <Split eyebrow="Kamadhenu · The wish-fulfilling cow" title="Abundance made gentle." image={img("split-kamadhenu", IMG.calf)} reverse tint>
       <p>The name <em>Kaamadhenau</em> is drawn from Kamadhenu — the celestial cow who emerged from the churning of the cosmic ocean, and who has the power to grant any wish, fulfil any need, nourish any prayer. She is abundance itself. She is the generosity of the divine made manifest in a gentle, giving creature.</p>
       <p>To name a Goshala after Kamadhenu is to declare its highest aspiration: that this place of animal care should itself become a source of abundance — of nutrition, of spiritual merit, of ecological healing, of love freely given. And in two decades, that is precisely what Project Kaamadhenau has become.</p>
     </Split>
@@ -40,7 +48,7 @@ export default function GoshalaPage() { return (
         <h2 className="section-h">Faces of the Goshala.</h2>
         <p className="cow-gallery-lede">Real photographs from the Ashram grounds — mothers, calves, feeding lines, and the quiet companionship of a herd that is known, named, and loved.</p>
         <div className="cow-gallery-grid">
-          {goshalaCows.map((cow) => (
+          {cows.map((cow) => (
             <figure key={cow.id} className="cow-card" data-testid={`goshala-cow-${cow.id}`}>
               <div className="cow-card-img">
                 <img src={cow.image} alt={cow.alt} loading="lazy" />
@@ -68,21 +76,21 @@ export default function GoshalaPage() { return (
         <h2 className="section-h">The animals of Kaamadhenau.</h2>
         <div className="three-lives-grid">
           <article>
-            <div className="tl-img"><img src={IMG.cow4} alt="Gir cows at the Goshala"/></div>
+            <div className="tl-img"><img src={img("three-lives-cows", IMG.cow4)} alt="Gir cows at the Goshala"/></div>
             <div className="tl-body">
               <h3>The Cows</h3>
               <p>Indigenous breeds — Gir, Sahiwal, Tharparkar — exquisitely adapted to Indian soil and climate. Their milk carries A2 beta-casein, associated with easier digestion and better nutrition. The Ashram uses what is needed for cooking and ritual; the rest reaches milk centres in surrounding villages.</p>
             </div>
           </article>
           <article>
-            <div className="tl-img"><img src={IMG.cow2} alt="Bulls protected in the sanctuary"/></div>
+            <div className="tl-img"><img src={img("three-lives-bulls", IMG.cow2)} alt="Bulls protected in the sanctuary"/></div>
             <div className="tl-body">
               <h3>The Bulls</h3>
               <p>Perhaps the most counter-cultural commitment of the Goshala. Bulls produce no milk and, in the prevailing economy, are typically sold to slaughter. Not here. Every bull lives out his full natural life within the Ashram's care — as Nandi, as a symbol of strength and faithfulness, as a beloved being.</p>
             </div>
           </article>
           <article>
-            <div className="tl-img"><img src={IMG.cow6} alt="A young calf at the sanctuary"/></div>
+            <div className="tl-img"><img src={img("three-lives-calves", IMG.cow6)} alt="A young calf at the sanctuary"/></div>
             <div className="tl-body">
               <h3>The Calves</h3>
               <p>About 80 calves — the next generation. Never separated from their mothers prematurely. Given their mother's milk, monitored closely, vaccinated, dewormed, and allowed to play on organic grass fields grown just for them. The joy of the Goshala's mornings.</p>

@@ -1,16 +1,19 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { SlimHead, Split } from "@/components/shared/PageSections";
+import { usePageImages } from "@/context/CmsContext";
 import { IMG } from "@/constants/images";
 
 export default function MotherAvataarhoodPage() {
+  const img = usePageImages("/mother/avataarhood");
+
   return (
     <>
       <SlimHead
         eyebrow="Amma"
         title="The Avataarhood."
       />
-      <Split title="What devotees describe." image={IMG.manidweepa} tint>
+      <Split title="What devotees describe." image={img("split", IMG.manidweepa)} tint>
         <p>Amma's family had prayed for the Divine Mother to be born among them. In daily life she was a bank officer and householder; in spiritual life devotees describe her assuming many forms — comforter, warrior, mother — to awaken those who come to her sincerely.</p>
       </Split>
       <section className="child-nav tint">

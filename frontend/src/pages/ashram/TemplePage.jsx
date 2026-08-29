@@ -1,21 +1,30 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowUpRight, ChevronLeft } from "lucide-react";
 import { Eyebrow } from "@/components/shared/PageSections";
+import { usePageImages } from "@/context/CmsContext";
 import { templeCards } from "@/constants/templeData";
 import { IMG } from "@/constants/images";
+import { cssBackgroundImage } from "@/lib/utils";
 import NotFoundPage from "@/pages/NotFoundPage";
 
 export default function TemplePage() {
   const { templeId } = useParams();
   const index = templeCards.findIndex((t) => t.id === templeId);
   const temple = templeCards[index];
+  const img = usePageImages(temple?.path || `/ashram/${templeId}`);
+  const ashramImg = usePageImages("/ashram");
 
   if (!temple) return <NotFoundPage />;
+
+  const heroBg = cssBackgroundImage(img("hero-bg", IMG.manidweepa));
+  const heroFigure = img("hero-figure", temple.img);
+  const sevaFigure = img("seva-figure", temple.gallery[1] || temple.img);
+  const beginningsFigure = img("beginnings-figure", temple.gallery[2] || IMG.child);
 
   return (
     <div className="temple-page">
       <section className="temple-hero">
-        <div className="temple-hero-bg" style={{ backgroundImage: `url(${IMG.manidweepa})` }} aria-hidden="true" />
+        <div className="temple-hero-bg" style={heroBg ? { backgroundImage: heroBg } : undefined} aria-hidden="true" />
         <div className="wrap temple-hero-inner">
           <div className="temple-hero-grid">
             <div className="temple-hero-copy">
@@ -40,7 +49,7 @@ export default function TemplePage() {
               </div>
             </div>
             <figure className="temple-hero-figure">
-              <img src={temple.img} alt={temple.name} />
+              <img src={heroFigure} alt={temple.name} />
             </figure>
           </div>
         </div>
@@ -49,7 +58,7 @@ export default function TemplePage() {
       <section className="temple-seva">
         <div className="wrap temple-seva-grid">
           <figure>
-            <img src={temple.gallery[1] || temple.img} alt={`${temple.name} at the Ashram`} loading="lazy" />
+            <img src={sevaFigure} alt={`${temple.name} at the Ashram`} loading="lazy" />
           </figure>
           <div>
             <div className="temple-divider" aria-hidden="true" />
@@ -95,7 +104,7 @@ export default function TemplePage() {
       <section className="temple-beginnings">
         <div className="wrap temple-beginnings-grid">
           <figure>
-            <img src={temple.gallery[2] || IMG.child} alt={`Devotees at ${temple.name}`} loading="lazy" />
+            <img src={beginningsFigure} alt={`Devotees at ${temple.name}`} loading="lazy" />
           </figure>
           <div>
             <Eyebrow gold>Visit &amp; pray</Eyebrow>
@@ -148,7 +157,7 @@ export default function TemplePage() {
                 aria-current={t.id === temple.id ? "page" : undefined}
               >
                 <figure className="temple-explore-thumb">
-                  <img src={t.img} alt={t.name} loading="lazy" />
+                  <img src={ashramImg(`temple-card-${t.id}`, t.img)} alt={t.name} loading="lazy" />
                 </figure>
                 <span className="temple-explore-name">{t.name}</span>
               </Link>

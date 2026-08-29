@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, MapPin, Sparkles } from "lucide-react";
 import { Eyebrow, Quote, SlimHead, Split } from "@/components/shared/PageSections";
 import HashRedirect from "@/components/shared/HashRedirect";
+import { usePageImages } from "@/context/CmsContext";
 import { IMG } from "@/constants/images";
 import { ashramRituals } from "@/constants/sevasRituals";
 import { templeCards } from "@/constants/templeData";
@@ -28,6 +29,16 @@ const sacredSpaces = [
 ];
 
 export default function AshramPage() {
+  const img = usePageImages("/ashram");
+  const temples = templeCards.map((t) => ({
+    ...t,
+    img: img(`temple-card-${t.id}`, t.img),
+  }));
+  const sacred = sacredSpaces.map((space) => ({
+    ...space,
+    img: img(`sacred-${space.id}`, space.img),
+  }));
+
   return (
     <>
       <HashRedirect basePath="/ashram" ids={templeIds} />
@@ -38,7 +49,7 @@ export default function AshramPage() {
         intro="Eight temple sannidhis, Mani Dweepa, and sacred spaces — consecrated through decades of Amma's daily worship."
       />
 
-      <Split eyebrow="The campus" title="Consecrated by Amma's footsteps." image={IMG.manidweepa} imgAlt="Mani Dweepa at the Ashram">
+      <Split eyebrow="The campus" title="Consecrated by Amma's footsteps." image={img("split-campus", IMG.manidweepa)} imgAlt="Mani Dweepa at the Ashram">
         <p>
           Each temple on this campus was built and worshipped in by Amma over many years. The Cauvery runs
           along the boundary — a natural synergy of river, prayer, and the Goshala's living Gau seva nearby.
@@ -57,7 +68,7 @@ export default function AshramPage() {
             Each sannidhi carries its own deity, tradition, and grace. Select one to read more and plan your visit.
           </p>
           <div className="temple-grid-v2">
-            {templeCards.map((t) => (
+            {temples.map((t) => (
               <Link
                 key={t.id}
                 to={t.path}
@@ -88,7 +99,7 @@ export default function AshramPage() {
           <Eyebrow>Other sacred spaces</Eyebrow>
           <h2 className="section-h">Beyond the main sannidhis.</h2>
           <div className="ashram-sacred-grid">
-            {sacredSpaces.map((space) => (
+            {sacred.map((space) => (
               <Link
                 key={space.id}
                 to={space.path}

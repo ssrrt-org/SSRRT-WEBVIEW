@@ -2,7 +2,8 @@ import { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight, ChevronRight, Quote as QuoteIcon } from "lucide-react";
 import ScrollHint from "@/components/shared/ScrollHint";
-import { heroImageForPath } from "@/constants/heroImages";
+import { useHeroForPath } from "@/context/CmsContext";
+import { cssBackgroundImage } from "@/lib/utils";
 
 export const Eyebrow = ({ children, gold, dark }) => (
   <div className={`eyebrow${gold ? " gold" : ""}${dark ? " dark" : ""}`}>{children}</div>
@@ -24,14 +25,16 @@ export const PageHead = ({ eyebrow, title, intro, image, imgAlt }) => (
 export const SlimHead = ({ eyebrow, title, intro, image, noPhoto, wide = false, showScrollHint = true }) => {
   const sectionRef = useRef(null);
   const { pathname } = useLocation();
-  const bg = !noPhoto ? (image || heroImageForPath(pathname)) : null;
+  const cmsHero = useHeroForPath(pathname);
+  const bg = !noPhoto ? (image || cmsHero) : null;
   const photo = Boolean(bg);
+  const backgroundImage = cssBackgroundImage(bg);
 
   return (
     <section
       ref={sectionRef}
       className={`ph-slim${photo ? " ph-slim-photo" : ""}${wide ? " ph-slim-wide" : ""}`}
-      style={photo ? { backgroundImage: `url(${bg})` } : undefined}
+      style={backgroundImage ? { backgroundImage } : undefined}
     >
       <div className="wrap">
         <div className="ph-slim-inner">

@@ -7,6 +7,7 @@ import {
 import HeroCarousel from "@/components/home/HeroCarousel";
 import ExploreGrid from "@/components/shared/ExploreGrid";
 import { Eyebrow, Quote, SectionHeading, Split, Stats } from "@/components/shared/PageSections";
+import { usePageImages } from "@/context/CmsContext";
 import { IMG } from "@/constants/images";
 
 const discoverCards = [
@@ -41,6 +42,8 @@ const discoverCards = [
 ];
 
 export default function HomePage() {
+  const img = usePageImages("/");
+
   return (
     <>
       <section className="hero-v2" id="home">
@@ -77,7 +80,7 @@ export default function HomePage() {
         ]}
       />
 
-      <Split eager eyebrow="SSRRT · Karekura" title="A rural trust devoted to seva." image={IMG.manidweepa} imgAlt="Mani Dweepa at the Ashram">
+      <Split eager eyebrow="SSRRT · Karekura" title="A rural trust devoted to seva." image={img("split-trust", IMG.manidweepa)} imgAlt="Mani Dweepa at the Ashram">
         <p>
           Srimad Sai Rajarajeshwari Trust sits on the tranquil banks of the River Cauvery — a living campus where
           Gau seva, medical camps, rural upliftment, and consecrated worship unfold side by side, every day.
@@ -95,7 +98,7 @@ export default function HomePage() {
       <Split
         eyebrow="Glimpses of Amma"
         title="A human life, lived with divine purpose."
-        image={IMG.amma}
+        image={img("split-amma", IMG.amma)}
         imgAlt="Amma at the Ashram"
         reverse
         tint

@@ -3,9 +3,11 @@ import { useSearchParams } from "react-router-dom";
 import { ArrowUpRight, Check, Heart } from "lucide-react";
 import { Eyebrow, SlimHead } from "@/components/shared/PageSections";
 import { donationPurposes, donatePurposeFromQuery } from "@/constants/nav";
-import { recordDonationLocal } from "@/lib/donations";
+import { useDonateConfig } from "@/context/CmsContext";
 import {
   createOrder,
+  isRazorpayConfigured,
+  isTestMode,
   loadRazorpayScript,
   openRazorpayCheckout,
   rupeesToPaise,
@@ -13,11 +15,14 @@ import {
 } from "@/utils/razorpay";
 
 export default function DonatePage() {
+  const donateConfig = useDonateConfig();
+  const purposeOptions = donateConfig.purposes?.map((item) => item.label) || donationPurposes;
+  const amountPresets = donateConfig.suggestedAmounts?.length ? donateConfig.suggestedAmounts : [501, 1101, 2100, 5000];
   const [searchParams] = useSearchParams();
   const purposeKey = searchParams.get("purpose");
   const [form, setForm] = useState({ donor_name: "", email: "", phone: "", pan: "", address: "", dedication: "" });
-  const [purpose, setPurpose] = useState(donationPurposes[0]);
-  const [amount, setAmount] = useState("1101");
+  const [purpose, setPurpose] = useState(purposeOptions[0]);
+  const [amount, setAmount] = useState(String(amountPresets[1] || amountPresets[0] || "1101"));
   const [recurring, setRecurring] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -50,6 +55,12 @@ export default function DonatePage() {
 
     setLoading(true);
 
+    if (!isRazorpayConfigured()) {
+      setError("Payment gateway is not configured. Add REACT_APP_RAZORPAY_KEY_ID to frontend/.env and restart the dev server.");
+      setLoading(false);
+      return;
+    }
+
     try {
       await loadRazorpayScript();
       const order = await createOrder(amountInPaise, `donation_${Date.now()}`);
@@ -70,22 +81,6 @@ export default function DonatePage() {
               amount: amountInRupees,
               recurring,
             });
-            recordDonationLocal({
-              id: response.razorpay_payment_id,
-              name: form.donor_name,
-              email: form.email,
-              phone: form.phone,
-              pan: form.pan,
-              address: form.address,
-              dedication: form.dedication,
-              purpose,
-              amount: amountInRupees,
-              recurring,
-              orderId: response.razorpay_order_id,
-              paymentId: response.razorpay_payment_id,
-              date: new Date().toISOString(),
-              status: "Received",
-            });
             setSubmitted(true);
           } catch (verifyError) {
             setError(verifyError.message || "Payment verification failed. Please contact the Trust office.");
@@ -103,7 +98,7 @@ export default function DonatePage() {
         },
       });
     } catch (checkoutError) {
-      setError(checkoutError.message || "Unable to start payment. Please try again.");
+      setError(checkoutError.message || "Unable to start payment. Deploy Firebase Functions first.");
       setLoading(false);
     }
   };
@@ -138,13 +133,13 @@ export default function DonatePage() {
               <form data-testid="donation-form" onSubmit={submit}>
                 <div className="form-label">Choose a purpose</div>
                 <div className="purpose-grid">
-                  {donationPurposes.map((item) => (
+                  {purposeOptions.map((item) => (
                     <button type="button" key={item} data-testid={`purpose-${item.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}-button`} className={purpose === item ? "purpose active" : "purpose"} onClick={() => setPurpose(item)}>{item}</button>
                   ))}
                 </div>
                 <div className="form-label">Offering amount</div>
                 <div className="amount-row">
-                  {[501, 1101, 2100, 5000].map((value) => (
+                  {amountPresets.map((value) => (
                     <button type="button" key={value} data-testid={`amount-${value}-button`} className={String(value) === amount ? "amount-chip active" : "amount-chip"} onClick={() => setAmount(String(value))}>₹{value.toLocaleString("en-IN")}</button>
                   ))}
                   <label className="custom-amount">
@@ -181,7 +176,15 @@ export default function DonatePage() {
                 <button className="btn btn-primary form-submit" data-testid="donation-submit-button" disabled={loading}>
                   {loading ? "Opening payment..." : <>Continue with ₹{Number(amount || 0).toLocaleString("en-IN")} <ArrowUpRight size={16}/></>}
                 </button>
-                <p className="demo-disclaimer" data-testid="donation-payment-disclaimer">Secure payment via Razorpay</p>
+                <p className="demo-disclaimer" data-testid="donation-payment-disclaimer">
+                  Secure payment via Razorpay
+                  {isTestMode() ? (
+                    <>
+                      {" "}· Test mode: use card <strong>4111 1111 1111 1111</strong>, any future expiry, any CVV.
+                      {" "}If payment fails immediately, regenerate your test Key ID in the Razorpay Dashboard.
+                    </>
+                  ) : null}
+                </p>
               </form>
             )}
           </div>

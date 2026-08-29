@@ -1,4 +1,5 @@
 import { shopProducts as catalogSeed } from "@/constants/shopProducts";
+import { buildPageImageDefaults } from "@/constants/pageImageCatalog";
 
 export const CMS_STORAGE_KEY = "ssrrt-admin-cms";
 
@@ -48,6 +49,7 @@ export const adminSeed = {
     { id: "slide-3", img: "/ssrrt/ManiDweepa.jpg", label: "Mani Dweepa", caption: "The Sacred Ashram" },
   ],
   heroes: defaultHeroes,
+  pageImages: buildPageImageDefaults(),
   products: catalogSeed.map((p, i) => ({
     ...p,
     sku: `SSRRT-${String(i + 1).padStart(3, "0")}`,
@@ -86,22 +88,6 @@ export const adminSeed = {
       { id: "events", label: "Events", note: "Festivals and gatherings." },
     ],
   },
-  orders: [
-    { id: "ORD-2401", customer: "Lakshmi R.", email: "lakshmi@example.com", items: 2, total: 630, status: "Paid", date: "2026-08-12" },
-    { id: "ORD-2402", customer: "Arun K.", email: "arun@example.com", items: 1, total: 1101, status: "Packed", date: "2026-08-14" },
-    { id: "ORD-2403", customer: "Meera S.", email: "meera@example.com", items: 3, total: 850, status: "Shipped", date: "2026-08-18" },
-    { id: "ORD-2404", customer: "Guest checkout", email: "guest@example.com", items: 1, total: 150, status: "Pending", date: "2026-08-21" },
-  ],
-  inbox: [
-    { id: "in-1", type: "Contact", name: "Priya N.", email: "priya@example.com", message: "Please share darshan timings for next Saturday.", date: "2026-08-19" },
-    { id: "in-2", type: "Volunteer", name: "Rahul M.", email: "rahul@example.com", message: "I can help with fodder prep on weekends.", date: "2026-08-20" },
-  ],
-  firebase: {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: "",
-  },
+  orders: [],
+  inbox: [],
 };

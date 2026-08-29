@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { confirmAdminAction } from "@/admin/adminUtils";
+import AdminDrawer from "@/admin/components/AdminDrawer";
+import AdminEmptyState from "@/admin/components/AdminEmptyState";
 import { AdminField, AdminImageField } from "@/admin/components/AdminFields";
 import { useAdminCms } from "@/admin/AdminCmsContext";
 
@@ -18,12 +21,17 @@ export default function AdminEventsPage() {
     setEditing(null);
   };
 
+  const removeEvent = (id) => {
+    if (!confirmAdminAction("Remove this event?")) return;
+    patch({ events: data.events.filter((e) => e.id !== id) });
+  };
+
   return (
     <div>
       <header className="admin-page-head">
         <div>
           <h1>Events</h1>
-          <p>Festival dates, recurring sevas, and gatherings shown on the Events page.</p>
+          <p>Festival dates, recurring sevas, and gatherings shown on the public Events page.</p>
         </div>
         <button
           type="button"
@@ -34,45 +42,63 @@ export default function AdminEventsPage() {
         </button>
       </header>
 
-      <div className="admin-card-grid">
-        {data.events.map((event) => (
-          <article key={event.id} className="admin-mini-card">
-            {event.image ? <img className="admin-cover" src={event.image} alt="" /> : null}
-            <strong>{event.title}</strong>
-            <span className="admin-muted">{event.when}</span>
-            <p>{event.note}</p>
-            <span className={`admin-pill${event.published ? "" : " off"}`}>
-              {event.published ? "Published" : "Draft"}
-            </span>
-            <div className="admin-row-actions">
-              <button type="button" className="admin-ghost" onClick={() => setEditing(event)}>Edit</button>
-              <button
-                type="button"
-                className="admin-ghost danger"
-                onClick={() => patch({ events: data.events.filter((e) => e.id !== event.id) })}
-              >
-                Remove
-              </button>
-            </div>
-          </article>
-        ))}
-      </div>
+      {data.events.length === 0 ? (
+        <AdminEmptyState
+          title="No events yet"
+          description="Add the first festival, seva, or gathering for visitors to see."
+          action={(
+            <button
+              type="button"
+              className="admin-btn sm"
+              onClick={() => setEditing({ ...blank, id: `ev-${Date.now()}` })}
+            >
+              Add event
+            </button>
+          )}
+        />
+      ) : (
+        <div className="admin-card-grid">
+          {data.events.map((event) => (
+            <article key={event.id} className="admin-mini-card">
+              {event.image ? <img className="admin-cover" src={event.image} alt="" /> : <div className="admin-cover admin-cover-empty">No image</div>}
+              <strong>{event.title || "Untitled event"}</strong>
+              <span className="admin-muted">{event.when || "Date not set"}</span>
+              <p>{event.note || "No description yet."}</p>
+              <span className={`admin-pill${event.published ? "" : " off"}`}>
+                {event.published ? "Published" : "Draft"}
+              </span>
+              <div className="admin-row-actions">
+                <button type="button" className="admin-ghost sm" onClick={() => setEditing(event)}>Edit</button>
+                <button type="button" className="admin-ghost sm danger" onClick={() => removeEvent(event.id)}>Remove</button>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
 
-      {editing && (
-        <div className="admin-drawer-backdrop" onClick={() => setEditing(null)}>
+      {editing ? (
+        <AdminDrawer
+          title="Event"
+          onClose={() => setEditing(null)}
+          footer={(
+            <>
+              <button type="button" className="admin-ghost" onClick={() => setEditing(null)}>Cancel</button>
+              <button type="submit" form="admin-event-form" className="admin-btn">Save event</button>
+            </>
+          )}
+        >
           <form
-            className="admin-drawer"
-            onClick={(e) => e.stopPropagation()}
+            id="admin-event-form"
+            className="admin-stack"
             onSubmit={(e) => {
               e.preventDefault();
               save(editing);
             }}
           >
-            <h2>Event</h2>
             <AdminField label="Title">
               <input className="admin-input" required value={editing.title} onChange={(e) => setEditing({ ...editing, title: e.target.value })} />
             </AdminField>
-            <AdminField label="When">
+            <AdminField label="When" hint="Example: Sunday, 12 October · 6:00 AM">
               <input className="admin-input" value={editing.when} onChange={(e) => setEditing({ ...editing, when: e.target.value })} />
             </AdminField>
             <AdminField label="Note">
@@ -83,13 +109,9 @@ export default function AdminEventsPage() {
               Published on the public Events page
             </label>
             <AdminImageField label="Image" value={editing.image} onChange={(v) => setEditing({ ...editing, image: v })} />
-            <div className="admin-drawer-actions">
-              <button type="button" className="admin-ghost" onClick={() => setEditing(null)}>Cancel</button>
-              <button type="submit" className="admin-btn">Save event</button>
-            </div>
           </form>
-        </div>
-      )}
+        </AdminDrawer>
+      ) : null}
     </div>
   );
 }

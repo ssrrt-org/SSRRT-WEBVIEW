@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { Eyebrow, Quote, SlimHead, Split } from "@/components/shared/PageSections";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
+import { useFormation, usePageImages } from "@/context/CmsContext";
 import { IMG } from "@/constants/images";
 
 const pillars = [
@@ -56,30 +57,30 @@ const pillars = [
 ];
 
 export default function AboutPage() {
+  const formation = useFormation();
+  const img = usePageImages("/about");
+  const pillarCards = pillars.map((pillar) => ({
+    ...pillar,
+    image: img(`pillar-${pillar.id}`, pillar.image),
+  }));
+
   return (
     <>
       <SlimHead
-        eyebrow="SSRRT"
-        title="Srimad Sai Rajarajeshwari Trust."
-        intro="A living Ashram on the banks of the Cauvery — gau seva, free medical care, rural upliftment, and worship guided by Amma's conviction that service to humanity is service to God."
+        eyebrow={formation.eyebrow || "SSRRT"}
+        title={formation.title || "Srimad Sai Rajarajeshwari Trust."}
+        intro={formation.intro}
       />
 
-      <Split eyebrow="What we do" title="Day-to-day work." image={IMG.event1}>
-        <p>
-          Project Kaamadhenau feeds and shelters more than 300 cows. A free clinic serves four or five villages.
-          Students get help with school fees. Tankers run when wells dry up. Once a year, Narayana Seva cooks for
-          10,000–15,000 people.
-        </p>
-        <p>
-          The Ashram has eight temple sannidhis that Amma has worshipped in for decades. Volunteers help in the
-          Goshala, kitchens, and during festivals.
-        </p>
+      <Split eyebrow="What we do" title="Day-to-day work." image={formation.image || IMG.event1}>
+        <p>{formation.body1}</p>
+        <p>{formation.body2}</p>
       </Split>
 
       <Split
         eyebrow="Our foundation"
         title="Service rooted in Karekura."
-        image={IMG.amma}
+        image={img("split-foundation", IMG.amma)}
         imgAlt="Amma at SSRRT"
         reverse
         tint
@@ -99,7 +100,7 @@ export default function AboutPage() {
         eyebrow="Main areas"
         title="Where the Trust's work lives."
         lede="From the Goshala to rural villages — explore each area of seva at SSRRT."
-        programmes={pillars}
+        programmes={pillarCards}
         testIdPrefix="about"
       />
 
@@ -131,7 +132,7 @@ export default function AboutPage() {
         <div className="wrap about-location-grid">
           <div>
             <Eyebrow gold>Location</Eyebrow>
-            <h2>Karekura, on the Cauvery.</h2>
+            <h2>{formation.locationTitle || "Karekura, on the Cauvery."}</h2>
             <p>
               The Ashram is open to visitors for darshan and seva. Call the office before you travel — especially
               during festivals and Narayana Seva week.
@@ -144,7 +145,7 @@ export default function AboutPage() {
             <MapPin size={20} aria-hidden="true" />
             <div>
               <strong>Address</strong>
-              <span>Karekura, Mysore, Karnataka, India</span>
+              <span>{formation.address || "Karekura, Mysore, Karnataka, India"}</span>
             </div>
           </div>
         </div>

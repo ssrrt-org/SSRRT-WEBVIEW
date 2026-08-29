@@ -1,5 +1,8 @@
 import { useMemo, useState } from "react";
 import { shopCategories } from "@/constants/shopProducts";
+import { confirmAdminAction } from "@/admin/adminUtils";
+import AdminDrawer from "@/admin/components/AdminDrawer";
+import AdminEmptyState from "@/admin/components/AdminEmptyState";
 import { AdminField, AdminImageField } from "@/admin/components/AdminFields";
 import { useAdminCms } from "@/admin/AdminCmsContext";
 
@@ -49,6 +52,7 @@ export default function AdminShopPage() {
   };
 
   const removeProduct = (id) => {
+    if (!confirmAdminAction("Remove this shop item from the catalogue?")) return;
     patch({ products: products.filter((p) => p.id !== id) });
   };
 
@@ -58,18 +62,33 @@ export default function AdminShopPage() {
     });
   };
 
+  const openNewProduct = () => {
+    setEditing({
+      ...emptyProduct,
+      id: `item-${Date.now()}`,
+      sku: `SSRRT-${String(products.length + 1).padStart(3, "0")}`,
+    });
+  };
+
   return (
     <div>
       <header className="admin-page-head">
-        <h1>Shoppe</h1>
-        <p>Catalogue, prices, offers and orders. Public shop will read this once Firebase is connected.</p>
+        <div>
+          <h1>Shoppe</h1>
+          <p>Manage catalogue items, prices, offers, and stock. The public shop reads this data from Firebase.</p>
+        </div>
+        {tab === "catalog" ? (
+          <button type="button" className="admin-btn" onClick={openNewProduct}>Add item</button>
+        ) : null}
       </header>
 
-      <div className="admin-tabs">
+      <div className="admin-tabs" role="tablist" aria-label="Shop sections">
         {["catalog", "orders"].map((id) => (
           <button
             key={id}
             type="button"
+            role="tab"
+            aria-selected={tab === id}
             className={tab === id ? "on" : ""}
             onClick={() => setTab(id)}
           >
@@ -87,114 +106,119 @@ export default function AdminShopPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
-            <button
-              type="button"
-              className="admin-btn"
-              onClick={() =>
-                setEditing({
-                  ...emptyProduct,
-                  id: `item-${Date.now()}`,
-                  sku: `SSRRT-${String(products.length + 1).padStart(3, "0")}`,
-                })
-              }
-            >
-              Add item
-            </button>
           </div>
+
+          {products.length === 0 ? (
+            <AdminEmptyState
+              title="No shop items yet"
+              description="Add books, prints, or other offerings for the public Shoppe page."
+              action={<button type="button" className="admin-btn sm" onClick={openNewProduct}>Add first item</button>}
+            />
+          ) : filtered.length === 0 ? (
+            <AdminEmptyState title="No items match your search" description="Try a different name, SKU, or category." />
+          ) : (
+            <div className="admin-table-wrap">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">MRP</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Offer</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col"><span className="sr-only">Actions</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filtered.map((p) => (
+                    <tr key={p.id}>
+                      <td>
+                        <div className="admin-prod-cell">
+                          {p.image ? <img src={p.image} alt="" /> : <span className="admin-thumb-empty" />}
+                          <div>
+                            <strong>{p.name}</strong>
+                            <span>{p.sku}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="cap">{p.category}</td>
+                      <td>₹{p.mrp || p.price}</td>
+                      <td>₹{p.price}</td>
+                      <td>
+                        {discountOf(p) > 0 ? `${discountOf(p)}% off` : "—"}
+                        {p.offerLabel ? <div className="admin-offer">{p.offerLabel}</div> : null}
+                      </td>
+                      <td>{p.stockQty} {p.inStock ? "" : "· out"}</td>
+                      <td className="admin-row-actions">
+                        <button type="button" className="admin-ghost sm" onClick={() => setEditing(p)}>Edit</button>
+                        <button type="button" className="admin-ghost sm danger" onClick={() => removeProduct(p.id)}>Remove</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </>
+      )}
+
+      {tab === "orders" && (
+        data.orders.length === 0 ? (
+          <AdminEmptyState
+            title="No orders yet"
+            description="When online checkout is connected, customer orders will appear here for packing and shipping."
+          />
+        ) : (
           <div className="admin-table-wrap">
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th>Item</th>
-                  <th>Category</th>
-                  <th>MRP</th>
-                  <th>Price</th>
-                  <th>Offer</th>
-                  <th>Stock</th>
-                  <th />
+                  <th scope="col">Order</th>
+                  <th scope="col">Customer</th>
+                  <th scope="col">Items</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Date</th>
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((p) => (
-                  <tr key={p.id}>
+                {data.orders.map((order) => (
+                  <tr key={order.id}>
+                    <td><strong>{order.id}</strong></td>
                     <td>
-                      <div className="admin-prod-cell">
-                        {p.image ? <img src={p.image} alt="" /> : <span className="admin-thumb-empty" />}
-                        <div>
-                          <strong>{p.name}</strong>
-                          <span>{p.sku}</span>
-                        </div>
-                      </div>
+                      {order.customer}
+                      <div className="admin-muted">{order.email}</div>
                     </td>
-                    <td className="cap">{p.category}</td>
-                    <td>₹{p.mrp || p.price}</td>
-                    <td>₹{p.price}</td>
+                    <td>{order.items}</td>
+                    <td>₹{order.total}</td>
                     <td>
-                      {discountOf(p) > 0 ? `${discountOf(p)}% off` : "—"}
-                      {p.offerLabel ? <div className="admin-offer">{p.offerLabel}</div> : null}
+                      <select
+                        className="admin-input compact"
+                        value={order.status}
+                        onChange={(e) => updateOrderStatus(order.id, e.target.value)}
+                      >
+                        {["Pending", "Paid", "Packed", "Shipped", "Delivered", "Cancelled"].map((s) => (
+                          <option key={s}>{s}</option>
+                        ))}
+                      </select>
                     </td>
-                    <td>{p.stockQty} {p.inStock ? "" : "· out"}</td>
-                    <td className="admin-row-actions">
-                      <button type="button" className="admin-ghost" onClick={() => setEditing(p)}>Edit</button>
-                      <button type="button" className="admin-ghost danger" onClick={() => removeProduct(p.id)}>Remove</button>
-                    </td>
+                    <td>{order.date}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-        </>
+        )
       )}
 
-      {tab === "orders" && (
-        <div className="admin-table-wrap">
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th>Order</th>
-                <th>Customer</th>
-                <th>Items</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.orders.map((order) => (
-                <tr key={order.id}>
-                  <td><strong>{order.id}</strong></td>
-                  <td>
-                    {order.customer}
-                    <div className="admin-muted">{order.email}</div>
-                  </td>
-                  <td>{order.items}</td>
-                  <td>₹{order.total}</td>
-                  <td>
-                    <select
-                      className="admin-input compact"
-                      value={order.status}
-                      onChange={(e) => updateOrderStatus(order.id, e.target.value)}
-                    >
-                      {["Pending", "Paid", "Packed", "Shipped", "Delivered", "Cancelled"].map((s) => (
-                        <option key={s}>{s}</option>
-                      ))}
-                    </select>
-                  </td>
-                  <td>{order.date}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      {editing && (
+      {editing ? (
         <ProductEditor
           product={editing}
           onClose={() => setEditing(null)}
           onSave={saveProduct}
         />
-      )}
+      ) : null}
     </div>
   );
 }
@@ -207,10 +231,25 @@ function ProductEditor({ product, onClose, onSave }) {
   };
 
   return (
-    <div className="admin-drawer-backdrop" onClick={onClose}>
+    <AdminDrawer
+      title={product.name ? "Edit item" : "New item"}
+      onClose={onClose}
+      footer={(
+        <>
+          <button type="button" className="admin-ghost" onClick={onClose}>Cancel</button>
+          <button
+            type="submit"
+            form="admin-product-form"
+            className="admin-btn"
+          >
+            Save item
+          </button>
+        </>
+      )}
+    >
       <form
-        className="admin-drawer"
-        onClick={(e) => e.stopPropagation()}
+        id="admin-product-form"
+        className="admin-stack"
         onSubmit={(e) => {
           e.preventDefault();
           onSave({
@@ -221,7 +260,6 @@ function ProductEditor({ product, onClose, onSave }) {
           });
         }}
       >
-        <h2>{product.name ? "Edit item" : "New item"}</h2>
         <AdminField label="Name">
           <input className="admin-input" required value={form.name} onChange={set("name")} />
         </AdminField>
@@ -257,11 +295,7 @@ function ProductEditor({ product, onClose, onSave }) {
           Featured on Shoppe landing
         </label>
         <AdminImageField label="Product image" value={form.image} onChange={(v) => setForm((p) => ({ ...p, image: v }))} />
-        <div className="admin-drawer-actions">
-          <button type="button" className="admin-ghost" onClick={onClose}>Cancel</button>
-          <button type="submit" className="admin-btn">Save item</button>
-        </div>
       </form>
-    </div>
+    </AdminDrawer>
   );
 }

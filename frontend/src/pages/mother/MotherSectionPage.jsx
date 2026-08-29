@@ -1,6 +1,7 @@
 import { Link, useLocation, useParams } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { Eyebrow, SlimHead, Split } from "@/components/shared/PageSections";
+import { usePageImages } from "@/context/CmsContext";
 import { motherSections } from "@/constants/motherContent";
 import NotFoundPage from "@/pages/NotFoundPage";
 
@@ -10,6 +11,7 @@ export default function MotherSectionPage() {
   const sectionId = paramId || pathname.replace(/^\/mother\//, "");
   const index = motherSections.findIndex((s) => s.id === sectionId);
   const section = motherSections[index];
+  const img = usePageImages(section?.path || pathname);
 
   if (!section) return <NotFoundPage />;
 
@@ -43,7 +45,7 @@ export default function MotherSectionPage() {
         <Split
           eyebrow={section.eyebrow}
           title={section.title}
-          image={section.image}
+          image={img("split", section.image)}
           reverse={section.reverse}
           tint={section.tint}
         >

@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Eyebrow, SlimHead, Quote, Split } from "@/components/shared/PageSections";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
 import HashRedirect from "@/components/shared/HashRedirect";
+import { usePageImages } from "@/context/CmsContext";
 import { motherSections } from "@/constants/motherContent";
 import { IMG } from "@/constants/images";
 
@@ -59,6 +60,12 @@ const programmes = [
 ];
 
 export default function MotherPage() {
+  const img = usePageImages("/mother");
+  const programmeCards = programmes.map((program) => ({
+    ...program,
+    image: img(`hub-${program.id}`, program.image),
+  }));
+
   return (
     <>
       <HashRedirect basePath="/mother" ids={motherIds} />
@@ -73,7 +80,7 @@ export default function MotherPage() {
       <Split
         eyebrow="The human aspect"
         title="A householder first — dignified, disciplined, devoted."
-        image={IMG.ammaGanesha}
+        image={img("split-human", IMG.ammaGanesha)}
         imgAlt="Amma at SSRRT"
       >
         <p>
@@ -92,7 +99,7 @@ export default function MotherPage() {
         eyebrow="Read further"
         title="Seven glimpses into Amma's life."
         lede="Her story as a householder, her divine aspect, testimonies of courage, Naadi readings, and her relationship with realized beings."
-        programmes={programmes}
+        programmes={programmeCards}
         testIdPrefix="mother"
         tint
       />

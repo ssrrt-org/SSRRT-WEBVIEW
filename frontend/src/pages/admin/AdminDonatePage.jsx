@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { AdminField } from "@/admin/components/AdminFields";
+import { confirmAdminAction } from "@/admin/adminUtils";
+import { AdminAutoSaveHint, AdminField } from "@/admin/components/AdminFields";
 import { useAdminCms } from "@/admin/AdminCmsContext";
 import { fetchDonationSummary, formatRupees } from "@/lib/donations";
 
@@ -16,7 +17,7 @@ function summarize(list) {
 }
 
 export default function AdminDonatePage() {
-  const { data, patch } = useAdminCms();
+  const { data, patch, patchDebounced } = useAdminCms();
   const donate = data.donate;
   const [tab, setTab] = useState("received");
   const [remote, setRemote] = useState(null);
@@ -28,7 +29,7 @@ export default function AdminDonatePage() {
       .then((summary) => {
         if (!alive) return;
         setRemote(summary);
-        setSource("server");
+        setSource("firebase");
       })
       .catch(() => {
         if (!alive) return;
@@ -47,7 +48,7 @@ export default function AdminDonatePage() {
   );
 
   const updatePurpose = (id, key, value) => {
-    patch({
+    patchDebounced({
       donate: {
         ...donate,
         purposes: donate.purposes.map((p) => (p.id === id ? { ...p, [key]: value } : p)),
@@ -64,6 +65,16 @@ export default function AdminDonatePage() {
     });
   };
 
+  const removePurpose = (id) => {
+    if (!confirmAdminAction("Remove this donation purpose?")) return;
+    patch({
+      donate: {
+        ...donate,
+        purposes: donate.purposes.filter((p) => p.id !== id),
+      },
+    });
+  };
+
   return (
     <div>
       <header className="admin-page-head">
@@ -71,16 +82,16 @@ export default function AdminDonatePage() {
           <h1>Donations</h1>
           <p>
             Verified Razorpay offerings appear here with the donor&apos;s name and amount.
-            {source === "server" ? " Loaded from the API." : " Showing local records until the API is running."}
+            {source === "firebase" ? " Synced from Firebase." : " Showing cached records."}
           </p>
         </div>
       </header>
 
-      <div className="admin-tabs">
-        <button type="button" className={tab === "received" ? "on" : ""} onClick={() => setTab("received")}>
+      <div className="admin-tabs" role="tablist" aria-label="Donation sections">
+        <button type="button" role="tab" aria-selected={tab === "received"} className={tab === "received" ? "on" : ""} onClick={() => setTab("received")}>
           Received
         </button>
-        <button type="button" className={tab === "purposes" ? "on" : ""} onClick={() => setTab("purposes")}>
+        <button type="button" role="tab" aria-selected={tab === "purposes"} className={tab === "purposes" ? "on" : ""} onClick={() => setTab("purposes")}>
           Purposes
         </button>
       </div>
@@ -88,11 +99,11 @@ export default function AdminDonatePage() {
       {tab === "received" && (
         <>
           <div className="admin-stat-grid">
-            <div className="admin-stat">
+            <div className="admin-stat is-static">
               <strong>{formatRupees(summary.total)}</strong>
               <span>Total received</span>
             </div>
-            <div className="admin-stat">
+            <div className="admin-stat is-static">
               <strong>{summary.count}</strong>
               <span>Offerings</span>
             </div>
@@ -115,17 +126,17 @@ export default function AdminDonatePage() {
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th>Donor</th>
-                  <th>Purpose</th>
-                  <th>Amount</th>
-                  <th>When</th>
-                  <th>Payment</th>
+                  <th scope="col">Donor</th>
+                  <th scope="col">Purpose</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">When</th>
+                  <th scope="col">Payment</th>
                 </tr>
               </thead>
               <tbody>
                 {(summary.donations || []).length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="admin-muted">
+                    <td colSpan={5} className="admin-empty-cell">
                       No offerings yet. Completed Donate-page payments will list here.
                     </td>
                   </tr>
@@ -159,13 +170,14 @@ export default function AdminDonatePage() {
 
       {tab === "purposes" && (
         <>
+          <AdminAutoSaveHint />
           <div className="admin-panel admin-stack">
             <AdminField label="Suggested amounts (comma separated, rupees)">
               <input
                 className="admin-input"
                 value={donate.suggestedAmounts.join(", ")}
                 onChange={(e) =>
-                  patch({
+                  patchDebounced({
                     donate: {
                       ...donate,
                       suggestedAmounts: e.target.value
@@ -185,13 +197,18 @@ export default function AdminDonatePage() {
             </div>
             <div className="admin-stack">
               {donate.purposes.map((purpose) => (
-                <div className="admin-two" key={purpose.id}>
-                  <AdminField label="Label">
-                    <input className="admin-input" value={purpose.label} onChange={(e) => updatePurpose(purpose.id, "label", e.target.value)} />
-                  </AdminField>
-                  <AdminField label="Note">
-                    <input className="admin-input" value={purpose.note} onChange={(e) => updatePurpose(purpose.id, "note", e.target.value)} />
-                  </AdminField>
+                <div className="admin-purpose-row" key={purpose.id}>
+                  <div className="admin-two">
+                    <AdminField label="Label">
+                      <input className="admin-input" value={purpose.label} onChange={(e) => updatePurpose(purpose.id, "label", e.target.value)} />
+                    </AdminField>
+                    <AdminField label="Note">
+                      <input className="admin-input" value={purpose.note} onChange={(e) => updatePurpose(purpose.id, "note", e.target.value)} />
+                    </AdminField>
+                  </div>
+                  <button type="button" className="admin-ghost sm danger" onClick={() => removePurpose(purpose.id)}>
+                    Remove purpose
+                  </button>
                 </div>
               ))}
             </div>

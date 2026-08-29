@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { Eyebrow, Quote, SlimHead, Split } from "@/components/shared/PageSections";
+import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
+import { usePageImages } from "@/context/CmsContext";
 import { IMG } from "@/constants/images";
 
 const programmes = [
@@ -39,6 +41,12 @@ const programmes = [
 ];
 
 export default function MotherForNeedyHubPage() {
+  const img = usePageImages("/mother-for-needy");
+  const cards = programmes.map((program) => ({
+    ...program,
+    image: img(`hub-${program.id}`, program.image),
+  }));
+
   return (
     <>
       <SlimHead
@@ -50,7 +58,7 @@ export default function MotherForNeedyHubPage() {
       <Split
         eyebrow="Amma's outreach"
         title="Care that reaches the poorest first."
-        image={IMG.medical}
+        image={img("split-outreach", IMG.medical)}
         imgAlt="Medical seva at SSRRT"
       >
         <p>
@@ -73,7 +81,7 @@ export default function MotherForNeedyHubPage() {
             Choose one to read the full story.
           </p>
           <div className="hub-programme-grid">
-            {programmes.map((program) => (
+            {cards.map((program) => (
               <Link
                 key={program.id}
                 to={program.to}

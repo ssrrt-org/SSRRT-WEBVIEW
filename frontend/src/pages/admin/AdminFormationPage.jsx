@@ -1,16 +1,19 @@
-import { AdminField, AdminImageField } from "@/admin/components/AdminFields";
+import { AdminAutoSaveHint, AdminField, AdminImageField } from "@/admin/components/AdminFields";
 import { useAdminCms } from "@/admin/AdminCmsContext";
 
 export default function AdminFormationPage() {
-  const { data, patch } = useAdminCms();
+  const { data, patchDebounced } = useAdminCms();
   const formation = data.formation;
-  const set = (key) => (e) => patch({ formation: { ...formation, [key]: e.target.value } });
+  const set = (key) => (e) => patchDebounced({ formation: { ...formation, [key]: e.target.value } });
 
   return (
     <div>
       <header className="admin-page-head">
-        <h1>Formation</h1>
-        <p>Copy and imagery for the SSRRT / About page — how the Trust is introduced.</p>
+        <div>
+          <h1>Formation</h1>
+          <p>Copy and imagery for the About page — how the Trust is introduced to visitors.</p>
+          <AdminAutoSaveHint />
+        </div>
       </header>
       <div className="admin-panel admin-stack">
         <AdminField label="Eyebrow">
@@ -31,7 +34,7 @@ export default function AdminFormationPage() {
         <AdminImageField
           label="Formation image"
           value={formation.image}
-          onChange={(v) => patch({ formation: { ...formation, image: v } })}
+          onChange={(v) => patchDebounced({ formation: { ...formation, image: v } })}
         />
         <AdminField label="Location heading">
           <input className="admin-input" value={formation.locationTitle} onChange={set("locationTitle")} />

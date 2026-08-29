@@ -5,7 +5,8 @@ import { SlimHead } from "@/components/shared/PageSections";
 import HashRedirect from "@/components/shared/HashRedirect";
 import ProductCard from "@/components/shop/ProductCard";
 import ShopCartButton from "@/components/shop/ShopCartButton";
-import { shopCategories, shopProducts } from "@/constants/shopProducts";
+import { useShopProducts } from "@/context/CmsContext";
+import { shopCategories } from "@/constants/shopProducts";
 
 const SORT_OPTIONS = [
   { id: "featured", label: "Featured" },
@@ -14,10 +15,14 @@ const SORT_OPTIONS = [
   { id: "name", label: "Name" },
 ];
 
-const MAX_PRICE = Math.max(...shopProducts.map((p) => p.price));
 const CATEGORY_IDS = shopCategories.map((c) => c.id);
 
 export default function ShopPage() {
+  const shopProducts = useShopProducts();
+  const maxPrice = useMemo(
+    () => Math.max(0, ...shopProducts.map((product) => product.price)),
+    [shopProducts],
+  );
   const { category: routeCategory } = useParams();
   const navigate = useNavigate();
   const hashIds = shopCategories.filter((c) => c.id !== "all").map((c) => c.id);
@@ -29,7 +34,11 @@ export default function ShopPage() {
   const [category, setCategory] = useState(routeCat);
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("featured");
-  const [priceMax, setPriceMax] = useState(MAX_PRICE);
+  const [priceMax, setPriceMax] = useState(maxPrice);
+
+  useEffect(() => {
+    setPriceMax(maxPrice);
+  }, [maxPrice]);
 
   useEffect(() => {
     setCategory(routeCat);
@@ -55,7 +64,7 @@ export default function ShopPage() {
     if (sort === "name") list = [...list].sort((a, b) => a.name.localeCompare(b.name));
 
     return list;
-  }, [category, search, sort, priceMax]);
+  }, [category, search, sort, priceMax, shopProducts]);
 
   return (
     <>
@@ -94,7 +103,7 @@ export default function ShopPage() {
                 <input
                   type="range"
                   min={0}
-                  max={MAX_PRICE}
+                  max={maxPrice}
                   step={50}
                   value={priceMax}
                   onChange={(e) => setPriceMax(Number(e.target.value))}

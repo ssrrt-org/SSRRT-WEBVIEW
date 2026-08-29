@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { SlimHead } from "@/components/shared/PageSections";
+import { usePageImages } from "@/context/CmsContext";
 import { IMG } from "@/constants/images";
 
 export default function AshramBhairavaPage() {
+  const img = usePageImages("/ashram/bhairava");
+
   return (
     <>
       <SlimHead
@@ -13,7 +16,7 @@ export default function AshramBhairavaPage() {
       <section className="ritual-body">
         <div className="wrap ritual-body-inner">
           <figure className="pillar-fig" style={{ marginBottom: "24px" }}>
-            <img src={IMG.shiva} alt="Kaala Bhairava Trishula" />
+            <img src={img("inline-figure", IMG.shiva)} alt="Kaala Bhairava Trishula" />
           </figure>
           <p>Kaala Bhairava — fierce aspect of Shiva — is worshipped here for protection and courage. The trishula stands among the Ashram's other sacred spots along the Cauvery.</p>
         </div>

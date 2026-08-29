@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
 import { Eyebrow, SlimHead } from "@/components/shared/PageSections";
+import { usePageImages } from "@/context/CmsContext";
 import { allSevaPrograms, narayanaProgram, sevaPillars } from "@/constants/sevaContent";
 import NotFoundPage from "@/pages/NotFoundPage";
 
@@ -8,9 +9,9 @@ export default function SevaPillarPage() {
   const { pillarId } = useParams();
   const isNarayana = pillarId === "narayana";
   const pillar = allSevaPrograms.find((p) => p.id === pillarId);
+  const img = usePageImages(pillar?.path || `/seva/${pillarId}`);
 
   if (!pillar) return <NotFoundPage />;
-
   const pillarIndex = sevaPillars.findIndex((p) => p.id === pillarId);
   const prev = isNarayana ? sevaPillars[sevaPillars.length - 1] : sevaPillars[pillarIndex - 1];
   const next = isNarayana ? null : pillarIndex < sevaPillars.length - 1 ? sevaPillars[pillarIndex + 1] : narayanaProgram;
@@ -50,7 +51,7 @@ export default function SevaPillarPage() {
       ) : (
         <section className={`pillar-body${pillar.tint ? " tint" : ""}`}>
           <div className={`wrap pillar-body-grid${pillar.reverse ? " rev" : ""}`}>
-            <figure className="pillar-fig"><img src={pillar.image} alt={pillar.imageAlt} /></figure>
+            <figure className="pillar-fig"><img src={img("pillar-figure", pillar.image)} alt={pillar.imageAlt} /></figure>
             <div>
               <Eyebrow gold>{pillar.eyebrow}</Eyebrow>
               <h2>{pillar.title}</h2>

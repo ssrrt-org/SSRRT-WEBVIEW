@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { templeCards } from "@/constants/templeData";
+import { useBranding } from "@/context/CmsContext";
 
 export default function Footer() {
+  const branding = useBranding();
   const goshalaLinks = [
     ["Project Kaamadhenau", "/goshala"],
     ["History of Goshala", "/goshala#history"],
@@ -54,7 +56,7 @@ export default function Footer() {
           <div className="ftr-brand">
             <Link className="ftr-brand-head" to="/" data-testid="footer-home-link">
               <span className="ftr-logo-wrap" aria-hidden="true">
-                <img src="/ssrrt/devi-logo.jpg" alt="" className="ftr-logo" />
+                <img src={branding.footerLogo || "/ssrrt/devi-logo.jpg"} alt="" className="ftr-logo" />
               </span>
               <div>
                 <h3>Srimad Sai Rajarajeshwari Trust</h3>

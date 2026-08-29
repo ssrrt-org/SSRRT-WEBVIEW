@@ -1,4 +1,5 @@
 import { Eyebrow, SlimHead, Split, Quote, CtaBand } from '@/components/shared/PageSections';
+import { usePageImages } from '@/context/CmsContext';
 import { IMG } from '@/constants/images';
 
 const volunteerRoles = [
@@ -20,7 +21,10 @@ const volunteerPeople = [
   { title: "Devotees seeking growth", note: "For many, goshala volunteering is a spiritual practice — a form of seva that purifies the heart, cultivates humility and deepens the connection to the divine." },
 ];
 
-export default function VolunteerPage() { return (
+export default function VolunteerPage() {
+  const img = usePageImages("/volunteering");
+
+  return (
   <>
     <SlimHead
       eyebrow="Volunteering"
@@ -68,7 +72,7 @@ export default function VolunteerPage() { return (
       </div>
     </section>
 
-    <Split eyebrow="Personal transformation" title="What happens to those who serve." image={IMG.meditation}>
+    <Split eyebrow="Personal transformation" title="What happens to those who serve." image={img("split-transformation", IMG.meditation)}>
       <p>There is something profoundly grounding about physical labour performed in service of another being who cannot repay you, thank you in words, or fully comprehend your sacrifice. In a world dominated by transactional relationships and digital distraction, the simple, tactile act of feeding, cleaning and caring for a cow offers a rare form of presence.</p>
       <p>Volunteers frequently describe reduced stress and anxiety, attributing it to the calming presence of the animals and the meditative quality of purposeful, repetitive work. They speak of developing deeper patience and gentleness, and of a renewed gratitude that comes from witnessing the resilience of rescued animals.</p>
     </Split>

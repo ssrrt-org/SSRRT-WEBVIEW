@@ -4,9 +4,11 @@ import SeoHead from "@/components/seo/SeoHead";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ScrollToTop from "@/components/layout/ScrollToTop";
+import AnalyticsTracker from "@/components/layout/AnalyticsTracker";
 import ShopCartPanel from "@/components/shop/ShopCartPanel";
 import ShopToast from "@/components/shop/ShopToast";
 import { ShopCartProvider } from "@/context/ShopCartContext";
+import { CmsProvider } from "@/context/CmsContext";
 import {
   HomePage,
   MotherPage,
@@ -40,7 +42,7 @@ import { AdminRoot, RequireAdmin } from "@/pages/admin/AdminApp";
 import AdminLoginPage from "@/pages/admin/AdminLoginPage";
 import AdminOverviewPage from "@/pages/admin/AdminOverviewPage";
 import AdminBrandingPage from "@/pages/admin/AdminBrandingPage";
-import AdminHeroesPage from "@/pages/admin/AdminHeroesPage";
+import AdminPageImagesPage from "@/pages/admin/AdminPageImagesPage";
 import AdminShopPage from "@/pages/admin/AdminShopPage";
 import AdminEventsPage from "@/pages/admin/AdminEventsPage";
 import AdminFormationPage from "@/pages/admin/AdminFormationPage";
@@ -67,14 +69,17 @@ function PublicLayout() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <CmsProvider>
+      <BrowserRouter>
+        <AnalyticsTracker />
+        <Routes>
         <Route path="/admin" element={<AdminRoot />}>
           <Route path="login" element={<AdminLoginPage />} />
           <Route element={<RequireAdmin />}>
             <Route index element={<AdminOverviewPage />} />
             <Route path="branding" element={<AdminBrandingPage />} />
-            <Route path="heroes" element={<AdminHeroesPage />} />
+            <Route path="images" element={<AdminPageImagesPage />} />
+            <Route path="heroes" element={<AdminPageImagesPage />} />
             <Route path="shop" element={<AdminShopPage />} />
             <Route path="events" element={<AdminEventsPage />} />
             <Route path="formation" element={<AdminFormationPage />} />
@@ -116,5 +121,6 @@ export default function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </CmsProvider>
   );
 }
