@@ -15,6 +15,7 @@ import {
 } from "@/constants/homeContent";
 import { docTitle } from "@/lib/docContent";
 import { docPageImages } from "@/constants/docPageImages";
+import { IMG } from "@/constants/images";
 
 const motherExplore = motherSections.map((s) => {
   const text = s.paragraphs?.[0] || s.stories?.[0]?.text || "";
@@ -51,7 +52,7 @@ export default function HomePage() {
 
       <section className="home-mother">
         <div className="wrap home-mother-grid">
-          <figure className="home-mother-figure">
+          <figure className="home-mother-figure home-mother-figure-portrait">
             <img src="/ssrrt/DivineMotherHome.png" alt="Divine Mother Srimad Sai Rajarajeshwari" loading="eager" />
           </figure>
           <div className="home-mother-copy">
@@ -103,7 +104,7 @@ export default function HomePage() {
             </div>
           </div>
           <figure className="home-mother-figure home-trust-figure">
-            <img src="/ssrrt/DivineMotherHome.png" alt="Srimad Sai Rajarajeshwari Trust, Karekura" loading="lazy" />
+            <img src={IMG.manidweepa} alt="Harake Nandi at Karekura Ashram" loading="lazy" />
           </figure>
         </div>
       </section>

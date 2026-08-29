@@ -4,7 +4,6 @@ export const navItems = [
     label: "Mother",
     path: "/mother",
     sub: [
-      { label: "Glimpses of the Mother", path: "/mother" },
       { label: "The Human Aspect", path: "/mother/story" },
       { label: "Divine Aspects", path: "/mother/avatar" },
       { label: "The Avataarhood", path: "/mother/avataarhood" },
@@ -40,7 +39,6 @@ export const navItems = [
       {
         heading: "ABOUT",
         links: [
-          { label: "Project Kaamadhenau", path: "/goshala" },
           { label: "History of Goshala", path: "/goshala#history" },
         ],
       },
@@ -73,10 +71,6 @@ export const navItems = [
     label: "Consecrated Space",
     path: "/ashram",
     groups: [
-      {
-        heading: "ASHRAM OVERVIEW",
-        links: [{ label: "The Sacred Ashram", path: "/ashram" }],
-      },
       {
         heading: "TEMPLES",
         links: [
@@ -113,24 +107,11 @@ export const navItems = [
     label: "SSRRT",
     path: "/about",
     sub: [
-      { label: "Formation", path: "/about" },
       { label: "Events", path: "/events" },
       { label: "Contact", path: "/contact" },
     ],
   },
-  {
-    label: "Shoppe",
-    path: "/shop",
-    sub: [
-      { label: "All items", path: "/shop" },
-      { label: "Books", path: "/shop/books" },
-      { label: "Audio", path: "/shop/audio" },
-      { label: "Videos", path: "/shop/videos" },
-      { label: "Padukas", path: "/shop/padukas" },
-      { label: "Sacred Stamps", path: "/shop/stamps" },
-      { label: "Sacred images", path: "/shop/sacred" },
-    ],
-  },
+  { label: "Shoppe", path: "/shop" },
   { label: "Donate", path: "/donate", donate: true },
 ];
 
