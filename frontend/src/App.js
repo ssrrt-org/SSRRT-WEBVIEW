@@ -3,8 +3,10 @@ import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom
 import SeoHead from "@/components/seo/SeoHead";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import CookieBanner from "@/components/cookies/CookieBanner";
 import ScrollToTop from "@/components/layout/ScrollToTop";
 import AnalyticsTracker from "@/components/layout/AnalyticsTracker";
+import { CookieConsentProvider } from "@/context/CookieConsentContext";
 import ShopCartPanel from "@/components/shop/ShopCartPanel";
 import ShopToast from "@/components/shop/ShopToast";
 import { ShopCartProvider } from "@/context/ShopCartContext";
@@ -36,6 +38,8 @@ import {
   DonatePage,
   AboutPage,
   ContactPage,
+  CookiePolicyPage,
+  PrivacyPolicyPage,
   NotFoundPage,
 } from "@/pages";
 import { AdminRoot, RequireAdmin } from "@/pages/admin/AdminApp";
@@ -61,6 +65,7 @@ function PublicLayout() {
         <Outlet/>
       </main>
       <Footer/>
+      <CookieBanner/>
       <ShopCartPanel/>
       <ShopToast/>
     </ShopCartProvider>
@@ -71,8 +76,9 @@ export default function App() {
   return (
     <CmsProvider>
       <BrowserRouter>
-        <AnalyticsTracker />
-        <Routes>
+        <CookieConsentProvider>
+          <AnalyticsTracker />
+          <Routes>
         <Route path="/admin" element={<AdminRoot />}>
           <Route path="login" element={<AdminLoginPage />} />
           <Route element={<RequireAdmin />}>
@@ -117,9 +123,12 @@ export default function App() {
           <Route path="/donate" element={<DonatePage/>}/>
           <Route path="/about" element={<AboutPage/>}/>
           <Route path="/contact" element={<ContactPage/>}/>
+          <Route path="/cookie-policy" element={<CookiePolicyPage/>}/>
+          <Route path="/privacy" element={<PrivacyPolicyPage/>}/>
           <Route path="*" element={<NotFoundPage/>}/>
         </Route>
       </Routes>
+        </CookieConsentProvider>
     </BrowserRouter>
     </CmsProvider>
   );
