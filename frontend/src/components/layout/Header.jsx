@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import ShopCartButton from "@/components/shop/ShopCartButton";
@@ -86,20 +86,29 @@ function NavItem({ item, onClick, isMobile, expanded, onExpand, openDrop, onOpen
         className={`nav-drop${isOpen ? " open" : ""}`}
         data-testid={`nav-drop-${item.label.toLowerCase().replaceAll(" ", "-")}`}
       >
-        <button
-          type="button"
-          className="nav-drop-trigger nav-drop-trigger-btn"
-          data-testid={testid}
-          onClick={handleMobileToggle}
-          aria-expanded={isOpen}
-        >
-          {item.label}{" "}
-          <ChevronDown
-            size={13}
-            className={`nav-chevron${isOpen ? " rotated" : ""}`}
-            aria-hidden="true"
-          />
-        </button>
+        <div className="nav-drop-row">
+          <NavLink
+            data-testid={testid}
+            to={item.path}
+            onClick={onClick}
+            className="nav-drop-trigger"
+          >
+            {item.label}
+          </NavLink>
+          <button
+            type="button"
+            className="nav-drop-chevron-btn"
+            aria-label={`${isOpen ? "Collapse" : "Expand"} ${item.label} menu`}
+            aria-expanded={isOpen}
+            onClick={handleMobileToggle}
+          >
+            <ChevronDown
+              size={16}
+              className={`nav-chevron${isOpen ? " rotated" : ""}`}
+              aria-hidden="true"
+            />
+          </button>
+        </div>
         <div className="nav-drop-menu" role="menu">
           <NavDropMenu item={item} onClick={onClick} />
         </div>
@@ -178,6 +187,7 @@ function NavLinks({ onClick, isMobile, expandedDrop, onExpand, openDrop, onOpenD
 
 export default function Header() {
   const branding = useBranding();
+  const headerRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [expandedDrop, setExpandedDrop] = useState(null);
   const [openDrop, setOpenDrop] = useState(null);
@@ -198,6 +208,18 @@ export default function Header() {
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
   }, []);
+
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return undefined;
+    const apply = () => {
+      document.documentElement.style.setProperty("--mobile-header-height", `${el.offsetHeight}px`);
+    };
+    apply();
+    const observer = new ResizeObserver(apply);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [open, isMobile]);
 
   useEffect(() => {
     if (!open || !isMobile) {
@@ -247,7 +269,7 @@ export default function Header() {
         </div>
       </div>
 
-      <header className={`site-header${open && isMobile ? " menu-open" : ""}`}>
+      <header ref={headerRef} className={`site-header${open && isMobile ? " menu-open" : ""}`}>
         <div className="wrap brand-row">
           <Link className="brand-devi-wrap" to="/" data-testid="brand-home-link" aria-label="Home">
             <img src={branding.headerDevi || "/ssrrt/devi-logo.jpg"} alt="Sri Rajarajeshwari Devi" className="brand-devi" />
@@ -291,20 +313,19 @@ export default function Header() {
         )}
       </header>
 
-      <div className="mobile-nav-root" aria-hidden={!isMobile}>
+      <div className={`mobile-nav-root${open && isMobile ? " open" : ""}`} hidden={!isMobile}>
         <button
           type="button"
           className={`nav-backdrop${open && isMobile ? " visible" : ""}`}
-          aria-hidden={!open || !isMobile}
           tabIndex={open && isMobile ? 0 : -1}
+          aria-label="Close navigation"
           onClick={closeMenu}
         />
         <div
           id="mobile-nav-panel"
           className={`mobile-nav-panel${open && isMobile ? " open" : ""}`}
           role="dialog"
-          aria-modal="true"
-          aria-hidden={!open || !isMobile}
+          aria-modal={open && isMobile}
           aria-label="Site navigation"
         >
           <nav className="nav mobile-nav">

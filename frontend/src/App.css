@@ -295,7 +295,12 @@ section {
   isolation: isolate;
 }
 .site-header.menu-open {
+  position: sticky;
+  top: 0;
   z-index: 142;
+}
+body.nav-open .topbar {
+  display: none;
 }
 .header-inner {
   display: flex;
@@ -336,7 +341,7 @@ section {
   padding: 0;
   flex-shrink: 0;
   position: relative;
-  z-index: 1;
+  z-index: 143;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
@@ -587,8 +592,10 @@ section {
   top: 0;
   right: 0;
   bottom: 0;
+  left: 0;
   z-index: 141;
-  width: min(100%,360px);
+  width: 100%;
+  max-width: none;
   background: var(--indigo);
   transform: translateX(100%);
   visibility: hidden;
@@ -596,8 +603,8 @@ section {
   transition: transform .28s ease,visibility .28s;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: calc(var(--mobile-header-height, 108px) + 8px) 0 24px;
-  box-shadow: -12px 0 40px -12px rgba(0,0,0,.35);
+  padding: calc(var(--mobile-header-height, 64px) + 8px) 0 24px;
+  box-shadow: none;
 }
 .mobile-nav-panel.open {
   transform: translateX(0);
@@ -610,10 +617,21 @@ section {
   align-items: stretch;
   padding: 0 16px;
   width: 100%;
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
 }
 .mobile-nav.nav {
   align-items: stretch;
   gap: 0;
+}
+.mobile-nav a,
+.mobile-nav button {
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 .mobile-nav .nav > a, .mobile-nav .nav-drop-trigger {
   width: 100%;
@@ -624,6 +642,28 @@ section {
   white-space: normal;
   justify-content: flex-start;
   border-radius: 0;
+}
+.mobile-nav .nav-drop-row {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.mobile-nav .nav-drop-row .nav-drop-trigger {
+  flex: 1;
+  min-width: 0;
+  border-bottom: 0;
+}
+.mobile-nav .nav-drop-chevron-btn {
+  flex-shrink: 0;
+  width: 48px;
+  border: 0;
+  background: transparent;
+  color: var(--ivory);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .mobile-nav .nav-drop-trigger-btn {
   display: flex;
@@ -641,6 +681,10 @@ section {
   color: var(--gold);
   background: rgba(255,255,255,.04);
   border-bottom-color: rgba(255,255,255,.1);
+}
+.mobile-nav .nav-drop-row .nav-drop-trigger:hover,
+.mobile-nav .nav-drop-row .nav-drop-trigger.active {
+  border-bottom-color: transparent;
 }
 .mobile-nav .nav-donate {
   margin: 12px 0 4px !important;
@@ -668,25 +712,23 @@ section {
   opacity: 1;
   visibility: visible;
   transform: none;
+  pointer-events: auto;
 }
 .mobile-nav .nav-drop.open .nav-drop-menu {
   display: block;
-}
-.mobile-nav .nav-drop:hover .nav-drop-menu, .mobile-nav .nav-drop:focus-within .nav-drop-menu {
-  display: none;
-}
-.mobile-nav .nav-drop.open:hover .nav-drop-menu, .mobile-nav .nav-drop.open:focus-within .nav-drop-menu {
-  display: block;
+  pointer-events: auto;
 }
 .mobile-nav .nav-drop-heading {
   color: var(--gold);
   padding: 8px 6px 4px;
   font-size: 9px;
+  pointer-events: none;
 }
 .mobile-nav .nav-drop-menu a {
   color: rgba(251,246,236,.85);
   padding: 10px 8px;
   font-size: 13px;
+  pointer-events: auto;
 }
 .mobile-nav .nav-drop-menu a:hover {
   background: transparent;
@@ -706,6 +748,9 @@ body.nav-open .cookie-banner {
 @media (max-width:900px) {
   .mobile-nav-root {
     display: block;
+  }
+  .mobile-nav-root[hidden] {
+    display: none;
   }
 }
 
@@ -6810,7 +6855,7 @@ body.nav-open .cookie-banner {
 
 @media (max-width:900px) {
   :root {
-    --mobile-header-height: 96px;
+    --mobile-header-height: 64px;
   }
   .donate-simple-grid {
     grid-template-columns: 1fr;
