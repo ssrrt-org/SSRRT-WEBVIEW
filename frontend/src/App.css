@@ -295,7 +295,7 @@ section {
   isolation: isolate;
 }
 .site-header.menu-open {
-  z-index: 52;
+  z-index: 142;
 }
 .header-inner {
   display: flex;
@@ -335,6 +335,10 @@ section {
   color: var(--indigo);
   padding: 0;
   flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 .nav-chevron {
   transition: transform .18s;
@@ -557,33 +561,38 @@ section {
   outline-offset: -1px;
 }
 
-/* Phone menu: dark panel that slides in from the right, plus dimmed backdrop.
-   Change .mobile-nav-panel width / background to restyle it. */
+/* Phone menu: dark panel that slides in from the right, plus dimmed backdrop. */
+.mobile-nav-root {
+  display: none;
+}
 .nav-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 45;
+  z-index: 140;
   background: rgba(12,16,28,.52);
   border: 0;
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: opacity .22s,visibility .22s;
 }
 .nav-backdrop.visible {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 .mobile-nav-panel {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 46;
+  z-index: 141;
   width: min(100%,360px);
   background: var(--indigo);
   transform: translateX(100%);
   visibility: hidden;
+  pointer-events: none;
   transition: transform .28s ease,visibility .28s;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -593,12 +602,18 @@ section {
 .mobile-nav-panel.open {
   transform: translateX(0);
   visibility: visible;
+  pointer-events: auto;
 }
 .mobile-nav {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   padding: 0 16px;
+  width: 100%;
+}
+.mobile-nav.nav {
+  align-items: stretch;
+  gap: 0;
 }
 .mobile-nav .nav > a, .mobile-nav .nav-drop-trigger {
   width: 100%;
@@ -609,6 +624,18 @@ section {
   white-space: normal;
   justify-content: flex-start;
   border-radius: 0;
+}
+.mobile-nav .nav-drop-trigger-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
 }
 .mobile-nav .nav > a:hover, .mobile-nav .nav-drop-trigger:hover, .mobile-nav .nav > a.active, .mobile-nav .nav-drop-trigger.active {
   color: var(--gold);
@@ -671,6 +698,15 @@ body.nav-open {
   position: fixed;
   width: 100%;
   left: 0;
+}
+body.nav-open .cookie-banner {
+  display: none;
+}
+
+@media (max-width:900px) {
+  .mobile-nav-root {
+    display: block;
+  }
 }
 
 /* Site footer (dark blue + gold top line). Columns, logo, copyright bar.
@@ -837,8 +873,283 @@ body.nav-open {
   color: rgba(201,151,61,.75);
   letter-spacing: .04em;
 }
+.ftr-legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  align-items: center;
+}
+.ftr-legal a,
+.ftr-legal-btn {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(251,246,236,.72);
+  letter-spacing: .02em;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.ftr-legal a:hover,
+.ftr-legal-btn:hover {
+  color: var(--ivory);
+}
 
-/* ---------- 4. HOME HERO (top of Home page) ---------- */
+/* Cookie consent banner & preferences */
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 120;
+  background: #fff;
+  border-top: 3px solid var(--gold);
+  box-shadow: 0 -12px 40px -20px rgba(34, 42, 69, 0.35);
+  padding: 20px 0 22px;
+}
+.cookie-banner-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+.cookie-banner-copy h2 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  color: var(--indigo);
+  margin: 0 0 8px;
+}
+.cookie-banner-copy p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-soft);
+  max-width: 720px;
+}
+.cookie-banner-copy a {
+  color: var(--maroon);
+  text-decoration: underline;
+}
+.cookie-banner-actions,
+.cookie-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.cookie-btn {
+  white-space: nowrap;
+}
+.cookie-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 130;
+  background: rgba(34, 42, 69, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.cookie-modal {
+  width: min(100%, 640px);
+  max-height: min(90vh, 760px);
+  overflow: auto;
+  background: #fff;
+  border-radius: 8px;
+  padding: 24px 24px 20px;
+  box-shadow: 0 24px 60px -24px rgba(34, 42, 69, 0.45);
+}
+.cookie-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.cookie-modal-head h2 {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  color: var(--indigo);
+  margin: 0;
+}
+.cookie-modal-close {
+  border: 0;
+  background: var(--ivory-deep);
+  width: 34px;
+  height: 34px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--indigo);
+}
+.cookie-modal-intro {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-soft);
+  margin: 0 0 18px;
+}
+.cookie-modal-intro a {
+  color: var(--maroon);
+  text-decoration: underline;
+}
+.cookie-category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.cookie-category {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 14px 16px;
+  background: var(--ivory);
+}
+.cookie-category-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.cookie-category h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--indigo);
+  margin: 0;
+}
+.cookie-category p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+.cookie-always-on {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+.cookie-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+.cookie-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.cookie-toggle-ui {
+  width: 42px;
+  height: 24px;
+  border-radius: 999px;
+  background: #d8d2c8;
+  position: relative;
+  transition: background .2s;
+}
+.cookie-toggle-ui::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform .2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,.15);
+}
+.cookie-toggle input:checked + .cookie-toggle-ui {
+  background: var(--maroon);
+}
+.cookie-toggle input:checked + .cookie-toggle-ui::after {
+  transform: translateX(18px);
+}
+.cookie-toggle input:focus-visible + .cookie-toggle-ui {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Legal pages */
+.legal-page {
+  padding: 48px 0 80px;
+  background: #fff;
+}
+.legal-page-inner {
+  max-width: min(92%, 820px);
+  margin: 0 auto;
+}
+.legal-page-inner h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(30px, 3.4vw, 42px);
+  color: var(--indigo);
+  margin: 10px 0 8px;
+}
+.legal-updated {
+  color: var(--sage);
+  font-size: 14px;
+  margin: 0 0 28px;
+}
+.legal-page-inner h2 {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  color: var(--indigo);
+  margin: 28px 0 10px;
+}
+.legal-page-inner h3 {
+  font-size: 17px;
+  color: var(--indigo);
+  margin: 20px 0 8px;
+}
+.legal-page-inner p,
+.legal-page-inner li {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-soft);
+}
+.legal-page-inner a {
+  color: var(--maroon);
+  text-decoration: underline;
+}
+.legal-list {
+  padding-left: 1.2rem;
+  margin: 0 0 16px;
+}
+.legal-table-wrap {
+  overflow-x: auto;
+  margin: 12px 0 20px;
+}
+.legal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.legal-table th,
+.legal-table td {
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.legal-table th {
+  background: var(--ivory-deep);
+  color: var(--indigo);
+  font-weight: 600;
+}
+.legal-footer-note {
+  margin-top: 36px;
+  font-size: 13px;
+  color: var(--sage);
+}
+
 /* Old single-photo hero. Kept in case a page still uses .hero */
 
 /* Dark block with headline, text, photo, and gold quote line at the bottom. */
@@ -6943,6 +7254,16 @@ body.nav-open {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+  }
+  .cookie-banner-inner {
+    flex-direction: column;
+  }
+  .cookie-banner-actions {
+    width: 100%;
+  }
+  .cookie-banner-actions .cookie-btn {
+    flex: 1 1 auto;
+    justify-content: center;
   }
   .who-can-grid {
     grid-template-columns: 1fr;

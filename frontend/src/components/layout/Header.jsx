@@ -7,6 +7,10 @@ import { navItems } from "@/constants/nav";
 
 const MOBILE_NAV_MQ = "(max-width: 900px)";
 
+function getIsMobileViewport() {
+  return typeof window !== "undefined" && window.matchMedia(MOBILE_NAV_MQ).matches;
+}
+
 function NavDropMenu({ item, onClick }) {
   if (item.groups) {
     return item.groups.map((group) => (
@@ -70,6 +74,38 @@ function NavItem({ item, onClick, isMobile, expanded, onExpand, openDrop, onOpen
       onOpenDrop(null);
     }
   };
+
+  const handleMobileToggle = (e) => {
+    e.preventDefault();
+    onExpand(isExpanded ? null : item.label);
+  };
+
+  if (isMobile && hasMenu) {
+    return (
+      <div
+        className={`nav-drop${isOpen ? " open" : ""}`}
+        data-testid={`nav-drop-${item.label.toLowerCase().replaceAll(" ", "-")}`}
+      >
+        <button
+          type="button"
+          className="nav-drop-trigger nav-drop-trigger-btn"
+          data-testid={testid}
+          onClick={handleMobileToggle}
+          aria-expanded={isOpen}
+        >
+          {item.label}{" "}
+          <ChevronDown
+            size={13}
+            className={`nav-chevron${isOpen ? " rotated" : ""}`}
+            aria-hidden="true"
+          />
+        </button>
+        <div className="nav-drop-menu" role="menu">
+          <NavDropMenu item={item} onClick={onClick} />
+        </div>
+      </div>
+    );
+  }
 
   if (item.donate) {
     return (
@@ -145,7 +181,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [expandedDrop, setExpandedDrop] = useState(null);
   const [openDrop, setOpenDrop] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(getIsMobileViewport);
 
   useEffect(() => {
     const mq = window.matchMedia(MOBILE_NAV_MQ);
@@ -255,36 +291,34 @@ export default function Header() {
         )}
       </header>
 
-      {isMobile && (
-        <>
-          <button
-            type="button"
-            className={`nav-backdrop${open ? " visible" : ""}`}
-            aria-hidden={!open}
-            tabIndex={open ? 0 : -1}
-            onClick={closeMenu}
-          />
-          <div
-            id="mobile-nav-panel"
-            className={`mobile-nav-panel${open ? " open" : ""}`}
-            role="dialog"
-            aria-modal="true"
-            aria-hidden={!open}
-            aria-label="Site navigation"
-          >
-            <nav className="nav mobile-nav">
-              <NavLinks
-                onClick={closeMenu}
-                isMobile
-                expandedDrop={expandedDrop}
-                onExpand={setExpandedDrop}
-                openDrop={null}
-                onOpenDrop={() => {}}
-              />
-            </nav>
-          </div>
-        </>
-      )}
+      <div className="mobile-nav-root" aria-hidden={!isMobile}>
+        <button
+          type="button"
+          className={`nav-backdrop${open && isMobile ? " visible" : ""}`}
+          aria-hidden={!open || !isMobile}
+          tabIndex={open && isMobile ? 0 : -1}
+          onClick={closeMenu}
+        />
+        <div
+          id="mobile-nav-panel"
+          className={`mobile-nav-panel${open && isMobile ? " open" : ""}`}
+          role="dialog"
+          aria-modal="true"
+          aria-hidden={!open || !isMobile}
+          aria-label="Site navigation"
+        >
+          <nav className="nav mobile-nav">
+            <NavLinks
+              onClick={closeMenu}
+              isMobile
+              expandedDrop={expandedDrop}
+              onExpand={setExpandedDrop}
+              openDrop={null}
+              onOpenDrop={() => {}}
+            />
+          </nav>
+        </div>
+      </div>
     </>
   );
 }

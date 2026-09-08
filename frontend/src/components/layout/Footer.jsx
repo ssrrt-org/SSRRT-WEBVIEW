@@ -2,9 +2,15 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { templeCards } from "@/constants/templeData";
 import { useBranding } from "@/context/CmsContext";
+import { useCookieConsent } from "@/context/CookieConsentContext";
 
 export default function Footer() {
   const branding = useBranding();
+  const { openCookieSettings, applyConsent } = useCookieConsent();
+
+  const optOutOfSale = () => {
+    applyConsent({ analytics: false, performance: false, marketing: false });
+  };
   const goshalaLinks = [
     ["Project Kaamadhenau", "/goshala"],
     ["History of Goshala", "/goshala#history"],
@@ -81,6 +87,16 @@ export default function Footer() {
       <div className="ftr-base">
         <div className="wrap ftr-base-inner">
           <p>© 2026 Srimad Sai Rajarajeshwari Trust, Karekura, Mysore. All rights reserved.</p>
+          <div className="ftr-legal">
+            <Link to="/privacy" data-testid="footer-privacy-link">Privacy Policy</Link>
+            <Link to="/cookie-policy" data-testid="footer-cookie-policy-link">Cookie Policy</Link>
+            <button type="button" className="ftr-legal-btn" onClick={openCookieSettings} data-testid="footer-cookie-settings">
+              Cookie Settings
+            </button>
+            <button type="button" className="ftr-legal-btn" onClick={optOutOfSale} data-testid="footer-do-not-sell">
+              Do Not Sell or Share My Personal Information
+            </button>
+          </div>
           <p className="ftr-mantra">Om Namah Shivaya · Jai Amma · Jai Gaumata</p>
         </div>
       </div>

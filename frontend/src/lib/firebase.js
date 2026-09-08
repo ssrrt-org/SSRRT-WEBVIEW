@@ -72,6 +72,4 @@ export async function trackPageView(pathname, title = document.title) {
   });
 }
 
-void getAnalyticsInstance();
-
-export { app, auth, db, storage, functions };
+export { app, auth, db, storage, functions, getAnalyticsInstance };

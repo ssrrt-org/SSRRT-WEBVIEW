@@ -24,4 +24,6 @@ export { default as EventsPage } from "./EventsPage";
 export { default as DonatePage } from "./DonatePage";
 export { default as AboutPage } from "./AboutPage";
 export { default as ContactPage } from "./ContactPage";
+export { default as CookiePolicyPage } from "./CookiePolicyPage";
+export { default as PrivacyPolicyPage } from "./PrivacyPolicyPage";
 export { default as NotFoundPage } from "./NotFoundPage";
