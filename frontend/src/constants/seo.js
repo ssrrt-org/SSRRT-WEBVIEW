@@ -104,7 +104,7 @@ const STATIC = {
     "Narayana Seva, Nandi Abhisheka, darshan and seasonal programmes at the SSRRT Ashram, Mysore."
   ),
   "/donate": page(
-    "Donate | Support the Trust",
+    "Support the Cause | SSRRT",
     "Make an offering to the Goshala, Narayana Seva, medical camps and Ashram seva of SSRRT, Karekura."
   ),
   "/about": page(

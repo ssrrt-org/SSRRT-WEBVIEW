@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import { Eyebrow, SlimHead } from "@/components/shared/PageSections";
+import MotherDetailHeader from "@/components/mother/MotherDetailHeader";
 import { usePageImages } from "@/context/CmsContext";
 import { IMG } from "@/constants/images";
 
@@ -9,10 +9,8 @@ export default function MotherSwamiPage() {
 
   return (
     <>
-      <SlimHead
-        eyebrow="Amma"
-        title="Swami & Amma."
-      />
+      <MotherDetailHeader eyebrow="Amma" title="Swami & Amma." />
+
       <section className="ritual-body tint">
         <div className="wrap ritual-body-inner">
           <figure className="pillar-fig" style={{ marginBottom: "24px" }}>
@@ -23,8 +21,8 @@ export default function MotherSwamiPage() {
       </section>
       <section className="child-nav tint">
         <div className="wrap child-nav-inner">
-          <Link className="btn-ghost-dark" to="/mother">Glimpses of the Mother <ChevronRight size={15} /></Link>
-          <Link to="/mother/story">The Human Aspect →</Link>
+          <Link className="btn-ghost-dark" to="/mother">About Amma <ChevronRight size={15} /></Link>
+          <Link to="/mother/avatar">Avatar →</Link>
         </div>
       </section>
     </>

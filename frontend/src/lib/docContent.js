@@ -50,6 +50,16 @@ function isProseParagraph(p) {
   return true;
 }
 
+/** Sanskrit / Nadi sloka line — preserve line breaks when rendering naadi sections. */
+export function isSlokaLine(line) {
+  const text = line.trim();
+  if (!text) return false;
+  if (/^ITHI /i.test(text)) return true;
+  if (/^II [A-Z]/.test(text) && text.length < 220) return true;
+  if (/^[A-Z][A-Z\s,.'’\-]+$/.test(text) && text.length < 200 && !text.startsWith('"')) return true;
+  return false;
+}
+
 /** Filter out headings, sloka fragments, and caption lines for readable body copy. */
 export function proseParas(key, opts = {}) {
   const { from, until, skip, max, minLen } = opts;

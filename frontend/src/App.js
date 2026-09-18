@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CookieBanner from "@/components/cookies/CookieBanner";
 import ScrollToTop from "@/components/layout/ScrollToTop";
+import GlobalScrollHint from "@/components/layout/GlobalScrollHint";
 import AnalyticsTracker from "@/components/layout/AnalyticsTracker";
 import { CookieConsentProvider } from "@/context/CookieConsentContext";
 import ShopCartPanel from "@/components/shop/ShopCartPanel";
@@ -16,6 +17,7 @@ import {
   MotherPage,
   MotherSectionPage,
   MotherAvataarhoodPage,
+  MotherDeclarationPage,
   MotherSwamiPage,
   MotherRealizedPage,
   MotherForNeedyHubPage,
@@ -32,6 +34,7 @@ import {
   SevaMedicalVillagePage,
   SevasHubPage,
   AshramRitualPage,
+  SevaBookPage,
   VolunteerPage,
   ShopPage,
   EventsPage,
@@ -65,6 +68,7 @@ function PublicLayout() {
         <Outlet/>
       </main>
       <Footer/>
+      <GlobalScrollHint/>
       <CookieBanner/>
       <ShopCartPanel/>
       <ShopToast/>
@@ -98,7 +102,9 @@ export default function App() {
           <Route path="/" element={<HomePage/>}/>
           <Route path="/mother-for-needy" element={<MotherForNeedyHubPage/>}/>
           <Route path="/rural-upliftment" element={<RuralUpliftmentHubPage/>}/>
+          <Route path="/mother/story" element={<Navigate to="/mother/avatar" replace />}/>
           <Route path="/mother/avataarhood" element={<MotherAvataarhoodPage/>}/>
+          <Route path="/mother/declaration" element={<MotherDeclarationPage/>}/>
           <Route path="/mother/swami" element={<MotherSwamiPage/>}/>
           <Route path="/mother/realized" element={<MotherRealizedPage/>}/>
           <Route path="/mother/:sectionId" element={<MotherSectionPage/>}/>
@@ -114,6 +120,9 @@ export default function App() {
           <Route path="/seva/medical-village" element={<SevaMedicalVillagePage/>}/>
           <Route path="/seva/:pillarId" element={<SevaPillarPage/>}/>
           <Route path="/seva" element={<SevaPage/>}/>
+          <Route path="/sevas/butter-ganesha" element={<Navigate to="/sevas/ganesh-abhisheka" replace />}/>
+          <Route path="/sevas/butter-subramanya" element={<Navigate to="/sevas/subramanya-seva" replace />}/>
+          <Route path="/sevas/:ritualId/book" element={<SevaBookPage/>}/>
           <Route path="/sevas/:ritualId" element={<AshramRitualPage/>}/>
           <Route path="/sevas" element={<SevasHubPage/>}/>
           <Route path="/volunteering" element={<VolunteerPage/>}/>

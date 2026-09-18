@@ -10,9 +10,10 @@ export default function HubProgrammesSection({
   programmes,
   testIdPrefix = "hub",
   tint = false,
+  compact = false,
 }) {
   return (
-    <section className={`hub-programmes${tint ? " tint" : ""}`}>
+    <section className={`hub-programmes${tint ? " tint" : ""}${compact ? " hub-programmes-compact" : ""}`}>
       <div className="wrap">
         <Eyebrow>{eyebrow}</Eyebrow>
         <h2 className="section-h">{title}</h2>

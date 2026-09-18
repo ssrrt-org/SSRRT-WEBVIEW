@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import ShopCartButton from "@/components/shop/ShopCartButton";
 import { useBranding } from "@/context/CmsContext";
+import { SUPPORT_CAUSE_LABEL } from "@/constants/supportLabels";
 import { navItems } from "@/constants/nav";
 
 const MOBILE_NAV_MQ = "(max-width: 900px)";
@@ -113,6 +114,19 @@ function NavItem({ item, onClick, isMobile, expanded, onExpand, openDrop, onOpen
           <NavDropMenu item={item} onClick={onClick} />
         </div>
       </div>
+    );
+  }
+
+  if (item.volunteer) {
+    return (
+      <NavLink
+        data-testid="nav-volunteer-link"
+        to={item.path}
+        onClick={onClick}
+        className="nav-volunteer"
+      >
+        {item.label}
+      </NavLink>
     );
   }
 
@@ -263,7 +277,7 @@ export default function Header() {
           <div className="topbar-actions">
             <ShopCartButton />
             <Link data-testid="topbar-donate-link" to="/donate">
-              Make an offering <ArrowUpRight size={13} />
+              {SUPPORT_CAUSE_LABEL} <ArrowUpRight size={13} />
             </Link>
           </div>
         </div>

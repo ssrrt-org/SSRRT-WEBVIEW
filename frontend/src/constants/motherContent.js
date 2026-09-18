@@ -1,38 +1,55 @@
 import { IMG } from "@/constants/images";
 import { proseParas } from "@/lib/docContent";
 
+const avatarOrigins = proseParas("mother_descent", { max: 4 });
+const avatarHumanDimension = proseParas("mother_descent", {
+  from: "II. The Human Dimension",
+  until: "III. The Avataarhood",
+});
+const avatarAvataarhood = proseParas("mother_descent", {
+  from: "III. The Avataarhood",
+  until: "IV.",
+});
+
+export const avatarNarrative = {
+  opening: avatarOrigins.slice(0, 2),
+  chapters: [
+    {
+      id: "life-in-world",
+      label: "A life in the world",
+      paragraphs: avatarOrigins.slice(2),
+    },
+    {
+      id: "presence-within",
+      label: "The presence within",
+      paragraphs: avatarHumanDimension,
+    },
+    {
+      id: "avataarhood",
+      label: "Avataarhood",
+      paragraphs: avatarAvataarhood,
+    },
+  ],
+};
+
+const avatarMergedParagraphs = [
+  ...avatarNarrative.opening,
+  ...avatarNarrative.chapters.flatMap(({ paragraphs }) => paragraphs),
+];
+
 export const motherSections = [
-  {
-    id: "story",
-    path: "/mother/story",
-    navTitle: "Her Story",
-    type: "split",
-    eyebrow: "The Human Aspect",
-    title: "A life of exemplary grace in every role.",
-    image: IMG.ammaGanesha,
-    reverse: false,
-    tint: false,
-    paragraphs: proseParas("mother_descent", {
-      from: "II. The Human Dimension",
-      until: "III. The Avataarhood",
-      max: 5,
-    }),
-  },
   {
     id: "avatar",
     path: "/mother/avatar",
-    navTitle: "Divine Aspects",
+    navTitle: "Avatar",
     type: "split",
-    eyebrow: "The Divine Aspect",
-    title: "Shakti incarnate — affirmed across traditions.",
+    eyebrow: "Divine Mother",
+    title: "Avataarhood, divine presence, and sacred testimony.",
     image: IMG.manidweepa,
-    reverse: true,
-    tint: true,
-    paragraphs: proseParas("mother_descent", {
-      from: "III. The Avataarhood",
-      until: "IV.",
-      max: 4,
-    }),
+    reverse: false,
+    tint: false,
+    paragraphs: avatarMergedParagraphs,
+    narrative: avatarNarrative,
   },
   {
     id: "testimonies",
@@ -56,13 +73,12 @@ export const motherSections = [
     id: "naadi",
     path: "/mother/naadi",
     navTitle: "Naadi Readings",
-    type: "split",
+    type: "naadi",
     eyebrow: "The Naadi Readings",
     title: "Ancient scriptures that name the Mother.",
     image: IMG.boss,
     reverse: false,
     tint: false,
-    paragraphs: proseParas("mother_naadi", { max: 5 }),
   },
 ];
 

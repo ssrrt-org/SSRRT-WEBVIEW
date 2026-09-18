@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import MotherDetailHeader from "@/components/mother/MotherDetailHeader";
 import ProseSection from "@/components/shared/ProseSection";
-import { Quote, SlimHead } from "@/components/shared/PageSections";
+import { Quote } from "@/components/shared/PageSections";
 import {
   motherAvataarhoodParagraphs,
   motherDeclarationNarrative,
@@ -16,7 +17,7 @@ export default function MotherAvataarhoodPage() {
 
   return (
     <>
-      <SlimHead
+      <MotherDetailHeader
         eyebrow="Amma"
         title="The Avataarhood."
         intro="The declaration of 29 March 1997 and the spiritual truth of Shiva's Shakti on earth."
@@ -42,7 +43,7 @@ export default function MotherAvataarhoodPage() {
 
       <section className="child-nav tint">
         <div className="wrap child-nav-inner">
-          <Link className="btn-ghost-dark" to="/mother">Glimpses of the Mother <ChevronRight size={15} /></Link>
+          <Link className="btn-ghost-dark" to="/mother">About Amma <ChevronRight size={15} /></Link>
           <Link to="/mother/naadi">Naadi readings →</Link>
         </div>
       </section>

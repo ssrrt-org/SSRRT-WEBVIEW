@@ -1,6 +1,9 @@
 import { Link, useLocation, useParams } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import { Eyebrow, SlimHead, Split } from "@/components/shared/PageSections";
+import MotherNaadiBody from "@/components/mother/MotherNaadiBody";
+import MotherDetailHeader from "@/components/mother/MotherDetailHeader";
+import AvatarNarrative from "@/components/mother/AvatarNarrative";
+import { Split } from "@/components/shared/PageSections";
 import { usePageImages } from "@/context/CmsContext";
 import { motherSections } from "@/constants/motherContent";
 import NotFoundPage from "@/pages/NotFoundPage";
@@ -20,12 +23,11 @@ export default function MotherSectionPage() {
 
   return (
     <>
-      <SlimHead
-        eyebrow="Glimpses of Amma"
-        title={section.navTitle}
-      />
+      <MotherDetailHeader eyebrow={section.eyebrow} title={section.navTitle} intro={section.title} />
 
-      {section.type === "stories" ? (
+      {sectionId === "avatar" ? (
+        <AvatarNarrative narrative={section.narrative} image={img("split", section.image)} />
+      ) : section.type === "stories" ? (
         <section className="two-stories">
           <div className="wrap">
             <Eyebrow>{section.eyebrow}</Eyebrow>
@@ -41,6 +43,8 @@ export default function MotherSectionPage() {
             </div>
           </div>
         </section>
+      ) : section.type === "naadi" ? (
+        <MotherNaadiBody />
       ) : (
         <Split
           eyebrow={section.eyebrow}

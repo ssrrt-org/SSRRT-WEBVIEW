@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, MapPin } from "lucide-react";
+import { SUPPORT_CAUSE_LABEL } from "@/constants/supportLabels";
 import { templeCards } from "@/constants/templeData";
 import { useBranding } from "@/context/CmsContext";
 import { useCookieConsent } from "@/context/CookieConsentContext";
@@ -17,7 +18,7 @@ export default function Footer() {
     ["Adopt a Cow", "/goshala/adopt"],
     ["A Day at Kaamadhenau", "/goshala/day"],
     ["Volunteer", "/volunteering"],
-    ["Support & Donate", "/donate?purpose=goshala"],
+    [SUPPORT_CAUSE_LABEL, "/donate?purpose=goshala"],
   ];
   const sevaLinks = [
     ["Medical Centers", "/seva/medical"],
@@ -32,7 +33,7 @@ export default function Footer() {
     ["Events", "/events"],
     ["Volunteering", "/volunteering"],
     ["Shoppe", "/shop"],
-    ["Donate", "/donate"],
+    [SUPPORT_CAUSE_LABEL, "/donate"],
     ["Contact Us", "/contact"],
   ];
   const col = (title, items) => (
@@ -75,7 +76,7 @@ export default function Footer() {
               <span>River Cauvery · Karekura, Mysore, Karnataka, India</span>
             </p>
             <Link className="ftr-offering" to="/donate" data-testid="footer-donate-link">
-              Make an offering <ArrowUpRight size={14} />
+              {SUPPORT_CAUSE_LABEL} <ArrowUpRight size={14} />
             </Link>
           </div>
           {col("Goshala", goshalaLinks)}

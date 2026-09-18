@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import { ArrowUpRight, ChevronRight } from "lucide-react";
 import ProseSection from "@/components/shared/ProseSection";
-import { SlimHead } from "@/components/shared/PageSections";
+import { Eyebrow } from "@/components/shared/PageSections";
 import { ashramRituals } from "@/constants/sevasRituals";
 import NotFoundPage from "@/pages/NotFoundPage";
 
@@ -13,14 +13,28 @@ export default function AshramRitualPage() {
   const index = ashramRituals.findIndex((r) => r.id === ritualId);
   const prev = ashramRituals[index - 1];
   const next = ashramRituals[index + 1];
+  const bookPath = ritual.bookPath || `/sevas/${ritual.id}/book`;
 
   return (
     <>
-      <SlimHead eyebrow={ritual.eyebrow} title={ritual.title} intro={ritual.intro} />
+      <section className="seva-detail-head">
+        <div className="wrap seva-detail-head-inner">
+          <Eyebrow gold>{ritual.eyebrow}</Eyebrow>
+          <div className="seva-detail-title-row">
+            <h1>{ritual.title}</h1>
+            <Link className="btn-solid seva-book-cta" to={bookPath} data-testid="ritual-book-seva">
+              Book the Seva <ArrowUpRight size={16} />
+            </Link>
+          </div>
+          <p className="mother-subhead-intro">{ritual.intro}</p>
+        </div>
+      </section>
+
       <ProseSection
         eyebrow="About this seva"
         paragraphs={ritual.paragraphs || (ritual.body ? [ritual.body] : [])}
       />
+
       <section className="child-nav tint">
         <div className="wrap child-nav-inner">
           <Link className="btn-ghost-dark" data-testid="ritual-back" to="/sevas">
