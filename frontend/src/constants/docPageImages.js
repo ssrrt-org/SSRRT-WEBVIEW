@@ -41,4 +41,12 @@ export const docPageImages = {
   harake_nandi: [
     { after: 2, src: IMG.manidweepa, alt: "Harake Nandi", layout: "full" },
   ],
+  mother_needy: [
+    { after: 1, src: IMG.medical, alt: "Medical camp for the needy", layout: "inline" },
+    { after: 2, src: IMG.serve, alt: "Narayana Seva food distribution", layout: "full" },
+    { after: 3, src: IMG.kitchen, alt: "Kitchen seva", layout: "inline" },
+    { after: 4, src: IMG.volunteer, alt: "Volunteers serving meals", layout: "full" },
+    { after: 5, src: IMG.village, alt: "Village food distribution", layout: "inline" },
+    { after: 6, src: IMG.event1, alt: "Community outreach", layout: "full" },
+  ],
 };

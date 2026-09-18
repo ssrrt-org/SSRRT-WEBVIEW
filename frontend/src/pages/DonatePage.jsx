@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { ArrowRight, Check, Lock } from "lucide-react";
+import { Link, useSearchParams } from "react-router-dom";
+import { ArrowRight, ArrowUpRight, Check, Lock } from "lucide-react";
+import { SUPPORT_CAUSE_LABEL } from "@/constants/supportLabels";
 import { Eyebrow } from "@/components/shared/PageSections";
 import { donationPurposes, donatePurposeFromQuery } from "@/constants/nav";
 import { useDonateConfig } from "@/context/CmsContext";
@@ -112,6 +113,13 @@ export default function DonatePage() {
   return (
     <section className="donate-page">
       <div className="wrap donate-page-inner">
+        <header className="donate-page-head">
+          <h1>{SUPPORT_CAUSE_LABEL}</h1>
+          <p>Offer toward Goshala, Narayana Seva, medical camps, temples, and general Trust programmes.</p>
+          <Link className="btn-ghost-dark donate-volunteer-link" to="/volunteering" data-testid="donate-volunteer-link">
+            Volunteer at the Ashram <ArrowUpRight size={16} />
+          </Link>
+        </header>
         <div className="donate-card">
           {submitted ? (
             <div className="donate-success" data-testid="donation-success-message">

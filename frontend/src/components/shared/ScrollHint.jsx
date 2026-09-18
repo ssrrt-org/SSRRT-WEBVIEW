@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { getStickyOffset } from "@/utils/scroll";
 
-export default function ScrollHint({ variant = "light", containerRef }) {
+export default function ScrollHint({ variant = "light", containerRef, placement = "banner" }) {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function ScrollHint({ variant = "light", containerRef }) {
   return (
     <button
       type="button"
-      className={`scroll-hint scroll-hint-${variant}${hidden ? " is-hidden" : ""}`}
+      className={`scroll-hint scroll-hint-${variant}${placement === "corner" ? " scroll-hint-corner" : ""}${hidden ? " is-hidden" : ""}`}
       onClick={scrollDown}
       aria-label="Scroll to content"
       data-testid="scroll-hint"

@@ -131,3 +131,56 @@ exports.verifyRazorpayPayment = onCall(
     return { success: true, donation: record };
   },
 );
+
+const ADMIN_EMAIL = "admin@ssrt.com.org";
+
+exports.recordSevaBooking = onCall(callableOptions, async (request) => {
+  const data = request.data || {};
+  const {
+    ritualId,
+    ritualTitle,
+    paymentId,
+    name,
+    email,
+    seva_date,
+    gotra,
+    nakshatra,
+    headcount,
+    additional_names,
+    comments,
+    amount,
+  } = data;
+
+  if (!ritualId || !name || !email || !seva_date) {
+    throw new HttpsError("invalid-argument", "Missing required seva booking fields.");
+  }
+
+  const record = {
+    type: "Seva booking",
+    ritualId,
+    ritualTitle: ritualTitle || ritualId,
+    paymentId: paymentId || "",
+    name: String(name).trim(),
+    email: String(email).trim(),
+    sevaDate: seva_date,
+    gotra: gotra || "",
+    nakshatra: nakshatra || "",
+    headcount: Number(headcount) || 1,
+    additionalNames: additional_names || "",
+    comments: comments || "",
+    amount: Number(amount) || 0,
+    adminEmail: ADMIN_EMAIL,
+    emailStatus: "pending_provider",
+    createdAt: FieldValue.serverTimestamp(),
+  };
+
+  const ref = await db.collection("seva_bookings").add(record);
+
+  // Receipt email copy will be supplied by the Trust; wire provider when ready.
+  return {
+    success: true,
+    bookingId: ref.id,
+    message:
+      "Booking recorded. Confirmation emails to the devotee and admin@ssrt.com.org will be sent once the email provider is connected.",
+  };
+});

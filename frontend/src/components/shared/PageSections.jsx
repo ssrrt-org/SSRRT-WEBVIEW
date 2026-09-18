@@ -22,7 +22,7 @@ export const PageHead = ({ eyebrow, title, intro, image, imgAlt }) => (
   </section>
 );
 
-export const SlimHead = ({ eyebrow, title, intro, image, noPhoto, wide = false, showScrollHint = true }) => {
+export const SlimHead = ({ eyebrow, title, intro, image, noPhoto, wide = false, showScrollHint = false }) => {
   const sectionRef = useRef(null);
   const { pathname } = useLocation();
   const cmsHero = useHeroForPath(pathname);

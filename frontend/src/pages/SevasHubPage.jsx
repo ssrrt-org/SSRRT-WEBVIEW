@@ -1,15 +1,20 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { Eyebrow, Quote, SlimHead, Split } from "@/components/shared/PageSections";
+import SevaScrollingHero from "@/components/seva/SevaScrollingHero";
+import { Eyebrow, Quote, Split } from "@/components/shared/PageSections";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
 import { usePageImages } from "@/context/CmsContext";
+import { SUPPORT_CAUSE_LABEL } from "@/constants/supportLabels";
 import { ashramRituals } from "@/constants/sevasRituals";
 import { IMG } from "@/constants/images";
 
 const ritualImages = {
   "nandi-abhisheka": IMG.manidweepa,
-  "butter-ganesha": IMG.ganesha,
-  "butter-subramanya": IMG.templeSouth,
+  "ghee-butter-abhisheka": IMG.ganesha,
+  alankar: IMG.templeSouth,
+  "ganesh-abhisheka": IMG.ganesha,
+  "bhavatarini-seva": IMG.amma,
+  "subramanya-seva": IMG.templeSouth,
 };
 
 const programmes = [
@@ -42,11 +47,18 @@ export default function SevasHubPage() {
 
   return (
     <>
-      <SlimHead
-        eyebrow="Ashram sevas"
-        title="Nandi Abhisheka and seasonal alankaras."
-        intro="Living worship at the Ashram — traditional abhishekas and butter alankaras held with devotion in the eight sannidhis Amma has tended for decades."
-      />
+      <SevaScrollingHero />
+
+      <section className="mother-subhead">
+        <div className="wrap">
+          <Eyebrow gold>Ashram sevas</Eyebrow>
+          <h1>Nandi Abhisheka and seasonal alankaras.</h1>
+          <p className="mother-subhead-intro">
+            Living worship at the Ashram — traditional abhishekas and butter alankaras held with devotion in the
+            eight sannidhis Amma has tended for decades.
+          </p>
+        </div>
+      </section>
 
       <Split
         eyebrow="Worship at Karekura"
@@ -69,7 +81,7 @@ export default function SevasHubPage() {
       <HubProgrammesSection
         eyebrow="Rituals & spaces"
         title="Participate in Ashram worship."
-        lede="From Nandi Abhisheka to seasonal alankaras — and the sacred sannidhis where decades of devotion continue."
+        lede="Each seva has a detail page with a Book the Seva flow — images will be updated as assets arrive from the Trust."
         programmes={cards}
         testIdPrefix="sevas"
       />
@@ -88,8 +100,8 @@ export default function SevasHubPage() {
               grand mantapa. Devotees offer milk, water, and prayers — a seva held with reverence as part of the
               Ashram's living worship.
             </p>
-            <Link className="btn-solid" to="/sevas/nandi-abhisheka" data-testid="sevas-nandi">
-              Read about Nandi Abhisheka <ArrowUpRight size={16} />
+            <Link className="btn-solid" to="/sevas/nandi-abhisheka/book" data-testid="sevas-nandi-book">
+              Book Nandi Abhisheka <ArrowUpRight size={16} />
             </Link>
           </div>
           <div className="hub-feature-aside">
@@ -100,30 +112,6 @@ export default function SevasHubPage() {
               <li>Families often bring children before a new school year</li>
               <li>Open to devotees from surrounding villages</li>
             </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="hub-pillars">
-        <div className="wrap">
-          <Eyebrow>Plan your visit</Eyebrow>
-          <h2 className="section-h">Join worship at the Ashram.</h2>
-          <div className="hub-action-grid">
-            <article>
-              <h3>Explore the Ashram</h3>
-              <p>Walk through eight sannidhis, sacred spaces, and the Shiva mantapa on the Cauvery.</p>
-              <Link to="/ashram">Visit the Ashram <ArrowUpRight size={14} /></Link>
-            </article>
-            <article>
-              <h3>Offer a seva</h3>
-              <p>Participate in abhisheka and alankara programmes during your visit.</p>
-              <Link to="/contact">Contact the office <ArrowUpRight size={14} /></Link>
-            </article>
-            <article>
-              <h3>Volunteer at festivals</h3>
-              <p>Help in kitchens and arrangements during major Ashram celebrations.</p>
-              <Link to="/volunteering">Volunteer <ArrowUpRight size={14} /></Link>
-            </article>
           </div>
         </div>
       </section>
@@ -143,7 +131,7 @@ export default function SevasHubPage() {
               All seva programmes <ArrowUpRight size={16} />
             </Link>
             <Link className="btn-ghost-dark" to="/donate" data-testid="sevas-donate">
-              Donate to the Trust
+              {SUPPORT_CAUSE_LABEL}
             </Link>
           </div>
         </div>

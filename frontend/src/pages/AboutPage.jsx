@@ -14,7 +14,7 @@ const pillars = [
   { id: "medical", to: "/seva/medical", title: "Medical seva", note: docExcerpt("medical", { skip: 1 }), image: IMG.medical },
   { id: "food", to: "/seva/food", title: "Food for the needy", note: docExcerpt("food", { skip: 1 }), image: IMG.serve },
   { id: "volunteer", to: "/volunteering", title: "Volunteering", note: docExcerpt("goshala_volunteer", { skip: 1 }), image: IMG.serve },
-  { id: "donate", to: "/donate", title: "Support the Trust", note: docExcerpt("goshala_support", { skip: 1 }), image: IMG.manidweepa },
+  { id: "donate", to: "/donate", title: "Support the Cause", note: docExcerpt("goshala_support", { skip: 1 }), image: IMG.manidweepa },
 ];
 
 export default function AboutPage() {

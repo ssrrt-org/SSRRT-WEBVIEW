@@ -1,11 +1,13 @@
+import { SUPPORT_CAUSE_LABEL } from "@/constants/supportLabels";
+
 export const navItems = [
   { label: "Home", path: "/" },
   {
     label: "Mother",
     path: "/mother",
     sub: [
-      { label: "The Human Aspect", path: "/mother/story" },
-      { label: "Divine Aspects", path: "/mother/avatar" },
+      { label: "Avatar", path: "/mother/avatar" },
+      { label: "Declaration of Avatar", path: "/mother/declaration" },
       { label: "The Avataarhood", path: "/mother/avataarhood" },
       { label: "The Naadi Readings", path: "/mother/naadi" },
       { label: "Swami & Amma", path: "/mother/swami" },
@@ -47,7 +49,7 @@ export const navItems = [
         links: [
           { label: "Adopt a Cow", path: "/goshala/adopt" },
           { label: "Volunteer at the Goshala", path: "/volunteering" },
-          { label: "Support & Donate", path: "/donate?purpose=goshala" },
+          { label: SUPPORT_CAUSE_LABEL, path: "/donate?purpose=goshala" },
         ],
       },
     ],
@@ -60,6 +62,7 @@ export const navItems = [
         heading: "RURAL PROGRAMMES",
         links: [
           { label: "Medical Centres", path: "/seva/medical" },
+          { label: "Education & water", path: "/rural-upliftment" },
           { label: "Food for the Needy", path: "/seva/food" },
           { label: "Volunteering", path: "/volunteering" },
           { label: "Narayana Seva", path: "/seva/narayana" },
@@ -74,11 +77,11 @@ export const navItems = [
       {
         heading: "TEMPLES",
         links: [
-          { label: "Krishna Maya Temple", path: "/ashram/krishna" },
+          { label: "Lord Jagadeesh (Krishna)", path: "/ashram/krishna" },
           { label: "Shirdi Baba Temple", path: "/ashram/shirdi" },
           { label: "Ganesha Sannidhi", path: "/ashram/ganesha" },
-          { label: "Subramanya Sannidhi", path: "/ashram/subramanya" },
-          { label: "Dattatreya Sannidhi", path: "/ashram/dattatreya" },
+          { label: "Lord Subramanya", path: "/ashram/subramanya" },
+          { label: "Lord Dattatreya", path: "/ashram/dattatreya" },
           { label: "Grand Shiva Temple & Nandi", path: "/ashram/shiva" },
         ],
       },
@@ -98,11 +101,14 @@ export const navItems = [
     path: "/sevas",
     sub: [
       { label: "Nandi Abhisheka", path: "/sevas/nandi-abhisheka" },
-      { label: "Butter Alankara for Ganesha", path: "/sevas/butter-ganesha" },
-      { label: "Butter Alankara for Subramanya", path: "/sevas/butter-subramanya" },
+      { label: "Ghee / Butter Abhisheka", path: "/sevas/ghee-butter-abhisheka" },
+      { label: "Alankar", path: "/sevas/alankar" },
+      { label: "Ganesh Abhisheka", path: "/sevas/ganesh-abhisheka" },
+      { label: "Bhavatarini Seva", path: "/sevas/bhavatarini-seva" },
+      { label: "Subramanya Seva", path: "/sevas/subramanya-seva" },
     ],
   },
-  { label: "Volunteering", path: "/volunteering" },
+  { label: "Volunteer", path: "/volunteering", volunteer: true },
   {
     label: "SSRRT",
     path: "/about",
@@ -112,7 +118,7 @@ export const navItems = [
     ],
   },
   { label: "Shoppe", path: "/shop" },
-  { label: "Donate", path: "/donate", donate: true },
+  { label: SUPPORT_CAUSE_LABEL, path: "/donate", donate: true },
 ];
 
 export const donationPurposes = [

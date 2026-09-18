@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import HeroCarousel from "@/components/home/HeroCarousel";
+import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
 import ExploreGrid from "@/components/shared/ExploreGrid";
 import ProseSection from "@/components/shared/ProseSection";
 import { Eyebrow, SectionHeading } from "@/components/shared/PageSections";
@@ -8,8 +9,8 @@ import { motherSections } from "@/constants/motherContent";
 import {
   homeNarayanaParagraphs,
   homePillars,
+  homeProgrammeTiles,
   motherHomeIntro,
-  motherHomeNarrative,
   motherVirtues,
   trustHomeParagraphs,
 } from "@/constants/homeContent";
@@ -18,7 +19,7 @@ import { docPageImages } from "@/constants/docPageImages";
 import { IMG } from "@/constants/images";
 
 const motherExplore = motherSections.map((s) => {
-  const text = s.paragraphs?.[0] || s.stories?.[0]?.text || "";
+  const text = s.paragraphs?.[0] || s.stories?.[0]?.text || s.title || "";
   return {
     to: s.path,
     title: s.navTitle,
@@ -35,18 +36,6 @@ export default function HomePage() {
           <div className="hero-ribbon" data-testid="hero-ribbon">
             Where <em>seva</em> becomes the quiet language of devotion.
           </div>
-          <p className="hero-lede" data-testid="hero-lede">
-            Nestled on the tranquil banks of the River Cauvery, the Ashram is a living spiritual ecosystem —<br className="hero-lede-break" />
-            caring for cows, rural communities, and consecrated temple spaces, guided by the grace of Amma.
-          </p>
-          <div className="hero-cta-strip">
-            <Link className="hero-cta-chip" data-testid="hero-donate-button" to="/donate">
-              Support the Trust
-            </Link>
-            <Link className="hero-cta-chip hero-cta-chip-accent" data-testid="hero-volunteer-button" to="/volunteering">
-              Volunteer
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -59,10 +48,18 @@ export default function HomePage() {
             <Eyebrow gold>Divine Mother</Eyebrow>
             <h2>Divine Mother, Srimad Sai Rajarajeshwari</h2>
             <p>{motherHomeIntro}</p>
-            {motherHomeNarrative && <p>{motherHomeNarrative}</p>}
           </div>
         </div>
       </section>
+
+      <HubProgrammesSection
+        eyebrow="SSRRT programmes"
+        title="Serve across Karekura and beyond."
+        lede="Short paths into the Trust's ongoing work — each programme has its own page."
+        programmes={homeProgrammeTiles}
+        testIdPrefix="home-programme"
+        compact
+      />
 
       <section className="home-virtues tint">
         <div className="wrap">
@@ -78,7 +75,7 @@ export default function HomePage() {
           </div>
           <div className="home-inline-links">
             <Link data-testid="home-amma-link" to="/mother">
-              Glimpses of Amma <ArrowUpRight size={14} />
+              About Amma <ArrowUpRight size={14} />
             </Link>
             <Link data-testid="home-avataarhood-link" to="/mother/avataarhood">
               The Avataarhood <ArrowUpRight size={14} />
@@ -135,6 +132,7 @@ export default function HomePage() {
         images={docPageImages.food}
         tint
       />
+
     </>
   );
 }

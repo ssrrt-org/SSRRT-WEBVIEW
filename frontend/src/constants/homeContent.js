@@ -1,4 +1,5 @@
 import { docExcerpt, docTitle, proseParas } from "@/lib/docContent";
+import { IMG } from "@/constants/images";
 
 export const motherHomeIntro = proseParas("mother_home", { max: 1 })[0] || "";
 
@@ -44,6 +45,41 @@ export const homePillars = [
     text: docExcerpt("sacred_ashram", { skip: 4, maxLen: 120 }),
     path: "/ashram",
     linkLabel: "About the Ashram",
+  },
+];
+
+export const homeProgrammeTiles = [
+  {
+    id: "goshala",
+    to: "/goshala",
+    title: "Goshala",
+    tag: "Gau seva",
+    note: docExcerpt("goshala_adopt", { skip: 1, maxLen: 100 }),
+    image: IMG.cow1,
+  },
+  {
+    id: "medical",
+    to: "/seva/medical",
+    title: "Medical Service",
+    tag: "Free care",
+    note: docExcerpt("medical", { skip: 1, maxLen: 100 }),
+    image: IMG.medical,
+  },
+  {
+    id: "narayana",
+    to: "/seva/narayana",
+    title: "Narayan Seva",
+    tag: "Food seva",
+    note: docExcerpt("food", { skip: 1, maxLen: 100 }),
+    image: IMG.serve,
+  },
+  {
+    id: "village",
+    to: "/rural-upliftment",
+    title: "Village Improvement Project",
+    tag: "Rural upliftment",
+    note: docExcerpt("goshala_volunteer", { skip: 1, maxLen: 100 }),
+    image: IMG.village,
   },
 ];
 

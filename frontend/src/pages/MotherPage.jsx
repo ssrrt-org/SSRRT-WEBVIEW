@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { Eyebrow, SlimHead, Quote } from "@/components/shared/PageSections";
+import MotherScrollingHero from "@/components/mother/MotherScrollingHero";
+import { Eyebrow, Quote } from "@/components/shared/PageSections";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
 import HashRedirect from "@/components/shared/HashRedirect";
 import { usePageImages } from "@/context/CmsContext";
@@ -10,13 +11,20 @@ import { IMG } from "@/constants/images";
 const motherIds = motherSections.map((s) => s.id);
 
 const sectionImages = {
-  story: IMG.ammaGanesha,
   avatar: IMG.manidweepa,
   testimonies: IMG.event1,
   naadi: IMG.boss,
 };
 
 const extraMotherLinks = [
+  {
+    id: "declaration",
+    to: "/mother/declaration",
+    title: "Declaration of Avatar",
+    tag: "29 March 1997",
+    note: "The formal proclamation of Avatarhood at Karekura.",
+    image: IMG.manidweepa,
+  },
   {
     id: "avataarhood",
     to: "/mother/avataarhood",
@@ -51,7 +59,7 @@ const programmes = [
     tag: s.eyebrow,
     note: s.stories
       ? `${s.stories[0].text.slice(0, 140)}…`
-      : `${(s.paragraphs?.[0] || "").slice(0, 140)}…`,
+      : `${(s.paragraphs?.[0] || s.title || "").slice(0, 140)}…`,
     image: sectionImages[s.id] || IMG.amma,
     testid: `mother-link-${s.id}`,
   })),
@@ -72,17 +80,12 @@ export default function MotherPage() {
     <>
       <HashRedirect basePath="/mother" ids={motherIds} />
 
-      <SlimHead
-        wide
-        eyebrow="Glimpses of Amma"
-        title="A human life, lived with divine purpose."
-        intro="Srimad Sai Rajarajeshwari — affectionately called Amma — is a wife, a mother, a guide, and a perfect renunciant. Explore her story, divine aspect, testimonies, Naadi readings, and the Avataarhood declaration below."
-      />
+      <MotherScrollingHero caption="A human life, lived with divine purpose." />
 
       <HubProgrammesSection
         eyebrow="Read further"
-        title="Seven glimpses into Amma's life."
-        lede="Her story as a householder, her divine aspect, testimonies of courage, Naadi readings, and her relationship with realized beings."
+        title="Glimpses into Amma's life."
+        lede="Her avataric truth, testimonies of courage, Naadi readings, the declaration of Avatarhood, and her relationship with realized beings."
         programmes={programmeCards}
         testIdPrefix="mother"
         tint
@@ -110,7 +113,7 @@ export default function MotherPage() {
             <h3>What devotees discover</h3>
             <ul>
               <li>A life lived with dignity as a householder and mother</li>
-              <li>Divine aspect — myriad forms of the Mother</li>
+              <li>Avataric truth affirmed across Naadi traditions</li>
               <li>Naadi readings placing her among realized beings</li>
               <li>Humility at the feet of Bhagawan Sri Sathya Sai Baba</li>
             </ul>
