@@ -1,32 +1,40 @@
 import { Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import ConsecratedSacredHero from "@/components/ashram/ConsecratedSacredHero";
 import ProseSection from "@/components/shared/ProseSection";
-import { SlimHead } from "@/components/shared/PageSections";
-import { usePageImages } from "@/context/CmsContext";
+import { consecratedSpaceTempleImages } from "@/constants/consecratedSpaceHeroImages";
 import { docPageImages } from "@/constants/docPageImages";
-import { proseParas } from "@/lib/docContent";
 import { IMG } from "@/constants/images";
+import { usePageImages } from "@/context/CmsContext";
+import { sacredHeroCopy } from "@/lib/sacredAshramHero";
+import { proseParas } from "@/lib/docContent";
 
 const paragraphs = proseParas("bhairava", { skip: 1 });
+const heroCopy = sacredHeroCopy("bhairava", { breadcrumbLabel: "Kaala Bhairava Trishula" });
 
 export default function AshramBhairavaPage() {
   const img = usePageImages("/ashram/bhairava");
+  const heroFigure = img("hero-figure", consecratedSpaceTempleImages.bhairava);
+  const heroBg = img("hero-bg", IMG.manidweepa);
 
   return (
-    <>
-      <SlimHead eyebrow="Ashram" title="The Trishula of Kāla Bhairava." />
-      <ProseSection
-        paragraphs={paragraphs}
-        images={docPageImages.bhairava}
-        image={img("inline-figure", IMG.shiva)}
-        imageAlt="Kaala Bhairava Trishula"
+    <div className="temple-page">
+      <ConsecratedSacredHero
+        {...heroCopy}
+        heroFigure={heroFigure}
+        heroBg={heroBg}
+        offerTestId="bhairava-offer-prayers"
+        visitTestId="bhairava-plan-visit"
       />
+
+      <ProseSection paragraphs={paragraphs} images={docPageImages.bhairava} />
+
       <section className="child-nav tint">
         <div className="wrap child-nav-inner">
-          <Link className="btn-ghost-dark" to="/ashram">The Sacred Ashram <ChevronRight size={15} /></Link>
-          <Link to="/ashram/shiva">Shiva temple →</Link>
+          <Link to="/ashram/shiva" data-testid="bhairava-shiva-temple">
+            Shiva temple →
+          </Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }

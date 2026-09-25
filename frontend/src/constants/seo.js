@@ -72,12 +72,12 @@ const STATIC = {
     "Eight temple sannidhis at Srimad Sai Rajarajeshwari Ashram on the Cauvery — darshan and daily worship."
   ),
   "/ashram/bhairava": page(
-    "Kaala Bhairava Trishula",
-    "Kaala Bhairava worship at the SSRRT Ashram in Karekura, Mysore."
+    "The Trishula of Kāla Bhairava",
+    "Shiva's trident of cosmic authority at Srimad Sai Rajarajeshwari Ashram, Karekura — symbolism, grace, and liberation."
   ),
   "/ashram/harake-nandi": page(
-    "Harake Nandi",
-    "Nandi harake at the grand Shiva mantapa — prayers carried to Shiva at the Karekura Ashram."
+    "Harake Nandi — Sacred Guardian and Witness of Vows",
+    "The tradition of Harake before Nandi at the Karekura Ashram — vows witnessed and carried to Lord Shiva."
   ),
   "/seva": page(
     "Seva programmes",

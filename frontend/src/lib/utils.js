@@ -5,11 +5,17 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
+/** Stock / placeholder URLs that should not override real Ashram photography. */
+export function isStockPlaceholderUrl(url) {
+  if (!url || typeof url !== "string") return false;
+  return /images\.unsplash\.com/i.test(url.trim());
+}
+
 /** True when a string can be used as an img/background src. */
 export function isUsableImageUrl(url) {
   if (!url || typeof url !== "string") return false;
   const trimmed = url.trim();
-  if (!trimmed) return false;
+  if (!trimmed || isStockPlaceholderUrl(trimmed)) return false;
   return (
     trimmed.startsWith("/")
     || trimmed.startsWith("http://")

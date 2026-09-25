@@ -1,6 +1,13 @@
-/** Stock image bank (Unsplash CDN + local Ashram photography). */
+import { consecratedSpaceTempleImages } from "@/constants/consecratedSpaceHeroImages";
+
+/** Shared image bank — local Ashram, Goshala, seva, and medical photography only. */
+const med = "/medical service";
+const seva = "/Seva images";
+const goshala = "/Goshala";
+const ashram = "/Concentratedspace";
+
 export const IMG = {
-  cows: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1400&q=75",
+  cows: `${goshala}/Goshalaaa31.JPG`,
   cowCloseup: "/ssrrt/Cow1.jpeg",
   calf: "/ssrrt/cow6.jpeg",
   cowsField: "/ssrrt/Cow2.jpeg",
@@ -9,30 +16,30 @@ export const IMG = {
   cow3: "/ssrrt/cow3.jpeg",
   cow4: "/ssrrt/cow4.jpeg",
   cow6: "/ssrrt/cow6.jpeg",
-  templeExt: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1400&q=75",
-  templeGold: "/ssrrt/ManiDweepa.jpg",
-  templeSouth: "/ssrrt/ManiDweepa.jpg",
-  krishna: "/ssrrt/AmmaGanesha.jpg",
-  shiva: "/ssrrt/IMG-20260206-WA0000.jpg",
-  ganesha: "/ssrrt/AmmaGanesha.jpg",
-  sunset: "https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?auto=format&fit=crop&w=1400&q=75",
-  volunteer: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1400&q=75",
+  templeExt: `${ashram}/Concentratedspace7.JPG`,
+  templeGold: consecratedSpaceTempleImages.manidweepa,
+  templeSouth: `${ashram}/Concentratedspace11.JPG`,
+  krishna: consecratedSpaceTempleImages.krishna,
+  shiva: consecratedSpaceTempleImages.shiva,
+  ganesha: consecratedSpaceTempleImages.ganesha,
+  sunset: `${ashram}/Concentratedspace6.jpg`,
+  volunteer: `${goshala}/Goshalaaa10.JPG`,
   kitchen: "/ssrrt/IMG-20250923-WA0025.jpg",
-  serve: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1400&q=75",
-  meditation: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=1400&q=75",
-  river: "https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1400&q=75",
-  village: "/ssrrt/IMG-20260206-WA0000.jpg",
-  child: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1400&q=75",
-  medical: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1400&q=75",
-  water: "https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1400&q=75&hue=200",
-  grass: "https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=1400&q=75",
-  bio: "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1400&q=75",
+  serve: `${seva}/sevas24.JPG`,
+  meditation: `${ashram}/Concentratedspace11.JPG`,
+  river: `${ashram}/Concentratedspace12.JPG`,
+  village: `${seva}/sevas26.jpg`,
+  child: `${seva}/sevas27.jpg`,
+  medical: `${med}/medical1.JPG`,
+  water: `${seva}/sevas30.JPG`,
+  grass: `${goshala}/Goshalaaa2.JPG`,
+  bio: `${goshala}/Goshalaaa1.JPG`,
   amma: "/ssrrt/Umother.jpg",
   ammaGanesha: "/ssrrt/AmmaGanesha.jpg",
-  manidweepa: "/ssrrt/ManiDweepa.jpg",
-  shirdi: "/ssrrt/ShirdiSai.jpg",
+  manidweepa: consecratedSpaceTempleImages.manidweepa,
+  shirdi: consecratedSpaceTempleImages.shirdi,
   boss: "/ssrrt/Boss.jpg",
   event1: "/ssrrt/IMG-20250923-WA0025.jpg",
-  event2: "/ssrrt/IMG-20260206-WA0000.jpg",
-  goshalaLocal: "/ssrrt/goshala-bg.png",
+  event2: `${seva}/sevas19.JPG`,
+  goshalaLocal: `${goshala}/Goshalaaa1.JPG`,
 };

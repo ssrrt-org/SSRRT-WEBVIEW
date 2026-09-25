@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
-import { ArrowUpRight, ChevronLeft } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import TempleExploreStrip from "@/components/ashram/TempleExploreStrip";
 import { Eyebrow } from "@/components/shared/PageSections";
 import { usePageImages } from "@/context/CmsContext";
 import { templeCards } from "@/constants/templeData";
@@ -12,12 +13,10 @@ export default function TemplePage() {
   const index = templeCards.findIndex((t) => t.id === templeId);
   const temple = templeCards[index];
   const img = usePageImages(temple?.path || `/ashram/${templeId}`);
-  const ashramImg = usePageImages("/ashram");
-
   if (!temple) return <NotFoundPage />;
 
   const heroBg = cssBackgroundImage(img("hero-bg", IMG.manidweepa));
-  const heroFigure = img("hero-figure", temple.img);
+  const heroFigure = temple.img;
   const sevaFigure = img("seva-figure", temple.gallery[1] || temple.img);
   const beginningsFigure = img("beginnings-figure", temple.gallery[2] || IMG.child);
 
@@ -143,37 +142,18 @@ export default function TemplePage() {
         </div>
       </section>
 
-      <section className="temple-explore tint">
+      <section className="temple-section-v2 temple-explore-section">
         <div className="wrap">
           <Eyebrow>Explore other temples</Eyebrow>
-          <h2 className="section-h">Eight sannidhis on the Cauvery.</h2>
-          <div className="temple-explore-grid">
-            {templeCards.map((t) => (
-              <Link
-                key={t.id}
-                to={t.path}
-                className={`temple-explore-item${t.id === temple.id ? " is-active" : ""}`}
-                data-testid={`temple-explore-${t.id}`}
-                aria-current={t.id === temple.id ? "page" : undefined}
-              >
-                <figure className="temple-explore-thumb">
-                  <img src={ashramImg(`temple-card-${t.id}`, t.img)} alt={t.name} loading="lazy" />
-                </figure>
-                <span className="temple-explore-name">{t.name}</span>
-              </Link>
-            ))}
-          </div>
+          <h2 className="section-h mother-line-heading-sm">Eight sannidhis on the Cauvery.</h2>
+          <TempleExploreStrip
+            temples={templeCards}
+            currentId={temple.id}
+            resolveImage={(t) => t.img}
+          />
         </div>
       </section>
 
-      <section className="temple-footer-band">
-        <div className="wrap temple-footer-band-inner">
-          <Link className="temple-back-link" to="/ashram" data-testid="temple-back-ashram">
-            <ChevronLeft size={16} /> Back to Ashram &amp; Temples
-          </Link>
-          <blockquote className="temple-footer-quote">{temple.quote}</blockquote>
-        </div>
-      </section>
     </div>
   );
 }

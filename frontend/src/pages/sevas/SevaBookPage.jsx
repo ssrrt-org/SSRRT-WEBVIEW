@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowRight, Check, Lock } from "lucide-react";
+import SevaScrollingHero from "@/components/seva/SevaScrollingHero";
 import { Eyebrow } from "@/components/shared/PageSections";
 import { ashramRituals } from "@/constants/sevasRituals";
 import { submitSevaBooking } from "@/lib/sevaBooking";
@@ -114,14 +115,16 @@ export default function SevaBookPage() {
   };
 
   return (
-    <>
-      <section className="mother-subhead">
-        <div className="wrap">
-          <Eyebrow gold>Book the Seva</Eyebrow>
-          <h1>{ritual.title}</h1>
-          <p className="mother-subhead-intro">{ritual.intro}</p>
+    <div className="mother-page sevas-book-page">
+      <header className="mother-page-head">
+        <div className="wrap mother-page-head-inner">
+          <Eyebrow>Book the Seva</Eyebrow>
+          <h1 className="mother-page-title">{ritual.title}</h1>
+          <p className="mother-page-lede">{ritual.intro}</p>
         </div>
-      </section>
+      </header>
+
+      <SevaScrollingHero />
 
       <section className="donate-page seva-book-page">
         <div className="wrap donate-page-inner">
@@ -216,6 +219,6 @@ export default function SevaBookPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

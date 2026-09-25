@@ -11,12 +11,15 @@ export default function HubProgrammesSection({
   testIdPrefix = "hub",
   tint = false,
   compact = false,
+  hideHeader = false,
 }) {
+  const showHeader = !hideHeader && (eyebrow || title);
+
   return (
-    <section className={`hub-programmes${tint ? " tint" : ""}${compact ? " hub-programmes-compact" : ""}`}>
+    <section className={`hub-programmes${tint ? " tint" : ""}${compact ? " hub-programmes-compact" : ""}${hideHeader ? " hub-programmes-headless" : ""}`}>
       <div className="wrap">
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <h2 className="section-h">{title}</h2>
+        {showHeader && eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
+        {showHeader && title ? <h2 className="section-h">{title}</h2> : null}
         {lede && <p className="hub-programmes-lede">{lede}</p>}
         <div className="hub-programme-grid">
           {programmes.map((program) => (

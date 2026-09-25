@@ -1,3 +1,6 @@
+import { consecratedSpaceTempleImages } from "@/constants/consecratedSpaceHeroImages";
+import { motherHeroImages } from "@/constants/motherHeroImages";
+import { motherForNeedyProgrammeImages } from "@/constants/motherForNeedyImages";
 import { goshalaCows } from "@/constants/cowGallery";
 import { heroImageForPath } from "@/constants/heroImages";
 import { IMG } from "@/constants/images";
@@ -20,27 +23,27 @@ function page(path, label, slots = []) {
 const aboutPillars = [
   ["goshala", "Project Kaamadhenau", IMG.goshalaLocal],
   ["ashram", "The Ashram", IMG.templeSouth],
-  ["mother-needy", "Mother for the Needy", IMG.medical],
+  ["mother-needy", "Mother for the Needy", motherForNeedyProgrammeImages.medical],
   ["rural", "Rural upliftment", IMG.village],
   ["sevas", "Ashram sevas", IMG.ganesha],
   ["volunteer", "Volunteering", IMG.serve],
 ];
 
 const motherHubCards = [
-  ["story", "Her Story", IMG.ammaGanesha],
-  ["avatar", "Avataarhood", IMG.manidweepa],
-  ["testimonies", "Testimonies", IMG.event1],
-  ["naadi", "Naadi readings", IMG.boss],
-  ["avataarhood", "The Avataarhood", IMG.manidweepa],
-  ["swami", "Swami & Amma", IMG.shirdi],
-  ["realized", "Realized beings", IMG.boss],
+  ["story", "Her Story", motherHeroImages[0]],
+  ["avatar", "Avataarhood", motherHeroImages[1]],
+  ["testimonies", "Testimonies", motherHeroImages[2]],
+  ["naadi", "Naadi readings", motherHeroImages[3]],
+  ["avataarhood", "The Avataarhood", motherHeroImages[4]],
+  ["swami", "Swami & Amma", consecratedSpaceTempleImages.shirdi],
+  ["realized", "Realized beings", motherHeroImages[5]],
 ];
 
 const needyHubCards = [
-  ["medical", "Medical centre", IMG.medical],
-  ["village", "Village camps", IMG.village],
-  ["food", "Food seva", IMG.serve],
-  ["kitchen", "Narayana kitchen", IMG.kitchen],
+  ["medical", "Medical centre", motherForNeedyProgrammeImages.medical],
+  ["village", "Village camps", motherForNeedyProgrammeImages["medical-village"]],
+  ["food", "Food seva", motherForNeedyProgrammeImages.food],
+  ["kitchen", "Narayana kitchen", motherForNeedyProgrammeImages.narayana],
 ];
 
 const ruralHubCards = [
@@ -51,10 +54,13 @@ const ruralHubCards = [
 ];
 
 const sevasHubCards = [
-  ["nandi-abhisheka", "Nandi Abhisheka", IMG.manidweepa],
-  ["butter-ganesha", "Butter Ganesha", IMG.ganesha],
-  ["butter-subramanya", "Butter Subramanya", IMG.templeSouth],
-  ["ashram", "Ashram card", IMG.templeSouth],
+  ["nandi-abhisheka", "Nandi Abhisheka", consecratedSpaceTempleImages["harake-nandi"]],
+  ["ghee-butter-abhisheka", "Ghee / Butter Abhisheka", consecratedSpaceTempleImages.ganesha],
+  ["alankar", "Alankar", consecratedSpaceTempleImages.subramanya],
+  ["ganesh-abhisheka", "Ganesh Abhisheka", consecratedSpaceTempleImages.ganesha],
+  ["bhavatarini-seva", "Bhavatarini Seva", consecratedSpaceTempleImages.manidweepa],
+  ["subramanya-seva", "Subramanya Seva", consecratedSpaceTempleImages.subramanya],
+  ["ashram", "Ashram card", "/Concentratedspace/Concentratedspace7.JPG"],
 ];
 
 function hubSlots(prefix, items) {
@@ -137,7 +143,7 @@ export const PAGE_IMAGE_GROUPS = [
     label: "Seva",
     pages: [
       page("/mother-for-needy", "Mother for Needy", [
-        slot("split-outreach", "Split · Outreach", IMG.medical),
+        slot("split-outreach", "Split · Outreach", motherForNeedyProgrammeImages.medical),
         ...hubSlots("hub", needyHubCards),
       ]),
       page("/rural-upliftment", "Rural Upliftment", [
@@ -159,12 +165,18 @@ export const PAGE_IMAGE_GROUPS = [
       page("/ashram", "Ashram hub", [
         slot("split-campus", "Split · Campus", IMG.manidweepa),
         ...templeCards.map((t) => slot(`temple-card-${t.id}`, `Temple card · ${t.name}`, t.img)),
-        slot("sacred-bhairava", "Sacred space · Bhairava", IMG.shiva),
-        slot("sacred-harake-nandi", "Sacred space · Harake Nandi", IMG.manidweepa),
+        slot("sacred-bhairava", "Sacred space · Bhairava", consecratedSpaceTempleImages.bhairava),
+        slot("sacred-harake-nandi", "Sacred space · Harake Nandi", consecratedSpaceTempleImages["harake-nandi"]),
       ]),
       ...templePageSlots,
-      page("/ashram/bhairava", "Kaala Bhairava", [slot("inline-figure", "Main photo", IMG.shiva)]),
-      page("/ashram/harake-nandi", "Harake Nandi", [slot("inline-figure", "Main photo", IMG.shiva)]),
+      page("/ashram/bhairava", "Kaala Bhairava", [
+        slot("hero-bg", "Hero background", IMG.manidweepa),
+        slot("hero-figure", "Hero photo (right)", consecratedSpaceTempleImages.bhairava),
+      ]),
+      page("/ashram/harake-nandi", "Harake Nandi", [
+        slot("hero-bg", "Hero background", IMG.manidweepa),
+        slot("hero-figure", "Hero photo (right)", consecratedSpaceTempleImages["harake-nandi"]),
+      ]),
     ],
   },
   {
@@ -180,7 +192,7 @@ export const PAGE_IMAGE_GROUPS = [
       page("/donate", "Donate"),
       page("/contact", "Contact"),
       page("/sevas", "Ashram sevas hub", [
-        slot("split-worship", "Split · Worship", IMG.manidweepa),
+        slot("split-worship", "Split · Worship", "/Concentratedspace/Concentratedspace8.JPG"),
         ...hubSlots("hub", sevasHubCards),
       ]),
       page("/volunteering", "Volunteering", [

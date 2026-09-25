@@ -108,7 +108,6 @@ export const navItems = [
       { label: "Subramanya Seva", path: "/sevas/subramanya-seva" },
     ],
   },
-  { label: "Volunteer", path: "/volunteering", volunteer: true },
   {
     label: "SSRRT",
     path: "/about",
@@ -118,6 +117,7 @@ export const navItems = [
     ],
   },
   { label: "Shoppe", path: "/shop" },
+  { label: "Volunteer", path: "/volunteering", volunteer: true },
   { label: SUPPORT_CAUSE_LABEL, path: "/donate", donate: true },
 ];
 

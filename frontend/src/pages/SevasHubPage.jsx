@@ -5,16 +5,16 @@ import { Eyebrow, Quote, Split } from "@/components/shared/PageSections";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
 import { usePageImages } from "@/context/CmsContext";
 import { SUPPORT_CAUSE_LABEL } from "@/constants/supportLabels";
+import { consecratedSpaceTempleImages } from "@/constants/consecratedSpaceHeroImages";
 import { ashramRituals } from "@/constants/sevasRituals";
-import { IMG } from "@/constants/images";
 
 const ritualImages = {
-  "nandi-abhisheka": IMG.manidweepa,
-  "ghee-butter-abhisheka": IMG.ganesha,
-  alankar: IMG.templeSouth,
-  "ganesh-abhisheka": IMG.ganesha,
-  "bhavatarini-seva": IMG.amma,
-  "subramanya-seva": IMG.templeSouth,
+  "nandi-abhisheka": consecratedSpaceTempleImages["harake-nandi"],
+  "ghee-butter-abhisheka": consecratedSpaceTempleImages.ganesha,
+  alankar: consecratedSpaceTempleImages.subramanya,
+  "ganesh-abhisheka": consecratedSpaceTempleImages.ganesha,
+  "bhavatarini-seva": consecratedSpaceTempleImages.manidweepa,
+  "subramanya-seva": consecratedSpaceTempleImages.subramanya,
 };
 
 const programmes = [
@@ -24,7 +24,7 @@ const programmes = [
     title: r.title,
     tag: r.eyebrow,
     note: r.intro || r.paragraphs?.[0],
-    image: ritualImages[r.id] || IMG.manidweepa,
+    image: ritualImages[r.id] || consecratedSpaceTempleImages.manidweepa,
     testid: `sevas-link-${r.id}`,
   })),
   {
@@ -33,7 +33,7 @@ const programmes = [
     title: "The Ashram & sannidhis",
     tag: "Eight sacred spaces",
     note: "Eight temple sannidhis where Amma has worshipped for decades — Shiva, Ganesha, Subramanya, and more on the banks of the Cauvery.",
-    image: IMG.templeSouth,
+    image: "/Concentratedspace/Concentratedspace7.JPG",
     testid: "sevas-link-ashram",
   },
 ];
@@ -46,59 +46,57 @@ export default function SevasHubPage() {
   }));
 
   return (
-    <>
-      <SevaScrollingHero />
-
-      <section className="mother-subhead">
-        <div className="wrap">
-          <Eyebrow gold>Ashram sevas</Eyebrow>
-          <h1>Nandi Abhisheka and seasonal alankaras.</h1>
-          <p className="mother-subhead-intro">
+    <div className="mother-page sevas-hub-page">
+      <header className="mother-page-head">
+        <div className="wrap mother-page-head-inner">
+          <Eyebrow>Ashram sevas</Eyebrow>
+          <h1 className="mother-page-title">Nandi Abhisheka and seasonal alankaras.</h1>
+          <p className="mother-page-lede">
             Living worship at the Ashram — traditional abhishekas and butter alankaras held with devotion in the
-            eight sannidhis Amma has tended for decades.
+            sannidhis Amma has tended for decades.
           </p>
         </div>
-      </section>
+      </header>
+
+      <SevaScrollingHero />
 
       <Split
         eyebrow="Worship at Karekura"
         title="Rituals that carry wishes to the Divine."
-        image={img("split-worship", IMG.manidweepa)}
+        image={img("split-worship", "/Concentratedspace/Concentratedspace8.JPG")}
         imgAlt="Ashram worship at SSRRT"
         reverse
       >
         <p>
-          At the grand Shiva mantapa, devotees whisper heartfelt prayers into Nandi's ear — trusting that he
+          At the grand Shiva mantapa, devotees whisper heartfelt prayers into Nandi&apos;s ear — trusting that he
           carries them directly to Lord Shiva. At the Ganesha and Subramanya sannidhis, families gather for
           seasonal butter alankaras that honour abundance, courage, and new beginnings.
         </p>
         <p>
-          These sevas are not performances for an audience. They are the Ashram's daily rhythm of worship —
-          open to devotees who wish to participate, offer, and pray alongside Amma's living tradition.
+          These sevas are not performances for an audience. They are the Ashram&apos;s daily rhythm of worship —
+          open to devotees who wish to participate, offer, and pray alongside Amma&apos;s living tradition.
         </p>
       </Split>
 
       <HubProgrammesSection
-        eyebrow="Rituals & spaces"
-        title="Participate in Ashram worship."
-        lede="Each seva has a detail page with a Book the Seva flow — images will be updated as assets arrive from the Trust."
+        hideHeader
+        lede="Each seva has its own page — read about the ritual and book your participation when you are ready."
         programmes={cards}
         testIdPrefix="sevas"
+        tint
       />
 
       <section className="hub-feature tint">
         <div className="wrap hub-feature-grid">
           <div>
             <Eyebrow gold>Nandi Abhisheka</Eyebrow>
-            <h2>
-              Whisper your prayer
-              <br />
-              <em>into Nandi's ear.</em>
+            <h2 className="mother-line-heading">
+              Whisper your prayer <em>into Nandi&apos;s ear.</em>
             </h2>
             <p>
               Nandi, the sacred bull and devoted vehicle of Lord Shiva, receives a traditional abhisheka at the
               grand mantapa. Devotees offer milk, water, and prayers — a seva held with reverence as part of the
-              Ashram's living worship.
+              Ashram&apos;s living worship.
             </p>
             <Link className="btn-solid" to="/sevas/nandi-abhisheka/book" data-testid="sevas-nandi-book">
               Book Nandi Abhisheka <ArrowUpRight size={16} />
@@ -120,10 +118,10 @@ export default function SevasHubPage() {
         <div className="wrap hub-visit-inner">
           <div>
             <Eyebrow gold>Beyond ritual seva</Eyebrow>
-            <h2>Community programmes at the Trust.</h2>
+            <h2 className="mother-line-heading mother-line-heading-sm">Community programmes at the Trust.</h2>
             <p>
               Worship at the Ashram sits alongside gau seva, medical camps, rural upliftment, and Narayana Seva —
-              the full scope of SSRRT's work in Karekura and surrounding villages.
+              the full scope of SSRRT&apos;s work in Karekura and surrounding villages.
             </p>
           </div>
           <div className="hub-visit-actions">
@@ -140,6 +138,6 @@ export default function SevasHubPage() {
       <Quote author="Amma">
         Worship is not separate from service — every act of seva at the Ashram is an offering to the Divine.
       </Quote>
-    </>
+    </div>
   );
 }

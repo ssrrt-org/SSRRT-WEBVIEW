@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
+import SevaScrollingHero from "@/components/seva/SevaScrollingHero";
 import ProseSection from "@/components/shared/ProseSection";
 import { Eyebrow } from "@/components/shared/PageSections";
 import { ashramRituals } from "@/constants/sevasRituals";
@@ -16,19 +17,21 @@ export default function AshramRitualPage() {
   const bookPath = ritual.bookPath || `/sevas/${ritual.id}/book`;
 
   return (
-    <>
-      <section className="seva-detail-head">
-        <div className="wrap seva-detail-head-inner">
-          <Eyebrow gold>{ritual.eyebrow}</Eyebrow>
+    <div className="mother-page sevas-detail-page">
+      <header className="mother-page-head">
+        <div className="wrap mother-page-head-inner">
+          <Eyebrow>{ritual.eyebrow}</Eyebrow>
           <div className="seva-detail-title-row">
-            <h1>{ritual.title}</h1>
+            <h1 className="mother-page-title">{ritual.title}</h1>
             <Link className="btn-solid seva-book-cta" to={bookPath} data-testid="ritual-book-seva">
               Book the Seva <ArrowUpRight size={16} />
             </Link>
           </div>
-          <p className="mother-subhead-intro">{ritual.intro}</p>
+          <p className="mother-page-lede">{ritual.intro}</p>
         </div>
-      </section>
+      </header>
+
+      <SevaScrollingHero />
 
       <ProseSection
         eyebrow="About this seva"
@@ -46,6 +49,6 @@ export default function AshramRitualPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

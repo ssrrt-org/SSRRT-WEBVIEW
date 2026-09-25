@@ -55,7 +55,7 @@ export const homeProgrammeTiles = [
     title: "Goshala",
     tag: "Gau seva",
     note: docExcerpt("goshala_adopt", { skip: 1, maxLen: 100 }),
-    image: IMG.cow1,
+    image: "/Goshala/Goshalaaa1.JPG",
   },
   {
     id: "medical",
@@ -63,7 +63,7 @@ export const homeProgrammeTiles = [
     title: "Medical Service",
     tag: "Free care",
     note: docExcerpt("medical", { skip: 1, maxLen: 100 }),
-    image: IMG.medical,
+    image: "/medical service/medical1.JPG",
   },
   {
     id: "narayana",
