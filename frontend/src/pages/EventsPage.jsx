@@ -19,7 +19,7 @@ export default function EventsPage() {
             <article key={ev.id || ev.title} data-testid={`event-${ev.title.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}`}>
               {ev.image ? (
                 <div className="event-image">
-                  <img src={ev.image} alt="" loading="lazy" />
+                  <img src={ev.image} alt={ev.title} loading="lazy" />
                 </div>
               ) : null}
               <h3>{ev.title}</h3>
