@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import SevaScrollingHero from "@/components/seva/SevaScrollingHero";
+import MotherForNeedyScrollingHero from "@/components/mother/MotherForNeedyScrollingHero";
+import ProseSection from "@/components/shared/ProseSection";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
 import { Eyebrow } from "@/components/shared/PageSections";
 import { SUPPORT_CAUSE_LABEL } from "@/constants/supportLabels";
+import { docPageImages } from "@/constants/docPageImages";
 import { usePageImages } from "@/context/CmsContext";
-import { IMG } from "@/constants/images";
+import { motherForNeedyProgrammeImages } from "@/constants/motherForNeedyImages";
 import { docExcerpt, proseParas } from "@/lib/docContent";
 
 const programmes = [
@@ -15,7 +17,7 @@ const programmes = [
     title: docExcerpt("medical", { maxLen: 60 }),
     tag: "Medical care",
     note: docExcerpt("medical", { skip: 1 }),
-    image: IMG.medical,
+    image: motherForNeedyProgrammeImages.medical,
   },
   {
     id: "medical-village",
@@ -23,7 +25,7 @@ const programmes = [
     title: "Medical Support in the Village",
     tag: "Village care",
     note: "Medical support that reaches families in surrounding villages.",
-    image: IMG.medical,
+    image: motherForNeedyProgrammeImages["medical-village"],
   },
   {
     id: "food",
@@ -31,7 +33,7 @@ const programmes = [
     title: docExcerpt("food", { maxLen: 60 }),
     tag: "Food seva",
     note: docExcerpt("food", { skip: 1 }),
-    image: IMG.serve,
+    image: motherForNeedyProgrammeImages.food,
   },
   {
     id: "narayana",
@@ -39,7 +41,21 @@ const programmes = [
     title: "Narayana Seva",
     tag: "Annual programme",
     note: docExcerpt("food", { skip: 1 }),
-    image: IMG.kitchen,
+    image: motherForNeedyProgrammeImages.narayana,
+  },
+];
+
+const storySections = [
+  {
+    eyebrow: "Medical camps",
+    title: "Free care across villages",
+    paragraphs: proseParas("medical", { skip: 1, max: 2 }),
+  },
+  {
+    eyebrow: "Food seva",
+    title: "Narayana Seva and daily nourishment",
+    paragraphs: proseParas("food", { skip: 1, max: 2 }),
+    tint: true,
   },
 ];
 
@@ -51,26 +67,36 @@ export default function MotherForNeedyHubPage() {
   }));
 
   return (
-    <>
-      <SevaScrollingHero />
-
-      <section className="mother-subhead">
-        <div className="wrap">
-          <Eyebrow gold>Mother for the Needy</Eyebrow>
-          <h1>Care, food, and dignity across communities.</h1>
-          <p className="mother-subhead-intro">
-            Explore the Trust's work in medical care, food seva, village support, education, and service beyond
-            Karekura. Each programme has its own page with further details.
+    <div className="mother-page needy-hub-page">
+      <header className="mother-page-head">
+        <div className="wrap mother-page-head-inner">
+          <Eyebrow>Mother for the Needy</Eyebrow>
+          <h1 className="mother-page-title">Care, food, and dignity across communities.</h1>
+          <p className="mother-page-lede">
+            Medical care, food seva, and village support through the Trust&apos;s Goshala, dispensary, and community programmes.
           </p>
         </div>
-      </section>
+      </header>
+
+      <MotherForNeedyScrollingHero />
+
+      {storySections.map((section, index) => (
+        <ProseSection
+          key={section.title}
+          eyebrow={section.eyebrow}
+          title={section.title}
+          paragraphs={section.paragraphs}
+          images={docPageImages.mother_needy?.slice(index * 2, index * 2 + 2)}
+          tint={section.tint}
+        />
+      ))}
 
       <HubProgrammesSection
-        eyebrow="Programmes"
-        title="Ways the Trust serves"
-        lede="Choose a programme to read its story, see how the work reaches communities, and find ways to support it."
+        hideHeader
+        lede="Open each programme for full details — medical camps, village support, food seva, and Narayan Seva."
         programmes={cards}
         testIdPrefix="mother-needy"
+        tint
       />
 
       <section className="home-visit">
@@ -86,6 +112,6 @@ export default function MotherForNeedyHubPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

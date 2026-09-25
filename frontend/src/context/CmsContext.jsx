@@ -7,7 +7,7 @@ import { isUsableImageUrl } from "@/lib/utils";
 const CmsContext = createContext(null);
 
 export function CmsProvider({ children }) {
-  const [data, setData] = useState(() => structuredClone(adminSeed));
+  const [data, setData] = useState(() => mergeCmsData({}));
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

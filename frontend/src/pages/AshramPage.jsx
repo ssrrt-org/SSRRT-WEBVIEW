@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import ConsecratedSpaceScrollingHero from "@/components/ashram/ConsecratedSpaceScrollingHero";
 import ProseSection from "@/components/shared/ProseSection";
 import ExploreGrid from "@/components/shared/ExploreGrid";
 import HashRedirect from "@/components/shared/HashRedirect";
-import { SlimHead } from "@/components/shared/PageSections";
+import { Eyebrow } from "@/components/shared/PageSections";
 import { ashramHubParagraphs } from "@/constants/ashramContent";
 import { ashramRituals } from "@/constants/sevasRituals";
 import { templeCards } from "@/constants/templeData";
 import { docExcerpt, docTitle } from "@/lib/docContent";
 import { docPageImages } from "@/constants/docPageImages";
 import { usePageImages } from "@/context/CmsContext";
-import { IMG } from "@/constants/images";
+import { consecratedSpaceTempleImages } from "@/constants/consecratedSpaceHeroImages";
 
 const templeIds = templeCards.map((t) => t.id);
 
@@ -20,14 +21,14 @@ const sacredSpaces = [
     path: "/ashram/bhairava",
     name: docTitle("bhairava"),
     note: docExcerpt("bhairava", { skip: 1 }),
-    img: IMG.shiva,
+    img: consecratedSpaceTempleImages.bhairava,
   },
   {
     id: "harake-nandi",
     path: "/ashram/harake-nandi",
     name: docTitle("harake_nandi"),
     note: docExcerpt("harake_nandi", { skip: 1 }),
-    img: IMG.manidweepa,
+    img: consecratedSpaceTempleImages["harake-nandi"],
   },
 ];
 
@@ -42,19 +43,30 @@ export default function AshramPage() {
     img: img(`sacred-${space.id}`, space.img),
   }));
 
+  const ashramTitle = docTitle("sacred_ashram", { minLen: 20 });
+  const ashramEyebrow = docTitle("sacred_ashram", { minLen: 10 });
+  const ashramLede = docExcerpt("sacred_ashram", { skip: 4, maxLen: 220 });
+
   return (
-    <>
+    <div className="mother-page consecrated-hub-page">
       <HashRedirect basePath="/ashram" ids={templeIds} />
 
-      <SlimHead
-        eyebrow={docTitle("sacred_ashram", { minLen: 10 })}
-        title={docTitle("sacred_ashram", { minLen: 20 })}
-      />
+      <header className="mother-page-head">
+        <div className="wrap mother-page-head-inner">
+          <Eyebrow>{ashramEyebrow || "Consecrated space"}</Eyebrow>
+          <h1 className="mother-page-title">{ashramTitle || "Ashram & temples at Karekura"}</h1>
+          <p className="mother-page-lede">{ashramLede}</p>
+        </div>
+      </header>
+
+      <ConsecratedSpaceScrollingHero />
 
       <ProseSection paragraphs={ashramHubParagraphs} images={docPageImages.sacred_ashram} />
 
       <section className="temple-section-v2 tint">
         <div className="wrap">
+          <Eyebrow>Temples & sannidhis</Eyebrow>
+          <h2 className="section-h mother-line-heading-sm">Eight sacred spaces on the Cauvery.</h2>
           <div className="temple-grid-v2">
             {temples.map((t) => (
               <Link key={t.id} to={t.path} className="temple-card-link" data-testid={`ashram-link-${t.id}`}>
@@ -75,6 +87,8 @@ export default function AshramPage() {
 
       <section className="sevas-band">
         <div className="wrap">
+          <Eyebrow>Other sacred spaces</Eyebrow>
+          <h2 className="section-h mother-line-heading-sm">Trishula, Nandi, and Ashram sevas.</h2>
           <div className="sevas-grid">
             {sacred.map((space) => (
               <Link key={space.id} to={space.path} className="seva-card-link" data-testid={`ashram-sacred-${space.id}`}>
@@ -109,6 +123,6 @@ export default function AshramPage() {
           { to: "/volunteering", title: "Volunteer", note: docExcerpt("goshala_volunteer", { skip: 1 }) },
         ]}
       />
-    </>
+    </div>
   );
 }

@@ -17,6 +17,7 @@ function normalizeSlides(slides) {
 export default function TripleImageCarousel({
   slides: rawSlides,
   autoPlayMs = 0,
+  equalPanels = false,
   className = "",
   testIdPrefix = "carousel",
 }) {
@@ -43,7 +44,10 @@ export default function TripleImageCarousel({
   const right = slides[(idx + 1) % n];
 
   return (
-    <div className={`hero-carousel${className ? ` ${className}` : ""}`} data-testid={`${testIdPrefix}-carousel`}>
+    <div
+      className={`hero-carousel${equalPanels ? " hero-carousel-equal" : ""}${className ? ` ${className}` : ""}`}
+      data-testid={`${testIdPrefix}-carousel`}
+    >
       <button
         type="button"
         className="carousel-arrow left"
@@ -58,7 +62,7 @@ export default function TripleImageCarousel({
         return (
           <figure
             key={`${idx}-${i}-${s.img}`}
-            className={`carousel-panel${i === 1 ? " main" : ""}`}
+            className={`carousel-panel${!equalPanels && i === 1 ? " main" : ""}`}
             data-testid={`${testIdPrefix}-panel-${i}`}
           >
             <img

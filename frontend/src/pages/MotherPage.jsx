@@ -77,15 +77,21 @@ export default function MotherPage() {
   }));
 
   return (
-    <>
+    <div className="mother-page">
       <HashRedirect basePath="/mother" ids={motherIds} />
 
-      <MotherScrollingHero caption="A human life, lived with divine purpose." />
+      <header className="mother-page-head">
+        <div className="wrap mother-page-head-inner">
+          <Eyebrow>Discover Amma</Eyebrow>
+          <h1 className="mother-page-title">A life where devotion became service.</h1>
+        </div>
+      </header>
+
+      <MotherScrollingHero />
 
       <HubProgrammesSection
-        eyebrow="Read further"
-        title="Glimpses into Amma's life."
-        lede="Her avataric truth, testimonies of courage, Naadi readings, the declaration of Avatarhood, and her relationship with realized beings."
+        hideHeader
+        lede="Enter the story of Amma through her avataric truth, sacred readings, acts of courage, and the relationships that shaped her path."
         programmes={programmeCards}
         testIdPrefix="mother"
         tint
@@ -95,13 +101,11 @@ export default function MotherPage() {
         <div className="wrap hub-feature-grid">
           <div>
             <Eyebrow gold>Testimonies · Undivided presence</Eyebrow>
-            <h2>
-              Service before sorrow.
-              <br />
-              <em>Grace before grief.</em>
+            <h2 className="mother-line-heading">
+              Service before sorrow. <em>Grace before grief.</em>
             </h2>
             <p>
-              When the father of her earthly body passed on at noon, thousands were already seated at Amma's home
+              When the father of her earthly body passed on at noon, thousands were already seated at Amma&apos;s home
               for the annual Narayana Seva. She suppressed her sorrow and continued serving as if nothing had
               happened. Only in the evening — after every last soul had been fed — was the loss announced.
             </p>
@@ -125,10 +129,10 @@ export default function MotherPage() {
         <div className="wrap hub-visit-inner">
           <div>
             <Eyebrow gold>Visit & connect</Eyebrow>
-            <h2>Experience Amma's work at the Ashram.</h2>
+            <h2 className="mother-line-heading mother-line-heading-sm">Experience Amma&apos;s work at the Ashram.</h2>
             <p>
-              Darshan, seva, and the living programmes of the Trust — Goshala, medical camps, and Narayana Seva
-              — all flow from the same spirit of motherhood that shapes Amma's daily life.
+              Darshan, seva, and the living programmes of the Trust — Goshala, medical camps, and Narayana Seva —
+              all flow from the same spirit of motherhood that shapes Amma&apos;s daily life.
             </p>
           </div>
           <div className="hub-visit-actions">
@@ -143,6 +147,6 @@ export default function MotherPage() {
       </section>
 
       <Quote author="Amma">One need not be divine to be a good, perfect human being.</Quote>
-    </>
+    </div>
   );
 }

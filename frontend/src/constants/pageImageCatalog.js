@@ -1,3 +1,4 @@
+import { consecratedSpaceTempleImages } from "@/constants/consecratedSpaceHeroImages";
 import { goshalaCows } from "@/constants/cowGallery";
 import { heroImageForPath } from "@/constants/heroImages";
 import { IMG } from "@/constants/images";
@@ -52,8 +53,11 @@ const ruralHubCards = [
 
 const sevasHubCards = [
   ["nandi-abhisheka", "Nandi Abhisheka", IMG.manidweepa],
-  ["butter-ganesha", "Butter Ganesha", IMG.ganesha],
-  ["butter-subramanya", "Butter Subramanya", IMG.templeSouth],
+  ["ghee-butter-abhisheka", "Ghee / Butter Abhisheka", IMG.ganesha],
+  ["alankar", "Alankar", IMG.templeSouth],
+  ["ganesh-abhisheka", "Ganesh Abhisheka", IMG.ganesha],
+  ["bhavatarini-seva", "Bhavatarini Seva", IMG.amma],
+  ["subramanya-seva", "Subramanya Seva", IMG.templeSouth],
   ["ashram", "Ashram card", IMG.templeSouth],
 ];
 
@@ -159,12 +163,18 @@ export const PAGE_IMAGE_GROUPS = [
       page("/ashram", "Ashram hub", [
         slot("split-campus", "Split · Campus", IMG.manidweepa),
         ...templeCards.map((t) => slot(`temple-card-${t.id}`, `Temple card · ${t.name}`, t.img)),
-        slot("sacred-bhairava", "Sacred space · Bhairava", IMG.shiva),
-        slot("sacred-harake-nandi", "Sacred space · Harake Nandi", IMG.manidweepa),
+        slot("sacred-bhairava", "Sacred space · Bhairava", consecratedSpaceTempleImages.bhairava),
+        slot("sacred-harake-nandi", "Sacred space · Harake Nandi", consecratedSpaceTempleImages["harake-nandi"]),
       ]),
       ...templePageSlots,
-      page("/ashram/bhairava", "Kaala Bhairava", [slot("inline-figure", "Main photo", IMG.shiva)]),
-      page("/ashram/harake-nandi", "Harake Nandi", [slot("inline-figure", "Main photo", IMG.shiva)]),
+      page("/ashram/bhairava", "Kaala Bhairava", [
+        slot("hero-bg", "Hero background", IMG.manidweepa),
+        slot("hero-figure", "Hero photo (right)", consecratedSpaceTempleImages.bhairava),
+      ]),
+      page("/ashram/harake-nandi", "Harake Nandi", [
+        slot("hero-bg", "Hero background", IMG.manidweepa),
+        slot("hero-figure", "Hero photo (right)", consecratedSpaceTempleImages["harake-nandi"]),
+      ]),
     ],
   },
   {

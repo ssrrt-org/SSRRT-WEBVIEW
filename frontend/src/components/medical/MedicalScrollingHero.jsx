@@ -1,15 +1,15 @@
 import TripleImageCarousel from "@/components/shared/TripleImageCarousel";
-import { motherHeroImages } from "@/constants/motherHeroImages";
+import { medicalHeroImages } from "@/constants/medicalHeroImages";
 
-export default function MotherScrollingHero({ images = motherHeroImages }) {
+export default function MedicalScrollingHero({ images = medicalHeroImages }) {
   return (
-    <section className="page-banner-carousel" aria-label="Glimpses of Amma">
+    <section className="page-banner-carousel" aria-label="Medical seva">
       <TripleImageCarousel
         slides={images.map((img) => ({ img }))}
         autoPlayMs={2000}
         equalPanels
         className="page-hero-carousel"
-        testIdPrefix="mother-hero"
+        testIdPrefix="medical-hero"
       />
     </section>
   );
