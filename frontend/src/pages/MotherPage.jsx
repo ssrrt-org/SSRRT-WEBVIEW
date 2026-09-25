@@ -5,15 +5,17 @@ import { Eyebrow, Quote } from "@/components/shared/PageSections";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
 import HashRedirect from "@/components/shared/HashRedirect";
 import { usePageImages } from "@/context/CmsContext";
+import { motherHeroImages } from "@/constants/motherHeroImages";
 import { motherSections } from "@/constants/motherContent";
+import { consecratedSpaceTempleImages } from "@/constants/consecratedSpaceHeroImages";
 import { IMG } from "@/constants/images";
 
 const motherIds = motherSections.map((s) => s.id);
 
 const sectionImages = {
-  avatar: IMG.manidweepa,
-  testimonies: IMG.event1,
-  naadi: IMG.boss,
+  avatar: motherHeroImages[1],
+  testimonies: motherHeroImages[2],
+  naadi: motherHeroImages[3],
 };
 
 const extraMotherLinks = [
@@ -23,7 +25,7 @@ const extraMotherLinks = [
     title: "Declaration of Avatar",
     tag: "29 March 1997",
     note: "The formal proclamation of Avatarhood at Karekura.",
-    image: IMG.manidweepa,
+    image: motherHeroImages[4],
   },
   {
     id: "avataarhood",
@@ -31,7 +33,7 @@ const extraMotherLinks = [
     title: "The Avataarhood",
     tag: "Divine purpose",
     note: "Birth, Lalitha, and the celestial inscrutability of every avatar's life.",
-    image: IMG.manidweepa,
+    image: motherHeroImages[5],
   },
   {
     id: "swami",
@@ -39,7 +41,7 @@ const extraMotherLinks = [
     title: "Swami & Amma",
     tag: "At Baba's feet",
     note: "Her love and humility before Bhagawan Sri Sathya Sai Baba.",
-    image: IMG.shirdi,
+    image: consecratedSpaceTempleImages.shirdi,
   },
   {
     id: "realized",
@@ -47,7 +49,7 @@ const extraMotherLinks = [
     title: "Realized beings",
     tag: "Naadi & Shirdi Sai",
     note: "Recognition preserved with care — Agastya Nadi, Budha Nadi, and Shirdi Sai Baba.",
-    image: IMG.boss,
+    image: motherHeroImages[6],
   },
 ];
 

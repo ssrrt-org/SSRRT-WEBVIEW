@@ -16,7 +16,7 @@ import {
 } from "@/constants/homeContent";
 import { docTitle } from "@/lib/docContent";
 import { docPageImages } from "@/constants/docPageImages";
-import { IMG } from "@/constants/images";
+import { homeHeroSlides } from "@/constants/homeHeroImages";
 
 const motherExplore = motherSections.map((s) => {
   const text = s.paragraphs?.[0] || s.stories?.[0]?.text || s.title || "";
@@ -101,7 +101,7 @@ export default function HomePage() {
             </div>
           </div>
           <figure className="home-mother-figure home-trust-figure">
-            <img src={IMG.manidweepa} alt="Harake Nandi at Karekura Ashram" loading="lazy" />
+            <img src={homeHeroSlides[5].img} alt="SSRRT Ashram on the banks of the Cauvery" loading="lazy" />
           </figure>
         </div>
       </section>

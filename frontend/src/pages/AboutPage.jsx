@@ -11,7 +11,7 @@ import { IMG } from "@/constants/images";
 const pillars = [
   { id: "goshala", to: "/goshala", title: "Project Kaamadhenau", note: docExcerpt("goshala_adopt", { skip: 1 }), image: IMG.goshalaLocal },
   { id: "ashram", to: "/ashram", title: "The Ashram", note: docExcerpt("sacred_ashram", { skip: 4 }), image: "/Concentratedspace/Concentratedspace7.JPG" },
-  { id: "medical", to: "/seva/medical", title: "Medical seva", note: docExcerpt("medical", { skip: 1 }), image: IMG.medical },
+  { id: "medical", to: "/seva/medical", title: "Medical seva", note: docExcerpt("medical", { skip: 1 }), image: "/medical service/medical1.JPG" },
   { id: "food", to: "/seva/food", title: "Food for the needy", note: docExcerpt("food", { skip: 1 }), image: IMG.serve },
   { id: "volunteer", to: "/volunteering", title: "Volunteering", note: docExcerpt("goshala_volunteer", { skip: 1 }), image: IMG.serve },
   { id: "donate", to: "/donate", title: "Support the Cause", note: docExcerpt("goshala_support", { skip: 1 }), image: IMG.manidweepa },

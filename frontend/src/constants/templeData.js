@@ -10,7 +10,13 @@ const defaultHighlights = [
   { title: "Every cow protected", note: "Project Kaamadhenau — Gau seva as living worship." },
 ];
 
-const defaultGallery = (img) => [img, IMG.manidweepa, IMG.event1, IMG.river, IMG.templeGold];
+const defaultGallery = (img) => [
+  img,
+  consecratedSpaceTempleImages.manidweepa,
+  "/Concentratedspace/Concentratedspace13.jpg",
+  "/Concentratedspace/Concentratedspace12.JPG",
+  consecratedSpaceTempleImages.shiva,
+];
 
 const templeExtras = {
   ganesha: {

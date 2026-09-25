@@ -5,7 +5,7 @@ import ProseSection from "@/components/shared/ProseSection";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
 import { Eyebrow } from "@/components/shared/PageSections";
 import { usePageImages } from "@/context/CmsContext";
-import { IMG } from "@/constants/images";
+import { motherForNeedyProgrammeImages } from "@/constants/motherForNeedyImages";
 import { docExcerpt, docTitle, proseParas } from "@/lib/docContent";
 
 const programmes = [
@@ -15,7 +15,7 @@ const programmes = [
     title: docTitle("medical"),
     tag: "Medical centres",
     note: docExcerpt("medical", { skip: 2 }),
-    image: IMG.medical,
+    image: motherForNeedyProgrammeImages.medical,
   },
   {
     id: "medical-village",
@@ -23,7 +23,7 @@ const programmes = [
     title: "Medical support in the village",
     tag: "Village care",
     note: docExcerpt("medical", { skip: 2 }),
-    image: IMG.medical,
+    image: motherForNeedyProgrammeImages["medical-village"],
   },
   {
     id: "food",
@@ -31,7 +31,7 @@ const programmes = [
     title: docTitle("food"),
     tag: "Food distribution",
     note: docExcerpt("food", { skip: 2 }),
-    image: IMG.serve,
+    image: motherForNeedyProgrammeImages.food,
   },
   {
     id: "narayana",
@@ -39,7 +39,7 @@ const programmes = [
     title: "Narayan Seva",
     tag: "Annual programme",
     note: docExcerpt("food", { skip: 2 }),
-    image: IMG.kitchen,
+    image: motherForNeedyProgrammeImages.narayana,
   },
   {
     id: "volunteer",
@@ -47,7 +47,7 @@ const programmes = [
     title: docTitle("goshala_volunteer", { minLen: 20 }),
     tag: "Volunteering",
     note: docExcerpt("goshala_volunteer", { skip: 1 }),
-    image: IMG.volunteer,
+    image: "/Goshala/Goshalaaa10.JPG",
   },
   {
     id: "goshala",
@@ -55,7 +55,7 @@ const programmes = [
     title: "Goshala · village outreach",
     tag: "Gau seva",
     note: docExcerpt("goshala_adopt", { skip: 1 }),
-    image: IMG.cow1,
+    image: "/Goshala/Goshalaaa1.JPG",
   },
 ];
 

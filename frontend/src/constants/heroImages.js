@@ -6,7 +6,7 @@ const exact = {
   "/goshala": IMG.goshalaLocal || IMG.cowCloseup,
   "/goshala/adopt": IMG.calf,
   "/goshala/day": IMG.cow3,
-  "/mother-for-needy": IMG.medical,
+  "/mother-for-needy": "/mothersforneedy/mothersforneedy1.jpg",
   "/rural-upliftment": IMG.village,
   "/seva": IMG.serve,
   "/sevas": IMG.shiva,

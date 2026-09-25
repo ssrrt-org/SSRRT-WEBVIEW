@@ -2,10 +2,18 @@
 const base = "/medical service";
 
 export const medicalHeroImages = [
-  `${base}/DSC00031.JPG`,
-  `${base}/DSC04757.JPG`,
-  `${base}/DSC04767.JPG`,
-  `${base}/11_Dispensary Service.JPG`,
-  `${base}/${encodeURIComponent("148 - patients waiting.jpg")}`,
-  `${base}/${encodeURIComponent("8_WhatsApp Image 2018-07-14 at 7.49.57 PM (2).jpeg")}`,
+  `${base}/medical1.JPG`,
+  `${base}/medical2.JPG`,
+  `${base}/medical3.JPG`,
+  `${base}/medical4.JPG`,
+  `${base}/medical5.JPG`,
+  `${base}/medical6.JPG`,
+  `${base}/medical7.JPG`,
+  `${base}/medical8.jpeg`,
+  `${base}/medical9.JPG`,
+  `${base}/medical10.jpg`,
+  `${base}/medical11.JPG`,
+  `${base}/medical12.JPG`,
+  `${base}/medical13.JPG`,
+  `${base}/clinic4.jpg`,
 ];

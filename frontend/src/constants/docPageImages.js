@@ -16,13 +16,13 @@ export const docPageImages = {
     { after: 9, src: "/Goshala/Goshalaaa13.jpeg", alt: "Seva at the shelter", layout: "inline" },
   ],
   medical: [
-    { after: 1, src: "/medical service/11_Dispensary Service.JPG", alt: "Free medical camp", layout: "inline" },
-    { after: 3, src: "/medical service/DSC04757.JPG", alt: "Village outreach", layout: "full" },
-    { after: 5, src: "/medical service/DSC00031.JPG", alt: "Patients at the dispensary", layout: "inline" },
+    { after: 1, src: "/medical service/medical1.JPG", alt: "Free medical camp", layout: "inline" },
+    { after: 3, src: "/medical service/medical5.JPG", alt: "Village outreach", layout: "full" },
+    { after: 5, src: "/medical service/medical9.JPG", alt: "Patients at the dispensary", layout: "inline" },
   ],
   medical_village: [
-    { after: 1, src: "/medical service/DSC04767.JPG", alt: "Medical support in the village", layout: "inline" },
-    { after: 2, src: "/medical service/148 - patients waiting.jpg", alt: "Patients waiting for care", layout: "full" },
+    { after: 1, src: "/medical service/medical11.JPG", alt: "Medical support in the village", layout: "inline" },
+    { after: 2, src: "/medical service/medical12.JPG", alt: "Patients waiting for care", layout: "full" },
   ],
   food: [
     { after: 1, src: IMG.kitchen, alt: "Narayana Seva kitchen", layout: "inline" },

@@ -10,9 +10,9 @@ import { IMG } from "@/constants/images";
 const sevaIds = allSevaPrograms.map((p) => p.id);
 
 const programmeImages = {
-  medical: IMG.medical,
-  food: IMG.serve,
-  narayana: IMG.kitchen,
+  medical: sevaPillars.find((p) => p.id === "medical")?.image,
+  food: sevaPillars.find((p) => p.id === "food")?.image,
+  narayana: "/Seva images/sevas25.JPG",
 };
 
 export default function SevaPage() {
