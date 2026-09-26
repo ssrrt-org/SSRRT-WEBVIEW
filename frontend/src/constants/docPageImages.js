@@ -3,7 +3,6 @@ import { IMG } from "@/constants/images";
 /** Optional images inserted between doc paragraphs (UI only — text stays from docs). */
 export const docPageImages = {
   goshala_adopt: [
-    { after: 2, src: "/Goshala/Goshalaaa2.JPG", alt: "Cows at Project Kaamadhenau", layout: "inline" },
     { after: 6, src: "/Goshala/Goshalaaa9.JPG", alt: "Calf care at the Goshala", layout: "full" },
     { after: 10, src: "/Goshala/Goshalaaa31.JPG", alt: "The herd at Karekura", layout: "inline" },
   ],

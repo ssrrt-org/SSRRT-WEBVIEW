@@ -1,4 +1,5 @@
 import "@/App.css";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import SeoHead from "@/components/seo/SeoHead";
 import Header from "@/components/layout/Header";
@@ -12,39 +13,6 @@ import ShopCartPanel from "@/components/shop/ShopCartPanel";
 import ShopToast from "@/components/shop/ShopToast";
 import { ShopCartProvider } from "@/context/ShopCartContext";
 import { CmsProvider } from "@/context/CmsContext";
-import {
-  HomePage,
-  MotherPage,
-  MotherSectionPage,
-  MotherAvataarhoodPage,
-  MotherDeclarationPage,
-  MotherSwamiPage,
-  MotherRealizedPage,
-  MotherForNeedyHubPage,
-  RuralUpliftmentHubPage,
-  GoshalaPage,
-  GoshalaAdoptPage,
-  GoshalaDayPage,
-  AshramPage,
-  TemplePage,
-  AshramBhairavaPage,
-  AshramHarakeNandiPage,
-  SevaPage,
-  SevaPillarPage,
-  SevaMedicalVillagePage,
-  SevasHubPage,
-  AshramRitualPage,
-  SevaBookPage,
-  VolunteerPage,
-  ShopPage,
-  EventsPage,
-  DonatePage,
-  AboutPage,
-  ContactPage,
-  CookiePolicyPage,
-  PrivacyPolicyPage,
-  NotFoundPage,
-} from "@/pages";
 import { AdminRoot, RequireAdmin } from "@/pages/admin/AdminApp";
 import AdminLoginPage from "@/pages/admin/AdminLoginPage";
 import AdminOverviewPage from "@/pages/admin/AdminOverviewPage";
@@ -57,6 +25,42 @@ import AdminDonatePage from "@/pages/admin/AdminDonatePage";
 import AdminInboxPage from "@/pages/admin/AdminInboxPage";
 import AdminSettingsPage from "@/pages/admin/AdminSettingsPage";
 
+const HomePage = lazy(() => import("@/pages/HomePage"));
+const MotherPage = lazy(() => import("@/pages/MotherPage"));
+const MotherSectionPage = lazy(() => import("@/pages/mother/MotherSectionPage"));
+const MotherAvataarhoodPage = lazy(() => import("@/pages/mother/MotherAvataarhoodPage"));
+const MotherDeclarationPage = lazy(() => import("@/pages/mother/MotherDeclarationPage"));
+const MotherSwamiPage = lazy(() => import("@/pages/mother/MotherSwamiPage"));
+const MotherRealizedPage = lazy(() => import("@/pages/mother/MotherRealizedPage"));
+const MotherForNeedyHubPage = lazy(() => import("@/pages/MotherForNeedyHubPage"));
+const RuralUpliftmentHubPage = lazy(() => import("@/pages/RuralUpliftmentHubPage"));
+const GoshalaPage = lazy(() => import("@/pages/GoshalaPage"));
+const GoshalaAdoptPage = lazy(() => import("@/pages/goshala/GoshalaAdoptPage"));
+const GoshalaDayPage = lazy(() => import("@/pages/goshala/GoshalaDayPage"));
+const AshramPage = lazy(() => import("@/pages/AshramPage"));
+const TemplePage = lazy(() => import("@/pages/ashram/TemplePage"));
+const AshramBhairavaPage = lazy(() => import("@/pages/ashram/AshramBhairavaPage"));
+const AshramHarakeNandiPage = lazy(() => import("@/pages/ashram/AshramHarakeNandiPage"));
+const SevaPage = lazy(() => import("@/pages/SevaPage"));
+const SevaPillarPage = lazy(() => import("@/pages/seva/SevaPillarPage"));
+const SevaMedicalVillagePage = lazy(() => import("@/pages/seva/SevaMedicalVillagePage"));
+const SevasHubPage = lazy(() => import("@/pages/SevasHubPage"));
+const AshramRitualPage = lazy(() => import("@/pages/sevas/AshramRitualPage"));
+const SevaBookPage = lazy(() => import("@/pages/sevas/SevaBookPage"));
+const VolunteerPage = lazy(() => import("@/pages/VolunteerPage"));
+const ShopPage = lazy(() => import("@/pages/ShopPage"));
+const EventsPage = lazy(() => import("@/pages/EventsPage"));
+const DonatePage = lazy(() => import("@/pages/DonatePage"));
+const AboutPage = lazy(() => import("@/pages/AboutPage"));
+const ContactPage = lazy(() => import("@/pages/ContactPage"));
+const CookiePolicyPage = lazy(() => import("@/pages/CookiePolicyPage"));
+const PrivacyPolicyPage = lazy(() => import("@/pages/PrivacyPolicyPage"));
+const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
+
+function RouteFallback() {
+  return <div className="route-loading" aria-hidden="true" />;
+}
+
 function PublicLayout() {
   return (
     <ShopCartProvider>
@@ -65,7 +69,9 @@ function PublicLayout() {
       <a className="skip-link" href="#main-content">Skip to content</a>
       <Header/>
       <main id="main-content">
-        <Outlet/>
+        <Suspense fallback={<RouteFallback />}>
+          <Outlet/>
+        </Suspense>
       </main>
       <Footer/>
       <GlobalScrollHint/>

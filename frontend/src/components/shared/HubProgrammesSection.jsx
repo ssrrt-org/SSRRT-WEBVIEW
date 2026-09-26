@@ -31,7 +31,14 @@ export default function HubProgrammesSection({
             >
               <article>
                 <div className="hub-programme-img">
-                  <img src={program.image} alt={program.title} loading="lazy" />
+                  <img
+                    src={program.image}
+                    alt={program.title}
+                    loading="lazy"
+                    decoding="async"
+                    width={800}
+                    height={500}
+                  />
                 </div>
                 <div className="hub-programme-body">
                   <span className="temple-card-tag">{program.tag}</span>

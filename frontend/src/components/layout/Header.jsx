@@ -18,30 +18,34 @@ function NavDropMenu({ item, onClick }) {
       <div className="nav-drop-group" key={group.heading}>
         <div className="nav-drop-heading">{group.heading}</div>
         {group.links.map((link) => (
-          <Link
+          <NavLink
             key={link.label + link.path}
             data-testid={`nav-sub-${link.label.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}-link`}
             to={link.path}
             onClick={onClick}
             role="menuitem"
+            end={false}
+            className={({ isActive }) => (isActive ? "active" : undefined)}
           >
             {link.label}
-          </Link>
+          </NavLink>
         ))}
       </div>
     ));
   }
 
   return item.sub.map((s) => (
-    <Link
+    <NavLink
       key={s.label + s.path}
       data-testid={`nav-sub-${s.label.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}-link`}
       to={s.path}
       onClick={onClick}
       role="menuitem"
+      end={false}
+      className={({ isActive }) => (isActive ? "active" : undefined)}
     >
       {s.label}
-    </Link>
+    </NavLink>
   ));
 }
 

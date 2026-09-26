@@ -34,12 +34,29 @@ export function docSection(key, { from, until, max, minLen = 50 } = {}) {
     const i = paras.findIndex((p, idx) => idx > start && p.includes(until));
     if (i >= 0) end = i;
   }
-  return paras.slice(start, end).filter((p) => p.length >= minLen).slice(0, max);
+  return paras
+    .slice(start, end)
+    .filter((p) => p.length >= minLen || isDocSectionHeading(p))
+    .slice(0, max);
+}
+
+/** Section titles in seva / long-form docs (often short or use an em dash, no closing period). */
+export function isDocSectionHeading(text) {
+  const t = String(text || "").trim();
+  if (!t || t.length > 180) return false;
+  if (/^\[ PHOTOGRAPH \]/i.test(t)) return false;
+  if (/^ITHI /i.test(t)) return false;
+  if (/^II [A-Z]/.test(t) && t.length < 140) return false;
+  if (t === t.toUpperCase() && t.length < 120 && !/[—–]/.test(t)) return false;
+  if (/[—–]/.test(t) && !/[.!?]$/.test(t)) return true;
+  if (t.length < 100 && !/[.!?]$/.test(t) && /^[A-Z"“(]/.test(t)) return true;
+  return false;
 }
 
 function isProseParagraph(p) {
   const text = p.trim();
   if (!text) return false;
+  if (isDocSectionHeading(text)) return true;
   if (/^\[ PHOTOGRAPH \]/i.test(text)) return false;
   if (/^ITHI /i.test(text)) return false;
   if (/^II [A-Z]/.test(text) && text.length < 140) return false;
@@ -69,7 +86,10 @@ export function proseParas(key, opts = {}) {
     if (skip) raw = raw.slice(skip);
     if (max != null) raw = raw.slice(0, max);
   } else {
-    raw = docParas(key, { skip, max, minLen });
+    let paras = content[key] || [];
+    if (skip) paras = paras.slice(skip);
+    if (max != null) paras = paras.slice(0, max);
+    raw = paras;
   }
   return raw.filter(isProseParagraph);
 }

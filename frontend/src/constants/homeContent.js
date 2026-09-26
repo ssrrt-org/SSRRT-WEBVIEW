@@ -1,5 +1,5 @@
 import { docExcerpt, docTitle, proseParas } from "@/lib/docContent";
-import { IMG } from "@/constants/images";
+import { HOME_CARD_IMAGES } from "@/lib/media";
 
 export const motherHomeIntro = proseParas("mother_home", { max: 1 })[0] || "";
 
@@ -55,7 +55,7 @@ export const homeProgrammeTiles = [
     title: "Goshala",
     tag: "Gau seva",
     note: docExcerpt("goshala_adopt", { skip: 1, maxLen: 100 }),
-    image: "/Goshala/Goshalaaa1.JPG",
+    image: HOME_CARD_IMAGES.goshala,
   },
   {
     id: "medical",
@@ -63,7 +63,7 @@ export const homeProgrammeTiles = [
     title: "Medical Service",
     tag: "Free care",
     note: docExcerpt("medical", { skip: 1, maxLen: 100 }),
-    image: "/medical service/medical1.JPG",
+    image: HOME_CARD_IMAGES.medical,
   },
   {
     id: "narayana",
@@ -71,7 +71,7 @@ export const homeProgrammeTiles = [
     title: "Narayan Seva",
     tag: "Food seva",
     note: docExcerpt("food", { skip: 1, maxLen: 100 }),
-    image: IMG.serve,
+    image: HOME_CARD_IMAGES.narayana,
   },
   {
     id: "village",
@@ -79,7 +79,7 @@ export const homeProgrammeTiles = [
     title: "Village Improvement Project",
     tag: "Rural upliftment",
     note: docExcerpt("goshala_volunteer", { skip: 1, maxLen: 100 }),
-    image: IMG.village,
+    image: HOME_CARD_IMAGES.village,
   },
 ];
 

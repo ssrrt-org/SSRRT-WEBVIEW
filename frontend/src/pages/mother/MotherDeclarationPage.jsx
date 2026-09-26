@@ -1,29 +1,19 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import MotherDetailHeader from "@/components/mother/MotherDetailHeader";
-import ProseSection from "@/components/shared/ProseSection";
-import { Quote } from "@/components/shared/PageSections";
-import {
-  motherDeclarationNarrative,
-  motherDeclarationQuote,
-} from "@/constants/motherContent";
+import MotherDeclarationLayout from "@/components/mother/MotherDeclarationLayout";
+import { declarationPageTitle } from "@/constants/motherDeclarationContent";
 
 export default function MotherDeclarationPage() {
   return (
-    <>
+    <div className="declaration-page">
       <MotherDetailHeader
         eyebrow="Declaration of Avatar"
         title="29 March 1997"
-        intro="Goddess Rajarajeshwari proclaimed — the declaration of Avatarhood at Karekura."
+        intro={declarationPageTitle}
       />
 
-      <ProseSection
-        eyebrow="Declaration"
-        title="Goddess Rajarajeshwari proclaimed."
-        paragraphs={motherDeclarationNarrative}
-      />
-
-      <Quote author="Amma · Avataric declaration">{motherDeclarationQuote}</Quote>
+      <MotherDeclarationLayout />
 
       <section className="child-nav tint">
         <div className="wrap child-nav-inner">
@@ -37,6 +27,6 @@ export default function MotherDeclarationPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

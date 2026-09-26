@@ -17,6 +17,7 @@ import {
 import { docTitle } from "@/lib/docContent";
 import { docPageImages } from "@/constants/docPageImages";
 import { homeHeroSlides } from "@/constants/homeHeroImages";
+import { DIVINE_MOTHER_HOME_SRC, heroSlideSrc } from "@/lib/media";
 
 const motherExplore = motherSections.map((s) => {
   const text = s.paragraphs?.[0] || s.stories?.[0]?.text || s.title || "";
@@ -42,7 +43,14 @@ export default function HomePage() {
       <section className="home-mother">
         <div className="wrap home-mother-grid">
           <figure className="home-mother-figure home-mother-figure-portrait">
-            <img src="/ssrrt/DivineMotherHome.png" alt="Divine Mother Srimad Sai Rajarajeshwari" loading="eager" />
+            <img
+              src={DIVINE_MOTHER_HOME_SRC}
+              alt="Divine Mother Srimad Sai Rajarajeshwari"
+              loading="eager"
+              decoding="async"
+              width={560}
+              height={700}
+            />
           </figure>
           <div className="home-mother-copy">
             <Eyebrow gold>Divine Mother</Eyebrow>
@@ -101,7 +109,14 @@ export default function HomePage() {
             </div>
           </div>
           <figure className="home-mother-figure home-trust-figure">
-            <img src={homeHeroSlides[5].img} alt="SSRRT Ashram on the banks of the Cauvery" loading="lazy" />
+            <img
+              src={heroSlideSrc(homeHeroSlides[5].img, { main: true })}
+              alt="SSRRT Ashram on the banks of the Cauvery"
+              loading="lazy"
+              decoding="async"
+              width={1200}
+              height={800}
+            />
           </figure>
         </div>
       </section>

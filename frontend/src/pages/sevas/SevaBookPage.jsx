@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowRight, Check, Lock } from "lucide-react";
-import SevaScrollingHero from "@/components/seva/SevaScrollingHero";
+import { ArrowRight, ArrowUpRight, Check, Lock } from "lucide-react";
 import { Eyebrow } from "@/components/shared/PageSections";
 import { ashramRituals } from "@/constants/sevasRituals";
 import { submitSevaBooking } from "@/lib/sevaBooking";
@@ -115,110 +114,110 @@ export default function SevaBookPage() {
   };
 
   return (
-    <div className="mother-page sevas-book-page">
-      <header className="mother-page-head">
-        <div className="wrap mother-page-head-inner">
-          <Eyebrow>Book the Seva</Eyebrow>
-          <h1 className="mother-page-title">{ritual.title}</h1>
-          <p className="mother-page-lede">{ritual.intro}</p>
-        </div>
-      </header>
+    <section className="donate-page sevas-book-page">
+      <div className="wrap donate-page-inner">
+        <header className="donate-page-head">
+          <h1 className="donate-page-title">Book the Seva</h1>
+          <Link
+            className="btn-ghost-dark donate-volunteer-link"
+            to={ritual.path}
+            data-testid="seva-book-about-link"
+          >
+            About {ritual.title} <ArrowUpRight size={16} />
+          </Link>
+          <p className="donate-page-lede">{ritual.intro}</p>
+        </header>
 
-      <SevaScrollingHero />
-
-      <section className="donate-page seva-book-page">
-        <div className="wrap donate-page-inner">
-          <div className="donate-card">
-            {submitted ? (
-              <div className="donate-success" data-testid="seva-booking-success">
-                <div className="success-icon"><Check /></div>
-                <Eyebrow>Seva booked</Eyebrow>
-                <h3>Thank you, {form.name}.</h3>
-                <p>
-                  Your booking for <strong>{ritual.title}</strong> on{" "}
-                  <strong>{form.seva_date}</strong> is confirmed. A confirmation email will be sent to you and the
-                  Trust office. Prasadam will be shared after the seva is performed.
-                </p>
-                <Link className="btn-solid donate-continue-btn" to="/sevas">
-                  Back to Ashram sevas
-                </Link>
-              </div>
-            ) : (
-              <form className="donate-card-form" data-testid="seva-booking-form" onSubmit={submit}>
-                <div className="donate-block">
-                  <h2 className="donate-block-label">Seva details</h2>
-                  <div className="donate-details-grid donate-details-inline">
-                    <label>
-                      <span>Name</span>
-                      <input required type="text" value={form.name} onChange={update("name")} placeholder="Full name" />
-                    </label>
-                    <label>
-                      <span>Preferred seva date</span>
-                      <input required type="date" value={form.seva_date} onChange={update("seva_date")} />
-                    </label>
-                    <label>
-                      <span>Email</span>
-                      <input required type="email" value={form.email} onChange={update("email")} placeholder="you@example.com" />
-                    </label>
-                    <label>
-                      <span>Gotra <em>(optional)</em></span>
-                      <input type="text" value={form.gotra} onChange={update("gotra")} placeholder="Family gotra" />
-                    </label>
-                    <label>
-                      <span>Nakshatra <em>(optional)</em></span>
-                      <input type="text" value={form.nakshatra} onChange={update("nakshatra")} placeholder="Birth star" />
-                    </label>
-                    <label>
-                      <span>Number of people</span>
-                      <input required type="number" min="1" value={form.headcount} onChange={update("headcount")} />
-                    </label>
-                    <label className="full">
-                      <span>Additional names <em>(families sharing one gotra)</em></span>
-                      <textarea
-                        rows={3}
-                        value={form.additional_names}
-                        onChange={update("additional_names")}
-                        placeholder="List other devotees included in this booking"
-                      />
-                    </label>
-                    <label className="full">
-                      <span>Comments</span>
-                      <textarea rows={3} value={form.comments} onChange={update("comments")} placeholder="Any notes for the office" />
-                    </label>
-                  </div>
-                </div>
-
-                <div className="donate-block donate-block-amount">
-                  <h2 className="donate-block-label">Offering amount</h2>
-                  <div className="donate-amount-input">
-                    <span className="donate-amount-symbol">₹</span>
-                    <input
-                      type="number"
-                      min="1"
-                      required
-                      value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
-                      aria-label="Offering amount"
+        <div className="donate-card">
+          {submitted ? (
+            <div className="donate-success" data-testid="seva-booking-success">
+              <div className="success-icon"><Check /></div>
+              <Eyebrow>Seva booked</Eyebrow>
+              <h3>Thank you, {form.name}.</h3>
+              <p>
+                Your booking for <strong>{ritual.title}</strong> on{" "}
+                <strong>{form.seva_date}</strong> is confirmed. A confirmation email will be sent to you and the
+                Trust office. Prasadam will be shared after the seva is performed.
+              </p>
+              <Link className="btn-solid donate-continue-btn" to="/sevas">
+                Back to Ashram sevas
+              </Link>
+            </div>
+          ) : (
+            <form className="donate-card-form" data-testid="seva-booking-form" onSubmit={submit}>
+              <div className="donate-block">
+                <h2 className="donate-block-label">{ritual.title}</h2>
+                <div className="donate-details-grid donate-details-inline">
+                  <label>
+                    <span>Name</span>
+                    <input required type="text" value={form.name} onChange={update("name")} placeholder="Full name" />
+                  </label>
+                  <label>
+                    <span>Preferred seva date</span>
+                    <input required type="date" value={form.seva_date} onChange={update("seva_date")} />
+                  </label>
+                  <label>
+                    <span>Email</span>
+                    <input required type="email" value={form.email} onChange={update("email")} placeholder="you@example.com" />
+                  </label>
+                  <label>
+                    <span>Gotra <em>(optional)</em></span>
+                    <input type="text" value={form.gotra} onChange={update("gotra")} placeholder="Family gotra" />
+                  </label>
+                  <label>
+                    <span>Nakshatra <em>(optional)</em></span>
+                    <input type="text" value={form.nakshatra} onChange={update("nakshatra")} placeholder="Birth star" />
+                  </label>
+                  <label>
+                    <span>Number of people</span>
+                    <input required type="number" min="1" value={form.headcount} onChange={update("headcount")} />
+                  </label>
+                  <label className="full">
+                    <span>Additional names <em>(families sharing one gotra)</em></span>
+                    <textarea
+                      rows={3}
+                      value={form.additional_names}
+                      onChange={update("additional_names")}
+                      placeholder="List other devotees included in this booking"
                     />
-                  </div>
+                  </label>
+                  <label className="full">
+                    <span>Comments</span>
+                    <textarea rows={3} value={form.comments} onChange={update("comments")} placeholder="Any notes for the office" />
+                  </label>
                 </div>
+              </div>
 
-                {error ? <p className="donation-error" role="alert">{error}</p> : null}
+              <div className="donate-block donate-block-amount">
+                <h2 className="donate-block-label">Offering amount</h2>
+                <div className="donate-amount-input">
+                  <span className="donate-amount-symbol">₹</span>
+                  <input
+                    type="number"
+                    min="1"
+                    required
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    aria-label="Offering amount"
+                  />
+                </div>
+              </div>
 
-                <button className="btn-solid donate-continue-btn" type="submit" disabled={loading}>
-                  {loading ? "Opening payment…" : <>Continue to payment <ArrowRight size={16} /></>}
-                </button>
+              {error ? <p className="donation-error" role="alert">{error}</p> : null}
 
-                <p className="donate-trust-note">
-                  <Lock size={13} aria-hidden="true" />
-                  Secure payment processing. Confirmation emails go to admin@ssrt.com.org and your address.
-                  {isTestMode() ? <> Test card: <strong>4111 1111 1111 1111</strong>.</> : null}
-                </p>
-              </form>
-            )}
-          </div>
+              <button className="btn-solid donate-continue-btn" type="submit" disabled={loading}>
+                {loading ? "Opening payment…" : <>Continue to payment <ArrowRight size={16} /></>}
+              </button>
+
+              <p className="donate-trust-note">
+                <Lock size={13} aria-hidden="true" />
+                Secure payment processing. Confirmation emails go to admin@ssrt.com.org and your address.
+                {isTestMode() ? <> Test card: <strong>4111 1111 1111 1111</strong>.</> : null}
+              </p>
+            </form>
+          )}
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

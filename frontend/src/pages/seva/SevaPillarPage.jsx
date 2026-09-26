@@ -5,6 +5,7 @@ import SevaScrollingHero from "@/components/seva/SevaScrollingHero";
 import ProseSection from "@/components/shared/ProseSection";
 import { Eyebrow } from "@/components/shared/PageSections";
 import { docPageImages } from "@/constants/docPageImages";
+import { medicalCentreLede, medicalCentreTitle } from "@/constants/medicalContent";
 import { docExcerpt } from "@/lib/docContent";
 import { allSevaPrograms, narayanaProgram, sevaPillars } from "@/constants/sevaContent";
 import NotFoundPage from "@/pages/NotFoundPage";
@@ -57,14 +58,14 @@ export default function SevaPillarPage() {
   );
 
   if (isMedical) {
-    const title = pillar.title || pillar.navTitle;
-    const lede = docExcerpt("medical", { skip: 1, maxLen: 240 });
+    const title = medicalCentreTitle || pillar.navTitle;
+    const lede = medicalCentreLede;
 
     return (
       <div className="mother-page medical-hub-page">
         <header className="mother-page-head">
           <div className="wrap mother-page-head-inner">
-            <Eyebrow>Medical service</Eyebrow>
+            <Eyebrow>Multi-village medical centre</Eyebrow>
             <h1 className="mother-page-title">{title}</h1>
             <p className="mother-page-lede">{lede}</p>
           </div>

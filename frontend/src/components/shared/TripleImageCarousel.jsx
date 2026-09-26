@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { heroSlideSrc } from "@/lib/media";
 
 function normalizeSlides(slides) {
   return slides.map((slide) => {
@@ -66,13 +67,14 @@ export default function TripleImageCarousel({
             data-testid={`${testIdPrefix}-panel-${i}`}
           >
             <img
-              src={s.img}
+              src={heroSlideSrc(s.img, { main: i === 1 })}
               alt={s.label || "Banner image"}
               loading={i === 1 ? "eager" : "lazy"}
-              fetchPriority={i === 1 ? "high" : "low"}
+              fetchPriority={i === 1 ? "high" : "auto"}
               decoding="async"
               width={i === 1 ? 1200 : 640}
               height={i === 1 ? 800 : 480}
+              sizes={i === 1 ? "(min-width: 900px) 55vw, 92vw" : "(min-width: 900px) 22vw, 0px"}
               style={{ objectPosition: "center center" }}
             />
             {showCaption ? (

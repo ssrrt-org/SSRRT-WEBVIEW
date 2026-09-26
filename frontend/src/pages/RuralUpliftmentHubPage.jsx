@@ -6,13 +6,14 @@ import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
 import { Eyebrow } from "@/components/shared/PageSections";
 import { usePageImages } from "@/context/CmsContext";
 import { motherForNeedyProgrammeImages } from "@/constants/motherForNeedyImages";
+import { medicalCentreTitle, medicalVillageTitle } from "@/constants/medicalContent";
 import { docExcerpt, docTitle, proseParas } from "@/lib/docContent";
 
 const programmes = [
   {
     id: "medical",
     to: "/seva/medical",
-    title: docTitle("medical"),
+    title: medicalCentreTitle,
     tag: "Medical centres",
     note: docExcerpt("medical", { skip: 2 }),
     image: motherForNeedyProgrammeImages.medical,
@@ -20,7 +21,7 @@ const programmes = [
   {
     id: "medical-village",
     to: "/seva/medical-village",
-    title: "Medical support in the village",
+    title: medicalVillageTitle,
     tag: "Village care",
     note: docExcerpt("medical", { skip: 2 }),
     image: motherForNeedyProgrammeImages["medical-village"],

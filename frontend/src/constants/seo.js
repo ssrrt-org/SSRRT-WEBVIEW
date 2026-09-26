@@ -84,7 +84,7 @@ const STATIC = {
     "Medical, education, water, relief, food and Narayana Seva programmes of Srimad Sai Rajarajeshwari Trust."
   ),
   "/seva/medical-village": page(
-    "Village medical camps",
+    "Medical support in the village",
     "Free preventive medical camps in villages around Karekura, organised by SSRRT."
   ),
   "/sevas": page(
