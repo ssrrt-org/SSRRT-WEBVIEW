@@ -1,6 +1,5 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
-import SevaScrollingHero from "@/components/seva/SevaScrollingHero";
 import ProseSection from "@/components/shared/ProseSection";
 import { Eyebrow } from "@/components/shared/PageSections";
 import { ashramRituals } from "@/constants/sevasRituals";
@@ -30,8 +29,6 @@ export default function AshramRitualPage() {
           <p className="mother-page-lede">{ritual.intro}</p>
         </div>
       </header>
-
-      <SevaScrollingHero />
 
       <ProseSection
         eyebrow="About this seva"

@@ -33,9 +33,9 @@
   <url><loc>https://www.ssrrt.org/seva/food</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.ssrrt.org/seva/narayana</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.ssrrt.org/sevas</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.ssrrt.org/sevas/ganesh-abhisheka</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.ssrrt.org/sevas/nandi-abhisheka</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.ssrrt.org/sevas/butter-ganesha</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.ssrrt.org/sevas/butter-subramanya</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.ssrrt.org/sevas/subramanya-seva</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.ssrrt.org/volunteering</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.ssrrt.org/shop</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.ssrrt.org/shop/books</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>

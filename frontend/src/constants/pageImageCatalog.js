@@ -54,13 +54,9 @@ const ruralHubCards = [
 ];
 
 const sevasHubCards = [
-  ["nandi-abhisheka", "Nandi Abhisheka", consecratedSpaceTempleImages["harake-nandi"]],
-  ["ghee-butter-abhisheka", "Ghee / Butter Abhisheka", consecratedSpaceTempleImages.ganesha],
-  ["alankar", "Alankar", consecratedSpaceTempleImages.subramanya],
   ["ganesh-abhisheka", "Ganesh Abhisheka", consecratedSpaceTempleImages.ganesha],
-  ["bhavatarini-seva", "Bhavatarini Seva", consecratedSpaceTempleImages.manidweepa],
+  ["nandi-abhisheka", "Nandi Abhisheka", consecratedSpaceTempleImages["harake-nandi"]],
   ["subramanya-seva", "Subramanya Seva", consecratedSpaceTempleImages.subramanya],
-  ["ashram", "Ashram card", "/Concentratedspace/Concentratedspace7.JPG"],
 ];
 
 function hubSlots(prefix, items) {

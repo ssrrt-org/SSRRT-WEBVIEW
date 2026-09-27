@@ -97,11 +97,8 @@ export const navItems = [
     label: "Sevas",
     path: "/sevas",
     sub: [
-      { label: "Nandi Abhisheka", path: "/sevas/nandi-abhisheka" },
-      { label: "Ghee / Butter Abhisheka", path: "/sevas/ghee-butter-abhisheka" },
-      { label: "Alankar", path: "/sevas/alankar" },
       { label: "Ganesh Abhisheka", path: "/sevas/ganesh-abhisheka" },
-      { label: "Bhavatarini Seva", path: "/sevas/bhavatarini-seva" },
+      { label: "Nandi Abhisheka", path: "/sevas/nandi-abhisheka" },
       { label: "Subramanya Seva", path: "/sevas/subramanya-seva" },
     ],
   },

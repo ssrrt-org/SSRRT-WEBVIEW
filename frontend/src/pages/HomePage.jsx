@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Quote } from "lucide-react";
 import HeroCarousel from "@/components/home/HeroCarousel";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
 import { Eyebrow, SectionHeading } from "@/components/shared/PageSections";
@@ -12,7 +12,7 @@ import {
   trustHomeParagraphs,
 } from "@/constants/homeContent";
 import { homeHeroSlides } from "@/constants/homeHeroImages";
-import { DIVINE_MOTHER_HOME_SRC, heroSlideSrc } from "@/lib/media";
+import { heroSlideSrc } from "@/lib/media";
 
 export default function HomePage() {
   return (
@@ -27,21 +27,55 @@ export default function HomePage() {
       </section>
 
       <section className="home-mother">
-        <div className="wrap home-mother-grid">
-          <figure className="home-mother-figure home-mother-figure-portrait">
-            <img
-              src={DIVINE_MOTHER_HOME_SRC}
-              alt="Divine Mother Srimad Sai Rajarajeshwari"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              width={560}
-              height={700}
-            />
-          </figure>
-          <div className="home-mother-copy">
-            <Eyebrow gold>Divine Mother</Eyebrow>
-            <h2>Divine Mother, Srimad Sai Rajarajeshwari</h2>
+        <div className="wrap home-mother-inner">
+          <header className="home-mother-heading">
+            <p className="home-mother-kicker">• Divine Guidance &amp; Mother&apos;s Grace •</p>
+            <h2>Divine Mother — Srimad Sai RajaRajeshwari</h2>
+            <p className="home-mother-tagline">
+              Fondly revered as &ldquo;Amma&rdquo; of Mysuru — The Divine Manifest in Human Form
+            </p>
+            <p className="home-mother-mantra" aria-hidden="true">
+              <span className="home-mother-mantra-line" />
+              <span className="home-mother-mantra-text">✦ ॐ श्री मात्रे नमः ✦</span>
+              <span className="home-mother-mantra-line" />
+            </p>
+          </header>
+
+          <div className="home-mother-grid">
+            <figure className="home-mother-figure home-mother-figure-portrait">
+              <img
+                src={heroSlideSrc("/ssrrt/Umother.jpg")}
+                alt="Divine Mother Srimad Sai RajaRajeshwari with a child"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                width={1080}
+                height={1620}
+              />
+            </figure>
+            <article className="home-mother-quote">
+              <Quote className="home-mother-quote-icon" size={34} aria-hidden="true" />
+              <p className="home-mother-quote-label">Amma’s Sacred Vani</p>
+              <blockquote>
+                <p>“I have neither happiness nor sorrow,</p>
+                <p>I have neither birth nor death, unlike living beings</p>
+                <p>I have no karma</p>
+                <p>I am unaffected by the presence or absence of people</p>
+                <p>I am the eternally true living force</p>
+                <p>This one attribute is natural to divinity.</p>
+                <p>I am with attributes and beyond all attributes</p>
+                <p>I am Shankara as well as Shankari</p>
+                <p>The self is ever the same</p>
+                <p>I am apparent and also non-apparent</p>
+                <p>I am bound, yet I am the remover of bondage</p>
+                <p>Though I appear to be in bondage, I am free</p>
+                <p>GOD IS BEYOND EVERYTHING.”</p>
+              </blockquote>
+              <cite>— Srimad Sai RajaRajeshwari Amma</cite>
+            </article>
+          </div>
+
+          <div className="home-mother-intro">
             <p>{motherHomeIntro}</p>
           </div>
         </div>
