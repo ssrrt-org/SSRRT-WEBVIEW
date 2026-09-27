@@ -1,0 +1,43 @@
+/* Stitch-inspired temple page — scoped under .temple-stitch */
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&display=swap");
+
+.temple-stitch {
+  font-family: "Work Sans", sans-serif;
+  color: #2b2620;
+}
+
+.temple-stitch .temple-stitch-display,
+.temple-stitch h1,
+.temple-stitch h2,
+.temple-stitch h3 {
+  font-family: "EB Garamond", "Cormorant Garamond", Georgia, serif;
+}
+
+.temple-stitch .temple-stitch-mantra {
+  font-family: "Noto Serif Devanagari", "Noto Serif", serif;
+}
+
+.temple-stitch-gold-filigree {
+  box-shadow:
+    inset 0 0 0 1px #dfc488,
+    inset 0 0 0 4px rgba(223, 196, 136, 0.2);
+}
+
+.temple-stitch-shadow {
+  box-shadow:
+    0 8px 30px rgba(34, 42, 69, 0.05),
+    0 1px 3px rgba(201, 151, 61, 0.08);
+}
+
+.temple-stitch-hero-pattern {
+  background-image: radial-gradient(#dfc488 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.temple-stitch-arch {
+  border-radius: 140px 140px 0.5rem 0.5rem;
+}
+
+.temple-stitch-arch-inner {
+  border-radius: 135px 135px 0.5rem 0.5rem;
+}

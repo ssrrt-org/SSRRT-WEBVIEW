@@ -5,18 +5,35 @@ import SevaScrollingHero from "@/components/seva/SevaScrollingHero";
 import ProseSection from "@/components/shared/ProseSection";
 import { Eyebrow } from "@/components/shared/PageSections";
 import { docPageImages } from "@/constants/docPageImages";
+import { medicalCentreLede, medicalCentreTitle } from "@/constants/medicalContent";
 import { docExcerpt } from "@/lib/docContent";
+import {
+  narayanaEyebrow,
+  narayanaLede,
+  narayanaOpeningQuote,
+} from "@/constants/narayanaContent";
 import { allSevaPrograms, narayanaProgram, sevaPillars } from "@/constants/sevaContent";
 import NotFoundPage from "@/pages/NotFoundPage";
 
-function CommunitySevaLayout({ eyebrow, title, lede, paragraphs, images, tint, childNav }) {
+function CommunitySevaLayout({
+  eyebrow,
+  title,
+  lede,
+  quote,
+  paragraphs,
+  images,
+  tint,
+  childNav,
+  goldEyebrow = false,
+}) {
   return (
     <div className="mother-page seva-community-page">
       <header className="mother-page-head">
         <div className="wrap mother-page-head-inner">
-          <Eyebrow>{eyebrow}</Eyebrow>
+          <Eyebrow gold={goldEyebrow}>{eyebrow}</Eyebrow>
           <h1 className="mother-page-title">{title}</h1>
           {lede ? <p className="mother-page-lede">{lede}</p> : null}
+          {quote ? <blockquote className="hub-header-quote">{quote}</blockquote> : null}
         </div>
       </header>
 
@@ -57,14 +74,14 @@ export default function SevaPillarPage() {
   );
 
   if (isMedical) {
-    const title = pillar.title || pillar.navTitle;
-    const lede = docExcerpt("medical", { skip: 1, maxLen: 240 });
+    const title = medicalCentreTitle || pillar.navTitle;
+    const lede = medicalCentreLede;
 
     return (
       <div className="mother-page medical-hub-page">
         <header className="mother-page-head">
           <div className="wrap mother-page-head-inner">
-            <Eyebrow>Medical service</Eyebrow>
+            <Eyebrow>Multi-village medical centre</Eyebrow>
             <h1 className="mother-page-title">{title}</h1>
             <p className="mother-page-lede">{lede}</p>
           </div>
@@ -79,18 +96,33 @@ export default function SevaPillarPage() {
     );
   }
 
-  if (isFood || isNarayana) {
-    const eyebrow = isNarayana ? "Narayana Seva" : "Food seva";
-    const lede = docExcerpt(isNarayana ? "food" : "food", { skip: 1, maxLen: 240 });
+  if (isFood) {
+    const lede = docExcerpt("food", { skip: 1, maxLen: 240 });
 
     return (
       <CommunitySevaLayout
-        eyebrow={eyebrow}
+        eyebrow="Food seva"
+        goldEyebrow
         title={pillar.title || pillar.navTitle}
         lede={lede}
         paragraphs={pillar.paragraphs}
         images={docPageImages.food}
-        tint={isNarayana}
+        childNav={childNav}
+      />
+    );
+  }
+
+  if (isNarayana) {
+    return (
+      <CommunitySevaLayout
+        eyebrow="Narayana Seva"
+        goldEyebrow
+        title={narayanaEyebrow}
+        lede={narayanaLede}
+        quote={narayanaOpeningQuote}
+        paragraphs={pillar.paragraphs}
+        images={docPageImages.narayana}
+        tint
         childNav={childNav}
       />
     );

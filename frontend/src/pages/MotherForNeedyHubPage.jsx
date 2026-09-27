@@ -9,6 +9,7 @@ import { docPageImages } from "@/constants/docPageImages";
 import { usePageImages } from "@/context/CmsContext";
 import { motherForNeedyProgrammeImages } from "@/constants/motherForNeedyImages";
 import { docExcerpt, proseParas } from "@/lib/docContent";
+import { narayanaCardExcerpt, narayanaTitle } from "@/constants/narayanaContent";
 
 const programmes = [
   {
@@ -18,14 +19,6 @@ const programmes = [
     tag: "Medical care",
     note: docExcerpt("medical", { skip: 1 }),
     image: motherForNeedyProgrammeImages.medical,
-  },
-  {
-    id: "medical-village",
-    to: "/seva/medical-village",
-    title: "Medical Support in the Village",
-    tag: "Village care",
-    note: "Medical support that reaches families in surrounding villages.",
-    image: motherForNeedyProgrammeImages["medical-village"],
   },
   {
     id: "food",
@@ -38,9 +31,9 @@ const programmes = [
   {
     id: "narayana",
     to: "/seva/narayana",
-    title: "Narayana Seva",
+    title: narayanaTitle,
     tag: "Annual programme",
-    note: docExcerpt("food", { skip: 1 }),
+    note: narayanaCardExcerpt,
     image: motherForNeedyProgrammeImages.narayana,
   },
 ];

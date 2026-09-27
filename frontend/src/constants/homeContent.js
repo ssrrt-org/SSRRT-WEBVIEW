@@ -1,5 +1,6 @@
 import { docExcerpt, docTitle, proseParas } from "@/lib/docContent";
-import { IMG } from "@/constants/images";
+import { narayanaCardExcerpt, narayanaTitle } from "@/constants/narayanaContent";
+import { HOME_CARD_IMAGES } from "@/lib/media";
 
 export const motherHomeIntro = proseParas("mother_home", { max: 1 })[0] || "";
 
@@ -55,7 +56,7 @@ export const homeProgrammeTiles = [
     title: "Goshala",
     tag: "Gau seva",
     note: docExcerpt("goshala_adopt", { skip: 1, maxLen: 100 }),
-    image: "/Goshala/Goshalaaa1.JPG",
+    image: HOME_CARD_IMAGES.goshala,
   },
   {
     id: "medical",
@@ -63,15 +64,15 @@ export const homeProgrammeTiles = [
     title: "Medical Service",
     tag: "Free care",
     note: docExcerpt("medical", { skip: 1, maxLen: 100 }),
-    image: "/medical service/medical1.JPG",
+    image: HOME_CARD_IMAGES.medical,
   },
   {
     id: "narayana",
     to: "/seva/narayana",
-    title: "Narayan Seva",
-    tag: "Food seva",
-    note: docExcerpt("food", { skip: 1, maxLen: 100 }),
-    image: IMG.serve,
+    title: narayanaTitle,
+    tag: "Annual programme",
+    note: narayanaCardExcerpt,
+    image: HOME_CARD_IMAGES.narayana,
   },
   {
     id: "village",
@@ -79,10 +80,20 @@ export const homeProgrammeTiles = [
     title: "Village Improvement Project",
     tag: "Rural upliftment",
     note: docExcerpt("goshala_volunteer", { skip: 1, maxLen: 100 }),
-    image: IMG.village,
+    image: HOME_CARD_IMAGES.village,
   },
 ];
 
-export const homeNarayanaParagraphs = proseParas("food", { skip: 1, max: 2 });
+/** “Ashram as a Whole” pilgrimage copy on the home page. */
+export const homeAshramPilgrimageParagraphs = proseParas("sacred_ashram", { skip: 10, max: 4 });
 
-export const homeVisitParagraph = proseParas("sacred_ashram", { skip: 7, max: 1 })[0] || "";
+export const homeAshramInvitation =
+  proseParas("sacred_ashram", { skip: 14, max: 1 })[0]?.replace(/^"|"$/g, "") || "";
+
+export const homeVisitTitle = proseParas("sacred_ashram", { skip: 15, max: 1 })[0] || "Visit the Ashram";
+
+export const homeVisitParagraph = proseParas("sacred_ashram", { skip: 16, max: 1 })[0] || "";
+
+export const homeVisitTagline = proseParas("sacred_ashram", { skip: 17, max: 1 })[0] || "";
+
+export const homeAshramClosingMantra = proseParas("sacred_ashram", { skip: 18, max: 1 })[0] || "";

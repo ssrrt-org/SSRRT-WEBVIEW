@@ -114,11 +114,17 @@ export default function DonatePage() {
     <section className="donate-page">
       <div className="wrap donate-page-inner">
         <header className="donate-page-head">
-          <h1>{SUPPORT_CAUSE_LABEL}</h1>
-          <p>Offer toward Goshala, Narayana Seva, medical camps, temples, and general Trust programmes.</p>
-          <Link className="btn-ghost-dark donate-volunteer-link" to="/volunteering" data-testid="donate-volunteer-link">
+          <h1 className="donate-page-title">{SUPPORT_CAUSE_LABEL}</h1>
+          <Link
+            className="btn-ghost-dark donate-volunteer-link"
+            to="/volunteering"
+            data-testid="donate-volunteer-link"
+          >
             Volunteer at the Ashram <ArrowUpRight size={16} />
           </Link>
+          <p className="donate-page-lede">
+            Offer toward Goshala, Narayana Seva, medical camps, temples, and general Trust programmes.
+          </p>
         </header>
         <div className="donate-card">
           {submitted ? (

@@ -40,8 +40,12 @@ const STATIC = {
     "Sponsor feed and care for a cow at the SSRRT Goshala in Karekura, Mysore."
   ),
   "/goshala/day": page(
-    "A day at the Goshala",
-    "Daily feeding, care and volunteer seva at Project Kaamadhenau, Karekura."
+    "A day at Kamadhenu",
+    "A day in the life of Project Kaamadhenu — dawn to dusk at the sacred cow shelter, Karekura."
+  ),
+  "/goshala/history": page(
+    "Project Kaamadhenu",
+    "The sacred cow shelter of Srimad Sai Rajarajeshwari Ashram — twenty years of compassion, devotion, and sustainable living."
   ),
   "/mother": page(
     "Amma | Glimpses of the Mother",
@@ -82,10 +86,6 @@ const STATIC = {
   "/seva": page(
     "Seva programmes",
     "Medical, education, water, relief, food and Narayana Seva programmes of Srimad Sai Rajarajeshwari Trust."
-  ),
-  "/seva/medical-village": page(
-    "Village medical camps",
-    "Free preventive medical camps in villages around Karekura, organised by SSRRT."
   ),
   "/sevas": page(
     "Ashram sevas and rituals",
@@ -226,7 +226,7 @@ export function listSitemapPaths() {
   templeCards.forEach((t) => paths.add(t.path));
   allSevaPrograms.forEach((p) => paths.add(p.path));
   ashramRituals.forEach((r) => paths.add(r.path));
-  motherSections.forEach((s) => paths.add(s.path));
+  motherSections.filter((s) => s.published !== false).forEach((s) => paths.add(s.path));
   shopCategories.filter((c) => c.id !== "all").forEach((c) => paths.add(`/shop/${c.id}`));
   return [...paths].sort();
 }

@@ -1,4 +1,6 @@
 import { IMG } from "@/constants/images";
+import { medicalCentreParagraphs, medicalCentreTitle } from "@/constants/medicalContent";
+import { narayanaParagraphs, narayanaTitle } from "@/constants/narayanaContent";
 import { docTitle, proseParas } from "@/lib/docContent";
 
 export const sevaPillars = [
@@ -6,12 +8,12 @@ export const sevaPillars = [
     id: "medical",
     path: "/seva/medical",
     navTitle: "Multi-village medical centre",
-    title: docTitle("medical"),
+    title: medicalCentreTitle,
     image: "/Seva images/sevas18.jpg",
     imageAlt: "Medical camp",
     reverse: false,
     tint: false,
-    paragraphs: proseParas("medical", { skip: 1 }),
+    paragraphs: medicalCentreParagraphs,
   },
   {
     id: "food",
@@ -30,8 +32,8 @@ export const narayanaProgram = {
   id: "narayana",
   path: "/seva/narayana",
   navTitle: "Narayana Seva",
-  title: docTitle("food"),
-  paragraphs: proseParas("food", { skip: 1 }),
+  title: narayanaTitle,
+  paragraphs: narayanaParagraphs,
 };
 
 export const allSevaPrograms = [...sevaPillars, narayanaProgram];

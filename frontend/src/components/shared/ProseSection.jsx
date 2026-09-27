@@ -1,12 +1,23 @@
 import { Eyebrow } from "@/components/shared/PageSections";
+import { isDocSectionHeading } from "@/lib/docContent";
 
 function isSubheading(text) {
+  if (isDocSectionHeading(text)) return true;
   const t = text.trim();
   return t.length < 90 && !/[.!?]$/.test(t) && /^[A-Z]/.test(t);
 }
 
 function ProseBlock({ text }) {
   if (isSubheading(text)) {
+    const parts = text.split(/\s[—–]\s/);
+    if (parts.length >= 2) {
+      return (
+        <h3 className="prose-subheading">
+          <span className="prose-subheading-main">{parts[0]}</span>
+          <span className="prose-subheading-sub">{parts.slice(1).join(" — ")}</span>
+        </h3>
+      );
+    }
     return <h3 className="prose-subheading">{text}</h3>;
   }
   return <p>{text}</p>;
@@ -15,7 +26,7 @@ function ProseBlock({ text }) {
 function ProseFigure({ src, alt, caption, layout = "full" }) {
   return (
     <figure className={`prose-section-figure prose-figure-${layout}`}>
-      <img src={src} alt={alt} loading="lazy" />
+      <img src={src} alt={alt} loading="lazy" decoding="async" width={1200} height={800} />
       {caption && <figcaption>{caption}</figcaption>}
     </figure>
   );
@@ -74,7 +85,7 @@ export default function ProseSection({
     <>
       {image && (
         <figure className="prose-section-figure prose-figure-full">
-          <img src={image} alt={imageAlt} loading="lazy" />
+          <img src={image} alt={imageAlt} loading="lazy" decoding="async" width={1200} height={800} />
         </figure>
       )}
       {eyebrow && <Eyebrow gold={tint}>{eyebrow}</Eyebrow>}

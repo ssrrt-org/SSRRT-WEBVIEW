@@ -1,22 +1,29 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import GoshalaScrollingHero from "@/components/goshala/GoshalaScrollingHero";
 import ProseSection from "@/components/shared/ProseSection";
-import { SlimHead } from "@/components/shared/PageSections";
+import { Eyebrow } from "@/components/shared/PageSections";
 import { docPageImages } from "@/constants/docPageImages";
-import { docTitle, proseParas } from "@/lib/docContent";
+import { docExcerpt, docTitle, proseParas } from "@/lib/docContent";
 
 const title = docTitle("goshala_volunteer", { minLen: 15 });
+const lede = docExcerpt("goshala_volunteer", { skip: 1, maxLen: 220 });
 const paragraphs = proseParas("goshala_volunteer", { skip: 1 });
 
 export default function VolunteerPage() {
   return (
-    <>
-      <SlimHead eyebrow="Volunteering" title={title} />
+    <div className="mother-page goshala-volunteer-page volunteer-hub-page">
+      <header className="mother-page-head">
+        <div className="wrap mother-page-head-inner">
+          <Eyebrow gold>Volunteering</Eyebrow>
+          <h1 className="mother-page-title">{title}</h1>
+          <p className="mother-page-lede">{lede}</p>
+        </div>
+      </header>
 
-      <ProseSection
-        paragraphs={paragraphs}
-        images={docPageImages.goshala_volunteer}
-      />
+      <GoshalaScrollingHero />
+
+      <ProseSection paragraphs={paragraphs} images={docPageImages.goshala_volunteer} />
 
       <section className="child-nav tint">
         <div className="wrap child-nav-inner">
@@ -26,6 +33,6 @@ export default function VolunteerPage() {
           <Link to="/contact">Contact the Trust office →</Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }

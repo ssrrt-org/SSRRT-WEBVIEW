@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { heroSlideSrc } from "@/lib/media";
 
 function normalizeSlides(slides) {
   return slides.map((slide) => {
@@ -35,6 +36,18 @@ export default function TripleImageCarousel({
     return () => window.clearInterval(id);
   }, [autoPlayMs, n]);
 
+  useEffect(() => {
+    if (n < 2) return;
+    const nextSlide = slides[(idx + 1) % n];
+    const prevSlide = slides[(idx - 1 + n) % n];
+    [nextSlide, prevSlide].forEach((slide) => {
+      const src = heroSlideSrc(slide.img, { main: true });
+      const warm = new Image();
+      warm.decoding = "async";
+      warm.src = src;
+    });
+  }, [idx, slides, n]);
+
   if (!n) return null;
 
   const prev = () => setIdx((current) => (current - 1 + n) % n);
@@ -66,13 +79,14 @@ export default function TripleImageCarousel({
             data-testid={`${testIdPrefix}-panel-${i}`}
           >
             <img
-              src={s.img}
+              src={heroSlideSrc(s.img, { main: i === 1 })}
               alt={s.label || "Banner image"}
-              loading={i === 1 ? "eager" : "lazy"}
+              loading="eager"
               fetchPriority={i === 1 ? "high" : "low"}
               decoding="async"
               width={i === 1 ? 1200 : 640}
               height={i === 1 ? 800 : 480}
+              sizes={i === 1 ? "(min-width: 900px) 55vw, 92vw" : "(min-width: 900px) 22vw, 0px"}
               style={{ objectPosition: "center center" }}
             />
             {showCaption ? (

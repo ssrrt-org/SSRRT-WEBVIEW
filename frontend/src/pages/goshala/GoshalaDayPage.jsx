@@ -1,60 +1,91 @@
 import { Link } from "react-router-dom";
-import { ChevronRight, Heart, Home, Sunrise, Utensils } from "lucide-react";
-import { SlimHead } from "@/components/shared/PageSections";
+import { ChevronRight } from "lucide-react";
+import GoshalaScrollingHero from "@/components/goshala/GoshalaScrollingHero";
+import ProseSection from "@/components/shared/ProseSection";
+import { Eyebrow } from "@/components/shared/PageSections";
+import { docPageImages } from "@/constants/docPageImages";
+import {
+  kaamadhenuDayEyebrow,
+  kaamadhenuDayHeadLede,
+  kaamadhenuDayHeadTitle,
+  kaamadhenuDayClosing,
+  kaamadhenuDayParagraphsAfterEvening,
+  kaamadhenuDayParagraphsBeforeMorning,
+  kaamadhenuDayParagraphsEvening,
+  kaamadhenuDayParagraphsMorningThroughMidday,
+} from "@/constants/kaamadhenuDayContent";
 
 export default function GoshalaDayPage() {
   return (
-    <>
-      <SlimHead
-        eyebrow="Kaamadhenau"
-        title="A day at the Goshala."
+    <div className="mother-page goshala-day-page">
+      <header className="mother-page-head">
+        <div className="wrap mother-page-head-inner">
+          <Eyebrow gold>{kaamadhenuDayEyebrow}</Eyebrow>
+          <h1 className="mother-page-title hub-head-title-single">{kaamadhenuDayHeadTitle}</h1>
+          <p className="mother-page-lede">{kaamadhenuDayHeadLede}</p>
+        </div>
+      </header>
+
+      <GoshalaScrollingHero />
+
+      <ProseSection
+        className="goshala-day-prose-before-morning"
+        paragraphs={kaamadhenuDayParagraphsBeforeMorning}
       />
 
-      <section className="day-in-life">
-        <div className="wrap day-in-life-inner">
-          <ol className="daylist">
-            <li>
-              <Sunrise size={20} aria-hidden="true" />
-              <div>
-                <strong>Before dawn</strong>
-                <p>Walk through the shelters, refill water, check cooling. Milking starts after calves have fed.</p>
-              </div>
-            </li>
-            <li>
-              <Utensils size={20} aria-hidden="true" />
-              <div>
-                <strong>Morning</strong>
-                <p>Cut fodder from the fields, portion concentrate feed, watch calves closely.</p>
-              </div>
-            </li>
-            <li>
-              <Home size={20} aria-hidden="true" />
-              <div>
-                <strong>Midday</strong>
-                <p>Animals rest in shade. Cleaning and field work continue.</p>
-              </div>
-            </li>
-            <li>
-              <Heart size={20} aria-hidden="true" />
-              <div>
-                <strong>Evening</strong>
-                <p>Final feed and water. Residents often stop by at dusk.</p>
-              </div>
-            </li>
-          </ol>
+      {kaamadhenuDayParagraphsMorningThroughMidday.length > 0 ? (
+        <>
+          <div className="wrap">
+            <div className="goshala-day-section-rule">
+              <hr className="goshala-content-rule" />
+            </div>
+          </div>
+          <ProseSection
+            className="goshala-day-prose-midday"
+            paragraphs={kaamadhenuDayParagraphsMorningThroughMidday}
+            images={docPageImages.goshala_day}
+          />
+        </>
+      ) : null}
+
+      {kaamadhenuDayParagraphsEvening.length > 0 ? (
+        <>
+          <div className="wrap">
+            <div className="goshala-day-section-rule">
+              <hr className="goshala-content-rule" />
+            </div>
+          </div>
+          <ProseSection
+            className="goshala-day-prose-evening"
+            paragraphs={kaamadhenuDayParagraphsEvening}
+          />
+        </>
+      ) : null}
+
+      {kaamadhenuDayParagraphsAfterEvening.length > 0 ? (
+        <ProseSection
+          className="goshala-day-prose-rest"
+          paragraphs={kaamadhenuDayParagraphsAfterEvening}
+        />
+      ) : null}
+
+      <section className="goshala-day-closing" aria-label="Closing">
+        <div className="wrap">
+          <p className="goshala-day-closing-text">{kaamadhenuDayClosing}</p>
         </div>
       </section>
 
       <section className="child-nav tint">
         <div className="wrap child-nav-inner">
-          <Link className="btn-ghost-dark" data-testid="goshala-day-back" to="/goshala">
-            Project Kaamadhenau <ChevronRight size={15} />
+          <Link className="btn-ghost-dark" data-testid="goshala-day-back" to="/goshala/history">
+            Project Kaamadhenu <ChevronRight size={15} />
           </Link>
-          <Link data-testid="goshala-day-adopt" to="/goshala/adopt">
-            Adopt a cow →
-          </Link>
+          <div className="child-nav-links">
+            <Link data-testid="goshala-day-adopt" to="/goshala/adopt">Adopt a cow →</Link>
+            <Link data-testid="goshala-day-main" to="/goshala">Goshala home →</Link>
+          </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

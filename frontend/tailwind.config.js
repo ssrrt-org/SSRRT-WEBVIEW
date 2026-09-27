@@ -1,3 +1,5 @@
+const sanctum = require("./tailwind.sanctum");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: ["class"],
@@ -7,12 +9,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      ...sanctum,
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
+        sm: 'calc(var(--radius) - 4px)',
+        ...sanctum.borderRadius,
       },
       colors: {
+        ...sanctum.colors,
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

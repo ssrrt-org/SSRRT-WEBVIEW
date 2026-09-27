@@ -3,7 +3,7 @@ import { ChevronRight } from "lucide-react";
 import MotherNaadiBody from "@/components/mother/MotherNaadiBody";
 import MotherDetailHeader from "@/components/mother/MotherDetailHeader";
 import AvatarNarrative from "@/components/mother/AvatarNarrative";
-import { Split } from "@/components/shared/PageSections";
+import { Eyebrow, Split } from "@/components/shared/PageSections";
 import { usePageImages } from "@/context/CmsContext";
 import { motherSections } from "@/constants/motherContent";
 import NotFoundPage from "@/pages/NotFoundPage";
@@ -12,14 +12,15 @@ export default function MotherSectionPage() {
   const { sectionId: paramId } = useParams();
   const { pathname } = useLocation();
   const sectionId = paramId || pathname.replace(/^\/mother\//, "");
-  const index = motherSections.findIndex((s) => s.id === sectionId);
-  const section = motherSections[index];
+  const section = motherSections.find((s) => s.id === sectionId);
   const img = usePageImages(section?.path || pathname);
 
-  if (!section) return <NotFoundPage />;
+  if (!section || section.published === false) return <NotFoundPage />;
 
-  const prev = motherSections[index - 1];
-  const next = motherSections[index + 1];
+  const listedSections = motherSections.filter((s) => s.published !== false);
+  const index = listedSections.findIndex((s) => s.id === sectionId);
+  const prev = listedSections[index - 1];
+  const next = listedSections[index + 1];
 
   return (
     <>
@@ -30,6 +31,16 @@ export default function MotherSectionPage() {
       ) : section.type === "stories" ? (
         <section className="two-stories">
           <div className="wrap">
+            {section.image ? (
+              <figure className="pillar-fig two-stories-figure">
+                <img
+                  src={img("hero", section.image)}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            ) : null}
             <Eyebrow>{section.eyebrow}</Eyebrow>
             <h2>{section.title}</h2>
             <div className="two-stories-grid">

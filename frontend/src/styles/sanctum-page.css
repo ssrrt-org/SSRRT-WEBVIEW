@@ -1,0 +1,49 @@
+/* When viewing Stitch-aligned temple pages, nudge global chrome toward Sacred Sanctum tokens. */
+body.sanctum-page {
+  background: #fbf6ec;
+}
+
+body.sanctum-page .topbar {
+  background: #0d152f;
+  border-bottom: 1px solid #222a45;
+}
+
+body.sanctum-page .site-header {
+  background: #fff8f4;
+  border-bottom-color: #ebe1d7;
+}
+
+body.sanctum-page .brand-name {
+  font-family: "EB Garamond", "Cormorant Garamond", Georgia, serif;
+  color: #0d152f;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+body.sanctum-page .brand-title small {
+  color: #45464d;
+  letter-spacing: 0.14em;
+}
+
+body.sanctum-page .site-nav a,
+body.sanctum-page .site-nav button.nav-trigger {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #45464d;
+}
+
+body.sanctum-page .site-nav a:hover,
+body.sanctum-page .site-nav a.active {
+  color: #a13f22;
+}
+
+body.sanctum-page .site-footer {
+  border-top: 2px solid #dfc488;
+}
+
+body.sanctum-page ::selection {
+  background: #dfc488;
+  color: #0d152f;
+}

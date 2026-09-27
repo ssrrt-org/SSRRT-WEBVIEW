@@ -6,13 +6,13 @@ export const CMS_STORAGE_KEY = "ssrrt-admin-cms";
 
 export const HERO_PAGES = [
   { id: "/goshala", label: "Goshala", group: "Goshala" },
+  { id: "/goshala/history", label: "Project Kaamadhenu", group: "Goshala" },
   { id: "/goshala/adopt", label: "Adopt a Cow", group: "Goshala" },
-  { id: "/goshala/day", label: "A Day at the Goshala", group: "Goshala" },
+  { id: "/goshala/day", label: "A Day at Kamadhenu", group: "Goshala" },
   { id: "/mother-for-needy", label: "Mother for Needy", group: "Seva" },
   { id: "/rural-upliftment", label: "Rural Upliftment", group: "Seva" },
   { id: "/seva", label: "Seva hub", group: "Seva" },
   { id: "/seva/medical", label: "Medical camps", group: "Seva" },
-  { id: "/seva/medical-village", label: "Medical village", group: "Seva" },
   { id: "/seva/food", label: "Food for the Needy", group: "Seva" },
   { id: "/seva/narayana", label: "Narayana Seva", group: "Seva" },
   { id: "/sevas", label: "Ashram sevas", group: "Sevas" },

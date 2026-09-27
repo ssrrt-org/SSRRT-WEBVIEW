@@ -7,7 +7,7 @@ export const ashramRituals = [
     title: "Nandi Abhisheka",
     eyebrow: "Seva at the Ashram",
     intro: "A traditional abhisheka to Shiva's faithful companion — held at the grand mantapa.",
-    paragraphs: proseParas("nandi_seva", { skip: 1, max: 6 }),
+    paragraphs: proseParas("nandi_seva", { skip: 1, max: 12 }),
     bookPath: "/sevas/nandi-abhisheka/book",
   },
   {
@@ -16,7 +16,7 @@ export const ashramRituals = [
     title: "Ghee / Butter Abhisheka",
     eyebrow: "Sacred offering",
     intro: "Ghee and butter abhisheka offered with devotion at the Ashram sannidhis.",
-    paragraphs: proseParas("ganesha_seva", { skip: 1, max: 4 }),
+    paragraphs: proseParas("ganesha_seva", { skip: 1, max: 12 }),
     bookPath: "/sevas/ghee-butter-abhisheka/book",
   },
   {
@@ -25,7 +25,10 @@ export const ashramRituals = [
     title: "Alankar",
     eyebrow: "Seasonal alankara",
     intro: "Floral and butter alankaras that honour the deities during festival seasons.",
-    paragraphs: proseParas("subramanya_seva", { skip: 1, max: 4 }),
+    paragraphs: [
+      ...proseParas("ganesha_seva", { from: "The Butter Seva", until: "The Vow", max: 2 }),
+      ...proseParas("subramanya_seva", { from: "The Butter Seva", until: "The Vow", max: 2 }),
+    ],
     bookPath: "/sevas/alankar/book",
   },
   {
@@ -34,7 +37,7 @@ export const ashramRituals = [
     title: "Ganesh Abhisheka",
     eyebrow: "Ganesha Sannidhi",
     intro: "Sacred abhisheka at the Ganesha sannidhi — sweetness, wisdom, and new beginnings.",
-    paragraphs: proseParas("ganesha_seva", { skip: 1, max: 6 }),
+    paragraphs: proseParas("ganesha_seva", { skip: 1, max: 12 }),
     bookPath: "/sevas/ganesh-abhisheka/book",
   },
   {
@@ -52,7 +55,7 @@ export const ashramRituals = [
     title: "Subramanya Seva",
     eyebrow: "Subramanya Sannidhi",
     intro: "Abhisheka and seva offered to Lord Subramanya, commander of the divine army.",
-    paragraphs: proseParas("subramanya_seva", { skip: 1, max: 6 }),
+    paragraphs: proseParas("subramanya_seva", { skip: 1, max: 12 }),
     bookPath: "/sevas/subramanya-seva/book",
   },
 ];

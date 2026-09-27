@@ -64,7 +64,8 @@
     "dev": "craco start",
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test"
+    "test": "craco test",
+    "optimize-images": "bash scripts/optimize-images.sh"
   },
   "browserslist": {
     "production": [
