@@ -1,6 +1,7 @@
-import { docTitle, proseParas } from "@/lib/docContent";
+import { docExcerpt, docTitle, proseParas } from "@/lib/docContent";
 
 export const goshalaAdoptTitle = docTitle("goshala_adopt", { minLen: 20 });
+export const goshalaAdoptLede = docExcerpt("goshala_adopt", { skip: 1, maxLen: 220 });
 export const goshalaAdoptParagraphs = proseParas("goshala_adopt", { skip: 1 });
 
 export const goshalaSupportTitle = docTitle("goshala_support", { minLen: 15 });

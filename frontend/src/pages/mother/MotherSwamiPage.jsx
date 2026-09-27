@@ -22,7 +22,7 @@ export default function MotherSwamiPage() {
       <section className="child-nav tint">
         <div className="wrap child-nav-inner">
           <Link className="btn-ghost-dark" to="/mother">About Amma <ChevronRight size={15} /></Link>
-          <Link to="/mother/avatar">Avatar →</Link>
+          <Link to="/mother/avataarhood">The Avataarhood →</Link>
         </div>
       </section>
     </>

@@ -1,4 +1,14 @@
-import content from "@/constants/docContent.json";
+import baseContent from "@/constants/docContent.json";
+import kaamadhenuDayDoc from "@/constants/kaamadhenuDayDoc.json";
+import kaamadhenuDoc from "@/constants/kaamadhenuDoc.json";
+import narayanaDoc from "@/constants/narayanaDoc.json";
+
+const content = {
+  ...baseContent,
+  narayana: narayanaDoc,
+  kaamadhenu: kaamadhenuDoc,
+  kaamadhenu_day: kaamadhenuDayDoc,
+};
 
 /** Return paragraphs from extracted Word-doc content. */
 export function docParas(key, { skip = 0, max, minLen = 50 } = {}) {

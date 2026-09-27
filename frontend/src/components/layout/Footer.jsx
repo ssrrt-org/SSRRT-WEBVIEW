@@ -14,9 +14,9 @@ export default function Footer() {
   };
   const goshalaLinks = [
     ["Project Kaamadhenau", "/goshala"],
-    ["History of Goshala", "/goshala#history"],
+    ["Project Kaamadhenu", "/goshala/history"],
     ["Adopt a Cow", "/goshala/adopt"],
-    ["A Day at Kaamadhenau", "/goshala/day"],
+    ["A Day at Kamadhenu", "/goshala/day"],
     ["Volunteer", "/volunteering"],
     [SUPPORT_CAUSE_LABEL, "/donate?purpose=goshala"],
   ];

@@ -1,5 +1,68 @@
+import { consecratedSpaceTempleImages } from "@/constants/consecratedSpaceHeroImages";
+import { motherHeroImages } from "@/constants/motherHeroImages";
 import { IMG } from "@/constants/images";
 import { proseParas } from "@/lib/docContent";
+
+/** Testimonies hub card & CMS default (Shiva shrine at the Ashram). */
+export const MOTHER_TESTIMONIES_IMAGE = "/god/shiva/lord-shiva2.jpg";
+
+/** Explore-card art (cropped in hub tiles) — separate from inner-page heroes. */
+const motherExploreImages = {
+  testimonies: MOTHER_TESTIMONIES_IMAGE,
+  naadi: IMG.boss,
+  declaration: motherHeroImages[4],
+  avataarhood: motherHeroImages[5],
+  swami: consecratedSpaceTempleImages.shirdi,
+  realized: motherHeroImages[7],
+};
+
+const motherExploreImagePosition = {
+  testimonies: "center 45%",
+  naadi: "center 35%",
+  declaration: "center 30%",
+  avataarhood: "center 20%",
+  swami: "center 40%",
+  realized: "center 25%",
+};
+
+const motherExploreExtras = [
+  {
+    id: "declaration",
+    to: "/mother/declaration",
+    title: "Declaration of Avatar",
+    tag: "29 March 1997",
+    note: "The formal proclamation of Avatarhood at Karekura.",
+    image: motherExploreImages.declaration,
+    imagePosition: motherExploreImagePosition.declaration,
+  },
+  {
+    id: "avataarhood",
+    to: "/mother/avataarhood",
+    title: "The Avataarhood",
+    tag: "Divine purpose",
+    note: "Birth, Lalitha, and the celestial inscrutability of every avatar's life.",
+    image: motherExploreImages.avataarhood,
+    imagePosition: motherExploreImagePosition.avataarhood,
+  },
+  {
+    id: "swami",
+    to: "/mother/swami",
+    title: "Swami & Amma",
+    tag: "At Baba's feet",
+    note: "Her love and humility before Bhagawan Sri Sathya Sai Baba.",
+    image: motherExploreImages.swami,
+    imagePosition: motherExploreImagePosition.swami,
+  },
+  {
+    id: "realized",
+    to: "/mother/realized",
+    title: "Realized beings",
+    tag: "Naadi & Shirdi Sai",
+    note: "Recognition preserved with care — Agastya Nadi, Budha Nadi, and Shirdi Sai Baba.",
+    image: motherExploreImages.realized,
+    imagePosition: motherExploreImagePosition.realized,
+  },
+];
 
 const avatarOrigins = proseParas("mother_descent", { max: 4 });
 const avatarHumanDimension = proseParas("mother_descent", {
@@ -41,6 +104,7 @@ export const motherSections = [
   {
     id: "avatar",
     path: "/mother/avatar",
+    published: false,
     navTitle: "Avatar",
     type: "split",
     eyebrow: "Divine Mother",
@@ -58,6 +122,7 @@ export const motherSections = [
     type: "stories",
     eyebrow: "Two revealing moments",
     title: "Undaunted courage. Absolute presence.",
+    image: MOTHER_TESTIMONIES_IMAGE,
     stories: [
       {
         title: "The day of Narayana Seva",
@@ -80,6 +145,28 @@ export const motherSections = [
     reverse: false,
     tint: false,
   },
+];
+
+/** Card grid data for Mother hubs and the home “More about Amma” strip (six cards). */
+export const motherExploreProgrammes = [
+  ...motherSections
+    .filter((s) => s.published !== false)
+    .map((s) => ({
+      id: s.id,
+      to: s.path,
+      title: s.navTitle,
+      tag: s.eyebrow,
+      note: s.stories
+        ? `${s.stories[0].text.slice(0, 120)}…`
+        : `${(s.paragraphs?.[0] || s.title || "").slice(0, 120)}…`,
+      image: motherExploreImages[s.id] || IMG.amma,
+      imagePosition: motherExploreImagePosition[s.id],
+      testid: `mother-link-${s.id}`,
+    })),
+  ...motherExploreExtras.map((link) => ({
+    ...link,
+    testid: `mother-link-${link.id}`,
+  })),
 ];
 
 export const motherDeclarationNarrative = proseParas("mother_declaration", { skip: 1, max: 2 });

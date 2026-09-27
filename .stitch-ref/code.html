@@ -1,0 +1,759 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Vishnu Maya — Temple of Lord Krishna | Srimad Sai Rajarajeshwari Trust (SSRRT)</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Fonts: EB Garamond, Work Sans, Noto Serif (Sanskrit) -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&amp;family=Noto+Serif:ital,wght@0,400..700;1,400..700&amp;family=Work+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface": "#1f1b15",
+            "primary-fixed": "#dce1ff",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "surface-variant": "#ebe1d7",
+            "tertiary": "#211400",
+            "on-primary-fixed-variant": "#3e4662",
+            "primary-fixed-dim": "#bec5e8",
+            "tertiary-container": "#3c2700",
+            "secondary-fixed-dim": "#ffb5a0",
+            "on-secondary": "#ffffff",
+            "background": "#fff8f4",
+            "secondary-fixed": "#ffdbd1",
+            "on-tertiary-container": "#ba8a31",
+            "on-primary-container": "#8991b2",
+            "on-background": "#1f1b15",
+            "on-primary": "#ffffff",
+            "inverse-surface": "#353029",
+            "on-tertiary-fixed-variant": "#5f4100",
+            "primary": "#0d152f",
+            "tertiary-fixed-dim": "#f4bd5f",
+            "on-secondary-fixed-variant": "#82280d",
+            "surface-bright": "#fff8f4",
+            "on-tertiary-fixed": "#281900",
+            "on-surface-variant": "#45464d",
+            "inverse-on-surface": "#faefe5",
+            "surface-tint": "#555d7b",
+            "outline-variant": "#c6c6ce",
+            "surface-container-high": "#f1e6dd",
+            "inverse-primary": "#bec5e8",
+            "on-error": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "secondary-container": "#fd8361",
+            "on-error-container": "#93000a",
+            "surface-dim": "#e2d8cf",
+            "on-secondary-container": "#721c03",
+            "tertiary-fixed": "#ffdeac",
+            "on-secondary-fixed": "#3b0900",
+            "surface-container": "#f7ece2",
+            "secondary": "#a13f22",
+            "outline": "#76767e",
+            "primary-container": "#222a45",
+            "surface-container-low": "#fcf2e8",
+            "surface-container-highest": "#ebe1d7",
+            "on-primary-fixed": "#121a34",
+            "surface": "#fff8f4"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "gutter-mobile": "1rem",
+            "space-sm": "0.75rem",
+            "margin": "4rem",
+            "gutter": "1.5rem",
+            "space-xl": "4rem",
+            "margin-mobile": "1.25rem",
+            "space-xs": "0.375rem",
+            "space-md": "1.25rem",
+            "space-lg": "2.25rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["EB Garamond"],
+            "display-lg-mobile": ["EB Garamond"],
+            "headline-md": ["EB Garamond"],
+            "headline-lg-mobile": ["EB Garamond"],
+            "headline-sm": ["EB Garamond"],
+            "label-lg": ["Work Sans"],
+            "display-lg": ["EB Garamond"],
+            "label-md": ["Work Sans"],
+            "sanskrit-verse": ["Noto Serif"],
+            "body-md": ["Work Sans"],
+            "body-lg": ["Work Sans"],
+            "body-sm": ["Work Sans"]
+          },
+          "fontSize": {
+            "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "display-lg-mobile": ["36px", { "lineHeight": "44px", "fontWeight": "400" }],
+            "headline-md": ["28px", { "lineHeight": "36px", "fontWeight": "500" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "500" }],
+            "headline-sm": ["22px", { "lineHeight": "30px", "fontWeight": "600" }],
+            "label-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.12em", "fontWeight": "600" }],
+            "display-lg": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "label-md": ["11px", { "lineHeight": "16px", "letterSpacing": "0.14em", "fontWeight": "600" }],
+            "sanskrit-verse": ["20px", { "lineHeight": "34px", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "30px", "fontWeight": "400" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .gold-filigree-border {
+      box-shadow: inset 0 0 0 1px #DFC488, inset 0 0 0 4px rgba(223, 196, 136, 0.2);
+    }
+    .temple-shadow {
+      box-shadow: 0 8px 30px rgba(34, 42, 69, 0.05), 0 1px 3px rgba(201, 151, 61, 0.08);
+    }
+  </style>
+</head>
+<body class="bg-[#FBF6EC] text-on-surface font-body-md text-body-md antialiased selection:bg-[#DFC488] selection:text-primary">
+<!-- TOP STRIP / BANNER -->
+<aside class="bg-primary text-inverse-on-surface text-label-md font-label-md py-1.5 px-margin border-b border-primary-container">
+<div class="max-w-[1240px] mx-auto flex justify-between items-center tracking-wider">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-[#DFC488]" data-icon="waves">waves</span>
+<span class="">River Cauvery · Karekura, Mysore, Karnataka</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="hover:text-[#DFC488] transition-colors flex items-center gap-1.5" href="#goshala">
+<span class="material-symbols-outlined text-[15px]" data-icon="volunteer_activism">volunteer_activism</span>
+          Gau Seva Timings: 7:00 AM – 6:30 PM
+        </a>
+<div class="h-3 w-[1px] bg-primary-container"></div>
+<a class="hover:text-[#DFC488] transition-colors flex items-center gap-1" href="#cart">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_bag">shopping_bag</span>
+          Cart (0)
+        </a>
+<a class="bg-[#9B3A1E] hover:bg-[#7A2C15] text-white px-3 py-1 rounded-lg text-label-md transition-colors duration-200" href="#donate">
+          Support the Cause
+        </a>
+</div>
+</div>
+</aside>
+<!-- SHARED COMPONENT: TopAppBar (Desktop + Web View) -->
+<header class="bg-surface shadow-sm border-b border-surface-variant sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-margin py-space-sm max-w-[1240px] mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="temple_hindu">temple_hindu</span>
+<div>
+<a class="font-headline-sm text-headline-sm font-semibold tracking-wider text-primary block leading-tight" href="#">
+            SRIMAD SAI RAJARAJESHWARI TRUST
+          </a>
+<span class="font-label-md text-label-md text-on-surface-variant tracking-widest block text-[10px] -mt-0.5">
+            GOSHALA · ASHRAM · SEVA · KAREKURA
+          </span>
+</div>
+</div>
+<!-- Desktop Nav Cluster -->
+<nav class="hidden lg:flex items-center gap-5 font-label-md text-label-md text-on-surface-variant">
+<a class="hover:text-secondary transition-colors duration-200" href="#">Home</a>
+<a class="hover:text-secondary transition-colors duration-200" href="#">Mother</a>
+<a class="hover:text-secondary transition-colors duration-200" href="#">Mother for Needy</a>
+<a class="hover:text-secondary transition-colors duration-200" href="#">Goshala</a>
+<a class="hover:text-secondary transition-colors duration-200" href="#">Rural Upliftment</a>
+<a class="text-secondary font-semibold border-b-2 border-secondary pb-0.5" href="#">Consecrated Space</a>
+<a class="hover:text-secondary transition-colors duration-200" href="#">Sevas</a>
+<a class="hover:text-secondary transition-colors duration-200" href="#">SSRRT</a>
+<a class="hover:text-secondary transition-colors duration-200" href="#">Shoppe</a>
+<a class="hover:text-secondary transition-colors duration-200" href="#">Volunteer</a>
+</nav>
+<div class="flex items-center gap-3">
+<a class="bg-secondary hover:bg-[#7A2C15] text-white px-4 py-2 rounded-lg font-label-lg text-label-lg transition-colors duration-150 tracking-wider" href="#donate">
+          Donate
+        </a>
+</div>
+</div>
+</header>
+<!-- MAIN CANVAS -->
+<main class="w-full">
+<!-- 2. HERO SECTION (~50vh height, 2 columns on deep sacred indigo) -->
+<section class="bg-primary-container relative text-white overflow-hidden py-8 flex items-center border-b-2 border-[#DFC488]">
+<!-- Background subtle mandala ambient pattern -->
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(#DFC488_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+<div class="max-w-[1240px] mx-auto px-margin w-full py-4 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center h-full">
+<!-- Left Column (7 cols) -->
+<div class="lg:col-span-7 flex flex-col justify-center space-y-2">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 font-label-md text-[11px] text-outline-variant tracking-wider uppercase">
+<a class="hover:text-[#DFC488] transition-colors" href="#">Home</a>
+<span class="">›</span>
+<a class="hover:text-[#DFC488] transition-colors" href="#">Ashram &amp; Temples</a>
+<span class="">›</span>
+<span class="text-[#DFC488] font-semibold">Vishnu Maya — Temple of Lord Krishna</span>
+</nav>
+<!-- Sanskrit Invocation -->
+<div class="font-sanskrit-verse text-[#DFC488] text-base tracking-widest pt-0.5 flex items-center gap-2">
+<span class="w-5 h-[1px] bg-[#DFC488]"></span>
+<span class="">॥ श्री कृष्णाय नमः ॥</span>
+<span class="w-5 h-[1px] bg-[#DFC488]"></span>
+</div>
+<!-- Large H1 Headline -->
+<h1 class="font-display-lg text-headline-lg font-normal tracking-tight text-white leading-tight">
+            Vishnu Maya — Temple of Lord Krishna
+          </h1>
+<!-- Gold Subtitle -->
+<p class="font-headline-sm text-[18px] leading-snug text-[#DFC488] italic font-normal">
+            Govinda · Giver of joy to all
+          </p>
+<!-- Intro Paragraph -->
+<p class="font-body-md text-sm text-inverse-on-surface/90 max-w-xl leading-relaxed">
+            Krishna is among the most complete divine manifestations ever known to humanity — love and wisdom, play and seriousness, tenderness and power, beauty and depth in a single form.
+          </p>
+<!-- Action Buttons -->
+<div class="pt-2 flex flex-wrap items-center gap-3">
+<a class="bg-[#9B3A1E] hover:bg-[#7A2C15] text-white border border-[#DFC488] px-5 py-2 rounded-lg font-label-lg text-label-md tracking-wider flex items-center gap-2 transition-all duration-200 shadow-md" href="#offer-prayers">
+<span class="material-symbols-outlined text-[16px]" data-icon="energy_savings_leaf">energy_savings_leaf</span>
+              Offer your prayers
+            </a>
+<a class="border border-[#DFC488] hover:bg-[#DFC488]/10 text-[#DFC488] px-5 py-2 rounded-lg font-label-lg text-label-md tracking-wider flex items-center gap-2 transition-colors duration-200" href="#plan-visit">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_month">calendar_month</span>
+              Plan your visit
+            </a>
+</div>
+</div>
+<!-- Right Column: Majestic Arch-Framed Deity Portrait (5 cols) -->
+<div class="lg:col-span-5 flex justify-center items-center py-2">
+<div class="relative p-1.5 rounded-t-[140px] rounded-b-xl border border-[#DFC488] bg-primary/60 temple-shadow flex flex-col items-center justify-center">
+<div class="w-[230px] h-[280px] rounded-t-[135px] rounded-b-lg overflow-hidden border border-[#DFC488]/40 relative"><img class="w-full h-full object-cover object-[center_18%] transform hover:scale-105 transition-transform duration-700" data-alt="A sacred temple sanctum idol of Lord Krishna adorned with golden peacock feather crowns, fresh green tulsi garlands, and delicate yellow champak flowers. The deity is illuminated by warm brass oil lamps giving a divine, mystical amber glow against deep indigo temple stone carvings, embodying timeless reverence and meditative stillness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWz8TRDz69HPO0ZqYzkiyHXf7BMN3igMxRd7iPTyC6Jxojzp7LtuYq_Yx5zV4_jDqo5GhwcC2ih98HFB14gD3daBbM9LaQf9Zp2-3MWZA0--FUxC7VGaxg6ZtfvagFKAXEwsqeT5uZbFZp7ZhUOYrEeWtik5p-XlrgncFKqUUETMo4Xjq8qXmZokBdSY3pRwvxmMK9hZuldV9BqfGXeT5Kn5MJCGiGf6u1cAHhzzRNNT1IXJ4lrQQk"><div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-60"></div><div class="absolute bottom-2 left-0 right-0 text-center font-label-md text-[10px] text-[#DFC488] tracking-widest uppercase">Moola Vigraha · Sri Krishna Sanctum</div></div>
+<!-- Filigree ornament at top -->
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary-container px-3 py-0.5 rounded-full border border-[#DFC488] text-[#DFC488] text-[10px] font-label-md whitespace-nowrap">
+              PAVITRA DARSHAN
+            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. ABOUT BAND (Desktop 2-column split on cream/tinted background #F3EADA) -->
+<section class="bg-[#F3EADA] py-space-xl border-b border-[#DFC488]/50">
+<div class="max-w-[1240px] mx-auto px-margin space-y-12">
+<!-- Two Column Content Split -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left Column (5 cols - approx 40%) -->
+<div class="lg:col-span-5 space-y-5">
+<div class="flex items-center gap-3">
+<div class="h-6 w-1 bg-[#C9973D]"></div>
+<span class="font-label-md text-label-md uppercase tracking-[0.2em] text-secondary font-semibold">
+                ABOUT THE TEMPLE
+              </span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary font-normal leading-snug">
+              About Lord Krishna
+            </h2>
+<div class="w-16 h-[2px] bg-[#DFC488]"></div>
+<!-- Architectural Sanctum Image -->
+<div class="mt-6 rounded-lg overflow-hidden border border-[#DFC488] temple-shadow bg-surface-container-lowest p-2">
+<div class="h-72 overflow-hidden rounded relative">
+<img class="w-full h-full object-cover" data-alt="An ornate granite temple sanctum situated right on the lush riverbanks of the sacred River Cauvery in Karnataka. Traditional brass hanging bells, flaming diya oil lamps, and fragrant lotus offerings reflect on the polished black stone courtyard in the serene light of early dawn." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrYrOg9eBRDtwI-W-wCA7hQq286p335qm5H5GPoDWWM4Vqnsh8H0ho4T8cl2_vcj8ml33HmbZCiUStpraeCdhwgyrfrx-lJeNyLGTM8P1Pig1-JNhEzYY341W0rwdHxvsZmR63sYCmc3JSvB_il_y-RslfL_bAjNhUXvLjAlTqSaFUGq5jpSmsWri3oiE8lAXGlkpKvbQptIFGayxWJWtpbTKO8TYMENj8Eowe7nGcETGms7_xDs_S">
+<div class="absolute bottom-0 inset-x-0 bg-primary/80 backdrop-blur-sm px-4 py-2 text-white flex justify-between items-center text-label-md font-label-md">
+<span class="">Cauvery Banks · Karekura Ashram</span>
+<span class="text-[#DFC488]">Constituted 2018</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (7 cols - approx 60%) -->
+<div class="lg:col-span-7 space-y-6 text-[#2B2620] leading-relaxed pt-3">
+<p class="font-body-lg text-body-lg text-on-surface font-normal">
+              Of all the divine incarnations in the vast tapestry of Hindu mythology, none has captured the human heart with quite the warmth, the beauty, and the multidimensional richness of <strong class="text-secondary font-medium">Lord Krishna</strong>. He is at once the mischievous child stealing butter in Gokula, the enchantingly youthful cowherd whose flute calls forth the soul’s deepest longing, the loyal friend of Sudama, the beloved protector of Draupadi, and the supreme philosopher on the battlefield of Kurukshetra.
+            </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Krishna is among the most complete divine manifestations ever known to humanity — encompassing within his single form every quality that can be imagined in the Divine. Where other avatars emphasize righteous severity, Krishna introduces playful delight (<em>Leela</em>). Where austerity is demanded, Krishna offers unconditional love (<em>Prema Bhakti</em>).
+            </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              In the Hindu understanding, Krishna is not merely a historical figure or a mythological character. He is a living presence — an aspect of the Supreme Consciousness that is eternally accessible to any sincere seeker. Situated on the serene banks of the sacred River Cauvery at Srimad Sai Rajarajeshwari Trust, the Vishnu Maya Temple stands as a consecrated portal where that intimate presence is felt in every temple bell, morning prayer, and gentle breeze from the goshala.
+            </p>
+<div class="p-4 bg-white/70 border-l-4 border-secondary rounded-r-lg">
+<span class="font-sanskrit-verse text-lg text-primary block mb-1">
+                "मन्मना भव मद्भक्तो मद्याजी मां नमस्कुरु । मामेवैष्यसि सत्यं ते प्रतिजाने प्रियोऽसि मे ॥"
+              </span>
+<span class="text-body-sm text-on-surface-variant italic">
+                — Bhagavad Gita 18.65: "Fix your mind on Me, be devoted to Me, sacrifice to Me, bow down to Me. In truth I promise you, for you are truly dear to Me."
+              </span>
+</div>
+</div>
+</div>
+<!-- 3 Highlight Cards in a Horizontal Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-[#E7DFCE] rounded-lg p-6 temple-shadow relative overflow-hidden group hover:border-[#C9973D] transition-colors">
+<div class="h-1 bg-secondary absolute top-0 inset-x-0"></div>
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-secondary text-2xl" data-icon="restaurant">restaurant</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Every meal offered</h3>
+</div>
+<p class="text-body-sm text-on-surface-variant leading-relaxed">
+              Narayana Seva and daily food seva sanctified at the Ashram. Over 1,200 wholesome hot meals distributed every day to surrounding village pilgrims and destitute souls with reverence.
+            </p>
+<div class="mt-4 pt-3 border-t border-surface-variant flex justify-between items-center text-label-md text-secondary font-semibold">
+<span class="">Anna Dana Seva</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-[#E7DFCE] rounded-lg p-6 temple-shadow relative overflow-hidden group hover:border-[#C9973D] transition-colors">
+<div class="h-1 bg-[#C9973D] absolute top-0 inset-x-0"></div>
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-[#C9973D] text-2xl" data-icon="school">school</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Every student supported</h3>
+</div>
+<p class="text-body-sm text-on-surface-variant leading-relaxed">
+              Education and values empowerment programmes for children in 14 rural hamlets surrounding Karekura, providing learning kits, moral education, and nutritious breakfasts.
+            </p>
+<div class="mt-4 pt-3 border-t border-surface-variant flex justify-between items-center text-label-md text-[#C9973D] font-semibold">
+<span class="">Vidya Vahini</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-[#E7DFCE] rounded-lg p-6 temple-shadow relative overflow-hidden group hover:border-[#C9973D] transition-colors">
+<div class="h-1 bg-primary absolute top-0 inset-x-0"></div>
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="cruelty_free">cruelty_free</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Every cow protected</h3>
+</div>
+<p class="text-body-sm text-on-surface-variant leading-relaxed">
+              Project Kaamadhenau — Gau seva as living worship. A shelter of unconditional love caring for 300+ indigenous Gir, Hallikar, and Kangayam cows adjacent to Krishna Sannidhi.
+            </p>
+<div class="mt-4 pt-3 border-t border-surface-variant flex justify-between items-center text-label-md text-primary font-semibold">
+<span class="">Gau Seva Ashram</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. LONG-READ PROSE & TEACHINGS SECTION (Max-w-5xl, ivory parchment #FBF6EC) -->
+<section class="py-space-xl bg-[#FBF6EC]">
+<div class="max-w-4xl mx-auto px-margin space-y-12">
+<!-- Section Header -->
+<div class="text-center space-y-3">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-[#F3EADA] border border-[#DFC488] rounded-full text-label-md text-secondary uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm" data-icon="auto_stories">auto_stories</span>
+            Sacred Discourses &amp; Significance
+          </div>
+<h2 class="font-headline-lg text-headline-lg text-primary font-normal">
+            The Living Presence of Govinda in Karekura
+          </h2>
+<div class="flex items-center justify-center gap-3 pt-2">
+<div class="w-12 h-[1px] bg-[#DFC488]"></div>
+<span class="material-symbols-outlined text-[#C9973D] text-lg" data-icon="psychiatry">psychiatry</span>
+<div class="w-12 h-[1px] bg-[#DFC488]"></div>
+</div>
+</div>
+<!-- Article Topic 1 -->
+<article class="space-y-4">
+<h3 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span class="text-[#C9973D] text-xl">✦</span>
+            Spiritual Significance of the Krishna Temple at the Ashram
+          </h3>
+<p class="text-body-md text-on-surface leading-relaxed">
+            At Srimad Sai Rajarajeshwari Trust, the Vishnu Maya Krishna Temple is not an isolated stone shrine; it is the living emotional heartbeat of the entire sanctuary. Revered Amma has always emphasized the intimate, mother-child and companion relationship that Krishna invites from every devotee. Here, ritual is never mechanical. Devotees participate in Krishnacharana alongside the ashram’s sacred herd of indigenous cows, experiencing firsthand how divinity permeates natural, everyday rural life.
+          </p>
+<p class="text-body-md text-on-surface-variant leading-relaxed">
+            Situated where the Cauvery winds serenely past Mysore's fertile fields, the gentle river mist during Brahma Muhurta (4:30 AM) coats the temple bells. The temple sanctum is consecrated using traditional Agamic vidhis, invoking Vishnu Maya—the divine cosmic energy that both creates the wondrous variety of the world and lovingly removes the veil of illusion when surrendered unto Him.
+          </p>
+</article>
+<!-- Centered Scripture Quotation Box -->
+<div class="bg-[#F3EADA] border-y-2 border-[#DFC488] p-8 text-center space-y-3 rounded-lg shadow-sm">
+<span class="text-[#C9973D] text-xs font-label-md tracking-[0.25em] uppercase block">BHAGAVAD GITA · CHAPTER 9, VERSE 26</span>
+<p class="font-sanskrit-verse text-sanskrit-verse text-primary max-w-2xl mx-auto">
+            पत्रं पुष्पं फलं तोयं यो मे भक्त्या प्रयच्छति ।<br>
+            तदहं भक्त्युपहृतमश्नामि प्रयतात्मनः ॥
+          </p>
+<div class="w-16 h-[1px] bg-[#DFC488] mx-auto my-2"></div>
+<p class="font-body-md text-body-md text-on-surface italic max-w-xl mx-auto">
+            "Whoever offers Me with devotion a leaf, a flower, a fruit, or even water—that offering of devotion made by a pure-hearted seeker, I accept with immense delight."
+          </p>
+</div>
+<!-- Article Topic 2 -->
+<article class="space-y-4">
+<h3 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span class="text-[#C9973D] text-xl">✦</span>
+            The Bhagavad Gita and the Teachings of the Krishna Temple
+          </h3>
+<p class="text-body-md text-on-surface leading-relaxed">
+            The philosophical cornerstone taught at Vishnu Maya Temple is <em>Nishkama Karma</em>—selfless action dedicated to the welfare of all beings without attachment to personal fruits. At SSRRT, every activity, from milking cows at 5:00 AM to chopping vegetables for community Narayana Seva and holding free medical clinics, is conducted as Krishna Arpanam (an offering to Krishna).
+          </p>
+<p class="text-body-md text-on-surface-variant leading-relaxed">
+            Pilgrims visiting the temple do not simply offer coconuts and depart; they are guided to seat themselves in the silent mandapa, absorb the Gita shlokas carved on the stone colonnades, and reflect on their personal life battles with renewed clarity, courage, and composure (*samattvam*).
+          </p>
+</article>
+<!-- Article Topic 3 -->
+<article class="space-y-4">
+<h3 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span class="text-[#C9973D] text-xl">✦</span>
+            The Spiritual Advantages of Visiting the Krishna Temple
+          </h3>
+<p class="text-body-md text-on-surface leading-relaxed">
+            Darshan of Lord Krishna at Karekura creates an immediate dissolution of mental distress and anxiety. The combination of Cauvery’s purifying waters, the high spiritual vibrations maintained by uninterrupted chanting, and the pure sattvic atmosphere of 300+ lovingly sheltered cows creates a sanctuary where quiet introspection happens effortlessly. Devotees consistently recount experiences of sudden lightness in the heart, answers to deeply held spiritual quandaries, and a profound sense of protection under Govinda's grace.
+          </p>
+</article>
+</div>
+</section>
+<!-- 5. 'WHY DEVOTEES SEEK VISHNU MAYA' (3-Column Grid + Gift Banner) -->
+<section class="py-space-xl bg-[#F7ECE2] border-t border-b border-[#DFC488]/40">
+<div class="max-w-[1240px] mx-auto px-margin space-y-10">
+<div class="text-center space-y-2">
+<p class="text-label-lg font-label-lg text-secondary tracking-widest uppercase">
+            Grace for the path you are on
+          </p>
+<h2 class="font-headline-lg text-headline-lg text-primary">
+            Why Devotees Seek Vishnu Maya — Temple of Lord Krishna
+          </h2>
+<div class="w-16 h-[2px] bg-[#C9973D] mx-auto mt-2"></div>
+</div>
+<!-- 3 Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-lg border border-[#E7DFCE] temple-shadow relative flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+<div>
+<div class="w-12 h-12 rounded-full bg-[#F3EADA] border border-[#DFC488] flex items-center justify-center text-secondary mb-5">
+<span class="material-symbols-outlined text-2xl" data-icon="favorite">favorite</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-3">For bhakti</h3>
+<p class="text-body-md text-on-surface-variant leading-relaxed">
+                The incomparable sweetness of devotional love that Krishna awakens in the heart. Here, devotion is not austere discipline; it is an intimate song of joy, effortless prayer, and surrender that melts lifelong internal resistance.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-surface-variant text-label-md font-label-md text-secondary">
+              SEVA: TULSI MALAI SAMARPAN
+            </div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-lg border border-[#E7DFCE] temple-shadow relative flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+<div>
+<div class="w-12 h-12 rounded-full bg-[#F3EADA] border border-[#DFC488] flex items-center justify-center text-[#C9973D] mb-5">
+<span class="material-symbols-outlined text-2xl" data-icon="lightbulb">lightbulb</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-3">For guidance</h3>
+<p class="text-body-md text-on-surface-variant leading-relaxed">
+                Living remembrance of the Bhagavad Gita — duty, equanimity, and Nishkama Karma. When facing profound ethical crossroads or career and family burdens, seekers find clarity in Krishna’s practical wisdom.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-surface-variant text-label-md font-label-md text-[#C9973D]">
+              STUDY: GITA PARAYANA &amp; SATSANG
+            </div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-lg border border-[#E7DFCE] temple-shadow relative flex flex-col justify-between hover:translate-y-[-2px] transition-transform duration-200">
+<div>
+<div class="w-12 h-12 rounded-full bg-[#F3EADA] border border-[#DFC488] flex items-center justify-center text-primary mb-5">
+<span class="material-symbols-outlined text-2xl" data-icon="eco">eco</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-3">With the Goshala</h3>
+<p class="text-body-md text-on-surface-variant leading-relaxed">
+                Govinda as patron and eternal protector of cows; the deity and the sacred herd exist as one continuous worship. Devotees experience Krishna directly by feeding fresh grass to calves after morning aarti.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-surface-variant text-label-md font-label-md text-primary">
+              EXPERIENCE: GAU POOJA &amp; CHARANA
+            </div>
+</div>
+</div>
+<!-- Spiritual Gift Banner Callout -->
+<div class="bg-primary text-white p-8 rounded-lg border border-[#DFC488] gold-filigree-border relative overflow-hidden">
+<div class="relative z-10 flex flex-col md:flex-row items-center gap-6 justify-between">
+<div class="space-y-2 max-w-3xl">
+<div class="flex items-center gap-2 text-[#DFC488] text-label-md font-label-md uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm" data-icon="workspace_premium">workspace_premium</span>
+                Spiritual Blessing &amp; Sankalpa
+              </div>
+<p class="font-headline-sm text-headline-sm text-white font-normal italic leading-relaxed">
+                "Worship here awakens bhakti, steadies the mind through the Gita’s teaching of equanimity, and opens the timeless possibility of direct darshan of Govinda’s eternal presence."
+              </p>
+<p class="text-label-md text-outline-variant">
+                — Revered Amma · Srimad Sai Rajarajeshwari Trust, Karekura
+              </p>
+</div>
+<a class="whitespace-nowrap bg-[#DFC488] hover:bg-[#C9973D] text-primary font-semibold px-6 py-3 rounded-lg text-label-lg font-label-lg tracking-wider transition-colors duration-200 shadow" href="#sankalpa">
+              Enroll for Daily Sankalpa
+            </a>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. VISIT & PRAY & PRACTICAL PILGRIMAGE GRID (2-Column Layout) -->
+<section class="py-space-xl bg-[#FBF6EC]" id="plan-visit">
+<div class="max-w-[1240px] mx-auto px-margin space-y-10">
+<div class="text-center space-y-2">
+<span class="text-label-md font-label-md uppercase tracking-widest text-secondary">YATRA &amp; DARSHAN GUIDE</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Plan Your Sacred Visit</h2>
+<div class="w-16 h-[2px] bg-[#DFC488] mx-auto"></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+<!-- Left Side: 'A place for devotion' (7 cols) -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-8 rounded-lg border border-[#E7DFCE] temple-shadow space-y-6">
+<h3 class="font-headline-md text-headline-md text-primary border-b border-surface-variant pb-3">
+              A Place for Devotion &amp; Family Pilgrimage
+            </h3>
+<div class="space-y-5">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded bg-[#F3EADA] border border-[#DFC488] flex items-center justify-center text-secondary shrink-0 mt-1">
+<span class="material-symbols-outlined" data-icon="self_improvement">self_improvement</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">Devotees of Bhakti</h4>
+<p class="text-body-md text-on-surface-variant mt-1">
+                    The temple mandapa remains uncrowded, silent, and contemplative throughout the afternoon. You are invited to sit undisturbed, chant the <em>Hare Krishna Mahamantra</em> or <em>Vishnu Sahasranama</em>, and soak in the sanctified stillness.
+                  </p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded bg-[#F3EADA] border border-[#DFC488] flex items-center justify-center text-secondary shrink-0 mt-1">
+<span class="material-symbols-outlined" data-icon="nature_people">nature_people</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">After Gau Seva</h4>
+<p class="text-body-md text-on-surface-variant mt-1">
+                    Pilgrims completing Gau Pooja and feeding the cows find the walk directly into the Krishna sanctum to be a natural climax of their seva. In tradition, worshipping Govinda right after serving mother cow completes the sacred cycle of merit.
+                  </p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded bg-[#F3EADA] border border-[#DFC488] flex items-center justify-center text-secondary shrink-0 mt-1">
+<span class="material-symbols-outlined" data-icon="diversity_3">diversity_3</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">Families &amp; Children</h4>
+<p class="text-body-md text-on-surface-variant mt-1">
+                    Children are welcomed with warmth. Feeding temple peacocks, observing the gentle calves in open pastures, and participating in the evening butter lamp lighting (Deepotsava) instills deep roots in Sanatana Dharma naturally.
+                  </p>
+</div>
+</div>
+</div>
+<!-- Pro-tip Box -->
+<div class="p-4 bg-[#F3EADA] rounded border border-[#DFC488] flex items-center gap-3">
+<span class="material-symbols-outlined text-[#C9973D]" data-icon="info">info</span>
+<p class="text-body-sm text-on-surface">
+<strong>Ashram Prasadam:</strong> Satvik sanctified lunch (Maha Prasada) is served daily between 12:30 PM and 2:00 PM to all visiting devotees free of cost.
+              </p>
+</div>
+</div>
+<!-- Right Side: Sacred Temple Details Card (5 cols) -->
+<div class="lg:col-span-5 bg-[#222A45] text-white p-8 rounded-lg border border-[#DFC488] temple-shadow flex flex-col justify-between relative overflow-hidden">
+<!-- Decorative corner accent -->
+<div class="absolute -top-10 -right-10 w-28 h-28 bg-[#DFC488]/10 rounded-full blur-xl"></div>
+<div class="space-y-6 relative z-10">
+<div class="border-b border-[#DFC488]/30 pb-4">
+<span class="text-[#DFC488] font-label-md text-label-md uppercase tracking-widest block mb-1">Pilgrimage Particulars</span>
+<h3 class="font-headline-md text-headline-md text-white">Temple Darshan Details</h3>
+</div>
+<div class="space-y-4 text-body-sm">
+<div>
+<span class="text-outline-variant block font-label-md uppercase">Sanctum Name</span>
+<span class="text-white font-medium text-base">Vishnu Maya — Sri Krishna Sannidhi</span>
+</div>
+<div>
+<span class="text-outline-variant block font-label-md uppercase">Location</span>
+<span class="text-white font-medium text-base">Srimad Sai Rajarajeshwari Ashram, Karekura, Srirangapatna Taluk, Mysore District, Karnataka 571438</span>
+</div>
+<div>
+<span class="text-outline-variant block font-label-md uppercase">Best Time to Visit</span>
+<span class="text-[#DFC488] font-medium text-base">
+                    Morning Darshan: 6:00 AM – 11:30 AM<br>
+                    Evening Deeparadhana: 5:00 PM – 8:00 PM
+                  </span>
+</div>
+<div>
+<span class="text-outline-variant block font-label-md uppercase">Auspicious Offerings (Prasada)</span>
+<span class="text-white font-medium text-base">
+                    Fresh churned butter, Krishna tulsi garlands, pure cow milk, fresh seasonal fruits, and blue lotus blossoms.
+                  </span>
+</div>
+</div>
+</div>
+<div class="pt-8 relative z-10 space-y-3">
+<button class="w-full bg-[#9B3A1E] hover:bg-[#7A2C15] text-white border border-[#DFC488] py-3 rounded-lg font-label-lg text-label-lg tracking-wider transition-colors duration-200 shadow flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="edit_note">edit_note</span>
+                Register Seva Sankalpa
+              </button>
+<a class="w-full text-center block text-outline-variant hover:text-[#DFC488] text-label-md font-label-md tracking-wider transition-colors" href="https://maps.google.com" rel="noopener" target="_blank">
+                Open Directions in Google Maps ›
+              </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. 'EXPLORE OTHER TEMPLES' (Row of 8 Cauvery Sannidhis) -->
+<section class="py-space-xl bg-[#F3EADA] border-t border-[#DFC488]/40">
+<div class="max-w-[1240px] mx-auto px-margin space-y-8">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-[#DFC488]/40 pb-4">
+<div>
+<span class="text-label-md font-label-md uppercase tracking-widest text-secondary font-semibold">THE SACRED PRECINCT</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Explore Other Sannidhis &amp; Shrines</h2>
+</div>
+<span class="text-body-sm text-on-surface-variant">8 Consecrated Shrines on the Banks of River Cauvery</span>
+</div>
+<!-- 8 Shrines Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Shrine 1 -->
+<a class="bg-surface-container-lowest p-4 rounded border border-[#E7DFCE] hover:border-secondary transition-all group temple-shadow" href="#">
+<div class="text-secondary text-xs font-label-md tracking-wider uppercase mb-1">Prathama Vighnaharta</div>
+<div class="font-headline-sm text-headline-sm text-primary group-hover:text-secondary transition-colors">Lord Ganesha</div>
+<p class="text-body-sm text-on-surface-variant mt-2 text-xs line-clamp-2">The remover of all obstacles at the ashram entrance.</p>
+</a>
+<!-- Shrine 2 -->
+<a class="bg-surface-container-lowest p-4 rounded border border-[#E7DFCE] hover:border-secondary transition-all group temple-shadow" href="#">
+<div class="text-secondary text-xs font-label-md tracking-wider uppercase mb-1">Maha Kailasha</div>
+<div class="font-headline-sm text-headline-sm text-primary group-hover:text-secondary transition-colors">The Grand Shiva Temple</div>
+<p class="text-body-sm text-on-surface-variant mt-2 text-xs line-clamp-2">Magnificent stone lingam overlooking the flowing waters.</p>
+</a>
+<!-- Shrine 3 (Active Item) -->
+<div class="bg-primary text-white p-4 rounded border-2 border-[#DFC488] shadow-md relative">
+<span class="absolute top-2 right-2 text-[#DFC488] text-[10px] font-label-md px-1.5 py-0.5 rounded bg-primary-container">CURRENT</span>
+<div class="text-[#DFC488] text-xs font-label-md tracking-wider uppercase mb-1">Govinda Leela</div>
+<div class="font-headline-sm text-headline-sm text-white">Vishnu Maya — Krishna</div>
+<p class="text-body-sm text-inverse-on-surface/80 mt-2 text-xs line-clamp-2">Sanctuary of devotional grace, cows, and Gita wisdom.</p>
+</div>
+<!-- Shrine 4 -->
+<a class="bg-surface-container-lowest p-4 rounded border border-[#E7DFCE] hover:border-secondary transition-all group temple-shadow" href="#">
+<div class="text-secondary text-xs font-label-md tracking-wider uppercase mb-1">Sadguru Nilaya</div>
+<div class="font-headline-sm text-headline-sm text-primary group-hover:text-secondary transition-colors">Shirdi Sai Baba Temple</div>
+<p class="text-body-sm text-on-surface-variant mt-2 text-xs line-clamp-2">Abode of faith and patience (Shraddha &amp; Saburi).</p>
+</a>
+<!-- Shrine 5 -->
+<a class="bg-surface-container-lowest p-4 rounded border border-[#E7DFCE] hover:border-secondary transition-all group temple-shadow" href="#">
+<div class="text-secondary text-xs font-label-md tracking-wider uppercase mb-1">Skanda Sannidhi</div>
+<div class="font-headline-sm text-headline-sm text-primary group-hover:text-secondary transition-colors">Lord Subramanya</div>
+<p class="text-body-sm text-on-surface-variant mt-2 text-xs line-clamp-2">Spiritual courage, protection, and Sarpa Dosha nivarana.</p>
+</a>
+<!-- Shrine 6 -->
+<a class="bg-surface-container-lowest p-4 rounded border border-[#E7DFCE] hover:border-secondary transition-all group temple-shadow" href="#">
+<div class="text-secondary text-xs font-label-md tracking-wider uppercase mb-1">Trimurti Swaroopa</div>
+<div class="font-headline-sm text-headline-sm text-primary group-hover:text-secondary transition-colors">Lord Dattatreya</div>
+<p class="text-body-sm text-on-surface-variant mt-2 text-xs line-clamp-2">The primordial preceptor seated beneath the Audumbara tree.</p>
+</a>
+<!-- Shrine 7 -->
+<a class="bg-surface-container-lowest p-4 rounded border border-[#E7DFCE] hover:border-secondary transition-all group temple-shadow" href="#">
+<div class="text-secondary text-xs font-label-md tracking-wider uppercase mb-1">Sri Chakra Nilayam</div>
+<div class="font-headline-sm text-headline-sm text-primary group-hover:text-secondary transition-colors">Mani Dweepa</div>
+<p class="text-body-sm text-on-surface-variant mt-2 text-xs line-clamp-2">Cosmic mother Rajarajeshwari's consecrated inner realm.</p>
+</a>
+<!-- Shrine 8 -->
+<a class="bg-surface-container-lowest p-4 rounded border border-[#E7DFCE] hover:border-secondary transition-all group temple-shadow" href="#">
+<div class="text-secondary text-xs font-label-md tracking-wider uppercase mb-1">Ananda Tandava</div>
+<div class="font-headline-sm text-headline-sm text-primary group-hover:text-secondary transition-colors">Nataraja Hall</div>
+<p class="text-body-sm text-on-surface-variant mt-2 text-xs line-clamp-2">Sacred hall of classical devotional music and sacred arts.</p>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- 8. COMPREHENSIVE DESKTOP FOOTER -->
+<footer class="bg-primary text-white pt-12 pb-8 border-t-2 border-[#DFC488]">
+<div class="max-w-[1240px] mx-auto px-margin">
+<!-- 4 Columns Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-primary-container">
+<!-- Column 1: Goshala -->
+<div class="space-y-4">
+<div class="flex items-center gap-2 text-[#DFC488]">
+<span class="material-symbols-outlined" data-icon="cruelty_free">cruelty_free</span>
+<h4 class="font-headline-sm text-headline-sm text-white">Goshala Seva</h4>
+</div>
+<p class="text-body-sm text-outline-variant leading-relaxed">
+            Protecting 300+ indigenous cows with daily green fodder, modern veterinary care, and loving shelter on the Cauvery riverbanks.
+          </p>
+<ul class="text-body-sm space-y-2 text-inverse-on-surface">
+<li class=""><a class="hover:text-[#DFC488] transition-colors" href="#">Adopt a Cow for 1 Year</a></li>
+<li class=""><a class="hover:text-[#DFC488] transition-colors" href="#">Daily Grass &amp; Green Fodder Seva</a></li>
+<li class=""><a class="hover:text-[#DFC488] transition-colors" href="#">Gau Pooja Sankalpa</a></li>
+</ul>
+</div>
+<!-- Column 2: Seva & Service -->
+<div class="space-y-4">
+<div class="flex items-center gap-2 text-[#DFC488]">
+<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
+<h4 class="font-headline-sm text-headline-sm text-white">Seva &amp; Service</h4>
+</div>
+<p class="text-body-sm text-outline-variant leading-relaxed">
+            Pure service dedicated to humanity as worship of the divine manifest in every heart.
+          </p>
+<ul class="text-body-sm space-y-2 text-inverse-on-surface">
+<li class=""><a class="hover:text-[#DFC488] transition-colors" href="#">Narayana Seva (Anna Dana)</a></li>
+<li class=""><a class="hover:text-[#DFC488] transition-colors" href="#">Mother for Needy — Widow Pensions</a></li>
+<li class=""><a class="hover:text-[#DFC488] transition-colors" href="#">Rural Student Scholarships</a></li>
+<li class=""><a class="hover:text-[#DFC488] transition-colors" href="#">Free Ayurvedic Dispensary</a></li>
+</ul>
+</div>
+<!-- Column 3: Temples -->
+<div class="space-y-4">
+<div class="flex items-center gap-2 text-[#DFC488]">
+<span class="material-symbols-outlined" data-icon="temple_hindu">temple_hindu</span>
+<h4 class="font-headline-sm text-headline-sm text-white">Sacred Temples</h4>
+</div>
+<p class="text-body-sm text-outline-variant leading-relaxed">
+            Consecrated sanctuaries consecrated under traditional Vedic rites for global peace.
+          </p>
+<ul class="text-body-sm space-y-2 text-inverse-on-surface">
+<li class=""><a class="text-[#DFC488] font-medium" href="#">Vishnu Maya Krishna Sannidhi</a></li>
+<li class=""><a class="hover:text-[#DFC488] transition-colors" href="#">Grand Shiva Temple</a></li>
+<li class=""><a class="hover:text-[#DFC488] transition-colors" href="#">Mani Dweepa Rajarajeshwari</a></li>
+<li class=""><a class="hover:text-[#DFC488] transition-colors" href="#">Cauvery Arati Schedule</a></li>
+</ul>
+</div>
+<!-- Column 4: Connect & Trust Details -->
+<div class="space-y-4">
+<div class="flex items-center gap-2 text-[#DFC488]">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<h4 class="font-headline-sm text-headline-sm text-white">Ashram &amp; Trust</h4>
+</div>
+<p class="text-body-sm text-outline-variant leading-relaxed">
+<strong>Srimad Sai Rajarajeshwari Trust (SSRRT)</strong><br>
+            On River Cauvery, Karekura Village,<br>
+            Near Srirangapatna, Mysore District,<br>
+            Karnataka — 571438, India
+          </p>
+<p class="text-body-sm text-outline-variant">
+            Email: <span class="text-white">seva@ssrrt-karekura.org</span><br>
+            Phone: <span class="text-white">+91 821 297 1008</span>
+</p>
+<div class="pt-2">
+<span class="inline-block px-3 py-1 bg-primary-container text-[#DFC488] border border-[#DFC488]/40 rounded text-label-md font-label-md">
+              80G Tax Exemption Eligible
+            </span>
+</div>
+</div>
+</div>
+<!-- Bottom Bar: Shared Footer Components & Chant -->
+<div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-body-sm text-outline-variant">
+<!-- Sacred Chant -->
+<div class="font-sanskrit-verse text-[#DFC488] text-base tracking-wider">
+          Om Namah Shivaya · Jai Amma · Jai Gaumata
+        </div>
+<!-- Copyright & Legal -->
+<div class="text-center md:text-right font-label-md text-label-md text-outline-variant">
+<p class="">© 2026 Srimad Sai Rajarajeshwari Trust (SSRRT). All 80G Tax-Exempt Donations Dedicated to Cauvery Seva.</p>
+<div class="flex justify-center md:justify-end gap-4 mt-1 text-xs">
+<a class="hover:text-white transition-colors" href="#">Karekura Ashram Timings</a>
+<span class="">·</span>
+<a class="hover:text-white transition-colors" href="#">80G Tax Exemption</a>
+<span class="">·</span>
+<a class="hover:text-white transition-colors" href="#">Cauvery Darshan Schedule</a>
+<span class="">·</span>
+<a class="hover:text-white transition-colors" href="#">Contact Us</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+
+
+</body></html>

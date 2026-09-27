@@ -2,6 +2,7 @@ import "@/App.css";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import SeoHead from "@/components/seo/SeoHead";
+import RouteImagePreload from "@/components/seo/RouteImagePreload";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CookieBanner from "@/components/cookies/CookieBanner";
@@ -25,7 +26,7 @@ import AdminDonatePage from "@/pages/admin/AdminDonatePage";
 import AdminInboxPage from "@/pages/admin/AdminInboxPage";
 import AdminSettingsPage from "@/pages/admin/AdminSettingsPage";
 
-const HomePage = lazy(() => import("@/pages/HomePage"));
+import HomePage from "@/pages/HomePage";
 const MotherPage = lazy(() => import("@/pages/MotherPage"));
 const MotherSectionPage = lazy(() => import("@/pages/mother/MotherSectionPage"));
 const MotherAvataarhoodPage = lazy(() => import("@/pages/mother/MotherAvataarhoodPage"));
@@ -37,13 +38,13 @@ const RuralUpliftmentHubPage = lazy(() => import("@/pages/RuralUpliftmentHubPage
 const GoshalaPage = lazy(() => import("@/pages/GoshalaPage"));
 const GoshalaAdoptPage = lazy(() => import("@/pages/goshala/GoshalaAdoptPage"));
 const GoshalaDayPage = lazy(() => import("@/pages/goshala/GoshalaDayPage"));
+const GoshalaHistoryPage = lazy(() => import("@/pages/goshala/GoshalaHistoryPage"));
 const AshramPage = lazy(() => import("@/pages/AshramPage"));
 const TemplePage = lazy(() => import("@/pages/ashram/TemplePage"));
 const AshramBhairavaPage = lazy(() => import("@/pages/ashram/AshramBhairavaPage"));
 const AshramHarakeNandiPage = lazy(() => import("@/pages/ashram/AshramHarakeNandiPage"));
 const SevaPage = lazy(() => import("@/pages/SevaPage"));
 const SevaPillarPage = lazy(() => import("@/pages/seva/SevaPillarPage"));
-const SevaMedicalVillagePage = lazy(() => import("@/pages/seva/SevaMedicalVillagePage"));
 const SevasHubPage = lazy(() => import("@/pages/SevasHubPage"));
 const AshramRitualPage = lazy(() => import("@/pages/sevas/AshramRitualPage"));
 const SevaBookPage = lazy(() => import("@/pages/sevas/SevaBookPage"));
@@ -66,6 +67,7 @@ function PublicLayout() {
     <ShopCartProvider>
       <ScrollToTop/>
       <SeoHead/>
+      <RouteImagePreload/>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <Header/>
       <main id="main-content">
@@ -108,14 +110,15 @@ export default function App() {
           <Route path="/" element={<HomePage/>}/>
           <Route path="/mother-for-needy" element={<MotherForNeedyHubPage/>}/>
           <Route path="/rural-upliftment" element={<RuralUpliftmentHubPage/>}/>
-          <Route path="/mother/story" element={<Navigate to="/mother/avatar" replace />}/>
+          <Route path="/mother/story" element={<Navigate to="/mother" replace />}/>
+          <Route path="/mother/avatar" element={<Navigate to="/mother" replace />}/>
           <Route path="/mother/avataarhood" element={<MotherAvataarhoodPage/>}/>
           <Route path="/mother/declaration" element={<MotherDeclarationPage/>}/>
           <Route path="/mother/swami" element={<MotherSwamiPage/>}/>
           <Route path="/mother/realized" element={<MotherRealizedPage/>}/>
           <Route path="/mother/:sectionId" element={<MotherSectionPage/>}/>
           <Route path="/mother" element={<MotherPage/>}/>
-          <Route path="/goshala/history" element={<Navigate to="/goshala#history" replace />}/>
+          <Route path="/goshala/history" element={<GoshalaHistoryPage/>}/>
           <Route path="/goshala/adopt" element={<GoshalaAdoptPage/>}/>
           <Route path="/goshala/day" element={<GoshalaDayPage/>}/>
           <Route path="/goshala" element={<GoshalaPage/>}/>
@@ -123,7 +126,7 @@ export default function App() {
           <Route path="/ashram/harake-nandi" element={<AshramHarakeNandiPage/>}/>
           <Route path="/ashram/:templeId" element={<TemplePage/>}/>
           <Route path="/ashram" element={<AshramPage/>}/>
-          <Route path="/seva/medical-village" element={<SevaMedicalVillagePage/>}/>
+          <Route path="/seva/medical-village" element={<Navigate to="/seva/medical" replace />}/>
           <Route path="/seva/:pillarId" element={<SevaPillarPage/>}/>
           <Route path="/seva" element={<SevaPage/>}/>
           <Route path="/sevas/butter-ganesha" element={<Navigate to="/sevas/ganesh-abhisheka" replace />}/>

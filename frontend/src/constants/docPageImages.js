@@ -4,7 +4,6 @@ import { IMG } from "@/constants/images";
 export const docPageImages = {
   goshala_adopt: [
     { after: 6, src: "/Goshala/Goshalaaa9.JPG", alt: "Calf care at the Goshala", layout: "full" },
-    { after: 10, src: "/Goshala/Goshalaaa31.JPG", alt: "The herd at Karekura", layout: "inline" },
   ],
   goshala_support: [
     { after: 1, src: "/Goshala/Goshalaaa4.JPG", alt: "Goshala at Karekura", layout: "full" },
@@ -13,6 +12,10 @@ export const docPageImages = {
     { after: 2, src: "/Goshala/Goshalaaa7.JPG", alt: "Volunteers at the Goshala", layout: "inline" },
     { after: 5, src: "/Goshala/Goshalaaa10.JPG", alt: "Daily feeding and care", layout: "full" },
     { after: 9, src: "/Goshala/Goshalaaa13.jpeg", alt: "Seva at the shelter", layout: "inline" },
+  ],
+  /** Paragraph-only counts within `kaamadhenuDayParagraphsMorningThroughMidday` (Midday section). */
+  goshala_day: [
+    { after: 3, src: "/Goshala/Goshalaaa10.JPG", alt: "Daily feeding and care", layout: "full" },
   ],
   medical: [
     { after: 1, src: "/medical service/medical1.JPG", alt: "Free medical camp", layout: "inline" },
@@ -24,8 +27,13 @@ export const docPageImages = {
     { after: 2, src: "/medical service/medical12.JPG", alt: "Patients waiting for care", layout: "full" },
   ],
   food: [
-    { after: 1, src: IMG.kitchen, alt: "Narayana Seva kitchen", layout: "inline" },
+    { after: 1, src: IMG.kitchen, alt: "Food seva at the Ashram", layout: "inline" },
     { after: 3, src: IMG.serve, alt: "Food distribution", layout: "full" },
+  ],
+  narayana: [
+    { after: 1, src: IMG.kitchen, alt: "Narayana Seva kitchen", layout: "inline" },
+    { after: 8, src: IMG.serve, alt: "Narayana Seva distribution", layout: "full" },
+    { after: 22, src: "/Seva images/sevas25.JPG", alt: "Serving meals on Narayana Seva day", layout: "inline" },
   ],
   sacred_ashram: [
     { after: 1, src: "/Concentratedspace/Concentratedspace11.JPG", alt: "Mani Dweepa at the Ashram", layout: "full" },

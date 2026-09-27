@@ -5,75 +5,13 @@ import { Eyebrow, Quote } from "@/components/shared/PageSections";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
 import HashRedirect from "@/components/shared/HashRedirect";
 import { usePageImages } from "@/context/CmsContext";
-import { motherHeroImages } from "@/constants/motherHeroImages";
-import { motherSections } from "@/constants/motherContent";
-import { consecratedSpaceTempleImages } from "@/constants/consecratedSpaceHeroImages";
-import { IMG } from "@/constants/images";
+import { motherExploreProgrammes, motherSections } from "@/constants/motherContent";
 
-const motherIds = motherSections.map((s) => s.id);
-
-const sectionImages = {
-  avatar: motherHeroImages[1],
-  testimonies: motherHeroImages[2],
-  naadi: motherHeroImages[3],
-};
-
-const extraMotherLinks = [
-  {
-    id: "declaration",
-    to: "/mother/declaration",
-    title: "Declaration of Avatar",
-    tag: "29 March 1997",
-    note: "The formal proclamation of Avatarhood at Karekura.",
-    image: motherHeroImages[4],
-  },
-  {
-    id: "avataarhood",
-    to: "/mother/avataarhood",
-    title: "The Avataarhood",
-    tag: "Divine purpose",
-    note: "Birth, Lalitha, and the celestial inscrutability of every avatar's life.",
-    image: motherHeroImages[5],
-  },
-  {
-    id: "swami",
-    to: "/mother/swami",
-    title: "Swami & Amma",
-    tag: "At Baba's feet",
-    note: "Her love and humility before Bhagawan Sri Sathya Sai Baba.",
-    image: consecratedSpaceTempleImages.shirdi,
-  },
-  {
-    id: "realized",
-    to: "/mother/realized",
-    title: "Realized beings",
-    tag: "Naadi & Shirdi Sai",
-    note: "Recognition preserved with care — Agastya Nadi, Budha Nadi, and Shirdi Sai Baba.",
-    image: motherHeroImages[6],
-  },
-];
-
-const programmes = [
-  ...motherSections.map((s) => ({
-    id: s.id,
-    to: s.path,
-    title: s.navTitle,
-    tag: s.eyebrow,
-    note: s.stories
-      ? `${s.stories[0].text.slice(0, 140)}…`
-      : `${(s.paragraphs?.[0] || s.title || "").slice(0, 140)}…`,
-    image: sectionImages[s.id] || IMG.amma,
-    testid: `mother-link-${s.id}`,
-  })),
-  ...extraMotherLinks.map((l) => ({
-    ...l,
-    testid: `mother-link-${l.id}`,
-  })),
-];
+const motherIds = motherSections.filter((s) => s.published !== false).map((s) => s.id);
 
 export default function MotherPage() {
   const img = usePageImages("/mother");
-  const programmeCards = programmes.map((program) => ({
+  const programmeCards = motherExploreProgrammes.map((program) => ({
     ...program,
     image: img(`hub-${program.id}`, program.image),
   }));
@@ -97,6 +35,7 @@ export default function MotherPage() {
         programmes={programmeCards}
         testIdPrefix="mother"
         tint
+        eagerCount={3}
       />
 
       <section className="hub-feature">

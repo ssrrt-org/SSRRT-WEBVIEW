@@ -2250,6 +2250,40 @@ body.nav-open .cookie-banner {
   gap: 12px;
   align-items: flex-start;
 }
+.home-visit-tagline,
+.home-visit-mantra {
+  margin-top: 12px !important;
+  font-size: 14px;
+}
+.home-visit-mantra {
+  font-family: var(--font-heading);
+  color: var(--indigo);
+  letter-spacing: 0.04em;
+}
+.home-ashram {
+  padding: 72px 0;
+}
+.home-ashram-inner {
+  max-width: 52rem;
+}
+.home-ashram-prose {
+  color: var(--text-soft);
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 1.1rem;
+}
+.home-ashram-quote {
+  margin: 28px 0 24px;
+  padding: 0 0 0 1.25rem;
+  border-left: 3px solid var(--gold);
+  font-family: var(--font-heading);
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1.35;
+  color: var(--indigo);
+}
+.home-ashram-quote p {
+  margin: 0;
+}
 .narayana-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -3536,17 +3570,228 @@ body.nav-open .cookie-banner {
   text-wrap: nowrap;
 }
 .mother-page-lede {
-  max-width: none;
+  max-width: 75rem;
   color: #615a52;
   font-size: clamp(14px, 1.25vw, 17px);
-  line-height: 1.5;
+  line-height: 1.55;
   margin: 14px 0 0;
+  text-wrap: pretty;
+  white-space: normal;
+}
+
+/* Project Kaamadhenu history (/goshala/history) */
+.seva-community-page .mother-page-title {
+  text-wrap: pretty;
+  white-space: normal;
+  max-width: 52rem;
+}
+.mother-page-head .hub-head-title-single {
   text-wrap: nowrap;
+  white-space: nowrap;
+  max-width: none;
 }
 @media (max-width: 1100px) {
-  .mother-page-lede {
+  .mother-page-head .hub-head-title-single {
     text-wrap: pretty;
     white-space: normal;
+    max-width: 52rem;
+  }
+}
+.mother-page-head .hub-header-quote {
+  margin: 16px 0 0;
+  padding: 0;
+  border: 0;
+  max-width: 52rem;
+  font-family: var(--font-body, inherit);
+  font-size: clamp(14px, 1.2vw, 17px);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.55;
+  color: #615a52;
+  quotes: none;
+}
+.mother-page-head .hub-header-quote::before,
+.mother-page-head .hub-header-quote::after {
+  content: none;
+}
+.goshala-kaamadhenu-page .kaamadhenu-hero-quote {
+  padding: clamp(20px, 3vw, 32px) 0 clamp(20px, 3vw, 28px);
+  background: #fff;
+  border-bottom: 1px solid rgba(122, 31, 46, 0.12);
+}
+.goshala-kaamadhenu-page .kaamadhenu-content-rule,
+.goshala-day-page .goshala-content-rule {
+  margin: 0 0 1.35em;
+  border: 0;
+  border-top: 1px solid rgba(122, 31, 46, 0.14);
+}
+.goshala-day-page .goshala-day-section-rule {
+  width: 100%;
+  max-width: min(90%, 1080px);
+  margin: 0 auto;
+  padding: 0;
+}
+.goshala-kaamadhenu-page .goshala-kaamadhenu-vision-lead {
+  padding-top: clamp(40px, 5vw, 56px);
+  padding-bottom: 0;
+}
+.goshala-kaamadhenu-page .goshala-kaamadhenu-prose-continued {
+  padding-top: 28px;
+  padding-bottom: 20px;
+}
+.goshala-day-page .goshala-day-prose-before-morning {
+  padding-bottom: 20px;
+}
+.goshala-day-page .goshala-day-prose-midday,
+.goshala-day-page .goshala-day-prose-evening,
+.goshala-day-page .goshala-day-prose-rest {
+  padding-top: 0;
+}
+.goshala-day-page .goshala-day-prose-evening {
+  padding-bottom: 20px;
+}
+.goshala-day-page .goshala-day-closing {
+  padding: clamp(28px, 4vw, 44px) 0 clamp(40px, 5vw, 56px);
+  background: #fff;
+}
+.goshala-day-page .goshala-day-closing-text {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--maroon);
+}
+.goshala-kaamadhenu-page .kaamadhenu-hero-quote .wrap {
+  display: flex;
+  justify-content: center;
+}
+.goshala-kaamadhenu-page .kaamadhenu-head-quote {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  font-family: var(--font-heading);
+  font-size: clamp(17px, 1.45vw, 21px);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.45;
+  color: #615a52;
+  text-align: center;
+  text-wrap: nowrap;
+  white-space: nowrap;
+}
+@media (max-width: 1200px) {
+  .goshala-kaamadhenu-page .kaamadhenu-head-quote {
+    text-wrap: pretty;
+    white-space: normal;
+    width: auto;
+    max-width: 52rem;
+    text-align: center;
+  }
+}
+.goshala-kaamadhenu-page .kaamadhenu-callout {
+  padding: 24px 0 clamp(48px, 6vw, 72px);
+}
+.goshala-kaamadhenu-page .kaamadhenu-callout-inner {
+  max-width: 75%;
+  width: 75%;
+  margin: 0 auto;
+  padding: clamp(28px, 4vw, 40px) clamp(28px, 4vw, 42px);
+  background: #fff;
+  border: 1px solid rgba(26, 39, 68, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(34, 42, 69, 0.08);
+}
+.goshala-kaamadhenu-page .kaamadhenu-callout-quote {
+  margin: 0 0 20px;
+  padding: 0 0 0 18px;
+  border-left: 3px solid var(--gold);
+  font-family: var(--font-heading);
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--maroon-deep);
+}
+.goshala-kaamadhenu-page .kaamadhenu-callout-inner > p {
+  margin: 0;
+  color: #554e47;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.65;
+}
+.kaamadhenu-stats {
+  padding: clamp(56px, 7vw, 70px) 0;
+  background: var(--ivory-deep);
+}
+.kaamadhenu-stats-title {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 600;
+  color: #1f4d3a;
+  text-align: center;
+  margin: 0 0 32px;
+}
+.kaamadhenu-stats-grid {
+  list-style: none;
+  margin: 0;
+  padding: clamp(24px, 3vw, 32px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 28px;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid rgba(31, 77, 58, 0.12);
+  box-shadow: 0 12px 36px rgba(34, 42, 69, 0.06);
+}
+.kaamadhenu-stats-grid li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 8px;
+  border-bottom: 1px solid rgba(26, 39, 68, 0.06);
+}
+.kaamadhenu-stat-value {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 700;
+  color: var(--maroon);
+}
+.kaamadhenu-stat-label {
+  font-size: 14px;
+  line-height: 1.45;
+  color: #5c554d;
+}
+@media (max-width: 640px) {
+  .kaamadhenu-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mother-page-quote {
+  margin: 20px 0 0;
+  max-width: none;
+  padding: 18px 22px;
+  border-left: 3px solid var(--gold);
+  font-family: var(--font-heading);
+  font-size: clamp(15px, 1.15vw, 19px);
+  line-height: 1.45;
+  font-style: italic;
+  color: var(--maroon-deep);
+  background: rgba(255, 252, 245, 0.65);
+  border-radius: 0 8px 8px 0;
+  text-wrap: nowrap;
+  white-space: nowrap;
+}
+@media (max-width: 1100px) {
+  .mother-page-quote {
+    white-space: normal;
+    text-wrap: pretty;
     max-width: 52rem;
   }
 }
@@ -3567,6 +3812,76 @@ body.nav-open .cookie-banner {
   font-style: italic;
   color: var(--maroon);
 }
+/* Home — “More about Amma” programme cards */
+.home-mother-explore.hub-programmes {
+  padding: clamp(64px, 8vw, 96px) 0;
+}
+.home-mother-explore .hub-programmes-lede {
+  max-width: 42rem;
+  color: #615a52;
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.55;
+  margin-bottom: 40px;
+}
+.home-mother-explore .hub-programme-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+.home-mother-explore .hub-programme-card article {
+  border: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 12px 36px rgba(34, 42, 69, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+.home-mother-explore .hub-programme-card:hover article {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 44px rgba(34, 42, 69, 0.14);
+}
+.home-mother-explore .hub-programme-img {
+  aspect-ratio: 16 / 10;
+  background: #ece8e1;
+}
+.home-mother-explore .hub-programme-img img {
+  object-fit: cover;
+  object-position: center;
+}
+.home-mother-explore .hub-programme-body {
+  padding: 20px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  min-height: 168px;
+}
+.home-mother-explore .hub-programme-body h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(20px, 2vw, 24px);
+  line-height: 1.15;
+  color: var(--maroon);
+  margin: 8px 0 8px;
+}
+.home-mother-explore .hub-programme-body p {
+  color: #655e55;
+  font-size: 14px;
+  line-height: 1.6;
+  flex: 1;
+}
+.home-mother-explore .temple-card-more {
+  margin-top: 12px;
+  color: var(--maroon-deep);
+}
+@media (max-width: 900px) {
+  .home-mother-explore .hub-programme-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .home-mother-explore .hub-programme-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .mother-page .hub-programmes {
   padding: clamp(72px, 8vw, 112px) 0;
 }
@@ -4560,27 +4875,66 @@ body.nav-open .cookie-banner {
   color: var(--indigo);
 }
 
-/* Full temple page: dark hero, seva, why visit, gifts, other temples row, footer quote.
-   .temple-hero = top banner. .temple-explore = small photos of other deities. */
+/* Full temple page: dark hero, seva, why visit, gifts, other temples row. */
 .temple-page {
   background: #fff;
+}
+.temple-page > section {
+  padding: 0;
+}
+.temple-page .temple-seva {
+  padding: 72px 0;
+  background: #fff;
+  overflow: hidden;
+}
+.temple-page .temple-why {
+  padding: 72px 0;
+}
+.temple-page .temple-beginnings {
+  padding: 72px 0;
+}
+.temple-page .temple-explore-section {
+  padding: 56px 0 64px;
+}
+.temple-page .temple-doc-prose {
+  padding: 56px 0 64px;
+  background: var(--ivory-deep);
+  border-top: 1px solid rgba(122, 31, 46, 0.08);
+  width: 100%;
+}
+.temple-page .temple-doc-prose .prose-section-inner {
+  max-width: min(90%, 52rem);
+  margin: 0 auto;
+}
+.temple-page .temple-doc-prose .prose-subheading {
+  font-family: var(--font-heading);
+  color: var(--maroon-deep);
 }
 .temple-hero {
   position: relative;
   width: 100%;
-  min-height: auto;
+  height: 50vh;
+  min-height: 50vh;
+  max-height: 50vh;
+  padding: 0; /* override global section { padding: 100px 0 } */
   display: flex;
-  align-items: stretch;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   background: var(--indigo);
 }
 .temple-hero-bg {
   position: absolute;
   inset: 0;
+  z-index: 0;
+  background-color: var(--indigo);
   background-size: cover;
   background-position: center right;
-  opacity: .22;
+  opacity: 1;
   pointer-events: none;
+}
+.temple-hero-bg[style*="background-image"] {
+  opacity: .28;
 }
 .temple-hero-bg:after {
   content: "";
@@ -4592,29 +4946,37 @@ body.nav-open .cookie-banner {
   position: relative;
   z-index: 1;
   width: 100%;
+  height: 100%;
   flex: 1;
   display: flex;
-  align-items: flex-start;
-  padding-top: 36px;
-  padding-bottom: 36px;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  max-height: none;
+  padding: clamp(12px, 2vh, 20px) 28px;
+  box-sizing: border-box;
 }
 .temple-hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(280px, 42%);
-  gap: clamp(28px, 3.5vw, 48px);
-  align-items: flex-start;
+  grid-template-columns: minmax(0, 1fr) minmax(160px, 34%);
+  gap: clamp(16px, 2.5vw, 28px);
+  align-items: center;
   width: 100%;
+  margin: 0;
+}
+.temple-hero-copy {
+  align-self: center;
 }
 .temple-breadcrumbs {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 10px;
   font-family: var(--font-body);
   color: rgba(251,246,236,.6);
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 .temple-breadcrumbs a {
   color: rgba(251,246,236,.85);
@@ -4629,53 +4991,57 @@ body.nav-open .cookie-banner {
 .temple-mantra {
   font-style: normal;
   font-weight: 500;
-  font-size: clamp(16px,1.7vw,20px);
+  font-size: clamp(12px, 1.1vw, 14px);
   font-family: var(--font-mantra);
   color: var(--gold);
-  margin: 0 0 16px;
+  margin: 0 0 6px;
   letter-spacing: .02em;
 }
 .temple-hero-title {
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: clamp(40px, 4.8vw, 58px);
-  line-height: 1.08;
-  letter-spacing: 0.04em;
+  font-size: clamp(20px, 2.4vw, 30px);
+  line-height: 1.12;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #fff;
-  margin: 0 0 12px;
+  margin: 0 0 6px;
 }
 .temple-hero-tag {
   font-weight: 600;
-  font-size: 11px;
+  font-size: 9px;
   font-family: var(--font-body);
-  letter-spacing: .2em;
+  letter-spacing: .16em;
   text-transform: uppercase;
   color: var(--gold);
-  margin: 0 0 20px;
+  margin: 0 0 8px;
 }
 .temple-hero-intro {
   color: rgba(251,246,236,.85);
-  font-size: clamp(15px,1.5vw,17px);
-  line-height: 1.75;
-  max-width: 560px;
-  margin: 0 0 28px;
+  font-size: clamp(12px, 1.05vw, 14px);
+  line-height: 1.55;
+  max-width: 42ch;
+  margin: 0 0 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .temple-hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 8px;
 }
 .temple-hero-btn-primary {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 15px 24px;
+  gap: 6px;
+  padding: 9px 14px;
   background: rgba(20,28,48,.85);
   border: 1px solid rgba(251,246,236,.25);
   color: #fff;
   font-weight: 600;
-  font-size: 11px;
+  font-size: 9px;
   font-family: var(--font-body);
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -4689,13 +5055,13 @@ body.nav-open .cookie-banner {
 .temple-hero-btn-outline {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 15px 24px;
+  gap: 6px;
+  padding: 9px 14px;
   background: transparent;
   border: 1px solid var(--gold);
   color: var(--gold);
   font-weight: 600;
-  font-size: 11px;
+  font-size: 9px;
   font-family: var(--font-body);
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -4709,35 +5075,78 @@ body.nav-open .cookie-banner {
 .temple-hero-figure {
   margin: 0;
   width: 100%;
-  max-width: min(100%, 680px);
+  max-width: min(100%, 280px);
   justify-self: end;
 }
 .temple-hero-figure img {
   width: 100%;
+  max-height: min(38vh, 320px);
   aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
-  border-top: 4px solid var(--gold);
-  box-shadow: 0 28px 56px -20px rgba(0, 0, 0, 0.5);
+  border-top: 3px solid var(--gold);
+  box-shadow: 0 16px 36px -16px rgba(0, 0, 0, 0.45);
+}
+
+.temple-hero-quote {
+  margin: 10px 0 0;
+  padding-left: 10px;
+  border-left: 2px solid var(--gold);
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.65;
+  color: rgba(251,246,236,.75);
+  max-width: 520px;
 }
 .temple-seva {
   padding: 90px 0;
   background: #fff;
 }
-.temple-seva-grid {
+.temple-about-band .wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.temple-about-grid {
   display: grid;
-  grid-template-columns: .85fr 1.15fr;
-  gap: 70px;
-  align-items: start;
-}
-.temple-seva figure {
-  margin: 0;
-}
-.temple-seva figure img {
+  grid-template-columns: minmax(240px, 360px) minmax(0, 1fr);
+  gap: clamp(36px, 5vw, 64px);
+  align-items: center;
   width: 100%;
-  aspect-ratio: 3/4;
+}
+.temple-about-lead {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+.temple-about-lead .eyebrow {
+  margin-bottom: 12px;
+}
+.temple-about-lead .temple-about-title {
+  margin: 0 0 20px;
+  max-width: 100%;
+}
+.temple-about-figure {
+  margin: 0;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 24px 48px -28px rgba(34, 42, 69, 0.35);
+}
+.temple-about-figure img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  max-height: min(440px, 46vh);
   object-fit: cover;
+  object-position: center top;
+  display: block;
   border-top: 4px solid var(--gold);
+}
+.temple-about-copy {
+  min-width: 0;
+  align-self: center;
 }
 .temple-divider {
   width: 48px;
@@ -4745,20 +5154,31 @@ body.nav-open .cookie-banner {
   background: var(--gold);
   margin-bottom: 18px;
 }
+.temple-about-title,
 .temple-seva h2 {
   font-weight: 600;
-  font-size: clamp(28px,3.2vw,40px);
-  line-height: 1.12;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.15;
   font-family: var(--font-heading);
   color: var(--indigo);
-  margin: 12px 0 20px;
+  margin: 10px 0 18px;
+  text-wrap: pretty;
 }
-.temple-seva p {
+.temple-seva-prose p {
   color: var(--text-soft);
   font-size: 15px;
   line-height: 1.8;
   margin: 0 0 14px;
-  max-width: 600px;
+  max-width: none;
+}
+.temple-about-band .temple-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: clamp(40px, 5vw, 56px);
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  width: 100%;
 }
 .temple-highlights {
   display: grid;
@@ -4784,6 +5204,89 @@ body.nav-open .cookie-banner {
   line-height: 1.55;
   margin: 0;
   max-width: none;
+}
+
+/* Temple about band — responsive */
+@media (max-width: 1024px) {
+  .temple-about-grid {
+    grid-template-columns: minmax(200px, 280px) minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 36px);
+    align-items: start;
+  }
+  .temple-about-figure {
+    max-width: 280px;
+  }
+  .temple-about-figure img {
+    max-height: 380px;
+  }
+  .temple-about-copy {
+    align-self: start;
+  }
+}
+
+@media (max-width: 860px) {
+  .temple-about-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: stretch;
+  }
+  .temple-about-lead {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    align-items: start;
+    text-align: left;
+    width: 100%;
+  }
+  .temple-about-lead .temple-divider,
+  .temple-about-lead .eyebrow,
+  .temple-about-lead .temple-about-title {
+    grid-column: 1;
+  }
+  .temple-about-figure {
+    max-width: 100%;
+    width: 100%;
+  }
+  .temple-about-figure img {
+    width: 100%;
+    max-height: min(420px, 70vw);
+    aspect-ratio: 16 / 11;
+  }
+  .temple-about-copy {
+    align-self: stretch;
+  }
+  .temple-about-band .temple-highlights {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 1100px) {
+  .temple-about-band .temple-highlights {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .temple-page .temple-seva {
+    padding: 40px 0;
+  }
+  .temple-about-lead .temple-about-title {
+    font-size: clamp(22px, 6.2vw, 28px);
+  }
+  .temple-about-figure img {
+    aspect-ratio: 4 / 3;
+    max-height: none;
+  }
+  .temple-seva-prose p {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .temple-about-band .temple-highlights article {
+    background: var(--ivory-deep);
+    padding: 14px 16px;
+    border-top: 2px solid var(--gold);
+  }
 }
 .temple-why {
   padding: 90px 0;
@@ -4950,6 +5453,7 @@ body.nav-open .cookie-banner {
   padding: 56px 0 64px;
   background: #fff;
 }
+
 .temple-explore-section .section-h {
   margin-bottom: 28px;
 }
@@ -6026,6 +6530,253 @@ body.nav-open .cookie-banner {
   color: var(--text-muted);
   line-height: 1.65;
   margin: 0 0 20px;
+}
+
+/* Consistent Krishna-inspired presentation for all data-driven temple routes. */
+.temple-template-page .temple-hero {
+  min-height: 440px;
+  height: min(56vh, 600px);
+  max-height: 600px;
+  border-bottom: 2px solid var(--gold);
+}
+.temple-template-page .temple-hero-inner {
+  max-width: 1240px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+.temple-template-page .temple-hero-grid {
+  grid-template-columns: minmax(0, 1.5fr) minmax(220px, .8fr);
+  gap: clamp(28px, 6vw, 76px);
+}
+.temple-template-page .temple-hero-title {
+  max-width: 780px;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: -.01em;
+}
+.temple-template-page .temple-hero-tag {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: var(--font-heading);
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.temple-template-page .temple-hero-intro {
+  font-size: 14px;
+  line-height: 1.65;
+  -webkit-line-clamp: 4;
+}
+.temple-template-quote {
+  max-width: 560px;
+  max-height: 3.2em;
+  margin: 8px 0 14px;
+  padding-left: 12px;
+  overflow: hidden;
+  border-left: 2px solid var(--gold);
+  color: rgba(251, 246, 236, .76);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.6;
+}
+.temple-template-page .temple-hero-figure {
+  position: relative;
+  width: min(100%, 280px);
+  justify-self: center;
+  overflow: hidden;
+  border: 1px solid rgba(201, 151, 61, .55);
+  border-radius: 120px 120px 8px 8px;
+  padding: 5px;
+  background: rgba(255, 255, 255, .06);
+}
+.temple-template-page .temple-hero-figure img {
+  width: 100%;
+  max-height: min(42vh, 370px);
+  aspect-ratio: 3 / 4;
+  border: 0;
+  border-radius: 116px 116px 4px 4px;
+  object-position: center 20%;
+}
+.temple-template-page .temple-hero-figure figcaption {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  left: 6px;
+  padding: 22px 8px 10px;
+  background: linear-gradient(transparent, rgba(13, 21, 47, .9));
+  color: var(--gold-on-dark);
+  font-size: 9px;
+  font-family: var(--font-body);
+  letter-spacing: .12em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.temple-template-page .temple-about-title,
+.temple-template-page .temple-why .section-h,
+.temple-template-page .temple-beginnings h2,
+.temple-template-page .temple-explore-section .section-h {
+  font-size: clamp(28px, 3.3vw, 42px);
+  font-weight: 500;
+}
+.temple-template-page .temple-explore-section {
+  background: var(--ivory-deep);
+  border-top: 1px solid rgba(201, 151, 61, .3);
+}
+.temple-template-explore-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid rgba(201, 151, 61, .3);
+  margin-bottom: 24px;
+}
+.temple-template-explore-heading .section-h {
+  margin-bottom: 16px;
+}
+.temple-template-explore-heading > span {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+.temple-template-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.temple-template-card {
+  position: relative;
+  display: flex;
+  min-height: 190px;
+  flex-direction: column;
+  padding: 20px 18px 16px;
+  border: 1px solid #e7dfce;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(34, 42, 69, .05), 0 1px 3px rgba(201, 151, 61, .08);
+  transition: border-color .2s, transform .2s, background .2s;
+}
+.temple-template-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--maroon);
+}
+.temple-template-card.is-current {
+  border: 2px solid var(--gold);
+  background: var(--indigo);
+  color: var(--ivory);
+}
+.temple-template-current {
+  align-self: flex-end;
+  margin-bottom: 8px;
+  padding: 3px 6px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, .1);
+  color: var(--gold-on-dark);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.temple-template-card-tag {
+  margin-bottom: 7px;
+  color: var(--maroon);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+.temple-template-card.is-current .temple-template-card-tag {
+  color: var(--gold-on-dark);
+}
+.temple-template-card strong {
+  margin-bottom: 8px;
+  color: var(--indigo);
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.temple-template-card.is-current strong {
+  color: #fff;
+}
+.temple-template-card-note {
+  display: -webkit-box;
+  margin-bottom: 14px;
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.temple-template-card.is-current .temple-template-card-note {
+  color: rgba(251, 246, 236, .8);
+}
+.temple-template-card-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: auto;
+  color: var(--maroon);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.temple-template-card.is-current .temple-template-card-more {
+  color: var(--gold-on-dark);
+}
+
+@media (max-width: 900px) {
+  .temple-template-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .temple-template-page .temple-hero {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding: 48px 0;
+  }
+  .temple-template-page .temple-hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(120px, .55fr);
+    gap: 20px;
+  }
+  .temple-template-page .temple-hero-figure {
+    width: min(100%, 220px);
+  }
+  .temple-template-page .temple-hero-figure img {
+    max-height: 280px;
+  }
+  .temple-template-page .temple-hero-title {
+    font-size: clamp(26px, 5vw, 38px);
+  }
+}
+@media (max-width: 560px) {
+  .temple-template-page .temple-hero {
+    padding: 36px 0;
+  }
+  .temple-template-page .temple-hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .temple-template-page .temple-hero-figure {
+    justify-self: start;
+    width: min(62vw, 230px);
+  }
+  .temple-template-page .temple-template-quote {
+    margin-bottom: 12px;
+  }
+  .temple-template-explore-heading {
+    display: block;
+  }
+  .temple-template-card-grid {
+    grid-template-columns: 1fr;
+  }
+  .temple-template-card {
+    min-height: 0;
+  }
 }
 
 /* Older shop layout (cards + note). Only used if a page still has those classes. */
@@ -7174,15 +7925,26 @@ body.nav-open .cookie-banner {
   .who-can-grid {
     grid-template-columns: repeat(3,1fr);
   }
-  .temple-hero-grid, .temple-seva-grid, .temple-why-grid, .temple-beginnings-grid {
+  .temple-hero {
+    max-height: none;
+  }
+  .temple-hero-inner {
+    min-height: 0;
+    max-height: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .temple-hero-grid,
+  .temple-why-grid,
+  .temple-beginnings-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 24px;
   }
   .temple-highlights, .temple-audiences {
     grid-template-columns: 1fr;
   }
   .temple-hero-figure {
-    max-width: min(100%,480px);
+    max-width: min(100%, 240px);
     justify-self: center;
   }
   .temple-info-grid {
@@ -7571,16 +8333,25 @@ body.nav-open .cookie-banner {
     gap: 24px;
   }
   .temple-hero {
-    min-height: auto;
-  }
-  .temple-hero-title {
-    font-size: clamp(32px, 8vw, 44px);
-    line-height: 1.1;
-    letter-spacing: 0.03em;
+    min-height: min(50vh, 520px);
+    max-height: none;
   }
   .temple-hero-inner {
-    padding-top: 28px;
-    padding-bottom: 32px;
+    min-height: 0;
+    max-height: none;
+    align-items: flex-start;
+    padding-top: 20px;
+    padding-bottom: 24px;
+  }
+  .temple-hero-title {
+    font-size: clamp(18px, 5.5vw, 26px);
+    line-height: 1.12;
+  }
+  .temple-hero-figure {
+    max-width: min(72vw, 220px);
+  }
+  .temple-hero-figure img {
+    max-height: 200px;
   }
   .pillar-card {
     min-height: auto;

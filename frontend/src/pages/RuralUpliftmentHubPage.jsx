@@ -6,7 +6,8 @@ import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
 import { Eyebrow } from "@/components/shared/PageSections";
 import { usePageImages } from "@/context/CmsContext";
 import { motherForNeedyProgrammeImages } from "@/constants/motherForNeedyImages";
-import { medicalCentreTitle, medicalVillageTitle } from "@/constants/medicalContent";
+import { medicalCentreTitle } from "@/constants/medicalContent";
+import { narayanaCardExcerpt, narayanaTitle } from "@/constants/narayanaContent";
 import { docExcerpt, docTitle, proseParas } from "@/lib/docContent";
 
 const programmes = [
@@ -19,14 +20,6 @@ const programmes = [
     image: motherForNeedyProgrammeImages.medical,
   },
   {
-    id: "medical-village",
-    to: "/seva/medical-village",
-    title: medicalVillageTitle,
-    tag: "Village care",
-    note: docExcerpt("medical", { skip: 2 }),
-    image: motherForNeedyProgrammeImages["medical-village"],
-  },
-  {
     id: "food",
     to: "/seva/food",
     title: docTitle("food"),
@@ -37,9 +30,9 @@ const programmes = [
   {
     id: "narayana",
     to: "/seva/narayana",
-    title: "Narayan Seva",
+    title: narayanaTitle,
     tag: "Annual programme",
-    note: docExcerpt("food", { skip: 2 }),
+    note: narayanaCardExcerpt,
     image: motherForNeedyProgrammeImages.narayana,
   },
   {

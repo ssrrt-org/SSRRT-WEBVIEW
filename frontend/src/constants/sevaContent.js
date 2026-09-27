@@ -1,5 +1,6 @@
 import { IMG } from "@/constants/images";
 import { medicalCentreParagraphs, medicalCentreTitle } from "@/constants/medicalContent";
+import { narayanaParagraphs, narayanaTitle } from "@/constants/narayanaContent";
 import { docTitle, proseParas } from "@/lib/docContent";
 
 export const sevaPillars = [
@@ -31,8 +32,8 @@ export const narayanaProgram = {
   id: "narayana",
   path: "/seva/narayana",
   navTitle: "Narayana Seva",
-  title: docTitle("food"),
-  paragraphs: proseParas("food", { skip: 1 }),
+  title: narayanaTitle,
+  paragraphs: narayanaParagraphs,
 };
 
 export const allSevaPrograms = [...sevaPillars, narayanaProgram];

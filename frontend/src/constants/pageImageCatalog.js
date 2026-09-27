@@ -4,7 +4,7 @@ import { motherForNeedyProgrammeImages } from "@/constants/motherForNeedyImages"
 import { goshalaCows } from "@/constants/cowGallery";
 import { heroImageForPath } from "@/constants/heroImages";
 import { IMG } from "@/constants/images";
-import { motherSections } from "@/constants/motherContent";
+import { MOTHER_TESTIMONIES_IMAGE, motherSections } from "@/constants/motherContent";
 import { sevaPillars } from "@/constants/sevaContent";
 import { templeCards } from "@/constants/templeData";
 
@@ -32,7 +32,7 @@ const aboutPillars = [
 const motherHubCards = [
   ["story", "Her Story", motherHeroImages[0]],
   ["avatar", "Avataarhood", motherHeroImages[1]],
-  ["testimonies", "Testimonies", motherHeroImages[2]],
+  ["testimonies", "Testimonies", MOTHER_TESTIMONIES_IMAGE],
   ["naadi", "Naadi readings", motherHeroImages[3]],
   ["avataarhood", "The Avataarhood", motherHeroImages[4]],
   ["swami", "Swami & Amma", consecratedSpaceTempleImages.shirdi],
@@ -121,8 +121,9 @@ export const PAGE_IMAGE_GROUPS = [
         slot("three-lives-bulls", "Three lives · Bulls", IMG.cow2),
         slot("three-lives-calves", "Three lives · Calves", IMG.cow6),
       ]),
+      page("/goshala/history", "Project Kaamadhenu"),
       page("/goshala/adopt", "Adopt a Cow"),
-      page("/goshala/day", "A Day at the Goshala"),
+      page("/goshala/day", "A Day at Kamadhenu"),
     ],
   },
   {
@@ -152,9 +153,6 @@ export const PAGE_IMAGE_GROUPS = [
       ]),
       page("/seva", "Seva hub"),
       ...sevaPillarPages,
-      page("/seva/medical-village", "Medical village", [
-        slot("pillar-figure", "Main section photo", IMG.village),
-      ]),
       page("/seva/narayana", "Narayana Seva"),
     ],
   },

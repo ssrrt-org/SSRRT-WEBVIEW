@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
+import GoshalaScrollingHero from "@/components/goshala/GoshalaScrollingHero";
 import ProseSection from "@/components/shared/ProseSection";
-import { SlimHead } from "@/components/shared/PageSections";
+import { Eyebrow } from "@/components/shared/PageSections";
 import {
+  goshalaAdoptLede,
   goshalaAdoptParagraphs,
   goshalaAdoptTitle,
   goshalaSupportParagraphs,
@@ -12,8 +14,16 @@ import { docPageImages } from "@/constants/docPageImages";
 
 export default function GoshalaAdoptPage() {
   return (
-    <>
-      <SlimHead eyebrow="Adopt a cow" title={goshalaAdoptTitle} />
+    <div className="mother-page goshala-adopt-page">
+      <header className="mother-page-head">
+        <div className="wrap mother-page-head-inner">
+          <Eyebrow gold>Adopt a cow</Eyebrow>
+          <h1 className="mother-page-title">{goshalaAdoptTitle}</h1>
+          <p className="mother-page-lede">{goshalaAdoptLede}</p>
+        </div>
+      </header>
+
+      <GoshalaScrollingHero />
 
       <ProseSection
         paragraphs={goshalaAdoptParagraphs}
@@ -37,6 +47,6 @@ export default function GoshalaAdoptPage() {
           </Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }

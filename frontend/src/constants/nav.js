@@ -6,7 +6,6 @@ export const navItems = [
     label: "Mother",
     path: "/mother",
     sub: [
-      { label: "Avatar", path: "/mother/avatar" },
       { label: "Declaration of Avatar", path: "/mother/declaration" },
       { label: "The Avataarhood", path: "/mother/avataarhood" },
       { label: "The Naadi Readings", path: "/mother/naadi" },
@@ -20,10 +19,7 @@ export const navItems = [
     groups: [
       {
         heading: "MEDICAL CARE",
-        links: [
-          { label: "Medical Centers, Multi-Village", path: "/seva/medical" },
-          { label: "Medical Support in the Village", path: "/seva/medical-village" },
-        ],
+        links: [{ label: "Medical Centers, Multi-Village", path: "/seva/medical" }],
       },
       {
         heading: "FOOD & NOURISHMENT",
@@ -39,9 +35,10 @@ export const navItems = [
     path: "/goshala",
     groups: [
       {
-        heading: "ABOUT",
+        heading: "Kamadhenu",
         links: [
-          { label: "History of Goshala", path: "/goshala#history" },
+          { label: "Project Kaamadhenu", path: "/goshala/history" },
+          { label: "A Day at Kamadhenu", path: "/goshala/day" },
         ],
       },
       {

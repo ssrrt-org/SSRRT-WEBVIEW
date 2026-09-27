@@ -2,31 +2,17 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import HeroCarousel from "@/components/home/HeroCarousel";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
-import ExploreGrid from "@/components/shared/ExploreGrid";
-import ProseSection from "@/components/shared/ProseSection";
 import { Eyebrow, SectionHeading } from "@/components/shared/PageSections";
-import { motherSections } from "@/constants/motherContent";
+import { motherExploreProgrammes } from "@/constants/motherContent";
 import {
-  homeNarayanaParagraphs,
   homePillars,
   homeProgrammeTiles,
   motherHomeIntro,
   motherVirtues,
   trustHomeParagraphs,
 } from "@/constants/homeContent";
-import { docTitle } from "@/lib/docContent";
-import { docPageImages } from "@/constants/docPageImages";
 import { homeHeroSlides } from "@/constants/homeHeroImages";
 import { DIVINE_MOTHER_HOME_SRC, heroSlideSrc } from "@/lib/media";
-
-const motherExplore = motherSections.map((s) => {
-  const text = s.paragraphs?.[0] || s.stories?.[0]?.text || s.title || "";
-  return {
-    to: s.path,
-    title: s.navTitle,
-    note: text.length > 100 ? `${text.slice(0, 100)}…` : text,
-  };
-});
 
 export default function HomePage() {
   return (
@@ -47,6 +33,7 @@ export default function HomePage() {
               src={DIVINE_MOTHER_HOME_SRC}
               alt="Divine Mother Srimad Sai Rajarajeshwari"
               loading="eager"
+              fetchPriority="high"
               decoding="async"
               width={560}
               height={700}
@@ -67,6 +54,7 @@ export default function HomePage() {
         programmes={homeProgrammeTiles}
         testIdPrefix="home-programme"
         compact
+        eagerCount={4}
       />
 
       <section className="home-virtues tint">
@@ -139,13 +127,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      <ExploreGrid title="More about Amma" items={motherExplore} />
-
-      <ProseSection
-        eyebrow={docTitle("food", { minLen: 15 })}
-        paragraphs={homeNarayanaParagraphs}
-        images={docPageImages.food}
+      <HubProgrammesSection
+        className="home-mother-explore"
+        eyebrow="Divine Mother"
+        title="More about Amma"
+        lede="Stories, readings, and moments that reveal who Amma is — each with its own page."
+        programmes={motherExploreProgrammes}
+        testIdPrefix="home-mother"
         tint
+        eagerCount={3}
       />
 
     </>

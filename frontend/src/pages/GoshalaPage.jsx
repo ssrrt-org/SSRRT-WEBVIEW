@@ -45,8 +45,9 @@ export default function GoshalaPage() {
       <ExploreGrid
         title="Also on the Goshala"
         items={[
+          { to: "/goshala/history", title: "Project Kaamadhenu", note: "History, vision, and growth of the sacred cow shelter.", testid: "goshala-link-history" },
           { to: "/goshala/adopt", title: "Adopt a cow", note: docExcerpt("goshala_adopt", { skip: 1 }), testid: "goshala-link-adopt" },
-          { to: "/goshala/day", title: "A day at Kaamadhenau", note: docExcerpt("goshala_volunteer", { skip: 4 }), testid: "goshala-link-day" },
+          { to: "/goshala/day", title: "A day at Kamadhenu", note: "From pre-dawn care to evening rest at the Goshala.", testid: "goshala-link-day" },
           { to: "/volunteering", title: "Volunteer", note: docExcerpt("goshala_volunteer", { skip: 1 }), testid: "goshala-link-volunteer" },
           { to: "/donate?purpose=goshala", title: "Donate to the Goshala", testid: "goshala-link-donate" },
         ]}

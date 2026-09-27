@@ -1,4 +1,5 @@
 import { consecratedSpaceTempleImages } from "@/constants/consecratedSpaceHeroImages";
+import { getTempleDoc } from "@/constants/templeDocContent";
 import { IMG } from "@/constants/images";
 
 const ASHRAM_LOCATION = "Srimad Sai Rajarajeshwari Ashram, Karekura, Mysore";
@@ -144,18 +145,42 @@ const templeExtras = {
 
 function enrichTemple(base) {
   const extra = templeExtras[base.id] || {};
+  const doc = getTempleDoc(base.id);
+  const sections = doc?.sections || [];
+  const aboutSection = sections[0];
+  const name = doc?.name || base.name;
+  const tagLine = doc?.tagLine || "";
+  const tag = doc?.tag || base.tag;
+  const intro = doc?.heroIntro || base.intro;
+  const gift = doc?.gift || base.gift;
+  const body =
+    aboutSection?.paragraphs?.join(" ") ||
+    base.body;
+  const whySeek = doc?.whySeek?.length ? doc.whySeek : extra.whySeek;
+  const quote = doc?.quote || extra.quote || intro;
+
   return {
     ...base,
-    mantra: extra.mantra || "",
-    sevaTitle: "A temple at the heart of seva",
-    sevaParagraphs: [base.intro, base.body],
+    name,
+    tag,
+    tagLine,
+    intro,
+    body,
+    gift,
+    mantra: doc?.mantra || extra.mantra || "",
+    sevaTitle: aboutSection?.heading || "A temple at the heart of seva",
+    sevaParagraphs: aboutSection?.paragraphs?.length
+      ? aboutSection.paragraphs
+      : [body].filter(Boolean),
+    sections,
+    docSections: sections.slice(1),
     highlights: extra.highlights || defaultHighlights,
-    whySeek: extra.whySeek || [
-      { title: "For darshan", note: base.intro },
-      { title: "Spiritual gift", note: base.gift },
+    whySeek: whySeek || [
+      { title: "For darshan", note: intro },
+      { title: "Spiritual gift", note: gift },
     ],
     beginningsTitle: extra.beginningsTitle || "A place for devotion",
-    beginningsBody: base.body,
+    beginningsBody: aboutSection?.paragraphs?.[0] || body,
     audiences: extra.audiences || [
       { title: "Devotees", note: "Quiet darshan and prayer at the sannidhi." },
       { title: "Families", note: "Visit the Ashram and include this temple in your walk." },
@@ -167,7 +192,7 @@ function enrichTemple(base) {
       bestTime: VISIT_TIME,
       offerings: extra.offerings || "Flowers, fruits, and sincere prayer",
     },
-    quote: extra.quote || base.intro,
+    quote,
   };
 }
 
@@ -195,7 +220,7 @@ export const templeCards = [
   {
     id: "krishna",
     path: "/ashram/krishna",
-    name: "The Krishna Maya Temple",
+    name: "Vishnu Maya — Temple of Lord Krishna",
     tag: "Govinda · Giver of joy to all",
     img: consecratedSpaceTempleImages.krishna,
     intro: "Krishna is the mischievous child of Vrindavan, the divine lover whose flute calls every soul home, the warrior who delivered the Bhagavad Gita, the perfect friend, the god who dances. The most complete divine manifestation ever known to humanity.",

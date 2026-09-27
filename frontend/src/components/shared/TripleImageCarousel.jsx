@@ -36,6 +36,18 @@ export default function TripleImageCarousel({
     return () => window.clearInterval(id);
   }, [autoPlayMs, n]);
 
+  useEffect(() => {
+    if (n < 2) return;
+    const nextSlide = slides[(idx + 1) % n];
+    const prevSlide = slides[(idx - 1 + n) % n];
+    [nextSlide, prevSlide].forEach((slide) => {
+      const src = heroSlideSrc(slide.img, { main: true });
+      const warm = new Image();
+      warm.decoding = "async";
+      warm.src = src;
+    });
+  }, [idx, slides, n]);
+
   if (!n) return null;
 
   const prev = () => setIdx((current) => (current - 1 + n) % n);
@@ -69,8 +81,8 @@ export default function TripleImageCarousel({
             <img
               src={heroSlideSrc(s.img, { main: i === 1 })}
               alt={s.label || "Banner image"}
-              loading={i === 1 ? "eager" : "lazy"}
-              fetchPriority={i === 1 ? "high" : "auto"}
+              loading="eager"
+              fetchPriority={i === 1 ? "high" : "low"}
               decoding="async"
               width={i === 1 ? 1200 : 640}
               height={i === 1 ? 800 : 480}

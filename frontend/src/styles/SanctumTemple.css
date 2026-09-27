@@ -1,0 +1,136 @@
+.s-temple-page {
+  --temple-cream: #FBF6EC;
+  --temple-tint: #F3EADA;
+  --temple-navy: #222A45;
+  --temple-deep: #0d152f;
+  --temple-maroon: #9B3A1E;
+  --temple-gold: #C9973D;
+  --temple-ink: #2B2620;
+  --temple-muted: #5C544A;
+  color: var(--temple-ink);
+  background: var(--temple-cream);
+  font-family: "Work Sans", sans-serif;
+}
+.s-temple-page > main > .s-hero { padding: 0; }
+.s-temple-page .s-page-wrap { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+.s-temple-page .s-hero { position: relative; overflow: hidden; color: #fff; background: var(--temple-navy); border-bottom: 2px solid var(--temple-gold); }
+.s-temple-page .s-hero::before { content: ""; position: absolute; inset: 0; opacity: .1; background-image: radial-gradient(#DFC488 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; }
+.s-temple-page .s-hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(220px, .8fr); gap: clamp(28px, 6vw, 76px); align-items: center; padding-block: clamp(20px, 2.5vw, 30px); }
+.s-temple-page .s-breadcrumb { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; color: rgba(255,255,255,.62); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.s-temple-page .s-breadcrumb a { color: inherit; text-decoration: none; }
+.s-temple-page .s-breadcrumb a:hover { color: var(--temple-gold); }
+.s-temple-page .s-breadcrumb-current { color: var(--temple-gold); }
+.s-temple-page .s-mantra { margin: 0 0 2px; color: var(--temple-gold); font: 18px/1.5 "Noto Serif", serif; letter-spacing: .05em; }
+.s-temple-page .s-hero h1 { max-width: 800px; margin: 0; color: #fff; font: 500 clamp(18px, 2.1vw, 28px)/1.1 "EB Garamond", Georgia, serif; }
+.s-temple-page .s-krishna-hero h1 { max-width: none; font-size: clamp(17px, 2.1vw, 28px); white-space: nowrap; }
+.s-temple-page .s-tagline { margin: 4px 0 0; color: var(--temple-gold); font: italic 19px/1.35 "EB Garamond", Georgia, serif; }
+.s-temple-page .s-intro { max-width: 620px; margin: 7px 0 0; color: rgba(255,255,255,.86); font-size: 14px; line-height: 1.7; }
+.s-temple-page .s-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.s-temple-page .s-button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1px solid var(--temple-gold); border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+.s-temple-page .s-button-primary { color: #fff; background: var(--temple-maroon); }
+.s-temple-page .s-button-secondary { color: var(--temple-gold); }
+.s-temple-page .s-hero-portrait { width: min(100%, 290px); justify-self: center; position: relative; margin: 0; padding: 6px; border: 1px solid rgba(201,151,61,.7); border-radius: 150px 150px 10px 10px; background: rgba(13,21,47,.6); box-shadow: 0 8px 30px rgba(0,0,0,.2); }
+.s-temple-page .s-hero-portrait img { display: block; width: 100%; height: 240px; object-fit: cover; object-position: center 20%; border-radius: 145px 145px 6px 6px; }
+.s-temple-page .s-portrait-label { position: absolute; inset: auto 6px 6px; padding: 30px 8px 12px; border-radius: 0 0 6px 6px; background: linear-gradient(transparent,rgba(13,21,47,.92)); color: var(--temple-gold); text-align: center; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+.s-temple-page .s-portrait-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); padding: 5px 12px; border: 1px solid var(--temple-gold); border-radius: 999px; color: var(--temple-gold); background: var(--temple-navy); white-space: nowrap; font-size: 9px; letter-spacing: .12em; }
+.s-temple-page .s-section { padding-block: clamp(48px, 7vw, 76px); }
+.s-temple-page .s-about { background: var(--temple-tint); border-bottom: 1px solid rgba(201,151,61,.35); }
+.s-temple-page .s-temple-about:not(.s-krishna-about) { background: var(--temple-cream); }
+.s-temple-page .s-about-grid { display: grid; grid-template-columns: minmax(250px, .8fr) minmax(0, 1.2fr); gap: clamp(30px, 5vw, 64px); align-items: center; }
+.s-temple-page .s-krishna-about-head { margin: 0 auto 34px; text-align: center; }
+.s-temple-page .s-krishna-about-head .s-eyebrow { display: inline-block; padding: 5px 12px; border: 1px solid rgba(201,151,61,.42); border-radius: 999px; color: var(--temple-maroon); font-size: 9px; letter-spacing: .18em; }
+.s-temple-page .s-krishna-about-head .s-eyebrow::before,.s-temple-page .s-krishna-about-head .s-eyebrow::after { content: "•"; padding-inline: 6px; color: var(--temple-gold); }
+.s-temple-page .s-krishna-about-head h2 { margin: 10px 0 4px; }
+.s-temple-page .s-krishna-divider { color: var(--temple-gold); font-size: 12px; letter-spacing: .35em; }
+.s-temple-page .s-temple-about-copy { width: 90%; margin-inline: auto; }
+.s-temple-page .s-krishna-about { background: var(--temple-cream); }
+.s-temple-page .s-krishna-about-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(275px, .85fr); gap: clamp(28px, 4vw, 48px); align-items: start; }
+.s-temple-page .s-krishna-copy { font-size: 13px; line-height: 1.65; }
+.s-temple-page .s-krishna-copy p:first-child::first-letter { float: left; margin: 2px 8px 0 0; padding-right: 5px; border-right: 2px solid var(--temple-gold); color: var(--temple-maroon); font: 42px/.9 "EB Garamond", Georgia, serif; }
+.s-temple-page .s-krishna-aside { display: grid; gap: 14px; }
+.s-temple-page .s-gita-card { padding: 17px; border: 1px solid #E7DFCE; border-radius: 4px; background: #fff; box-shadow: 0 8px 28px rgba(34,42,69,.06); }
+.s-temple-page .s-gita-card-head { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid #E7DFCE; color: var(--temple-maroon); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+.s-temple-page .s-gita-card-head span { color: var(--temple-gold); text-align: right; text-transform: none; }
+.s-temple-page .s-gita-verse { margin: 13px 0 10px; color: var(--temple-deep); font-family: "Noto Serif", serif; font-size: 13px; line-height: 1.9; text-align: center; }
+.s-temple-page .s-gita-translation { margin: 0; padding-top: 9px; border-top: 1px solid #E7DFCE; color: var(--temple-muted); font-size: 10px; font-style: italic; line-height: 1.65; }
+.s-temple-page .s-krishna-sanctuary-card { padding: 17px; border-radius: 4px; background: var(--temple-deep); color: rgba(251,246,236,.76); }
+.s-temple-page .s-krishna-sanctuary-card > span { display: block; padding-bottom: 9px; border-bottom: 1px solid rgba(251,246,236,.16); color: var(--temple-gold); font-size: 8px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.s-temple-page .s-krishna-sanctuary-card p { margin: 11px 0 4px; color: #fff; font: 500 22px/1.2 "EB Garamond", Georgia, serif; }
+.s-temple-page .s-krishna-sanctuary-card small { display: block; font-size: 10px; line-height: 1.65; }
+.s-temple-page .s-krishna-seva-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; margin-top: 40px; }
+.s-temple-page .s-krishna-seva-card { position: relative; display: flex; min-width: 0; flex-direction: column; padding: 19px; border: 1px solid #E7DFCE; border-radius: 4px; background: #fff; box-shadow: 0 8px 28px rgba(34,42,69,.06); }
+.s-temple-page .s-krishna-seva-card::before { position: absolute; inset: 0 0 auto; height: 3px; background: var(--temple-maroon); content: ""; }
+.s-temple-page .s-krishna-seva-card:nth-child(2)::before { background: var(--temple-gold); }
+.s-temple-page .s-krishna-seva-card:nth-child(3)::before { background: var(--temple-deep); }
+.s-temple-page .s-krishna-seva-card-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 12px; }
+.s-temple-page .s-krishna-seva-icon { display: grid; width: 32px; height: 32px; place-items: center; border: 1px solid rgba(201,151,61,.38); border-radius: 3px; color: var(--temple-maroon); background: var(--temple-cream); }
+.s-temple-page .s-krishna-seva-label { padding: 5px 7px; border-radius: 3px; color: var(--temple-maroon); background: var(--temple-cream); font-size: 8px; letter-spacing: .07em; text-transform: uppercase; }
+.s-temple-page .s-krishna-seva-card h3 { margin: 0; color: var(--temple-deep); font: 600 19px/1.2 "EB Garamond", Georgia, serif; }
+.s-temple-page .s-krishna-seva-card > p { flex: 1; margin: 8px 0 14px; color: var(--temple-muted); font-size: 10px; line-height: 1.65; }
+.s-temple-page .s-krishna-seva-link { display: flex; justify-content: space-between; gap: 8px; padding-top: 10px; border-top: 1px solid #E7DFCE; color: var(--temple-maroon); font-size: 8px; font-weight: 700; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
+.s-temple-page .s-eyebrow { color: var(--temple-maroon); font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+.s-temple-page .s-section h2 { margin: 10px 0 16px; color: var(--temple-deep); font: 500 clamp(28px, 3.6vw, 42px)/1.1 "EB Garamond", Georgia, serif; }
+.s-temple-page .s-about-image { display: block; width: 100%; max-height: 390px; margin-top: 22px; border: 1px solid rgba(201,151,61,.4); border-radius: 5px; object-fit: cover; }
+.s-temple-page .s-copy { color: var(--temple-muted); font-size: 14px; line-height: 1.85; text-align: justify; }
+.s-temple-page .s-copy p { margin: 0 0 14px; }
+.s-temple-page .s-detail-section { border-top: 1px solid rgba(201,151,61,.25); }
+.s-temple-page .s-detail-copy { width: 90%; max-width: none; margin-inline: auto; }
+.s-temple-page .s-section-head { max-width: 930px; margin: 0 auto 24px; }
+.s-temple-page .s-detail-section .s-section-head { width: 90%; max-width: none; }
+.s-temple-page .s-section-head h2 { margin-bottom: 0; }
+.s-temple-page .s-quote { margin: 20px 0 0; padding: 16px; border-left: 4px solid var(--temple-gold); border-radius: 0 4px 4px 0; background: rgba(255,255,255,.72); color: var(--temple-deep); font: italic 19px/1.45 "EB Garamond", Georgia, serif; }
+.s-temple-page .s-quote cite { display: block; margin-top: 8px; color: var(--temple-muted); font: normal 11px/1.5 "Work Sans", sans-serif; }
+.s-temple-page .s-highlight-grid,.s-temple-page .s-reason-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin-top: 38px; }
+.s-temple-page .s-card { position: relative; padding: 23px; border: 1px solid #E7DFCE; border-radius: 5px; background: #fff; box-shadow: 0 8px 30px rgba(34,42,69,.05); }
+.s-temple-page .s-card::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: var(--temple-gold); }
+.s-temple-page .s-card h3 { margin: 0; color: var(--temple-deep); font: 600 21px/1.2 "EB Garamond", Georgia, serif; }
+.s-temple-page .s-card p { margin: 9px 0 0; color: var(--temple-muted); font-size: 12px; line-height: 1.7; }
+.s-temple-page .s-reasons { background: var(--temple-tint); border-block: 1px solid rgba(201,151,61,.35); }
+.s-temple-page .s-reasons .s-section-head,.s-temple-page .s-visit .s-section-head { text-align: center; }
+.s-temple-page .s-reasons .s-section-head { width: 100%; max-width: none; }
+.s-temple-page .s-reasons .s-section-head h2 { white-space: nowrap; }
+.s-temple-page .s-gift { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 28px; padding: 26px; border: 1px solid var(--temple-gold); border-radius: 5px; background: var(--temple-deep); color: #fff; }
+.s-temple-page .s-gift .s-eyebrow { color: #DFC488; }
+.s-temple-page .s-gift p { margin: 7px 0 0; font: italic 21px/1.45 "EB Garamond", Georgia, serif; }
+.s-temple-page .s-visit-grid { display: grid; grid-template-columns: 1.3fr .7fr; gap: 22px; margin-top: 30px; }
+.s-temple-page .s-visit-panel { padding: 26px; border: 1px solid #E7DFCE; border-radius: 5px; background: #fff; box-shadow: 0 8px 30px rgba(34,42,69,.05); }
+.s-temple-page .s-visit-panel h3 { margin: 0 0 18px; padding-bottom: 12px; border-bottom: 1px solid #E7DFCE; color: var(--temple-deep); font: 500 24px "EB Garamond", Georgia, serif; }
+.s-temple-page .s-visit-panel .s-visit-welcome { margin: 18px 0 0; padding: 0; border: 0; }
+.s-temple-page .s-visit-fact { margin-top: 17px; }
+.s-temple-page .s-visit-fact strong { color: var(--temple-maroon); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.s-temple-page .s-visit-fact p { margin: 5px 0 0; color: var(--temple-muted); font-size: 13px; line-height: 1.65; }
+.s-temple-page .s-visit-image { display: block; width: 100%; height: 215px; object-fit: cover; border-radius: 4px; }
+.s-temple-page .s-visit-cta { display: inline-block; margin-top: 18px; color: var(--temple-maroon); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
+.s-temple-page .s-explore { background: var(--temple-tint); border-top: 1px solid rgba(201,151,61,.35); }
+.s-temple-page .s-explore-head { display: flex; justify-content: space-between; align-items: end; gap: 18px; padding-bottom: 14px; border-bottom: 1px solid rgba(201,151,61,.35); }
+.s-temple-page .s-explore-head h2 { margin-bottom: 0; }
+.s-temple-page .s-explore-head > span { color: var(--temple-muted); font-size: 12px; }
+.s-temple-page .s-explore-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; margin-top: 22px; }
+.s-temple-page .s-explore-card { padding: 18px; border: 1px solid #E7DFCE; border-radius: 4px; background: #fff; box-shadow: 0 8px 30px rgba(34,42,69,.05); text-decoration: none; transition: transform .2s,border-color .2s; }
+.s-temple-page .s-explore-card:hover { transform: translateY(-3px); border-color: var(--temple-maroon); }
+.s-temple-page .s-explore-card strong { display: block; margin-top: 7px; color: var(--temple-deep); font: 600 19px/1.2 "EB Garamond", Georgia, serif; }
+.s-temple-page .s-explore-card small { color: var(--temple-maroon); font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.s-temple-page .s-explore-card p { margin: 9px 0 0; color: var(--temple-muted); font-size: 11px; line-height: 1.6; }
+@media(max-width:900px) {
+  .s-temple-page .s-about-grid { grid-template-columns: minmax(220px,.75fr) minmax(0,1.25fr); gap: 28px; }
+  .s-temple-page .s-explore-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:700px) {
+  .s-temple-page .s-krishna-about-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:620px) {
+  .s-temple-page .s-page-wrap { width: calc(100% - 32px); }
+  .s-temple-page .s-detail-copy,.s-temple-page .s-detail-section .s-section-head,.s-temple-page .s-temple-about-copy { width: 100%; }
+  .s-temple-page .s-reasons .s-section-head h2 { white-space: normal; }
+  .s-temple-page .s-hero-grid { grid-template-columns: 1fr; padding-block: 22px; }
+  .s-temple-page .s-hero h1 { font-size: clamp(22px, 5vw, 26px); }
+  .s-temple-page .s-krishna-hero h1 { font-size: clamp(17px, 4.5vw, 21px); }
+  .s-temple-page .s-hero-portrait { justify-self: start; width: 205px; }
+  .s-temple-page .s-hero-portrait img { height: 190px; }
+  .s-temple-page .s-about-grid,.s-temple-page .s-visit-grid { grid-template-columns: 1fr; }
+  .s-temple-page .s-krishna-seva-grid { grid-template-columns: 1fr; gap: 12px; }
+  .s-temple-page .s-highlight-grid,.s-temple-page .s-reason-grid { grid-template-columns: 1fr; gap: 12px; }
+  .s-temple-page .s-gift { align-items: flex-start; flex-direction: column; padding: 20px; }
+  .s-temple-page .s-explore-head { align-items: flex-start; flex-direction: column; }
+  .s-temple-page .s-explore-grid { grid-template-columns: 1fr; }
+}
