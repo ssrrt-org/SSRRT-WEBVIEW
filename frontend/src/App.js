@@ -131,6 +131,12 @@ export default function App() {
           <Route path="/seva" element={<SevaPage/>}/>
           <Route path="/sevas/butter-ganesha" element={<Navigate to="/sevas/ganesh-abhisheka" replace />}/>
           <Route path="/sevas/butter-subramanya" element={<Navigate to="/sevas/subramanya-seva" replace />}/>
+          <Route path="/sevas/ghee-butter-abhisheka" element={<Navigate to="/sevas" replace />}/>
+          <Route path="/sevas/ghee-butter-abhisheka/book" element={<Navigate to="/sevas" replace />}/>
+          <Route path="/sevas/alankar" element={<Navigate to="/sevas" replace />}/>
+          <Route path="/sevas/alankar/book" element={<Navigate to="/sevas" replace />}/>
+          <Route path="/sevas/bhavatarini-seva" element={<Navigate to="/sevas" replace />}/>
+          <Route path="/sevas/bhavatarini-seva/book" element={<Navigate to="/sevas" replace />}/>
           <Route path="/sevas/:ritualId/book" element={<SevaBookPage/>}/>
           <Route path="/sevas/:ritualId" element={<AshramRitualPage/>}/>
           <Route path="/sevas" element={<SevasHubPage/>}/>

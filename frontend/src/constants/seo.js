@@ -89,7 +89,7 @@ const STATIC = {
   ),
   "/sevas": page(
     "Ashram sevas and rituals",
-    "Nandi Abhisheka, butter alankara and temple sevas at the Karekura Ashram."
+    "Explore the Ashram's distinct ritual sevas, with full descriptions and individual booking pages."
   ),
   "/volunteering": page(
     "Volunteer at the Goshala",
