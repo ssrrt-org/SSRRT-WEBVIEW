@@ -3,7 +3,7 @@ import { templeCards } from "@/constants/templeData";
 import { allSevaPrograms } from "@/constants/sevaContent";
 import { ashramRituals } from "@/constants/sevasRituals";
 import { motherSections } from "@/constants/motherContent";
-import { shopCategories } from "@/constants/shopProducts";
+import { shopCategories, shopCategoryLabel, shopVirtualCategories } from "@/constants/shopProducts";
 
 const TITLE_END = "SSRRT";
 
@@ -115,6 +115,18 @@ const STATIC = {
     "Contact and visit Karekura",
     "Trust office of SSRRT at Karekura, Mysore — plan a visit, volunteering, donations and seva enquiries."
   ),
+  "/sevas/adopt-a-cow": page(
+    "Adopt a Cow Seva",
+    "Choose a cow at Project Kaamadhenu and sponsor a full year of feed, shelter, and care — adopt one or more cows through SSRRT Gau seva."
+  ),
+  "/devotees-corner": page(
+    "Devotees Corner — Sacred Experiences & Testimonies",
+    "Published testimonies and sacred personal experiences shared under the grace of Divine Mother Srimad Sai RajaRajeshwari at SSRRT, Karekura."
+  ),
+  "/devotees-corner/share": page(
+    "Share your experience",
+    "Submit your experience with Divine Mother for review by the SSRRT Trust office."
+  ),
 };
 
 function crumbsFor(pathname) {
@@ -199,11 +211,14 @@ export function resolveSeo(pathname) {
   if (path.startsWith("/shop/")) {
     const catId = path.slice("/shop/".length);
     const cat = shopCategories.find((c) => c.id === catId);
-    if (cat && cat.id !== "all") {
+    const virtual = shopVirtualCategories[catId];
+    const label =
+      cat && cat.id !== "all" ? cat.label : virtual ? shopCategoryLabel(catId) : null;
+    if (label) {
       return {
         ...page(
-          `${cat.label} | Shoppe`,
-          `${cat.label} from the SSRRT Ashram Shoppe in Karekura, Mysore.`
+          `${label} | Shoppe`,
+          `${label} from the SSRRT Ashram Shoppe in Karekura, Mysore.`
         ),
         noIndex: false,
         canonicalPath: path,
@@ -226,8 +241,10 @@ export function listSitemapPaths() {
   templeCards.forEach((t) => paths.add(t.path));
   allSevaPrograms.forEach((p) => paths.add(p.path));
   ashramRituals.forEach((r) => paths.add(r.path));
+  paths.add("/sevas/adopt-a-cow");
   motherSections.filter((s) => s.published !== false).forEach((s) => paths.add(s.path));
   shopCategories.filter((c) => c.id !== "all").forEach((c) => paths.add(`/shop/${c.id}`));
+  Object.keys(shopVirtualCategories).forEach((id) => paths.add(`/shop/${id}`));
   return [...paths].sort();
 }
 

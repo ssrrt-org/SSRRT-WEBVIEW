@@ -279,6 +279,9 @@ export default function Header() {
             <span className="topbar-location-short">Karekura, Mysore · Karnataka</span>
           </span>
           <div className="topbar-actions">
+            <Link className="topbar-shop-link" data-testid="topbar-shop-link" to="/shop">
+              Shoppe
+            </Link>
             <ShopCartButton />
             <Link data-testid="topbar-donate-link" to="/donate">
               {SUPPORT_CAUSE_LABEL} <ArrowUpRight size={13} />
@@ -331,33 +334,45 @@ export default function Header() {
         )}
       </header>
 
-      <div className={`mobile-nav-root${open && isMobile ? " open" : ""}`} hidden={!isMobile}>
-        <button
-          type="button"
-          className={`nav-backdrop${open && isMobile ? " visible" : ""}`}
-          tabIndex={open && isMobile ? 0 : -1}
-          aria-label="Close navigation"
-          onClick={closeMenu}
-        />
-        <div
-          id="mobile-nav-panel"
-          className={`mobile-nav-panel${open && isMobile ? " open" : ""}`}
-          role="dialog"
-          aria-modal={open && isMobile}
-          aria-label="Site navigation"
-        >
-          <nav className="nav mobile-nav">
-            <NavLinks
-              onClick={closeMenu}
-              isMobile
-              expandedDrop={expandedDrop}
-              onExpand={setExpandedDrop}
-              openDrop={null}
-              onOpenDrop={() => {}}
-            />
-          </nav>
+      {isMobile ? (
+        <div className={`mobile-nav-root${open ? " open" : ""}`}>
+          <button
+            type="button"
+            className={`nav-backdrop${open ? " visible" : ""}`}
+            tabIndex={open ? 0 : -1}
+            aria-label="Close navigation"
+            onClick={closeMenu}
+          />
+          <div
+            id="mobile-nav-panel"
+            className={`mobile-nav-panel${open ? " open" : ""}`}
+            role="dialog"
+            aria-modal={open}
+            aria-label="Site navigation"
+          >
+            <div className="mobile-nav-quick">
+              <Link
+                className="mobile-nav-quick-shop"
+                data-testid="mobile-nav-shop-link"
+                to="/shop"
+                onClick={closeMenu}
+              >
+                Shoppe
+              </Link>
+            </div>
+            <nav className="nav mobile-nav">
+              <NavLinks
+                onClick={closeMenu}
+                isMobile
+                expandedDrop={expandedDrop}
+                onExpand={setExpandedDrop}
+                openDrop={null}
+                onOpenDrop={() => {}}
+              />
+            </nav>
+          </div>
         </div>
-      </div>
+      ) : null}
     </>
   );
 }

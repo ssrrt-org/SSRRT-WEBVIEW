@@ -1,4 +1,15 @@
-import { docTitle, proseParas } from "@/lib/docContent";
+import { docExcerpt, docTitle, proseParas } from "@/lib/docContent";
+
+/** Annual cow sponsorship — booked under Sevas, not the Goshala programme page. */
+export const cowAdoptionSeva = {
+  id: "adopt-a-cow",
+  path: "/sevas/adopt-a-cow",
+  title: "Adopt a Cow",
+  eyebrow: "Gau seva · Kamadhenu",
+  intro: docExcerpt("goshala_adopt", { skip: 8, maxLen: 200 })
+    || "Choose a cow and sponsor a full year of feed, shelter, and care — you may adopt more than one.",
+  paragraphs: proseParas("goshala_adopt", { skip: 9, max: 3 }),
+};
 
 export const ashramRituals = [
   {

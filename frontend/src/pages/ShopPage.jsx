@@ -6,9 +6,12 @@ import HashRedirect from "@/components/shared/HashRedirect";
 import ProductCard from "@/components/shop/ProductCard";
 import ShopCartButton from "@/components/shop/ShopCartButton";
 import { useShopProducts } from "@/context/CmsContext";
-import { shopCategories } from "@/constants/shopProducts";
-
-const CATEGORY_IDS = shopCategories.map((c) => c.id);
+import {
+  isShopRouteCategory,
+  productMatchesShopCategory,
+  shopCategories,
+  shopVirtualCategories,
+} from "@/constants/shopProducts";
 
 export default function ShopPage() {
   const shopProducts = useShopProducts();
@@ -18,11 +21,13 @@ export default function ShopPage() {
   );
   const { category: routeCategory } = useParams();
   const navigate = useNavigate();
-  const hashIds = shopCategories.filter((c) => c.id !== "all").map((c) => c.id);
+  const hashIds = [
+    ...shopCategories.filter((c) => c.id !== "all").map((c) => c.id),
+    ...Object.keys(shopVirtualCategories),
+  ];
 
-  const routeCat = routeCategory && CATEGORY_IDS.includes(routeCategory) && routeCategory !== "all"
-    ? routeCategory
-    : "all";
+  const routeCat =
+    routeCategory && isShopRouteCategory(routeCategory) ? routeCategory : "all";
 
   const [category, setCategory] = useState(routeCat);
   const [search, setSearch] = useState("");
@@ -45,7 +50,7 @@ export default function ShopPage() {
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     return shopProducts.filter((p) => {
-      if (category !== "all" && p.category !== category) return false;
+      if (!productMatchesShopCategory(p, category)) return false;
       if (p.price > priceMax) return false;
       if (!q) return true;
       return p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q);

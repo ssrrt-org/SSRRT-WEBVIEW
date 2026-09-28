@@ -6,7 +6,7 @@ import ExploreGrid from "@/components/shared/ExploreGrid";
 import HashRedirect from "@/components/shared/HashRedirect";
 import { Eyebrow } from "@/components/shared/PageSections";
 import { ashramHubParagraphs } from "@/constants/ashramContent";
-import { ashramRituals } from "@/constants/sevasRituals";
+import { ashramRituals, cowAdoptionSeva } from "@/constants/sevasRituals";
 import { templeCards } from "@/constants/templeData";
 import { docExcerpt, docTitle } from "@/lib/docContent";
 import { docPageImages } from "@/constants/docPageImages";
@@ -15,7 +15,10 @@ import { consecratedSpaceTempleImages } from "@/constants/consecratedSpaceHeroIm
 
 const templeIds = templeCards.map((t) => t.id);
 
-const sacredSpaces = [
+const DEITY_SANNIDHI_IDS = ["ganesha", "shiva", "krishna", "shirdi", "subramanya", "dattatreya"];
+const OTHER_SACRED_CARD_IDS = ["manidweepa", "nataraja"];
+
+const standaloneSacredSpaces = [
   {
     id: "bhairava",
     path: "/ashram/bhairava",
@@ -38,10 +41,21 @@ export default function AshramPage() {
     ...t,
     img: img(`temple-card-${t.id}`, t.img),
   }));
-  const sacred = sacredSpaces.map((space) => ({
+  const deityTemples = temples.filter((t) => DEITY_SANNIDHI_IDS.includes(t.id));
+  const otherSacredFromTemples = temples
+    .filter((t) => OTHER_SACRED_CARD_IDS.includes(t.id))
+    .map((t) => ({
+      id: t.id,
+      path: t.path,
+      name: t.name,
+      note: t.intro,
+      img: t.img,
+    }));
+  const otherSacredStandalone = standaloneSacredSpaces.map((space) => ({
     ...space,
     img: img(`sacred-${space.id}`, space.img),
   }));
+  const otherSacredSpaces = [...otherSacredFromTemples, ...otherSacredStandalone];
 
   const ashramTitle = docTitle("sacred_ashram", { minLen: 20 });
   const ashramEyebrow = docTitle("sacred_ashram", { minLen: 10 });
@@ -65,10 +79,10 @@ export default function AshramPage() {
 
       <section className="temple-section-v2 tint">
         <div className="wrap">
-          <Eyebrow>Temples & sannidhis</Eyebrow>
-          <h2 className="section-h mother-line-heading-sm">Eight sacred spaces on the Cauvery.</h2>
+          <Eyebrow>Temples</Eyebrow>
+          <h2 className="section-h mother-line-heading-sm">Six deity sannidhis on the Cauvery.</h2>
           <div className="temple-grid-v2">
-            {temples.map((t) => (
+            {deityTemples.map((t) => (
               <Link key={t.id} to={t.path} className="temple-card-link" data-testid={`ashram-link-${t.id}`}>
                 <article>
                   <div className="temple-img">
@@ -76,7 +90,7 @@ export default function AshramPage() {
                   </div>
                   <div className="temple-card-body">
                     <h3>{t.name}</h3>
-                    <p>{t.note}</p>
+                    <p>{t.intro}</p>
                   </div>
                 </article>
               </Link>
@@ -85,33 +99,61 @@ export default function AshramPage() {
         </div>
       </section>
 
-      <section className="sevas-band">
+      <section className="temple-section-v2">
         <div className="wrap">
           <Eyebrow>Other sacred spaces</Eyebrow>
-          <h2 className="section-h mother-line-heading-sm">Trishula, Nandi, and Ashram sevas.</h2>
-          <div className="sevas-grid">
-            {sacred.map((space) => (
-              <Link key={space.id} to={space.path} className="seva-card-link" data-testid={`ashram-sacred-${space.id}`}>
+          <h2 className="section-h mother-line-heading-sm">
+            Mani-Dweepa, Nataraja Hall, Bhairava, and Harake Nandi.
+          </h2>
+          <div className="temple-grid-v2">
+            {otherSacredSpaces.map((space) => (
+              <Link
+                key={space.id}
+                to={space.path}
+                className="temple-card-link"
+                data-testid={`ashram-sacred-${space.id}`}
+              >
                 <article>
-                  <img src={space.img} alt={space.name} loading="lazy" />
-                  <div>
+                  <div className="temple-img">
+                    <img src={space.img} alt={space.name} loading="lazy" />
+                  </div>
+                  <div className="temple-card-body">
                     <h3>{space.name}</h3>
                     <p>{space.note}</p>
                   </div>
                 </article>
               </Link>
             ))}
-            {ashramRituals.map((ritual) => (
-              <Link key={ritual.id} to={ritual.path} className="seva-card-link" data-testid={`ashram-ritual-${ritual.id}`}>
+          </div>
+        </div>
+      </section>
+
+      <section className="temple-section-v2 tint">
+        <div className="wrap">
+          <Eyebrow>Ashram sevas</Eyebrow>
+          <h2 className="section-h mother-line-heading-sm">Book abhisheka and seva at the sannidhis.</h2>
+          <div className="temple-grid-v2">
+            {[...ashramRituals, cowAdoptionSeva].map((ritual) => (
+              <Link
+                key={ritual.id}
+                to={ritual.path}
+                className="temple-card-link"
+                data-testid={`ashram-ritual-${ritual.id}`}
+              >
                 <article>
-                  <div>
+                  <div className="temple-card-body temple-card-body-only">
                     <h3>{ritual.title}</h3>
-                    <p>{ritual.paragraphs?.[0]?.slice(0, 140)}…</p>
+                    <p>{ritual.intro}</p>
                   </div>
                 </article>
               </Link>
             ))}
           </div>
+          <p className="ashram-sevas-more">
+            <Link to="/sevas" data-testid="ashram-all-sevas-link">
+              View all Ashram sevas <ChevronRight size={15} aria-hidden="true" />
+            </Link>
+          </p>
         </div>
       </section>
 

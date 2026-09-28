@@ -96,3 +96,8 @@ export function useFormation() {
   const { data } = useCms();
   return data.formation || adminSeed.formation;
 }
+
+export function usePublishedDevoteeStories() {
+  const { data } = useCms();
+  return (data.devoteeStories || []).filter((story) => story.published !== false);
+}

@@ -94,12 +94,24 @@ export const navItems = [
     ],
   },
   {
+    label: "Shoppe",
+    path: "/shop",
+    sub: [
+      { label: "Books", path: "/shop/books" },
+      { label: "Audios", path: "/shop/audio" },
+      { label: "Videos", path: "/shop/videos" },
+      { label: "Pictures", path: "/shop/pictures" },
+      { label: "For Mandir", path: "/shop/mandir" },
+    ],
+  },
+  {
     label: "Sevas",
     path: "/sevas",
     sub: [
       { label: "Ganesh Abhisheka", path: "/sevas/ganesh-abhisheka" },
       { label: "Nandi Abhisheka", path: "/sevas/nandi-abhisheka" },
       { label: "Subramanya Seva", path: "/sevas/subramanya-seva" },
+      { label: "Adopt a Cow", path: "/sevas/adopt-a-cow" },
     ],
   },
   {
@@ -110,7 +122,14 @@ export const navItems = [
       { label: "Contact", path: "/contact" },
     ],
   },
-  { label: "Shoppe", path: "/shop" },
+  {
+    label: "Devotees Corner",
+    path: "/devotees-corner",
+    sub: [
+      { label: "Devotee experiences", path: "/devotees-corner" },
+      { label: "Share your experience", path: "/devotees-corner/share" },
+    ],
+  },
   { label: "Volunteer", path: "/volunteering", volunteer: true },
   { label: SUPPORT_CAUSE_LABEL, path: "/donate", donate: true },
 ];

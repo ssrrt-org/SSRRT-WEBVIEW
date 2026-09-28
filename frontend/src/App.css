@@ -269,6 +269,17 @@ section {
 .topbar-cart:hover {
   color: var(--gold);
 }
+.topbar-shop-link {
+  display: none;
+  color: var(--ivory);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.topbar-shop-link:hover {
+  color: var(--gold);
+}
 .topbar-cart em {
   display: inline-flex;
   align-items: center;
@@ -630,6 +641,27 @@ body.nav-open .topbar {
   transform: translateX(0);
   visibility: visible;
   pointer-events: auto;
+}
+.mobile-nav-quick {
+  padding: 0 16px 8px;
+}
+.mobile-nav-quick-shop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(232, 197, 106, .45);
+  border-radius: 4px;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.mobile-nav-quick-shop:hover {
+  background: rgba(255, 255, 255, .06);
+  color: var(--ivory);
 }
 .mobile-nav {
   display: flex;
@@ -3334,6 +3366,24 @@ body.nav-open .cookie-banner {
   line-height: 1.7;
   margin: 0;
   flex: 1;
+}
+.temple-card-body-only {
+  min-height: 148px;
+  justify-content: flex-start;
+}
+.ashram-sevas-more {
+  margin: 22px 0 0;
+  text-align: center;
+}
+.ashram-sevas-more a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  color: var(--maroon);
+}
+.ashram-sevas-more a:hover {
+  color: var(--maroon-deep);
 }
 .temple-card-more {
   margin-top: 14px;
@@ -7986,6 +8036,292 @@ body.nav-open .cookie-banner {
   justify-content: center;
 }
 
+/* Goshala — adopt-a-cow picker */
+.goshala-adopt-picker {
+  padding: 56px 0;
+}
+.goshala-adopt-picker-head {
+  max-width: 42rem;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+.goshala-adopt-picker-head h2 {
+  margin: 0 0 10px;
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 3vw, 32px);
+  color: var(--indigo);
+}
+.goshala-adopt-picker-head p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+.goshala-adopt-picker-rate {
+  margin-top: 10px !important;
+  color: var(--maroon);
+  font-weight: 600;
+}
+.goshala-adopt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+.goshala-adopt-card {
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(178, 139, 72, .35);
+  border-radius: 4px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s;
+}
+.goshala-adopt-card:hover,
+.goshala-adopt-card.selected {
+  border-color: var(--gold);
+  box-shadow: 0 12px 28px -22px rgba(61, 40, 23, .55);
+}
+.goshala-adopt-card-img {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.goshala-adopt-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.goshala-adopt-card-check {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--maroon);
+  color: var(--ivory);
+}
+.goshala-adopt-card h3 {
+  margin: 12px 14px 6px;
+  font-family: var(--font-heading);
+  color: var(--indigo);
+}
+.goshala-adopt-card p {
+  margin: 0 14px 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-soft);
+}
+.goshala-adopt-checkout {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border: 1px solid rgba(178, 139, 72, .3);
+  background: rgba(255, 255, 255, .7);
+}
+.goshala-adopt-checkout p {
+  margin: 0;
+  color: var(--text-soft);
+  font-weight: 500;
+}
+
+/* Devotees Corner — override global section { padding: 100px 0 } */
+.devotees-page section {
+  padding: 0;
+}
+
+/* Legacy devotees-page (App.css) — kept for reference if mixed */
+.devotees-page {
+  background: #fff;
+}
+.devotees-page-head {
+  padding: 56px 0 48px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+.devotees-page-head-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.devotees-page-head-inner .eyebrow {
+  justify-content: center;
+}
+.devotees-page-head h1 {
+  margin: 12px 0 14px;
+  font-family: var(--font-heading);
+  font-size: clamp(30px, 3.8vw, 44px);
+  font-weight: 600;
+  line-height: 1.12;
+  color: var(--indigo);
+}
+.devotees-page-head p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: clamp(15px, 1.35vw, 17px);
+  line-height: 1.65;
+}
+.devotees-section {
+  padding: 56px 0 64px;
+  background: #fff;
+}
+.devotees-crosslink {
+  margin: 36px 0 0;
+  text-align: center;
+}
+.devotees-crosslink a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--maroon);
+}
+.devotees-crosslink a:hover {
+  color: var(--maroon-deep);
+}
+.devotees-section-head {
+  max-width: 40rem;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+.devotees-section-kicker {
+  margin: 0 0 10px;
+  color: var(--maroon);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.devotees-section-title {
+  margin: 0 0 12px;
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 2.8vw, 32px);
+  font-weight: 600;
+  color: var(--indigo);
+  line-height: 1.2;
+}
+.devotees-section-lede {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 15px;
+  line-height: 1.65;
+}
+.devotees-empty {
+  margin: 0 auto;
+  max-width: 36rem;
+  text-align: center;
+  color: var(--text-soft);
+  line-height: 1.65;
+}
+.devotees-story-grid {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.devotees-story-card {
+  padding: 24px 26px;
+  border: 1px solid rgba(178, 139, 72, .28);
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 12px 32px -28px rgba(34, 42, 69, .18);
+}
+.devotees-story-card h3 {
+  margin: 0 0 6px;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  color: var(--indigo);
+}
+.devotees-story-meta {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--text-faint);
+}
+.devotees-story-body {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--text-soft);
+  font-size: 15px;
+}
+.devotees-form-panel {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 36px);
+  border: 1px solid rgba(178, 139, 72, .32);
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 16px 40px -32px rgba(34, 42, 69, .2);
+}
+.devotees-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.devotees-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 18px;
+}
+.devotees-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--ink);
+}
+.devotees-form input,
+.devotees-form textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  font: inherit;
+  background: #fff;
+  color: var(--ink);
+}
+.devotees-form input:focus,
+.devotees-form textarea:focus {
+  outline: 2px solid rgba(201, 151, 61, .35);
+  border-color: var(--gold);
+}
+.devotees-form-wide {
+  grid-column: 1 / -1;
+}
+.devotees-form-error {
+  margin: 0;
+  color: var(--maroon);
+  font-size: 14px;
+}
+.devotees-success {
+  margin: 0;
+  padding: 16px 18px;
+  border: 1px solid rgba(90, 107, 72, .35);
+  background: rgba(90, 107, 72, .06);
+  color: var(--sage);
+  font-weight: 600;
+  text-align: center;
+}
+@media (max-width: 640px) {
+  .devotees-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .devotees-page-head {
+    padding: 40px 0 32px;
+  }
+  .devotees-section {
+    padding: 40px 0 48px;
+  }
+}
+
 /* ---------- 10. TABLET & SMALLER SCREENS ---------- */
 /* These only run on screens this wide or narrower.
    1200px = large laptop, 900px = tablet/phone menu, 760px = phone, 480px = small phone.
@@ -8112,6 +8448,10 @@ body.nav-open .cookie-banner {
 @media (max-width:900px) {
   :root {
     --mobile-header-height: 64px;
+  }
+  .topbar-shop-link {
+    display: inline-flex;
+    align-items: center;
   }
   .donate-simple-grid {
     grid-template-columns: 1fr;
@@ -9870,6 +10210,9 @@ body.nav-open .cookie-banner {
 }
 .admin-inbox-card h2 {
   font-size: 20px;
+}
+.admin-devotees-inbox-pending {
+  margin-bottom: 20px;
 }
 .admin-inbox-message {
   margin: 0;

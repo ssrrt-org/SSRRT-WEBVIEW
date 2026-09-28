@@ -30,6 +30,7 @@ const SITE_FIELDS = [
   "formation",
   "donate",
   "orders",
+  "devoteeStories",
 ];
 
 export function mergeCmsData(remote = {}) {

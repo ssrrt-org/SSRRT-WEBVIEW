@@ -2,7 +2,7 @@ import { Eyebrow } from "@/components/shared/PageSections";
 import HubProgrammesSection from "@/components/shared/HubProgrammesSection";
 import { usePageImages } from "@/context/CmsContext";
 import { consecratedSpaceTempleImages } from "@/constants/consecratedSpaceHeroImages";
-import { ashramRituals } from "@/constants/sevasRituals";
+import { ashramRituals, cowAdoptionSeva } from "@/constants/sevasRituals";
 
 const ritualImages = {
   "nandi-abhisheka": consecratedSpaceTempleImages["harake-nandi"],
@@ -20,6 +20,15 @@ const programmes = [
     image: ritualImages[r.id],
     testid: `sevas-link-${r.id}`,
   })),
+  {
+    id: cowAdoptionSeva.id,
+    to: cowAdoptionSeva.path,
+    title: cowAdoptionSeva.title,
+    tag: cowAdoptionSeva.eyebrow,
+    note: cowAdoptionSeva.intro,
+    image: ritualImages["harake-nandi"],
+    testid: "sevas-link-adopt-a-cow",
+  },
 ];
 
 export default function SevasHubPage() {

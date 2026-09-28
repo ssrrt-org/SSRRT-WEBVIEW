@@ -28,6 +28,8 @@ export default function DonatePage() {
   const purposeOptions = donateConfig.purposes?.map((item) => item.label) || donationPurposes;
   const [searchParams] = useSearchParams();
   const purposeKey = searchParams.get("purpose");
+  const amountParam = searchParams.get("amount");
+  const dedicationParam = searchParams.get("dedication");
   const [form, setForm] = useState({ donor_name: "", email: "", phone: "", pan: "", address: "", dedication: "" });
   const [purpose, setPurpose] = useState(purposeOptions[0]);
   const [amount, setAmount] = useState("");
@@ -41,6 +43,21 @@ export default function DonatePage() {
       setSubmitted(false);
     }
   }, [purposeKey]);
+
+  useEffect(() => {
+    const parsed = Number(amountParam);
+    if (amountParam && parsed >= 1) {
+      setAmount(String(parsed));
+      setSubmitted(false);
+    }
+  }, [amountParam]);
+
+  useEffect(() => {
+    if (dedicationParam) {
+      setForm((prev) => ({ ...prev, dedication: dedicationParam }));
+      setSubmitted(false);
+    }
+  }, [dedicationParam]);
 
   const update = (key) => (e) => setForm({ ...form, [key]: e.target.value });
 

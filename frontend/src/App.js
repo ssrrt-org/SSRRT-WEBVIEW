@@ -24,6 +24,7 @@ import AdminEventsPage from "@/pages/admin/AdminEventsPage";
 import AdminFormationPage from "@/pages/admin/AdminFormationPage";
 import AdminDonatePage from "@/pages/admin/AdminDonatePage";
 import AdminInboxPage from "@/pages/admin/AdminInboxPage";
+import AdminDevoteesPage from "@/pages/admin/AdminDevoteesPage";
 import AdminSettingsPage from "@/pages/admin/AdminSettingsPage";
 
 import HomePage from "@/pages/HomePage";
@@ -47,6 +48,7 @@ const SevaPage = lazy(() => import("@/pages/SevaPage"));
 const SevaPillarPage = lazy(() => import("@/pages/seva/SevaPillarPage"));
 const SevasHubPage = lazy(() => import("@/pages/SevasHubPage"));
 const AshramRitualPage = lazy(() => import("@/pages/sevas/AshramRitualPage"));
+const SevaAdoptCowPage = lazy(() => import("@/pages/sevas/SevaAdoptCowPage"));
 const SevaBookPage = lazy(() => import("@/pages/sevas/SevaBookPage"));
 const VolunteerPage = lazy(() => import("@/pages/VolunteerPage"));
 const ShopPage = lazy(() => import("@/pages/ShopPage"));
@@ -54,6 +56,8 @@ const EventsPage = lazy(() => import("@/pages/EventsPage"));
 const DonatePage = lazy(() => import("@/pages/DonatePage"));
 const AboutPage = lazy(() => import("@/pages/AboutPage"));
 const ContactPage = lazy(() => import("@/pages/ContactPage"));
+const DevoteesExperiencesPage = lazy(() => import("@/pages/devotees/DevoteesExperiencesPage"));
+const DevoteesSharePage = lazy(() => import("@/pages/devotees/DevoteesSharePage"));
 const CookiePolicyPage = lazy(() => import("@/pages/CookiePolicyPage"));
 const PrivacyPolicyPage = lazy(() => import("@/pages/PrivacyPolicyPage"));
 const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
@@ -103,6 +107,7 @@ export default function App() {
             <Route path="formation" element={<AdminFormationPage />} />
             <Route path="donate" element={<AdminDonatePage />} />
             <Route path="inbox" element={<AdminInboxPage />} />
+            <Route path="devotees" element={<AdminDevoteesPage />} />
             <Route path="settings" element={<AdminSettingsPage />} />
           </Route>
         </Route>
@@ -137,6 +142,7 @@ export default function App() {
           <Route path="/sevas/alankar/book" element={<Navigate to="/sevas" replace />}/>
           <Route path="/sevas/bhavatarini-seva" element={<Navigate to="/sevas" replace />}/>
           <Route path="/sevas/bhavatarini-seva/book" element={<Navigate to="/sevas" replace />}/>
+          <Route path="/sevas/adopt-a-cow" element={<SevaAdoptCowPage/>}/>
           <Route path="/sevas/:ritualId/book" element={<SevaBookPage/>}/>
           <Route path="/sevas/:ritualId" element={<AshramRitualPage/>}/>
           <Route path="/sevas" element={<SevasHubPage/>}/>
@@ -147,6 +153,8 @@ export default function App() {
           <Route path="/donate" element={<DonatePage/>}/>
           <Route path="/about" element={<AboutPage/>}/>
           <Route path="/contact" element={<ContactPage/>}/>
+          <Route path="/devotees-corner/share" element={<DevoteesSharePage/>}/>
+          <Route path="/devotees-corner" element={<DevoteesExperiencesPage/>}/>
           <Route path="/cookie-policy" element={<CookiePolicyPage/>}/>
           <Route path="/privacy" element={<PrivacyPolicyPage/>}/>
           <Route path="*" element={<NotFoundPage/>}/>

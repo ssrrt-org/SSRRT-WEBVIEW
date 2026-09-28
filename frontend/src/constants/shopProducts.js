@@ -1,12 +1,47 @@
 export const shopCategories = [
   { id: "all", label: "All items" },
   { id: "books", label: "Books" },
-  { id: "audio", label: "Audio" },
+  { id: "audio", label: "Audios" },
   { id: "videos", label: "Videos" },
   { id: "padukas", label: "Padukas" },
   { id: "stamps", label: "Sacred stamps" },
   { id: "sacred", label: "Sacred images" },
 ];
+
+/** Nav / URL categories that map to one or more product categories. */
+export const shopVirtualCategories = {
+  pictures: {
+    label: "Pictures",
+    productCategories: ["sacred"],
+  },
+  mandir: {
+    label: "For Mandir",
+    productCategories: ["padukas", "stamps"],
+  },
+};
+
+const SHOP_ROUTE_CATEGORY_IDS = new Set([
+  ...shopCategories.map((c) => c.id),
+  ...Object.keys(shopVirtualCategories),
+]);
+
+export function isShopRouteCategory(id) {
+  return id && id !== "all" && SHOP_ROUTE_CATEGORY_IDS.has(id);
+}
+
+export function productMatchesShopCategory(product, categoryId) {
+  if (!categoryId || categoryId === "all") return true;
+  const virtual = shopVirtualCategories[categoryId];
+  if (virtual) return virtual.productCategories.includes(product.category);
+  return product.category === categoryId;
+}
+
+export function shopCategoryLabel(categoryId) {
+  if (!categoryId || categoryId === "all") return "All items";
+  const virtual = shopVirtualCategories[categoryId];
+  if (virtual) return virtual.label;
+  return shopCategories.find((c) => c.id === categoryId)?.label ?? categoryId;
+}
 
 export const shopProducts = [
   {

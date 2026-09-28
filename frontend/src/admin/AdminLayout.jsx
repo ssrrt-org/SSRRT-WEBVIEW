@@ -13,6 +13,7 @@ import {
   Settings,
   ShoppingBag,
   Sparkles,
+  Users,
   X,
 } from "lucide-react";
 import { useAdminAuth } from "@/admin/AdminAuthContext";
@@ -28,6 +29,7 @@ const NAV = [
   { to: "/admin/formation", label: "Formation", icon: Landmark },
   { to: "/admin/donate", label: "Donations", icon: HeartHandshake },
   { to: "/admin/inbox", label: "Inbox", icon: Inbox, badgeKey: "inbox" },
+  { to: "/admin/devotees", label: "Devotees Corner", icon: Users },
   { to: "/admin/settings", label: "Settings & help", icon: Settings },
 ];
 

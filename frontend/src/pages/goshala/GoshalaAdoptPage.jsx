@@ -39,8 +39,11 @@ export default function GoshalaAdoptPage() {
 
       <section className="child-nav tint">
         <div className="wrap child-nav-inner">
-          <Link className="btn-solid" data-testid="goshala-adopt-donate" to="/donate?purpose=goshala">
-            Donate to the Goshala <ArrowUpRight size={16} />
+          <Link className="btn-solid" data-testid="goshala-adopt-seva" to="/sevas/adopt-a-cow">
+            Sponsor a cow — annual seva <ArrowUpRight size={16} />
+          </Link>
+          <Link className="btn-ghost-dark" data-testid="goshala-adopt-donate" to="/donate?purpose=goshala">
+            General Goshala offering
           </Link>
           <Link className="btn-ghost-dark" data-testid="goshala-adopt-back" to="/goshala">
             Project Kaamadhenau <ChevronRight size={15} />

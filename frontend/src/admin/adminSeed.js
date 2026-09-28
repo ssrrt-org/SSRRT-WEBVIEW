@@ -16,6 +16,7 @@ export const HERO_PAGES = [
   { id: "/seva/food", label: "Food for the Needy", group: "Seva" },
   { id: "/seva/narayana", label: "Narayana Seva", group: "Seva" },
   { id: "/sevas", label: "Ashram sevas", group: "Sevas" },
+  { id: "/sevas/adopt-a-cow", label: "Adopt a Cow seva", group: "Sevas" },
   { id: "/volunteering", label: "Volunteering", group: "Sevas" },
   { id: "/mother", label: "Mother", group: "Mother" },
   { id: "/ashram", label: "Consecrated Space", group: "Ashram" },
@@ -102,4 +103,5 @@ export const adminSeed = {
   },
   orders: [],
   inbox: [],
+  devoteeStories: [],
 };
