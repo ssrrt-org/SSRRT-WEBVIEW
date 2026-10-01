@@ -8621,12 +8621,25 @@ body.nav-open .cookie-banner {
   .carousel-panel {
     display: none;
   }
-  .carousel-panel.main {
+  .hero-carousel:not(.hero-carousel-home) .carousel-panel.main {
     display: block;
     aspect-ratio: 16/10;
     height: auto;
     max-height: 240px;
     transform: none;
+  }
+  .hero-v2 .hero-carousel-home .carousel-panel.main {
+    display: block;
+    aspect-ratio: auto;
+    width: 100%;
+    height: clamp(240px, 58vw, 380px);
+    max-height: min(46vh, 400px);
+    min-height: 220px;
+    transform: none;
+  }
+  .hero-v2 .hero-carousel-home .carousel-panel.main img {
+    object-fit: cover;
+    object-position: center 32%;
   }
   .carousel-arrow.left {
     left: 8px;
@@ -9073,7 +9086,7 @@ body.nav-open .cookie-banner {
     flex: none;
     padding: 0 12px 6px;
   }
-  .carousel-panel.main {
+  .hero-carousel:not(.hero-carousel-home) .carousel-panel.main {
     aspect-ratio: 16/10;
     height: auto;
     max-height: 220px;
@@ -9081,9 +9094,13 @@ body.nav-open .cookie-banner {
     border-radius: 6px;
     box-shadow: 0 12px 32px -16px rgba(34,42,69,.45);
   }
-  .carousel-panel.main img {
+  .hero-carousel:not(.hero-carousel-home) .carousel-panel.main img {
     object-fit: contain;
     object-position: center;
+  }
+  .hero-v2 .hero-carousel-home .carousel-panel.main {
+    border-radius: 6px;
+    box-shadow: 0 12px 32px -16px rgba(34,42,69,.45);
   }
   .carousel-panel figcaption {
     padding: 10px 12px 8px;
@@ -11052,6 +11069,10 @@ body.nav-open .cookie-banner {
   }
   .hero-v2 {
     min-height: 0 !important;
+    padding-bottom: 12px;
+  }
+  .hero-v2 .hero-carousel-home {
+    padding: 8px 12px 4px;
   }
   .hero-ribbon {
     margin-top: 8px;
@@ -11059,6 +11080,23 @@ body.nav-open .cookie-banner {
   }
   .hero-cta-strip {
     margin-bottom: 4px;
+  }
+}
+@media (max-width: 480px) {
+  .hero-v2 .hero-carousel-home .carousel-panel.main {
+    height: clamp(220px, 62vw, 320px);
+    max-height: min(50vh, 340px);
+  }
+  .hero-v2 .hero-carousel-home .carousel-panel.main img {
+    object-position: center 28%;
+  }
+  .hero-v2 .hero-carousel-home .carousel-panel figcaption {
+    padding: 18px 12px 10px;
+  }
+  .hero-v2 .hero-carousel-home .carousel-arrow {
+    width: 36px;
+    height: 36px;
+    opacity: 0.95;
   }
 }
 .avatar-narrative {

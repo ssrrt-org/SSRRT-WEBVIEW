@@ -81,16 +81,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <HubProgrammesSection
-        eyebrow="SSRRT programmes"
-        title="Serve across Karekura and beyond."
-        lede="Short paths into the Trust's ongoing work — each programme has its own page."
-        programmes={homeProgrammeTiles}
-        testIdPrefix="home-programme"
-        compact
-        eagerCount={4}
-      />
-
       <section className="home-virtues tint">
         <div className="wrap">
           <Eyebrow>Five qualities of daily life</Eyebrow>
@@ -142,6 +132,16 @@ export default function HomePage() {
           </figure>
         </div>
       </section>
+
+      <HubProgrammesSection
+        eyebrow="SSRRT programmes"
+        title="Serve across Karekura and beyond."
+        lede="Short paths into the Trust's ongoing work — each programme has its own page."
+        programmes={homeProgrammeTiles}
+        testIdPrefix="home-programme"
+        compact
+        eagerCount={4}
+      />
 
       <section className="pillar-section">
         <div className="wrap">

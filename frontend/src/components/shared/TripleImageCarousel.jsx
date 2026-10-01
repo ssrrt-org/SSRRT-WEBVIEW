@@ -86,7 +86,7 @@ export default function TripleImageCarousel({
               decoding="async"
               width={i === 1 ? 1200 : 640}
               height={i === 1 ? 800 : 480}
-              sizes={i === 1 ? "(min-width: 900px) 55vw, 92vw" : "(min-width: 900px) 22vw, 0px"}
+              sizes={i === 1 ? "(min-width: 900px) 55vw, 100vw" : "(min-width: 900px) 22vw, 0px"}
               style={{ objectPosition: "center center" }}
             />
             {showCaption ? (
